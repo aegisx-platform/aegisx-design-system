@@ -22,6 +22,43 @@ cpSync(resolve(root, 'icons/featured-error'), resolve(out, 'assets/featured-erro
 cpSync(resolve(root, 'logo'), resolve(out, 'assets/logo'), { recursive: true });
 cpSync(resolve(root, 'brand'), resolve(out, 'assets/brand'), { recursive: true });
 
+// Social assets (logo/social/*.png) are picked up via the logo cpSync above —
+// they live under assets/logo/social/.
+const socialDir = resolve(root, 'logo/social');
+const socialFiles = readdirSync(socialDir)
+  .filter((f) => f.endsWith('.png'))
+  .sort();
+
+const SOCIAL_GROUPS = {
+  GitHub:    ['github-org-avatar-400', 'github-social-preview-1280x640', 'github-readme-banner-1200x300'],
+  'X / Twitter': ['twitter-profile-400', 'twitter-header-1500x500', 'twitter-card-1200x628'],
+  LinkedIn:  ['linkedin-profile-400', 'linkedin-cover-1584x396', 'linkedin-share-1200x627'],
+  Facebook:  ['facebook-profile-320', 'facebook-cover-820x312', 'facebook-share-1200x630'],
+  YouTube:   ['youtube-channel-icon-800', 'youtube-banner-2560x1440'],
+  'Slack / Discord': ['slack-workspace-512', 'discord-server-512'],
+  'Open Graph (universal)': ['opengraph-1200x630'],
+};
+
+const SOCIAL_NOTES = {
+  'github-org-avatar-400': 'Organization → Settings → Profile picture',
+  'github-social-preview-1280x640': 'Each repo → Settings → Social preview',
+  'github-readme-banner-1200x300': 'Embed at top of README.md',
+  'twitter-profile-400': 'Profile picture',
+  'twitter-header-1500x500': 'Profile header',
+  'twitter-card-1200x628': 'twitter:image meta tag',
+  'linkedin-profile-400': 'Company logo',
+  'linkedin-cover-1584x396': 'Company cover',
+  'linkedin-share-1200x627': 'Post share image',
+  'facebook-profile-320': 'Page profile',
+  'facebook-cover-820x312': 'Page cover photo',
+  'facebook-share-1200x630': 'OG share image',
+  'youtube-channel-icon-800': 'Channel avatar',
+  'youtube-banner-2560x1440': 'Channel banner (1546×423 safe area)',
+  'slack-workspace-512': 'Workspace icon',
+  'discord-server-512': 'Server icon',
+  'opengraph-1200x630': 'og:image for any page',
+};
+
 const colorSrc = readFileSync(resolve(root, 'icons/icon-color-map.ts'), 'utf8');
 const colorMap = {};
 for (const m of colorSrc.matchAll(
@@ -90,6 +127,26 @@ const html = `<!doctype html>
   .tile.copied::after { content: 'Copied!'; position: absolute; top: 6px; right: 6px; background: #16a34a; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 999px; }
   .badge { width: 52px; height: 52px; margin: 0 auto 8px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; }
   .badge img { width: 26px; height: 26px; }
+
+  /* Social asset cards */
+  .social-grp { margin-top: 24px; }
+  .social-grp h3 { margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #64748b; font-weight: 600; }
+  .social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .social-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .12s, transform .12s; }
+  .social-card:hover { border-color: #6366f1; transform: translateY(-2px); }
+  .social-card .preview { aspect-ratio: 16 / 10; background: repeating-conic-gradient(#f1f5f9 0% 25%, #fff 0% 50%) 50% / 16px 16px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+  .social-card .preview img { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 2px 8px rgba(15,23,42,.1); border-radius: 4px; }
+  .social-card .preview.square { aspect-ratio: 1; }
+  .social-card .meta { padding: 12px 14px; border-top: 1px solid #e2e8f0; }
+  .social-card .meta .name { font-family: ui-monospace, monospace; font-size: 11px; color: #334155; word-break: break-all; }
+  .social-card .meta .dim { font-size: 10px; color: #94a3b8; margin-top: 2px; font-family: ui-monospace, monospace; }
+  .social-card .meta .where { font-size: 11px; color: #475569; margin-top: 6px; }
+  .social-card .meta .actions { display: flex; gap: 8px; margin-top: 10px; }
+  .social-card .meta a { flex: 1; text-align: center; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; text-decoration: none; transition: background .12s; }
+  .social-card .meta a.dl { background: #6366f1; color: #fff; }
+  .social-card .meta a.dl:hover { background: #4f46e5; }
+  .social-card .meta a.view { background: #f1f5f9; color: #475569; }
+  .social-card .meta a.view:hover { background: #e2e8f0; }
   .tile code { display: block; font-size: 11px; color: #334155; word-break: break-all; line-height: 1.3; font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
   .tile span { display: block; font-size: 9px; color: #94a3b8; font-family: ui-monospace, monospace; margin-top: 3px; }
 
@@ -143,6 +200,8 @@ const html = `<!doctype html>
   <a href="#usage">Usage</a>
   <a href="#logos">Logos</a>
   <a href="#brand">Brand</a>
+  <a href="#social">Social</a>
+  <a href="#favicons">Favicons</a>
   <a href="#colors">Colours</a>
   <a href="#icons">Icons</a>
 </nav>
@@ -294,6 +353,59 @@ cls = getIconClasses(<span class="s">'pharmacy'</span>, <span class="s">'md'</sp
   <div class="logo-tile">
     <div class="stage" style="padding:0; min-height:280px; background:url('assets/brand/aegisx-brand-bg.svg') center/cover"></div>
     <div class="label"><code>brand/aegisx-brand-bg.svg</code><a href="assets/brand/aegisx-brand-bg.svg" download>↓ download</a></div>
+  </div>
+</section>
+
+<section class="block" id="social">
+  <h2>Social media assets</h2>
+  <p class="muted">${socialFiles.length} ready-to-upload PNGs, sized exactly per platform. Click <b>Download</b> to save, or <b>View</b> for full size.</p>
+  ${Object.entries(SOCIAL_GROUPS).map(([group, names]) => `
+    <div class="social-grp">
+      <h3>${group}</h3>
+      <div class="social-grid">
+        ${names.map((n) => {
+          const file = `${n}.png`;
+          const dim = n.match(/(\d+)x(\d+)/);
+          const dimStr = dim ? `${dim[1]} × ${dim[2]} px` : (n.match(/(\d+)$/) ? `${n.match(/(\d+)$/)[1]} × ${n.match(/(\d+)$/)[1]} px (square)` : '');
+          const isSquare = !n.match(/\d+x\d+/);
+          return `
+        <div class="social-card">
+          <div class="preview ${isSquare ? 'square' : ''}"><img src="assets/logo/social/${file}" alt="${n}" loading="lazy"></div>
+          <div class="meta">
+            <div class="name">${file}</div>
+            <div class="dim">${dimStr}</div>
+            <div class="where">${SOCIAL_NOTES[n] ?? ''}</div>
+            <div class="actions">
+              <a class="dl" href="assets/logo/social/${file}" download>↓ Download</a>
+              <a class="view" href="assets/logo/social/${file}" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>`;
+        }).join('')}
+      </div>
+    </div>`).join('')}
+</section>
+
+<section class="block" id="favicons">
+  <h2>Favicons</h2>
+  <p class="muted">PNG + ICO ready for any web app's <code>&lt;head&gt;</code>. See <a href="https://github.com/aegisx-platform/aegisx-design-system/blob/main/logo/USAGE-EXAMPLES.md#3-web--favicon-setup" target="_blank">USAGE-EXAMPLES.md</a> for the snippet.</p>
+  <div class="social-grid">
+    ${['favicon-16.png','favicon-32.png','favicon-48.png','apple-touch-icon.png','icon-192.png','icon-512.png','favicon.ico'].map((f) => {
+      const sizeMatch = f.match(/(\d+)/);
+      const sz = sizeMatch ? `${sizeMatch[1]} × ${sizeMatch[1]}` : '48 × 48';
+      const isIco = f.endsWith('.ico');
+      return `
+    <div class="social-card">
+      <div class="preview square">${isIco ? '<div style="font-family:ui-monospace;color:#94a3b8;font-size:11px">.ico (binary)</div>' : `<img src="assets/logo/favicons/${f}" alt="${f}">`}</div>
+      <div class="meta">
+        <div class="name">${f}</div>
+        <div class="dim">${sz} px</div>
+        <div class="actions">
+          <a class="dl" href="assets/logo/favicons/${f}" download>↓ Download</a>
+        </div>
+      </div>
+    </div>`;
+    }).join('')}
   </div>
 </section>
 
