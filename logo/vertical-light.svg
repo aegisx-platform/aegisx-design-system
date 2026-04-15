@@ -1,0 +1,14 @@
+<svg width="120" height="170" viewBox="0 0 120 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(68,38) rotate(45)"><rect x="-26" y="-26" width="52" height="52" rx="10" fill="#1e3a5f" opacity="0.10"/></g>
+  <g transform="translate(61,45) rotate(45)"><rect x="-30" y="-30" width="60" height="60" rx="12" fill="#1e3a5f" opacity="0.20"/></g>
+  <g transform="translate(54,52) rotate(45)">
+    <rect x="-33" y="-33" width="66" height="66" rx="13" fill="#0f172a"/>
+    <rect x="-33" y="-33" width="66" height="66" rx="13" fill="none" stroke="#2a5a8f" stroke-width="0.4" opacity="0.4"/>
+  </g>
+  <path d="M27 52 L42 52 L46 32 L54 68 L58 46 L62 52 L78 52" fill="none" stroke="#3b82f6" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M27 52 L42 52 L46 32 L54 68 L58 46 L62 52 L78 52" fill="none" stroke="#60a5fa" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+  <circle cx="46" cy="32" r="2.5" fill="#60a5fa"/>
+  <circle cx="46" cy="32" r="4.5" fill="#3b82f6" opacity="0.12"/>
+  <text x="60" y="125" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="24" font-weight="700" letter-spacing="0.08em" fill="#0f172a">AEGIS<tspan fill="#3b82f6">X</tspan></text>
+  <text x="60" y="143" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="8" font-weight="400" letter-spacing="0.2em" fill="#64748b">HOSPITAL PLATFORM</text>
+</svg>

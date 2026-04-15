@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="glow-tr" cx="70%" cy="20%" r="40%"><stop offset="0%" stop-color="#1e293b" stop-opacity="0.6"/><stop offset="100%" stop-color="#0f172a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow-bl" cx="22%" cy="82%" r="28%"><stop offset="0%" stop-color="#1e293b" stop-opacity="0.3"/><stop offset="100%" stop-color="#0f172a" stop-opacity="0"/></radialGradient>
+  </defs>
+
+  <!-- Base -->
+  <rect width="1600" height="900" fill="#0f172a"/>
+  <rect width="1600" height="900" fill="url(#glow-tr)"/>
+  <rect width="1600" height="900" fill="url(#glow-bl)"/>
+
+  <!-- Diamond ripple: top-right -->
+  <g transform="translate(1200,160) rotate(45)" opacity="0.08"><rect x="-120" y="-120" width="240" height="240" rx="38" fill="none" stroke="#3b82f6" stroke-width="1.2"/></g>
+  <g transform="translate(1200,160) rotate(45)" opacity="0.05"><rect x="-180" y="-180" width="360" height="360" rx="58" fill="none" stroke="#3b82f6" stroke-width="0.8"/></g>
+  <g transform="translate(1200,160) rotate(45)" opacity="0.03"><rect x="-240" y="-240" width="480" height="480" rx="76" fill="none" stroke="#60a5fa" stroke-width="0.5"/></g>
+  <g transform="translate(1200,160) rotate(45)" opacity="0.015"><rect x="-310" y="-310" width="620" height="620" rx="98" fill="none" stroke="#60a5fa" stroke-width="0.4"/></g>
+
+  <!-- Diamond ripple: bottom-left -->
+  <g transform="translate(300,750) rotate(45)" opacity="0.06"><rect x="-80" y="-80" width="160" height="160" rx="25" fill="none" stroke="#3b82f6" stroke-width="0.8"/></g>
+  <g transform="translate(300,750) rotate(45)" opacity="0.035"><rect x="-130" y="-130" width="260" height="260" rx="42" fill="none" stroke="#3b82f6" stroke-width="0.5"/></g>
+  <g transform="translate(300,750) rotate(45)" opacity="0.02"><rect x="-180" y="-180" width="360" height="360" rx="58" fill="none" stroke="#60a5fa" stroke-width="0.4"/></g>
+
+  <!-- Data nodes: top-right cluster -->
+  <circle cx="1080" cy="400" r="2" fill="#3b82f6" opacity="0.12"/>
+  <circle cx="1220" cy="360" r="1.5" fill="#3b82f6" opacity="0.10"/>
+  <circle cx="1160" cy="490" r="2" fill="#60a5fa" opacity="0.08"/>
+  <circle cx="1340" cy="430" r="1.5" fill="#3b82f6" opacity="0.10"/>
+  <circle cx="1390" cy="330" r="2" fill="#60a5fa" opacity="0.06"/>
+  <circle cx="1280" cy="530" r="1.5" fill="#3b82f6" opacity="0.07"/>
+  <circle cx="1450" cy="490" r="1.5" fill="#3b82f6" opacity="0.06"/>
+  <line x1="1080" y1="400" x2="1220" y2="360" stroke="#3b82f6" stroke-width="0.4" opacity="0.05"/>
+  <line x1="1220" y1="360" x2="1340" y2="430" stroke="#3b82f6" stroke-width="0.4" opacity="0.04"/>
+  <line x1="1160" y1="490" x2="1340" y2="430" stroke="#3b82f6" stroke-width="0.4" opacity="0.04"/>
+  <line x1="1080" y1="400" x2="1160" y2="490" stroke="#3b82f6" stroke-width="0.4" opacity="0.04"/>
+  <line x1="1390" y1="330" x2="1340" y2="430" stroke="#3b82f6" stroke-width="0.4" opacity="0.03"/>
+  <line x1="1390" y1="330" x2="1220" y2="360" stroke="#3b82f6" stroke-width="0.4" opacity="0.03"/>
+  <line x1="1280" y1="530" x2="1160" y2="490" stroke="#3b82f6" stroke-width="0.4" opacity="0.03"/>
+  <line x1="1450" y1="490" x2="1340" y2="430" stroke="#3b82f6" stroke-width="0.4" opacity="0.03"/>
+
+  <!-- Data nodes: bottom-left cluster -->
+  <circle cx="130" cy="580" r="1.5" fill="#3b82f6" opacity="0.08"/>
+  <circle cx="200" cy="630" r="1.5" fill="#60a5fa" opacity="0.06"/>
+  <circle cx="80" cy="680" r="1.5" fill="#3b82f6" opacity="0.06"/>
+  <line x1="130" y1="580" x2="200" y2="630" stroke="#3b82f6" stroke-width="0.4" opacity="0.04"/>
+  <line x1="80" y1="680" x2="200" y2="630" stroke="#3b82f6" stroke-width="0.4" opacity="0.03"/>
+
+  <!-- EKG main -->
+  <path d="M0,450 L400,450 L500,560 L620,280 L700,490 L770,450 L1600,450" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.04" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M0,450 L400,450 L500,560 L620,280 L700,490 L770,450 L1600,450" fill="none" stroke="#60a5fa" stroke-width="0.5" opacity="0.02" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="620" cy="280" r="6" fill="#3b82f6" opacity="0.06"/>
+  <circle cx="620" cy="280" r="18" fill="#3b82f6" opacity="0.02"/>
+
+  <!-- EKG secondary upper -->
+  <path d="M0,250 L900,250 L960,290 L1030,190 L1070,265 L1110,250 L1600,250" fill="none" stroke="#1e293b" stroke-width="0.6" opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- EKG secondary lower -->
+  <path d="M0,660 L200,660 L260,695 L320,610 L355,670 L390,660 L1600,660" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.35" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

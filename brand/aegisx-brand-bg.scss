@@ -1,0 +1,136 @@
+// =============================================================
+// AegisX Brand Background — B4 (Diamond + Glow + Nodes + EKG)
+// =============================================================
+// ใช้สำหรับ Login page, Splash screen, Cover pages
+// Background SVG: assets/brand/aegisx-brand-bg.svg
+//
+// Usage:
+//   <div class="ax-brand-bg">
+//     <div class="ax-brand-bg__content">
+//       <!-- logo, text, etc. -->
+//     </div>
+//   </div>
+
+// --- Colors ---
+$brand-navy:     #0f172a;
+$brand-slate800: #1e293b;
+$brand-blue500:  #3b82f6;
+$brand-blue400:  #60a5fa;
+$brand-blue300:  #93c5fd;
+$brand-slate500: #64748b;
+
+.ax-brand-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: $brand-navy;
+  overflow: hidden;
+
+  // SVG background (recommended — single file, scalable)
+  &--svg {
+    background-image: url('/assets/brand/aegisx-brand-bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  // CSS-only fallback (no external SVG needed)
+  &--css {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    // Top-right glow
+    &::before {
+      width: 60%;
+      height: 60%;
+      top: -10%;
+      right: -10%;
+      background: radial-gradient(circle, rgba($brand-slate800, 0.6) 0%, transparent 70%);
+    }
+
+    // Bottom-left glow
+    &::after {
+      width: 40%;
+      height: 40%;
+      bottom: -5%;
+      left: -5%;
+      background: radial-gradient(circle, rgba($brand-slate800, 0.3) 0%, transparent 70%);
+    }
+  }
+
+  // Content layer (always on top)
+  &__content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+  }
+}
+
+// =============================================================
+// Login page specific layout (split: brand left, form right)
+// =============================================================
+.ax-login-layout {
+  display: flex;
+  min-height: 100vh;
+
+  &__brand {
+    flex: 0 0 50%;
+    position: relative;
+    background-color: $brand-navy;
+    background-image: url('/assets/brand/aegisx-brand-bg.svg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+      display: none; // Hide on mobile, show form only
+    }
+  }
+
+  &__form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: white;
+
+    .dark & {
+      background: $brand-navy;
+    }
+  }
+}
+
+// =============================================================
+// Brand background spec — design tokens for consistency
+// =============================================================
+//
+// Element                  | Color     | Opacity  | Stroke
+// -------------------------|-----------|----------|--------
+// Base fill                | #0f172a   | 1.0      | —
+// Glow top-right           | #1e293b   | 0.6      | radial
+// Glow bottom-left         | #1e293b   | 0.3      | radial
+// Diamond ring 1 (inner)   | #3b82f6   | 0.08     | 1.2px
+// Diamond ring 2           | #3b82f6   | 0.05     | 0.8px
+// Diamond ring 3           | #60a5fa   | 0.03     | 0.5px
+// Diamond ring 4 (outer)   | #60a5fa   | 0.015    | 0.4px
+// EKG main                 | #3b82f6   | 0.04     | 1.5px
+// EKG glow                 | #60a5fa   | 0.02     | 0.5px
+// EKG secondary            | #1e293b   | 0.35–0.45| 0.5–0.6px
+// EKG peak dot             | #3b82f6   | 0.06     | r=6
+// EKG peak halo            | #3b82f6   | 0.02     | r=18
+// Data node dot            | #3b82f6   | 0.06–0.12| r=1.5–2
+// Data node line            | #3b82f6   | 0.03–0.05| 0.4px
