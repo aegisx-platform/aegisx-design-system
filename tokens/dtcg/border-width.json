@@ -1,9 +1,10 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "Border widths. 1px dominant per Untitled UI; 2px reserved for focus / error emphasis.",
   "borderWidth": {
     "none":    { "$value": "0",   "$type": "dimension" },
     "thin":    { "$value": "1px", "$type": "dimension" },
-    "default": { "$value": "2px", "$type": "dimension" },
-    "thick":   { "$value": "4px", "$type": "dimension" }
+    "default": { "$value": "1px", "$type": "dimension", "$description": "AegisX default — alias of thin" },
+    "thick":   { "$value": "2px", "$type": "dimension", "$description": "Focus / error / selected emphasis" }
   }
 }

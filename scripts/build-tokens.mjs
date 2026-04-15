@@ -59,24 +59,34 @@ const ROLE_PALETTES = {
   error:   'red',
   info:    'blue',
 };
-const VARIANT_STEPS_LIGHT = { faint: 50,  muted: 100, subtle: 200, default: 500, emphasis: 700 };
-const VARIANT_STEPS_DARK  = { faint: 900, muted: 800, subtle: 700, default: 400, emphasis: 200 };
+// Role variant → palette step (referenced inline below).
+// Light: faint=50 · muted=100 · subtle=200 · default=500 · emphasis=700 · inverted=white
+// Dark:  faint=900 · muted=800 · subtle=700 · default=400 · emphasis=200 · inverted=zinc-950
 
-const hexAt = (hue, step) => {
-  const entry = color.palette[hue]?.[step];
-  if (!entry) throw new Error(`Missing palette entry: ${hue}.${step}`);
-  return entry.$value;
-};
+// (palette lookup helper — kept even though unused, for future generators that need literal hex)
+// Role/component tokens now emit as var(--ax-color-*) refs so palette edits cascade.
 
 // ─── semantic resolution helpers ──────────────────────────────
+// Emit reference-preserving values: `{color.palette.zinc.100}` → `var(--ax-color-zinc-100)`
+// Raw literals (e.g. `#ffffff`) pass through unchanged.
+const toCssVar = (value) => {
+  if (typeof value !== 'string') return value;
+  const m = value.match(REF_RE);
+  if (!m) return value;
+  const parts = m[1].split('.');
+  if (parts[0] === 'color' && parts[1] === 'palette') {
+    return `var(--ax-color-${parts[2]}-${parts[3]})`;
+  }
+  return value;
+};
 const resolveSemanticBg = (theme, key) =>
-  resolveRef({ color }, color.semantic[theme].background[key].$value);
+  toCssVar(color.semantic[theme].background[key].$value);
 const resolveSemanticText = (theme, key) =>
-  resolveRef({ color }, color.semantic[theme].text[key].$value);
+  toCssVar(color.semantic[theme].text[key].$value);
 const resolveSemanticBorder = (theme, key) =>
-  resolveRef({ color }, color.semantic[theme].border[key].$value);
+  toCssVar(color.semantic[theme].border[key].$value);
 const resolveSemanticPrimary = (theme, key) =>
-  resolveRef({ color }, color.semantic[theme].primary[key].$value);
+  toCssVar(color.semantic[theme].primary[key].$value);
 
 // ─── emitters ─────────────────────────────────────────────────
 let lines = [];
@@ -124,12 +134,14 @@ for (const k of ['light','default','dark']) {
   push(`  --ax-primary${k === 'default' ? '' : '-' + k}: ${v};`);
 }
 
-// Role palettes (light)
+// Role palettes (light) — emit as var() refs so palette edits cascade
 push('  /* Role palettes × 6 variants */');
 for (const [role, hue] of Object.entries(ROLE_PALETTES)) {
-  for (const [variant, step] of Object.entries(VARIANT_STEPS_LIGHT)) {
-    push(`  --ax-${role}-${variant}: ${hexAt(hue, step)};`);
-  }
+  push(`  --ax-${role}-faint:    var(--ax-color-${hue}-50);`);
+  push(`  --ax-${role}-muted:    var(--ax-color-${hue}-100);`);
+  push(`  --ax-${role}-subtle:   var(--ax-color-${hue}-200);`);
+  push(`  --ax-${role}-default:  var(--ax-color-${hue}-500);`);
+  push(`  --ax-${role}-emphasis: var(--ax-color-${hue}-700);`);
   push(`  --ax-${role}-inverted: #ffffff;`);
 }
 
@@ -138,10 +150,10 @@ push('');
 push('  /* ── Layer 3 · Component tokens ── */');
 push('  /* Navigation */');
 push(`  --ax-nav-bg: #ffffff;`);
-push(`  --ax-nav-text: ${hexAt('zinc', 600)};`);
-push(`  --ax-nav-text-hover: ${hexAt('zinc', 900)};`);
-push(`  --ax-nav-text-active: ${hexAt('indigo', 600)};`);
-push(`  --ax-nav-bg-active: ${hexAt('indigo', 50)};`);
+push(`  --ax-nav-text: var(--ax-color-zinc-600);`);
+push(`  --ax-nav-text-hover: var(--ax-color-zinc-900);`);
+push(`  --ax-nav-text-active: var(--ax-color-indigo-600);`);
+push(`  --ax-nav-bg-active: var(--ax-color-indigo-50);`);
 push(`  --ax-nav-border: var(--ax-border-subtle);`);
 push('  /* Table */');
 push(`  --ax-table-header-bg: var(--ax-background-muted);`);
@@ -182,7 +194,7 @@ for (const [k, entry] of Object.entries(spacing)) {
     push(`  --ax-spacing-${k}: ${entry.$value};`);
   }
 }
-for (const group of ['component','layout','container','inset','stack']) {
+for (const group of ['component','layout','inset','stack']) {
   if (!spacing[group]) continue;
   for (const [k, entry] of Object.entries(spacing[group])) {
     const resolved = entry.$value;
@@ -296,12 +308,14 @@ for (const k of ['light','default','dark']) {
   const v = resolveSemanticPrimary('dark', k);
   push(`  --ax-primary${k === 'default' ? '' : '-' + k}: ${v};`);
 }
-push('  /* Role palettes (dark) */');
+push('  /* Role palettes (dark) — inverted scale + softer default */');
 for (const [role, hue] of Object.entries(ROLE_PALETTES)) {
-  for (const [variant, step] of Object.entries(VARIANT_STEPS_DARK)) {
-    push(`  --ax-${role}-${variant}: ${hexAt(hue, step)};`);
-  }
-  push(`  --ax-${role}-inverted: ${hexAt('zinc', 950)};`);
+  push(`  --ax-${role}-faint:    var(--ax-color-${hue}-900);`);
+  push(`  --ax-${role}-muted:    var(--ax-color-${hue}-800);`);
+  push(`  --ax-${role}-subtle:   var(--ax-color-${hue}-700);`);
+  push(`  --ax-${role}-default:  var(--ax-color-${hue}-400);`);
+  push(`  --ax-${role}-emphasis: var(--ax-color-${hue}-200);`);
+  push(`  --ax-${role}-inverted: var(--ax-color-zinc-950);`);
 }
 push('  /* Stronger shadows */');
 push('  --ax-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.5);');
@@ -310,15 +324,15 @@ push('  --ax-shadow-md: 0 2px 4px -2px rgb(0 0 0 / 0.5), 0 4px 8px -2px rgb(0 0 
 push('  --ax-shadow-lg: 0 4px 6px -2px rgb(0 0 0 / 0.3), 0 12px 16px -4px rgb(0 0 0 / 0.5);');
 push('  --ax-shadow-xl: 0 8px 8px -4px rgb(0 0 0 / 0.3), 0 20px 24px -4px rgb(0 0 0 / 0.5);');
 push('  /* Component dark overrides */');
-push(`  --ax-nav-bg: ${hexAt('zinc', 900)};`);
-push(`  --ax-nav-text: ${hexAt('zinc', 400)};`);
-push(`  --ax-nav-text-hover: ${hexAt('zinc', 50)};`);
-push(`  --ax-nav-text-active: ${hexAt('indigo', 300)};`);
+push(`  --ax-nav-bg: var(--ax-color-zinc-900);`);
+push(`  --ax-nav-text: var(--ax-color-zinc-400);`);
+push(`  --ax-nav-text-hover: var(--ax-color-zinc-50);`);
+push(`  --ax-nav-text-active: var(--ax-color-indigo-300);`);
 push(`  --ax-nav-bg-active: rgb(99 102 241 / 0.15);`);
-push(`  --ax-button-secondary-bg: ${hexAt('zinc', 800)};`);
-push(`  --ax-button-secondary-bg-hover: ${hexAt('zinc', 700)};`);
-push(`  --ax-input-bg: ${hexAt('zinc', 900)};`);
-push(`  --ax-input-bg-disabled: ${hexAt('zinc', 800)};`);
+push(`  --ax-button-secondary-bg: var(--ax-color-zinc-800);`);
+push(`  --ax-button-secondary-bg-hover: var(--ax-color-zinc-700);`);
+push(`  --ax-input-bg: var(--ax-color-zinc-900);`);
+push(`  --ax-input-bg-disabled: var(--ax-color-zinc-800);`);
 push('}');
 push('');
 

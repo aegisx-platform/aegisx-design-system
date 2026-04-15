@@ -23,13 +23,7 @@
       "lg": { "$value": "{spacing.2xl}", "$type": "dimension" },
       "xl": { "$value": "{spacing.3xl}", "$type": "dimension" }
     },
-    "container": {
-      "xs": { "$value": "{spacing.sm}",  "$type": "dimension" },
-      "sm": { "$value": "{spacing.lg}",  "$type": "dimension" },
-      "md": { "$value": "{spacing.xl}",  "$type": "dimension" },
-      "lg": { "$value": "{spacing.2xl}", "$type": "dimension" },
-      "xl": { "$value": "{spacing.3xl}", "$type": "dimension" }
-    },
+    "_container_note": "Container MAX WIDTHS live in breakpoint.json under `container`. This file no longer emits an overlapping `--ax-container-*` spacing scale — use --ax-inset-* for horizontal page padding.",
     "inset": {
       "xs": { "$value": "{spacing.xs}",  "$type": "dimension" },
       "sm": { "$value": "{spacing.sm}",  "$type": "dimension" },

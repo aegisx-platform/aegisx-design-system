@@ -155,6 +155,44 @@ const SIZE_CLASSES = {
 } as const;
 
 /**
+ * Icon wrapper dimensions as design-system tokens.
+ * Mirrors SIZE_CLASSES for non-Tailwind consumers.
+ */
+const SIZE_STYLES = {
+  sm: 'width:2rem;height:2rem;border-radius:var(--ax-radius-md);',
+  md: 'width:2.5rem;height:2.5rem;border-radius:var(--ax-radius-md);',
+  lg: 'width:3rem;height:3rem;border-radius:var(--ax-radius-lg);',
+} as const;
+
+/**
+ * Tailwind 50-shade hex values — used to resolve icon background hex
+ * from the existing `bg: 'bg-{hue}-50'` property without widening the
+ * type on every map entry. Keep in sync with Tailwind defaults.
+ */
+const TW_50_HEX: Record<string, string> = {
+  blue: '#eff6ff', emerald: '#ecfdf5', slate: '#f8fafc', yellow: '#fefce8',
+  indigo: '#eef2ff', red: '#fef2f2', cyan: '#ecfeff', orange: '#fff7ed',
+  sky: '#f0f9ff', teal: '#f0fdfa', pink: '#fdf2f8', green: '#f0fdf4',
+  violet: '#f5f3ff', lime: '#f7fee7', gray: '#f9fafb', amber: '#fffbeb',
+  purple: '#faf5ff', rose: '#fff1f2', stone: '#fafaf9',
+};
+
+/**
+ * Tailwind 400-shade hex values — used to derive dark-mode icon
+ * foreground. Icons in dark mode should shift from 600 → 400.
+ */
+const TW_400_HEX: Record<string, string> = {
+  blue: '#60a5fa', emerald: '#34d399', slate: '#94a3b8', yellow: '#facc15',
+  indigo: '#818cf8', red: '#f87171', cyan: '#22d3ee', orange: '#fb923c',
+  sky: '#38bdf8', teal: '#2dd4bf', pink: '#f472b6', green: '#4ade80',
+  violet: '#a78bfa', lime: '#a3e635', gray: '#9ca3af', amber: '#fbbf24',
+  purple: '#c084fc', rose: '#fb7185', stone: '#a8a29e',
+};
+
+const hueFromBgClass = (bg: string): string =>
+  bg.replace(/^bg-/, '').replace(/-50$/, '');
+
+/**
  * Convert a Tailwind text shade designed for light surfaces into one
  * that reads on a dark surface. text-blue-600 → text-blue-400, etc.
  */
@@ -174,6 +212,14 @@ function darkenBg(tw: string): string {
   return tw.replace(/-50\b/, '-950') + '/30';
 }
 
+/**
+ * @deprecated Prefer `getIconStyle()` — AegisX v0.3 design principles
+ * discourage Tailwind utility classes for semantic / iconographic color
+ * because they don't flip with the `[data-theme]` attribute. Kept for
+ * backward compatibility with consumers that already use Tailwind.
+ *
+ * See AEGISX-DESIGN-PRINCIPLES.md § Token architecture.
+ */
 export function getIconClasses(
   icon: IconName,
   size: 'sm' | 'md' | 'lg' = 'md',
@@ -183,6 +229,34 @@ export function getIconClasses(
   const fg = mode === 'dark' ? darkenText(tailwind) : tailwind;
   const wash = mode === 'dark' ? darkenBg(bg) : bg;
   return `inline-flex items-center justify-center ${SIZE_CLASSES[size]} ${wash} ${fg}`;
+}
+
+/**
+ * Preferred API — returns the inline style + class string for an icon
+ * badge wrapper. Uses hex values directly (iconographic identity is
+ * deliberately decoupled from semantic tokens in AegisX). Size is a
+ * design-system token via `--ax-radius-*`.
+ *
+ * @example
+ *   const { style, className } = getIconStyle('pharmacy', 'md');
+ *   <div class={className} style={style}><mat-icon svgIcon="pharmacy" /></div>
+ */
+export function getIconStyle(
+  icon: IconName,
+  size: 'sm' | 'md' | 'lg' = 'md',
+  mode: ColorMode = 'light',
+): { style: string; className: string } {
+  const { hex, bg } = ICON_COLOR_MAP[icon];
+  const hue = hueFromBgClass(bg);
+  const fg = mode === 'dark' ? (TW_400_HEX[hue] ?? hex) : hex;
+  const bgHex = TW_50_HEX[hue] ?? '#f8fafc';
+  const background = mode === 'dark'
+    ? `color-mix(in srgb, ${fg} 18%, transparent)`
+    : bgHex;
+  return {
+    style: `color:${fg};background:${background};display:inline-flex;align-items:center;justify-content:center;${SIZE_STYLES[size]}`,
+    className: `ax-icon-badge ax-icon-badge--${size}`,
+  };
 }
 
 export function getIconsByCategory(category: IconCategory): IconName[] {

@@ -91,7 +91,7 @@
     "gen:icon-data": "node scripts/generate-icon-data.mjs",
     "site:build": "node scripts/build-site.mjs",
     "tokens:build": "node scripts/build-tokens.mjs",
-    "tokens:verify": "node scripts/build-tokens.mjs && diff -u tokens/css/tokens.css tokens/css/tokens.generated.css || (echo '⚠ tokens.css drifted from JSON source. Regenerate with pnpm tokens:build if intended.' && exit 1)",
+    "tokens:verify": "node scripts/verify-tokens.mjs",
     "prebuild": "pnpm run gen:icon-data"
   },
   "keywords": [
