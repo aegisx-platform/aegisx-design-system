@@ -282,6 +282,16 @@
   --ax-easing-easeOut: cubic-bezier(0, 0, 0.2, 1);
   --ax-easing-easeInOut: cubic-bezier(0.4, 0, 0.2, 1);
 
+  /* ── Z-index scale ── */
+  --ax-z-base: 0;
+  --ax-z-dropdown: 100;
+  --ax-z-sticky: 200;
+  --ax-z-overlay: 300;
+  --ax-z-modal: 400;
+  --ax-z-popover: 500;
+  --ax-z-toast: 600;
+  --ax-z-debug: 9999;
+
   /* ── Breakpoints ── */
   --ax-breakpoint-xs: 0px;
   --ax-breakpoint-sm: 600px;

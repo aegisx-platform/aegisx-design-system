@@ -36,6 +36,7 @@ const border     = read('border-width.json').borderWidth;
 const shadow     = read('shadow.json');
 const motion     = read('motion.json');
 const breakpoint = read('breakpoint.json');
+const zIndex    = read('z-index.json').zIndex;
 
 // ─── helpers ──────────────────────────────────────────────────
 const REF_RE = /^\{([^}]+)\}$/;
@@ -251,6 +252,13 @@ for (const [k, entry] of Object.entries(motion.duration)) {
 }
 for (const [k, entry] of Object.entries(motion.easing)) {
   if (typeof entry.$value === 'string') push(`  --ax-easing-${k}: ${entry.$value};`);
+}
+push('');
+
+// Z-index
+push('  /* ── Z-index scale ── */');
+for (const [k, entry] of Object.entries(zIndex)) {
+  push(`  --ax-z-${k}: ${entry.$value};`);
 }
 push('');
 

@@ -1,14 +1,15 @@
 # AegisX Dark Mode — Standard Spec
 
-> Version 1.0 · April 2026
-> Dark surface colours, text contrast pairings, and Tailwind class shifts.
+> **Version 2.0** · v0.3 tokens · Aligned to `AEGISX-DESIGN-PRINCIPLES.md` and `tokens/AEGISX-TOKENS-SPEC.md`
+
+How AegisX flips light ↔ dark, which tokens change, which don't, and the rules that keep contrast intact.
 
 ---
 
 ## 1. When to use dark mode
 
 | Context | Mode |
-|---------|------|
+|---|---|
 | Daytime hospital workstations | **Light** (default) |
 | Operating room dashboards (low ambient light) | **Dark** |
 | ICU / radiology night-shift terminals | **Dark** |
@@ -16,95 +17,131 @@
 | Public kiosks / queue displays | **Light** (legibility from distance) |
 | Print / PDF | **Light** (always — saves toner) |
 
-Default to light. Dark is opt-in per workstation or system theme.
+Default to light. Dark is opt-in per workstation or system preference.
 
 ---
 
-## 2. Surface tokens
+## 2. How the theme flips
+
+There is **one** toggle point — the `data-theme` attribute on `<html>`:
+
+```html
+<html data-theme="light">  <!-- default -->
+<html data-theme="dark">   <!-- explicit dark -->
+<html>                     <!-- follows prefers-color-scheme (auto) -->
+```
+
+```ts
+// theme.service.ts
+type Mode = 'light' | 'dark' | 'auto';
+function setTheme(mode: Mode) {
+  if (mode === 'auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', mode);
+}
+```
+
+Both `--ax-*` (AegisX) and `--mat-sys-*` (Angular Material, via bridge) flip automatically — all products inherit.
+
+**No `dark:` Tailwind classes.** Tailwind utilities don't flip; use `--ax-*` CSS custom properties instead.
+
+---
+
+## 3. What changes in dark mode
+
+Only **semantic aliases** (layer 2 and 3) flip. The **primitive palette** (`--ax-color-*`) stays the same.
+
+### Background — surface hierarchy inverts
 
 | Token | Light | Dark |
-|-------|-------|------|
-| `surface.background` | `#f8fafc` slate-50 | `#0f172a` navy-900 |
-| `surface.card` | `#ffffff` white | `#1e293b` navy-800 |
-| `surface.muted` | `#f1f5f9` slate-100 | `#334155` slate-700 |
-| `surface.border` | `#e2e8f0` slate-200 | `#334155` slate-700 |
-| `surface.border-strong` | `#cbd5e1` slate-300 | `#475569` slate-600 |
+|---|---|---|
+| `--ax-background-page`     | zinc-50 `#fafafa`  | zinc-950 `#09090b` |
+| `--ax-background-default`  | white              | zinc-900 `#18181b` |
+| `--ax-background-subtle`   | zinc-100 `#f4f4f5` | zinc-800 `#27272a` |
+| `--ax-background-muted`    | zinc-50  `#fafafa` | zinc-700 `#3f3f46` |
+| `--ax-background-emphasis` | zinc-700 `#3f3f46` | zinc-600 `#52525b` |
 
-## 3. Text tokens
+### Text — contrast inverts
 
 | Token | Light | Dark |
-|-------|-------|------|
-| `text.primary` | `#0f172a` slate-900 | `#f8fafc` slate-50 |
-| `text.secondary` | `#475569` slate-600 | `#cbd5e1` slate-300 |
-| `text.muted` | `#64748b` slate-500 | `#94a3b8` slate-400 |
-| `text.disabled` | `#94a3b8` slate-400 | `#64748b` slate-500 |
-| `text.inverse` | `#ffffff` | `#0f172a` |
+|---|---|---|
+| `--ax-text-heading`   | zinc-950 | zinc-50 |
+| `--ax-text-strong`    | zinc-900 | zinc-100 |
+| `--ax-text-default`   | zinc-700 | `#e5e5e5` |
+| `--ax-text-secondary` | zinc-500 | zinc-400 |
+| `--ax-text-subtle`    | zinc-400 | zinc-500 |
+| `--ax-text-disabled`  | zinc-300 | zinc-600 |
+| `--ax-text-inverted`  | white    | zinc-950 |
 
-All pairings pass WCAG AA on their paired background.
+### Border — slightly lifted in dark
 
-## 4. Brand & semantic colours
+| Token | Light | Dark |
+|---|---|---|
+| `--ax-border-subtle`   | zinc-100 | zinc-800 |
+| `--ax-border-default`  | zinc-200 | zinc-700 |
+| `--ax-border-emphasis` | zinc-300 | zinc-600 |
 
-These do NOT change between modes — they keep their hex values. What changes is the surrounding surface and how Tailwind shades read.
+### Primary & role palettes — softer in dark
 
-| Role | Light & Dark |
-|------|-------|
-| Brand indigo | `#6366f1` |
-| Success | `#16a34a` (light) → use `text-green-400` on dark |
-| Warning | `#d97706` (light) → use `text-amber-400` on dark |
-| Danger | `#dc2626` (light) → use `text-red-400` on dark |
+In dark mode the **400 step** becomes the default for brand/status roles — easier on the eyes, better contrast on dark surfaces.
 
----
+| Token | Light default | Dark default |
+|---|---|---|
+| `--ax-primary`        | indigo-500 | indigo-400 |
+| `--ax-brand-default`  | indigo-500 | indigo-400 |
+| `--ax-success-default`| green-500  | green-400  |
+| `--ax-warning-default`| amber-500  | amber-400  |
+| `--ax-error-default`  | red-500    | red-400    |
+| `--ax-info-default`   | blue-500   | blue-400   |
 
-## 5. Tailwind shade-shift rule
+`faint` also flips from the light 50 step to the dark 900 step — so alerts keep their subtle background on both themes.
 
-When a component switches to dark mode, every Tailwind colour utility shifts:
+### Shadow — stronger opacity in dark
 
-| Light shade | Dark shade |
-|-------------|-----------|
-| `text-{x}-600` | `text-{x}-400` |
-| `text-{x}-700` | `text-{x}-300` |
-| `text-{x}-800` | `text-{x}-300` |
-| `bg-{x}-50`    | `bg-{x}-950/30` (translucent wash) |
-
-The `getIconClasses(name, size, mode)` helper applies this automatically.
-
-```ts
-import { getIconClasses } from '@aegisx-platform/design-system/icons/color-map';
-
-const lightCls = getIconClasses('pharmacy', 'md');           // light default
-const darkCls  = getIconClasses('pharmacy', 'md', 'dark');   // dark mode
-```
+Dark mode shadows use `rgb(0 0 0 / 0.5)` instead of `rgb(16 24 40 / 0.1)`. Without this bump, elevation reads as flat on dark backgrounds. The flip is automatic via `tokens.css`.
 
 ---
 
-## 6. Tailwind config
+## 4. What does NOT change in dark mode
 
-```ts
-// tailwind.config.ts
-export default {
-  darkMode: 'class', // or 'media' to follow OS theme
-  theme: {
-    extend: {
-      colors: {
-        // Hook your tokens here so .dark variants resolve correctly
-      },
-    },
-  },
-};
-```
-
-Toggle dark mode by adding/removing `dark` class on `<html>`:
-
-```ts
-document.documentElement.classList.toggle('dark');
-```
+- **Primitive palette** (`--ax-color-zinc-*`, `--ax-color-indigo-*`, …) — all hex values stay the same. Only semantic aliases pick different steps.
+- **Typography scale** — sizes, line heights, weights are mode-invariant.
+- **Spacing, radius, border-width** — identical.
+- **Motion durations / easings** — identical.
+- **Breakpoints, z-index** — identical.
 
 ---
 
-## 7. Don'ts
+## 5. Don'ts
 
-- ❌ Don't darken brand or semantic colours (red, green, amber) — only swap their Tailwind shade.
-- ❌ Don't use light-mode shadows on dark surfaces — they're invisible. Use border accents or the dark shadow tokens in `tokens/aegisx-tokens-dark.json`.
-- ❌ Don't pure-black background (`#000`) — it makes shadows invisible and creates harsh contrast. Use `navy-900` (`#0f172a`).
-- ❌ Don't pure-white text (`#fff`) on dark — it's too harsh. Use `slate-50` (`#f8fafc`).
-- ❌ Don't auto-invert images, photos, or screenshots — they look broken.
+- ❌ **Don't hardcode dark colors.** Use `var(--ax-background-default)`, not `#18181b`. Design-system may retune zinc steps.
+- ❌ **Don't use Tailwind `dark:*` utilities** for semantic color. They don't follow `--ax-*`. Use `var(--ax-*)` directly.
+- ❌ **Don't pure-black background** (`#000`) — makes shadows invisible and creates harsh contrast. Use `--ax-background-page` (zinc-950 `#09090b`).
+- ❌ **Don't pure-white text** (`#fff`) on dark — too harsh. `--ax-text-heading` uses zinc-50 (`#fafafa`).
+- ❌ **Don't auto-invert images, photos, screenshots** — they look broken. Use `img { filter: none; }` explicitly if a parent has `filter: invert`.
+- ❌ **Don't keep light shadows on dark surfaces.** Our `--ax-shadow-*` flip automatically; don't override with hand-coded `rgba`.
+- ❌ **Don't make brand / semantic roles less saturated in dark.** They need to stay legible — we use step 400, not step 300.
+
+---
+
+## 6. Verification checklist
+
+Before any palette or surface change ships:
+
+- [ ] Open `/tokens/a11y.html` and toggle to **dark** — every text × background pair is PASS (AA ≥ 4.5).
+- [ ] Open `/tokens/components.html` and toggle dark — card borders visible, focus ring visible, alert contrast AA.
+- [ ] Open a real product page (if available) — no "white flash" on theme flip, no stranded light shadows, no stuck images.
+
+---
+
+## 7. Auto mode caveats
+
+`data-theme="auto"` (or `data-theme` unset) follows `prefers-color-scheme: dark`. Under `:root:not([data-theme="light"])`, the media query activates dark overrides.
+
+This means **`data-theme="light"` is a distinct value from unset** — light is explicit opt-in, not default. Set `data-theme="light"` to force light regardless of OS preference.
+
+---
+
+## Version history
+
+- **v2.0 (2026-04-15)** — Rewrite for tokens v0.3: Zinc palette (not Slate/Navy), `--ax-background-*` / `--ax-text-*` tokens (not Tailwind `dark:` utilities), `data-theme` attribute (not `.dark` class), softer 400-step role colors in dark.
+- **v1.0 (2026-04)** — Tailwind `dark:` class system with Slate/Navy palette.

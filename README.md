@@ -7,32 +7,46 @@ This repository is the single source of truth for logos, icons, brand background
 ## Contents
 
 | Folder | What's inside |
-|--------|---------------|
+|---|---|
+| **`tokens/`** | **Design tokens (DTCG JSON + compiled CSS + SCSS + Material v3 bridge + preview/a11y pages)** |
 | `icons/` | SVG icon set (mono + diamond), Angular Material registry, colour maps |
 | `logo/` | Production logo lockups — horizontal / vertical / icon, light / dark / mono |
 | `brand/` | Brand background pattern (SVG + SCSS) used on login, splash, PDF covers |
-| `specs/` | Canonical design specs (icon catalog, brand guide, printable PDF) |
+| `specs/` | Canonical design specs (icon catalog, brand guide, typography, spacing) |
 
-## Key Documents
+## Start here
 
+- **[`AEGISX-DESIGN-PRINCIPLES.md`](AEGISX-DESIGN-PRINCIPLES.md)** — the five pillars (Calm · High-contrast · Thai-first · Clinical-dense · No ornamentation) and domain-token policy. Read before any token/spec change.
+- **[`tokens/README.md`](tokens/README.md)** — design tokens quick start (Zinc + Indigo + IBM Plex + 14px base).
+- **[`tokens/ANGULAR-MATERIAL-SETUP.md`](tokens/ANGULAR-MATERIAL-SETUP.md)** — consumer setup for Angular Material v3 apps.
+- **Live preview** — https://aegisx-platform.github.io/aegisx-design-system/ · including `/tokens/` (preview), `/tokens/components.html`, `/tokens/a11y.html` (runtime WCAG audit).
+
+## Key documents
+
+### Foundation
+- [`AEGISX-DESIGN-PRINCIPLES.md`](AEGISX-DESIGN-PRINCIPLES.md) — north-star principles
+- [`tokens/AEGISX-TOKENS-SPEC.md`](tokens/AEGISX-TOKENS-SPEC.md) — token architecture (3 layers)
+- [`tokens/CHANGELOG.md`](tokens/CHANGELOG.md) — token version history
+- [`tokens/ANGULAR-MATERIAL-SETUP.md`](tokens/ANGULAR-MATERIAL-SETUP.md) — Material v3 bridge setup
+- [`specs/AEGISX-TYPOGRAPHY.md`](specs/AEGISX-TYPOGRAPHY.md) — v2 spec (IBM Plex + Untitled scale)
+- [`specs/AEGISX-SPACING.md`](specs/AEGISX-SPACING.md) — v2 spec (spacing, radius, shadow, z-index)
+- [`specs/AEGISX-DARK-MODE.md`](specs/AEGISX-DARK-MODE.md) — dark surface pairings
+
+### Brand
 - [`specs/AEGISX-BRAND-GUIDE.md`](specs/AEGISX-BRAND-GUIDE.md) — master brand guide
-- [`specs/AEGISX-ICON-CATALOG.md`](specs/AEGISX-ICON-CATALOG.md) — every approved app icon across the platform
-- [`logo/AEGISX-LOGO-STANDARD.md`](logo/AEGISX-LOGO-STANDARD.md) — logo anatomy & usage rules
-- [`logo/USAGE-EXAMPLES.md`](logo/USAGE-EXAMPLES.md) — variant picker, favicon/PWA setup, do's & don'ts
-- [`logo/preview.html`](logo/preview.html) — open in a browser to preview every variant on every bg
-- [`specs/AEGISX-TYPOGRAPHY.md`](specs/AEGISX-TYPOGRAPHY.md) — type families, scale, weight, line height, print
-- [`specs/AEGISX-SPACING.md`](specs/AEGISX-SPACING.md) — spacing, radius, shadow, border, z-index, grid
-- [`tokens/aegisx-tokens.json`](tokens/aegisx-tokens.json) — Style Dictionary / W3C Design Tokens export (light)
-- [`tokens/aegisx-tokens-dark.json`](tokens/aegisx-tokens-dark.json) — dark surface/text/border overrides
-- [`specs/AEGISX-DARK-MODE.md`](specs/AEGISX-DARK-MODE.md) — when to use dark, surface pairings, Tailwind shifts
-- [`docs/FIGMA-SYNC.md`](docs/FIGMA-SYNC.md) — Tokens Studio sync workflow Figma ↔ code
-- [`docs/MIGRATING-AEGISX-UI.md`](docs/MIGRATING-AEGISX-UI.md) — how `@aegisx/ui` should consume this package
-- [`email/aegisx-signature.html`](email/aegisx-signature.html) — email signature template (table-based, Outlook-safe)
-- [`print/letterhead.html`](print/letterhead.html) — A4 letterhead template (browser print → PDF)
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to add icons / cut releases
-- [`CHANGELOG.md`](CHANGELOG.md) — versioned changes
-- [`brand/AEGISX-BRAND-BG-SPEC.md`](brand/AEGISX-BRAND-BG-SPEC.md) — branded background spec
+- [`specs/AEGISX-ICON-CATALOG.md`](specs/AEGISX-ICON-CATALOG.md) — every approved app icon
+- [`logo/AEGISX-LOGO-STANDARD.md`](logo/AEGISX-LOGO-STANDARD.md) — logo anatomy & usage
+- [`logo/USAGE-EXAMPLES.md`](logo/USAGE-EXAMPLES.md) — variant picker, favicons, do's & don'ts
+- [`brand/AEGISX-BRAND-BG-SPEC.md`](brand/AEGISX-BRAND-BG-SPEC.md) — background spec
 - [`icons/README.md`](icons/README.md) — icon quick start
+
+### Templates & workflow
+- [`email/aegisx-signature.html`](email/aegisx-signature.html) — Outlook-safe signature
+- [`print/letterhead.html`](print/letterhead.html) — A4 letterhead
+- [`docs/FIGMA-SYNC.md`](docs/FIGMA-SYNC.md) — Tokens Studio sync
+- [`docs/MIGRATING-AEGISX-UI.md`](docs/MIGRATING-AEGISX-UI.md) — how `@aegisx/ui` consumes this package
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution rules + token workflow
+- [`CHANGELOG.md`](CHANGELOG.md) — package version history
 - [`CLAUDE.md`](CLAUDE.md) — guidance for Claude Code contributors
 
 ## Usage

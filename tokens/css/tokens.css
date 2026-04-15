@@ -335,6 +335,18 @@
   --ax-container-lg:  1280px;
   --ax-container-xl:  1440px;
   --ax-container-2xl: 1728px;
+
+  /* ══════════════════════════════════════════════════════════════
+   * Z-INDEX SCALE — use named tokens, never raw integers
+   * ══════════════════════════════════════════════════════════════ */
+  --ax-z-base:     0;
+  --ax-z-dropdown: 100;
+  --ax-z-sticky:   200;
+  --ax-z-overlay:  300;
+  --ax-z-modal:    400;
+  --ax-z-popover:  500;
+  --ax-z-toast:    600;
+  --ax-z-debug:    9999;
 }
 
 /* ══════════════════════════════════════════════════════════════

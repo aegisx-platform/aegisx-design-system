@@ -4,10 +4,44 @@ Thanks for working on the AegisX design system. Read this once before your first
 
 ## Ground rules
 
-1. **Specs in `specs/` are authoritative.** A change that contradicts a spec needs a spec update in the same PR.
-2. **No drift between sources.** Adding an icon means updating `icons/svg/`, `icons/aegisx-icon-registry.ts`, `icons/icon-color-map.ts`, and `specs/AEGISX-ICON-CATALOG.md` in one commit. CI runs `pnpm run check:icons` and will surface gaps.
+0. **`AEGISX-DESIGN-PRINCIPLES.md` is rule 0.** Every decision runs through the five pillars (Calm · High-contrast · Thai-first · Clinical-dense · No ornamentation). Read it before any design change. If you disagree with a pillar, open a `principles-change` issue — don't bypass in a token PR.
+1. **Specs in `specs/` and `tokens/AEGISX-TOKENS-SPEC.md` are authoritative.** A change that contradicts a spec needs a spec update in the same PR.
+2. **No drift between sources.** Adding an icon means updating `icons/svg/`, `icons/aegisx-icon-registry.ts`, `icons/icon-color-map.ts`, and `specs/AEGISX-ICON-CATALOG.md` in one commit. Adding a token means updating `tokens/dtcg/*.json`, regenerating via `pnpm tokens:build`, and updating `tokens/CHANGELOG.md`. CI runs `pnpm run check:icons` / `pnpm tokens:verify` and will surface gaps.
 3. **No backward-compat shims.** Bump the version, write the changelog entry, move on.
-4. **One concern per PR.** Don't bundle "added 3 icons + retoned the brand colour" — split them.
+4. **One concern per PR.** Don't bundle "added 3 icons + retoned the brand colour + added a component token" — split them.
+
+## Adding / changing a design token
+
+Tokens are the foundation of every product UI. Order matters:
+
+```bash
+# 1. Edit the DTCG source (this is the authoritative form)
+vim tokens/dtcg/{color|spacing|typography|radius|border-width|shadow|motion|breakpoint|z-index}.json
+
+# 2. Regenerate the compiled CSS
+pnpm tokens:build        # → tokens/css/tokens.generated.css
+
+# 3. Reconcile the canonical tokens.css with the generated file
+#    (the hand-written file remains canonical until parity is locked;
+#    treat a diff as either "intentional hand-tuning — leave it" or
+#    "drift — port the change over")
+pnpm tokens:verify       # diff -u; exits non-zero on drift
+
+# 4. If the token is consumed by Angular Material, update the bridge
+vim tokens/scss/aegisx-material-bridge.scss
+
+# 5. Update the Tokens Studio mirror (Figma downstream)
+vim tokens/aegisx-tokens.json tokens/aegisx-tokens-dark.json
+
+# 6. Run the a11y audit — the gate before any palette change ships
+open tokens/a11y.html     # manual: theme-toggle both light & dark, zero new fails
+
+# 7. Log it
+vim tokens/CHANGELOG.md   # token-level log
+vim CHANGELOG.md          # package-level if shipping a release
+```
+
+**Golden rule — no domain tokens here.** Triage levels, NHSO claim statuses, ward types, drug interaction severities belong in the **consumer app** as `--app-*` aliases (`--app-triage-red: var(--ax-error-default)`). See `AEGISX-DESIGN-PRINCIPLES.md § Domain tokens`.
 
 ## Adding an icon
 
