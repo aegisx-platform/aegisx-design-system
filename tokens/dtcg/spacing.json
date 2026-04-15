@@ -1,0 +1,48 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "spacing": {
+    "xs":  { "$value": "0.25rem", "$type": "dimension", "$description": "4px"  },
+    "sm":  { "$value": "0.5rem",  "$type": "dimension", "$description": "8px"  },
+    "md":  { "$value": "0.75rem", "$type": "dimension", "$description": "12px" },
+    "lg":  { "$value": "1rem",    "$type": "dimension", "$description": "16px" },
+    "xl":  { "$value": "1.5rem",  "$type": "dimension", "$description": "24px" },
+    "2xl": { "$value": "2rem",    "$type": "dimension", "$description": "32px" },
+    "3xl": { "$value": "3rem",    "$type": "dimension", "$description": "48px" },
+    "4xl": { "$value": "4rem",    "$type": "dimension", "$description": "64px" },
+
+    "component": {
+      "xs": { "$value": "{spacing.xs}", "$type": "dimension" },
+      "sm": { "$value": "{spacing.sm}", "$type": "dimension" },
+      "md": { "$value": "{spacing.md}", "$type": "dimension" },
+      "lg": { "$value": "{spacing.lg}", "$type": "dimension" }
+    },
+    "layout": {
+      "xs": { "$value": "{spacing.sm}",  "$type": "dimension" },
+      "sm": { "$value": "{spacing.lg}",  "$type": "dimension" },
+      "md": { "$value": "{spacing.xl}",  "$type": "dimension" },
+      "lg": { "$value": "{spacing.2xl}", "$type": "dimension" },
+      "xl": { "$value": "{spacing.3xl}", "$type": "dimension" }
+    },
+    "container": {
+      "xs": { "$value": "{spacing.sm}",  "$type": "dimension" },
+      "sm": { "$value": "{spacing.lg}",  "$type": "dimension" },
+      "md": { "$value": "{spacing.xl}",  "$type": "dimension" },
+      "lg": { "$value": "{spacing.2xl}", "$type": "dimension" },
+      "xl": { "$value": "{spacing.3xl}", "$type": "dimension" }
+    },
+    "inset": {
+      "xs": { "$value": "{spacing.xs}",  "$type": "dimension" },
+      "sm": { "$value": "{spacing.sm}",  "$type": "dimension" },
+      "md": { "$value": "{spacing.lg}",  "$type": "dimension" },
+      "lg": { "$value": "{spacing.xl}",  "$type": "dimension" },
+      "xl": { "$value": "{spacing.2xl}", "$type": "dimension" }
+    },
+    "stack": {
+      "xs": { "$value": "{spacing.xs}",  "$type": "dimension" },
+      "sm": { "$value": "{spacing.sm}",  "$type": "dimension" },
+      "md": { "$value": "{spacing.lg}",  "$type": "dimension" },
+      "lg": { "$value": "{spacing.xl}",  "$type": "dimension" },
+      "xl": { "$value": "{spacing.2xl}", "$type": "dimension" }
+    }
+  }
+}

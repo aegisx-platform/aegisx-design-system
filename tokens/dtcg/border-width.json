@@ -1,0 +1,9 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "borderWidth": {
+    "none":    { "$value": "0",   "$type": "dimension" },
+    "thin":    { "$value": "1px", "$type": "dimension" },
+    "default": { "$value": "2px", "$type": "dimension" },
+    "thick":   { "$value": "4px", "$type": "dimension" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "shadow": {
+    "none": { "$value": "none", "$type": "shadow" },
+    "xs":   { "$value": "0 1px 2px 0 rgb(0 0 0 / 0.04)", "$type": "shadow" },
+    "sm":   { "$value": "0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04)", "$type": "shadow" },
+    "md":   { "$value": "0 4px 8px -2px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.04)", "$type": "shadow" },
+    "lg":   { "$value": "0 12px 20px -4px rgb(0 0 0 / 0.08), 0 4px 8px -4px rgb(0 0 0 / 0.04)", "$type": "shadow" },
+    "xl":   { "$value": "0 24px 32px -8px rgb(0 0 0 / 0.08), 0 8px 16px -6px rgb(0 0 0 / 0.04)", "$type": "shadow" }
+  },
+  "elevation": {
+    "0": { "$value": "none", "$type": "shadow" },
+    "1": { "$value": "0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06)",  "$type": "shadow", "$description": "Cards, buttons" },
+    "2": { "$value": "0 2px 6px 0 rgb(0 0 0 / 0.08), 0 1px 4px -1px rgb(0 0 0 / 0.06)",  "$type": "shadow", "$description": "Raised buttons, chips" },
+    "3": { "$value": "0 4px 12px -2px rgb(0 0 0 / 0.08), 0 2px 4px -1px rgb(0 0 0 / 0.06)", "$type": "shadow", "$description": "Menus, dropdowns" },
+    "4": { "$value": "0 8px 16px -4px rgb(0 0 0 / 0.1), 0 2px 6px -2px rgb(0 0 0 / 0.06)",  "$type": "shadow", "$description": "Modals, dialogs" },
+    "5": { "$value": "0 12px 24px -6px rgb(0 0 0 / 0.1), 0 4px 8px -2px rgb(0 0 0 / 0.06)", "$type": "shadow", "$description": "Maximum elevation" }
+  }
+}

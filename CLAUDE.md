@@ -15,6 +15,7 @@ Nothing is published as an npm package. Edits here do not auto-propagate — cha
 
 ## Directory Layout (top-level)
 
+- `tokens/` — **Authoritative design tokens.** W3C DTCG JSON (`dtcg/`) + compiled `css/tokens.css` + `scss/_tokens.scss`. Spec in `AEGISX-TOKENS-SPEC.md`. Upstream of `aegisx-starter-1/libs/aegisx-ui/src/lib/foundations/*` — edits there must come from here.
 - `icons/` — SVG icon set (`svg/` mono, `svg-sprite/`, `featured-error/`), Angular registry/service source, colour maps, and icon authoring docs (`README.md`, `SKILL.md`, `ICON-SIZING-STANDARD.md`, `AEGISX-ICON-SYSTEM-SUMMARY.md`).
 - `logo/` — Production logo lockups (horizontal/vertical/icon, light/dark/mono variants) + `AEGISX-LOGO-STANDARD.md` (the spec everything else must match).
 - `brand/` — Brand background pattern (`aegisx-brand-bg.svg`, `.scss`) + `AEGISX-BRAND-BG-SPEC.md`.
@@ -22,7 +23,7 @@ Nothing is published as an npm package. Edits here do not auto-propagate — cha
 
 ## Architectural Rules (the "big picture")
 
-1. **Specs are authoritative.** Before adding or modifying an icon, logo, or brand asset, read the corresponding spec in `specs/` or the per-folder standard doc. `specs/AEGISX-ICON-CATALOG.md` is the master list of every approved app icon across the platform (Clinical, Inventory, Finance, Back Office, Quality, Platform). Do not invent new icon IDs without updating this catalog.
+1. **Specs are authoritative.** Before adding or modifying an icon, logo, brand asset, or token, read the corresponding spec in `specs/`, `tokens/AEGISX-TOKENS-SPEC.md`, or the per-folder standard doc. `specs/AEGISX-ICON-CATALOG.md` is the master list of every approved app icon across the platform (Clinical, Inventory, Finance, Back Office, Quality, Platform). Do not invent new icon IDs without updating this catalog.
 
 2. **Two icon systems coexist — keep them separate.**
    - **Mono/stroke icons** (`icons/svg/*.svg`): 24×24 viewBox, `stroke="currentColor"`, stroke-width 1.5, `fill="none"`, round line caps. Registered via `aegisx-icon-registry.ts` and used with `<mat-icon svgIcon="…">`. Colour comes from the parent (Tailwind class on a wrapper).

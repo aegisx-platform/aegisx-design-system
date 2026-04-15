@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AegisX Design Tokens — Preview</title>
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--ax-font-sans);
+      color: var(--ax-text-primary);
+      background: var(--ax-bg-muted);
+      font-size: var(--ax-text-sm);
+      line-height: var(--ax-leading-normal);
+    }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--ax-bg-default);
+      border-bottom: var(--ax-border-width-thin) solid var(--ax-border-default);
+      padding: var(--ax-inset-md) var(--ax-inset-lg);
+      display: flex; align-items: center; gap: var(--ax-layout-md);
+      box-shadow: var(--ax-elevation-1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: var(--ax-title-large-size);
+      line-height: var(--ax-title-large-line);
+      font-weight: var(--ax-font-weight-semibold);
+      color: var(--ax-text-heading);
+      letter-spacing: var(--ax-tracking-tight);
+    }
+    header .sub { color: var(--ax-text-secondary); }
+    header .spacer { flex: 1; }
+    main { padding: var(--ax-layout-lg); max-width: 1400px; margin: 0 auto; }
+
+    section { margin-bottom: var(--ax-layout-xl); }
+    section > h2 {
+      margin: 0 0 var(--ax-stack-md);
+      font-size: var(--ax-headline-small-size);
+      line-height: var(--ax-headline-small-line);
+      font-weight: var(--ax-font-weight-semibold);
+      color: var(--ax-text-heading);
+      padding-bottom: var(--ax-stack-sm);
+      border-bottom: var(--ax-border-width-thin) solid var(--ax-border-default);
+    }
+    section > h3 {
+      margin: var(--ax-stack-lg) 0 var(--ax-stack-sm);
+      font-size: var(--ax-title-medium-size);
+      font-weight: var(--ax-font-weight-semibold);
+      color: var(--ax-text-heading);
+    }
+    section > h4 {
+      margin: var(--ax-stack-md) 0 var(--ax-stack-xs);
+      font-family: var(--ax-font-mono);
+      font-size: var(--ax-text-sm);
+      color: var(--ax-text-heading);
+    }
+
+    .toggle {
+      display: inline-flex; padding: 2px;
+      background: var(--ax-bg-subtle);
+      border-radius: var(--ax-radius-full);
+      border: var(--ax-border-width-thin) solid var(--ax-border-default);
+    }
+    .toggle button {
+      all: unset; cursor: pointer;
+      padding: 6px 14px;
+      font-size: var(--ax-text-sm);
+      font-weight: var(--ax-font-weight-medium);
+      border-radius: var(--ax-radius-full);
+      color: var(--ax-text-secondary);
+      transition: all var(--ax-duration-fast) var(--ax-easing-easeOut);
+    }
+    .toggle button[aria-pressed="true"] {
+      background: var(--ax-bg-default);
+      color: var(--ax-text-heading);
+      box-shadow: var(--ax-elevation-1);
+    }
+
+    .palette-row { display: grid; grid-template-columns: 120px repeat(11, 1fr); gap: 4px; margin-bottom: var(--ax-stack-xs); align-items: stretch; }
+    .palette-row .label { font-weight: var(--ax-font-weight-medium); color: var(--ax-text-primary); display: flex; align-items: center; }
+    .swatch {
+      aspect-ratio: 1;
+      border-radius: var(--ax-radius-sm);
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 4px;
+      font-size: 10px;
+      font-family: var(--ax-font-mono);
+      color: rgba(0,0,0,0.6);
+      border: 1px solid rgb(0 0 0 / 0.06);
+    }
+    .swatch.dark-text { color: rgba(255,255,255,0.85); }
+
+    .semantic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--ax-stack-sm); }
+    .semantic-grid.six { grid-template-columns: repeat(6, 1fr); }
+    .semantic-card {
+      background: var(--ax-bg-default);
+      border: var(--ax-border-width-thin) solid var(--ax-border-default);
+      border-radius: var(--ax-radius-md);
+      overflow: hidden;
+    }
+    .semantic-card .preview { height: 56px; border-bottom: 1px solid var(--ax-border-muted); display: grid; place-items: center; }
+    .semantic-card .meta { padding: var(--ax-inset-sm); }
+    .semantic-card .meta .name { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); color: var(--ax-text-heading); word-break: break-all; }
+    .semantic-card .meta .role { font-size: 10px; color: var(--ax-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; }
+    .text-sample { font-weight: 600; font-size: 18px; }
+    .border-demo { width: 60%; height: 40px; border-radius: var(--ax-radius-sm); border-style: solid; border-width: 2px; }
+
+    .type-row {
+      display: grid; grid-template-columns: 160px 1fr auto; gap: var(--ax-layout-md);
+      align-items: baseline;
+      padding: var(--ax-inset-sm) 0;
+      border-bottom: 1px solid var(--ax-border-muted);
+    }
+    .type-row .name { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); color: var(--ax-text-secondary); }
+    .type-row .spec { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); color: var(--ax-text-subtle); white-space: nowrap; }
+    .type-row .sample { color: var(--ax-text-heading); font-family: var(--ax-font-sans); }
+
+    .spacing-scale { display: flex; flex-direction: column; gap: var(--ax-stack-sm); }
+    .spacing-row { display: grid; grid-template-columns: 160px 80px 1fr; gap: var(--ax-layout-md); align-items: center; }
+    .spacing-row .name { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); }
+    .spacing-row .px { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); color: var(--ax-text-secondary); }
+    .spacing-bar { height: 16px; background: var(--ax-brand-default); border-radius: var(--ax-radius-sm); }
+
+    .tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--ax-stack-md); }
+    .tile {
+      background: var(--ax-bg-default);
+      border: var(--ax-border-width-thin) solid var(--ax-border-default);
+      height: 120px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: var(--ax-font-mono);
+      font-size: var(--ax-text-xs);
+      color: var(--ax-text-primary);
+      gap: 6px; padding: 8px; text-align: center;
+    }
+    .tile .val { color: var(--ax-text-secondary); font-size: 10px; }
+    .radius-tile { background: var(--ax-brand-muted); color: var(--ax-brand-emphasis); border-color: var(--ax-brand-subtle); }
+    .border-tile { border-color: var(--ax-brand-default); border-style: solid; }
+
+    .motion-row {
+      display: grid; grid-template-columns: 200px 80px 1fr;
+      gap: var(--ax-layout-md); align-items: center;
+      margin-bottom: var(--ax-stack-xs);
+    }
+    .motion-row .name { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); color: var(--ax-text-primary); }
+    .motion-row .px { font-family: var(--ax-font-mono); font-size: var(--ax-text-xs); color: var(--ax-text-secondary); }
+    .motion-track {
+      position: relative; height: 40px;
+      background: var(--ax-bg-subtle);
+      border-radius: var(--ax-radius-md);
+      overflow: hidden;
+    }
+    .motion-ball {
+      position: absolute; top: 4px; left: 4px;
+      width: 32px; height: 32px;
+      background: var(--ax-brand-default);
+      border-radius: var(--ax-radius-full);
+    }
+
+    code { font-family: var(--ax-font-mono); font-size: 0.9em; background: var(--ax-bg-subtle); padding: 1px 6px; border-radius: var(--ax-radius-sm); color: var(--ax-text-heading); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AegisX Design Tokens</h1>
+    <span class="sub">v0.1 · preview</span>
+    <span class="spacer"></span>
+    <div class="toggle" role="tablist" aria-label="Theme">
+      <button data-set-theme="light" aria-pressed="true">Light</button>
+      <button data-set-theme="dark"  aria-pressed="false">Dark</button>
+      <button data-set-theme="auto"  aria-pressed="false">Auto</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Color · Reference palette</h2>
+      <p>Raw hues with 50–900 scale. Use <code>--ax-color-{hue}-{step}</code>. Avoid in app code — prefer semantic below.</p>
+      <div id="palette-grid"></div>
+    </section>
+
+    <section>
+      <h2>Color · Semantic</h2>
+      <p>Role-based tokens. <strong>Use these in UI code.</strong> Respond to light/dark theme.</p>
+      <h3>Surfaces</h3><div class="semantic-grid" id="sem-bg"></div>
+      <h3>Text</h3><div class="semantic-grid" id="sem-text"></div>
+      <h3>Border</h3><div class="semantic-grid" id="sem-border"></div>
+      <h3>Status & accent (× faint / muted / subtle / default / emphasis / inverted)</h3>
+      <div id="sem-roles"></div>
+    </section>
+
+    <section>
+      <h2>Typography · Material 3 roles</h2>
+      <div id="type-scale"></div>
+    </section>
+
+    <section>
+      <h2>Spacing · 8pt grid</h2>
+      <div class="spacing-scale" id="spacing-scale"></div>
+    </section>
+
+    <section>
+      <h2>Radius</h2>
+      <div class="tile-grid" id="radius-grid"></div>
+    </section>
+
+    <section>
+      <h2>Border width</h2>
+      <div class="tile-grid" id="border-grid"></div>
+    </section>
+
+    <section>
+      <h2>Shadow</h2>
+      <div class="tile-grid" id="shadow-grid"></div>
+      <h3>Elevation (Material 3)</h3>
+      <div class="tile-grid" id="elevation-grid"></div>
+    </section>
+
+    <section>
+      <h2>Motion · duration × easing</h2>
+      <div id="motion-grid"></div>
+    </section>
+
+    <section>
+      <h2>Breakpoints</h2>
+      <div class="tile-grid" id="breakpoint-grid"></div>
+    </section>
+  </main>
+
+  <script>
+    // Safe DOM builders
+    const el = (tag, attrs = {}, children = []) => {
+      const n = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'text') n.textContent = v;
+        else if (k === 'style') n.style.cssText = v;
+        else if (k === 'class') n.className = v;
+        else n.setAttribute(k, v);
+      }
+      children.forEach(c => n.appendChild(c));
+      return n;
+    };
+    const append = (parent, ...kids) => { kids.forEach(k => parent.appendChild(k)); return parent; };
+
+    // Theme toggle
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll('[data-set-theme]');
+    const apply = (mode) => {
+      if (mode === 'auto') root.removeAttribute('data-theme');
+      else root.setAttribute('data-theme', mode);
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === mode)));
+      try { localStorage.setItem('ax-theme', mode); } catch (e) {}
+    };
+    buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.setTheme)));
+    let saved = 'light';
+    try { saved = localStorage.getItem('ax-theme') || 'light'; } catch (e) {}
+    apply(saved);
+
+    // ─── palette ──────────────────────────────
+    const hues = ['brand','success','warning','error','info','cyan','purple','indigo','pink','gray'];
+    const steps = [50,100,200,300,400,500,600,700,800,900];
+    const paletteEl = document.getElementById('palette-grid');
+    hues.forEach(hue => {
+      const row = el('div', { class: 'palette-row' });
+      row.appendChild(el('div', { class: 'label', text: hue }));
+      const list = hue === 'gray' ? steps.concat([950]) : steps.concat([null]);
+      list.forEach(step => {
+        if (step === null) { row.appendChild(el('div')); return; }
+        const cssVar = '--ax-color-' + hue + '-' + step;
+        const sw = el('div', {
+          class: 'swatch' + (step >= 500 ? ' dark-text' : ''),
+          style: 'background: var(' + cssVar + ')',
+          title: cssVar
+        });
+        sw.appendChild(el('span', { text: String(step) }));
+        row.appendChild(sw);
+      });
+      paletteEl.appendChild(row);
+    });
+
+    // ─── semantic card builder ─────────────────
+    const makeCard = (roleLabel, cssVar, previewBuilder) => {
+      const card = el('div', { class: 'semantic-card' });
+      const preview = el('div', { class: 'preview' });
+      previewBuilder(preview);
+      card.appendChild(preview);
+      const meta = el('div', { class: 'meta' });
+      meta.appendChild(el('div', { class: 'role', text: roleLabel }));
+      meta.appendChild(el('div', { class: 'name', text: cssVar }));
+      card.appendChild(meta);
+      return card;
+    };
+
+    const bgGrid = document.getElementById('sem-bg');
+    ['muted','subtle','default','emphasis'].forEach(v => {
+      bgGrid.appendChild(makeCard('background', '--ax-bg-' + v, (p) => {
+        p.style.background = 'var(--ax-bg-' + v + ')';
+      }));
+    });
+
+    const textGrid = document.getElementById('sem-text');
+    ['disabled','subtle','secondary','primary','heading','inverted'].forEach(v => {
+      textGrid.appendChild(makeCard('text', '--ax-text-' + v, (p) => {
+        p.style.background = 'var(--ax-bg-default)';
+        const s = el('span', { class: 'text-sample', text: 'Aa ก' });
+        s.style.color = 'var(--ax-text-' + v + ')';
+        p.appendChild(s);
+      }));
+    });
+
+    const borderGrid = document.getElementById('sem-border');
+    ['muted','default','emphasis'].forEach(v => {
+      borderGrid.appendChild(makeCard('border', '--ax-border-' + v, (p) => {
+        p.style.background = 'var(--ax-bg-default)';
+        const d = el('div', { class: 'border-demo' });
+        d.style.borderColor = 'var(--ax-border-' + v + ')';
+        p.appendChild(d);
+      }));
+    });
+
+    const rolesEl = document.getElementById('sem-roles');
+    const roleNames = ['brand','success','warning','error','info','cyan','purple','indigo','pink'];
+    const variants = ['faint','muted','subtle','default','emphasis','inverted'];
+    roleNames.forEach(r => {
+      rolesEl.appendChild(el('h4', { text: r }));
+      const grid = el('div', { class: 'semantic-grid six' });
+      variants.forEach(v => {
+        grid.appendChild(makeCard(v, '--ax-' + r + '-' + v, (p) => {
+          p.style.background = 'var(--ax-' + r + '-' + v + ')';
+        }));
+      });
+      rolesEl.appendChild(grid);
+    });
+
+    // ─── typography ────────────────────────
+    const typeRoles = [
+      ['display',  ['large','medium','small']],
+      ['headline', ['large','medium','small']],
+      ['title',    ['large','medium','small']],
+      ['body',     ['large','medium','small']],
+      ['label',    ['large','medium','small']],
+    ];
+    const typeEl = document.getElementById('type-scale');
+    typeRoles.forEach(([role, sizes]) => {
+      sizes.forEach(size => {
+        const cssName = role + '-' + size;
+        const row = el('div', { class: 'type-row' });
+        row.appendChild(el('div', { class: 'name', text: '--ax-' + cssName }));
+        const sample = el('div', { class: 'sample', text: 'AegisX · Sample ทดสอบภาษาไทย' });
+        sample.style.fontSize = 'var(--ax-' + cssName + '-size)';
+        sample.style.lineHeight = 'var(--ax-' + cssName + '-line)';
+        sample.style.fontWeight = 'var(--ax-' + cssName + '-weight)';
+        sample.style.letterSpacing = 'var(--ax-' + cssName + '-tracking)';
+        row.appendChild(sample);
+        row.appendChild(el('div', { class: 'spec', text: cssName }));
+        typeEl.appendChild(row);
+      });
+    });
+
+    // ─── spacing ──────────────────────────
+    const spacingScale = [['xs',4],['sm',8],['md',12],['lg',16],['xl',24],['2xl',32],['3xl',48],['4xl',64]];
+    const spacingEl = document.getElementById('spacing-scale');
+    spacingScale.forEach(([s, px]) => {
+      const row = el('div', { class: 'spacing-row' });
+      row.appendChild(el('div', { class: 'name', text: '--ax-spacing-' + s }));
+      row.appendChild(el('div', { class: 'px', text: px + 'px' }));
+      const bar = el('div', { class: 'spacing-bar' });
+      bar.style.width = 'var(--ax-spacing-' + s + ')';
+      const wrap = el('div');
+      wrap.appendChild(bar);
+      row.appendChild(wrap);
+      spacingEl.appendChild(row);
+    });
+
+    // ─── radius ──────────────────────────
+    const radii = ['none','sm','md','lg','xl','2xl','full'];
+    const radiusEl = document.getElementById('radius-grid');
+    radii.forEach(r => {
+      const t = el('div', { class: 'tile radius-tile' });
+      t.style.borderRadius = 'var(--ax-radius-' + r + ')';
+      t.appendChild(el('div', { text: 'radius-' + r }));
+      t.appendChild(el('div', { class: 'val', text: 'var(--ax-radius-' + r + ')' }));
+      radiusEl.appendChild(t);
+    });
+
+    // ─── border width ──────────────────────
+    const borders = ['none','thin','default','thick'];
+    const borderEl = document.getElementById('border-grid');
+    borders.forEach(b => {
+      const t = el('div', { class: 'tile border-tile' });
+      t.style.borderWidth = 'var(--ax-border-width-' + b + ')';
+      t.appendChild(el('div', { text: 'width-' + b }));
+      t.appendChild(el('div', { class: 'val', text: 'var(--ax-border-width-' + b + ')' }));
+      borderEl.appendChild(t);
+    });
+
+    // ─── shadow ──────────────────────────
+    const shadows = ['none','xs','sm','md','lg','xl'];
+    const shadowEl = document.getElementById('shadow-grid');
+    shadows.forEach(s => {
+      const t = el('div', { class: 'tile' });
+      t.style.boxShadow = 'var(--ax-shadow-' + s + ')';
+      t.style.border = 'none';
+      t.appendChild(el('div', { text: 'shadow-' + s }));
+      t.appendChild(el('div', { class: 'val', text: 'var(--ax-shadow-' + s + ')' }));
+      shadowEl.appendChild(t);
+    });
+
+    const elevations = [0,1,2,3,4,5];
+    const elevationEl = document.getElementById('elevation-grid');
+    elevations.forEach(e => {
+      const t = el('div', { class: 'tile' });
+      t.style.boxShadow = 'var(--ax-elevation-' + e + ')';
+      t.style.border = 'none';
+      t.appendChild(el('div', { text: 'elevation-' + e }));
+      t.appendChild(el('div', { class: 'val', text: 'var(--ax-elevation-' + e + ')' }));
+      elevationEl.appendChild(t);
+    });
+
+    // ─── motion ──────────────────────────
+    const durations = [['instant','75ms'],['fast','150ms'],['normal','250ms'],['slow','350ms'],['slower','500ms']];
+    const easings = ['linear','easeIn','easeOut','easeInOut'];
+    const motionEl = document.getElementById('motion-grid');
+    const balls = [];
+    durations.forEach(([dKey, dVal]) => {
+      easings.forEach(eKey => {
+        const row = el('div', { class: 'motion-row' });
+        row.appendChild(el('div', { class: 'name', text: dKey + ' · ' + eKey }));
+        row.appendChild(el('div', { class: 'px', text: dVal }));
+        const track = el('div', { class: 'motion-track' });
+        const ball = el('div', { class: 'motion-ball' });
+        ball.style.transition = 'transform var(--ax-duration-' + dKey + ') var(--ax-easing-' + eKey + ')';
+        track.appendChild(ball);
+        row.appendChild(track);
+        motionEl.appendChild(row);
+        balls.push({ ball, track });
+      });
+    });
+    let at = 0;
+    setInterval(() => {
+      at = 1 - at;
+      balls.forEach(({ ball, track }) => {
+        const max = Math.max(0, track.getBoundingClientRect().width - 40);
+        ball.style.transform = at ? 'translateX(' + max + 'px)' : 'translateX(0px)';
+      });
+    }, 1400);
+
+    // ─── breakpoints ──────────────────────
+    const bps = [['xs','0px'],['sm','600px'],['md','960px'],['lg','1280px'],['xl','1440px'],['2xl','1920px']];
+    const bpEl = document.getElementById('breakpoint-grid');
+    bps.forEach(([k, v]) => {
+      const t = el('div', { class: 'tile' });
+      t.appendChild(el('div', { text: k }));
+      t.appendChild(el('div', { class: 'val', text: v }));
+      t.appendChild(el('div', { class: 'val', text: '--ax-breakpoint-' + k }));
+      bpEl.appendChild(t);
+    });
+  </script>
+</body>
+</html>

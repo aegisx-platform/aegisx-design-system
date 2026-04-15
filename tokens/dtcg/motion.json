@@ -1,0 +1,39 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "duration": {
+    "instant": { "$value": "75ms",  "$type": "duration" },
+    "fast":    { "$value": "150ms", "$type": "duration" },
+    "normal":  { "$value": "250ms", "$type": "duration" },
+    "slow":    { "$value": "350ms", "$type": "duration" },
+    "slower":  { "$value": "500ms", "$type": "duration" },
+    "m3": {
+      "short1":  { "$value": "50ms",  "$type": "duration" },
+      "short2":  { "$value": "100ms", "$type": "duration" },
+      "short3":  { "$value": "150ms", "$type": "duration" },
+      "short4":  { "$value": "200ms", "$type": "duration" },
+      "medium1": { "$value": "250ms", "$type": "duration" },
+      "medium2": { "$value": "300ms", "$type": "duration" },
+      "medium3": { "$value": "350ms", "$type": "duration" },
+      "medium4": { "$value": "400ms", "$type": "duration" },
+      "long1":   { "$value": "450ms", "$type": "duration" },
+      "long2":   { "$value": "500ms", "$type": "duration" },
+      "long3":   { "$value": "550ms", "$type": "duration" },
+      "long4":   { "$value": "600ms", "$type": "duration" }
+    }
+  },
+  "easing": {
+    "linear":    { "$value": "linear",                          "$type": "cubicBezier" },
+    "ease":      { "$value": "ease",                            "$type": "cubicBezier" },
+    "easeIn":    { "$value": "cubic-bezier(0.4, 0, 1, 1)",      "$type": "cubicBezier" },
+    "easeOut":   { "$value": "cubic-bezier(0, 0, 0.2, 1)",      "$type": "cubicBezier" },
+    "easeInOut": { "$value": "cubic-bezier(0.4, 0, 0.2, 1)",    "$type": "cubicBezier" },
+    "m3": {
+      "standard":             { "$value": "cubic-bezier(0.2, 0, 0, 1)",       "$type": "cubicBezier" },
+      "standardAccelerate":   { "$value": "cubic-bezier(0.3, 0, 1, 1)",       "$type": "cubicBezier" },
+      "standardDecelerate":   { "$value": "cubic-bezier(0, 0, 0, 1)",         "$type": "cubicBezier" },
+      "emphasized":           { "$value": "cubic-bezier(0.2, 0, 0, 1)",       "$type": "cubicBezier" },
+      "emphasizedAccelerate": { "$value": "cubic-bezier(0.3, 0, 0.8, 0.15)",  "$type": "cubicBezier" },
+      "emphasizedDecelerate": { "$value": "cubic-bezier(0.05, 0.7, 0.1, 1)",  "$type": "cubicBezier" }
+    }
+  }
+}
