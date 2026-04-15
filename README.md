@@ -20,6 +20,14 @@ This repository is the single source of truth for logos, icons, brand background
 - [`logo/AEGISX-LOGO-STANDARD.md`](logo/AEGISX-LOGO-STANDARD.md) — logo anatomy & usage rules
 - [`logo/USAGE-EXAMPLES.md`](logo/USAGE-EXAMPLES.md) — variant picker, favicon/PWA setup, do's & don'ts
 - [`logo/preview.html`](logo/preview.html) — open in a browser to preview every variant on every bg
+- [`specs/AEGISX-TYPOGRAPHY.md`](specs/AEGISX-TYPOGRAPHY.md) — type families, scale, weight, line height, print
+- [`specs/AEGISX-SPACING.md`](specs/AEGISX-SPACING.md) — spacing, radius, shadow, border, z-index, grid
+- [`tokens/aegisx-tokens.json`](tokens/aegisx-tokens.json) — Style Dictionary / W3C Design Tokens export
+- [`docs/MIGRATING-AEGISX-UI.md`](docs/MIGRATING-AEGISX-UI.md) — how `@aegisx/ui` should consume this package
+- [`email/aegisx-signature.html`](email/aegisx-signature.html) — email signature template (table-based, Outlook-safe)
+- [`print/letterhead.html`](print/letterhead.html) — A4 letterhead template (browser print → PDF)
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to add icons / cut releases
+- [`CHANGELOG.md`](CHANGELOG.md) — versioned changes
 - [`brand/AEGISX-BRAND-BG-SPEC.md`](brand/AEGISX-BRAND-BG-SPEC.md) — branded background spec
 - [`icons/README.md`](icons/README.md) — icon quick start
 - [`CLAUDE.md`](CLAUDE.md) — guidance for Claude Code contributors

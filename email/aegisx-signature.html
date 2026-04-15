@@ -1,0 +1,50 @@
+<!--
+  AegisX email signature template — copy/paste into Gmail, Outlook, Apple Mail.
+
+  How to use:
+  1. Replace {{NAME}}, {{TITLE}}, {{PHONE}}, {{EMAIL}} placeholders.
+  2. Update the IMG src to point at a public CDN copy of horizontal-light@2x.png
+     (200×60 PNG works in all major clients; SVG fails in Gmail/Outlook).
+  3. Open this file in a browser, select all, copy, paste into the signature
+     field — Gmail/Outlook will preserve the inline styles.
+
+  Why a table layout: every email client renders <table> consistently. Flexbox
+  and CSS grid are unreliable in Outlook desktop (Word rendering engine).
+-->
+<table cellpadding="0" cellspacing="0" border="0" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;color:#0f172a;line-height:1.5;border-collapse:collapse;">
+  <tr>
+    <td style="padding-right:16px;border-right:2px solid #6366f1;vertical-align:middle;">
+      <img src="https://cdn.aegisx.io/logo/horizontal-light@2x.png"
+           alt="AegisX"
+           width="160"
+           height="auto"
+           style="display:block;border:0;">
+    </td>
+    <td style="padding-left:16px;vertical-align:middle;">
+      <div style="font-size:15px;font-weight:600;color:#0f172a;margin:0 0 2px;">{{NAME}}</div>
+      <div style="font-size:13px;color:#64748b;margin:0 0 8px;">{{TITLE}} · AegisX Hospital Platform</div>
+      <div style="font-size:12px;color:#475569;margin:0;">
+        <a href="tel:{{PHONE}}" style="color:#475569;text-decoration:none;">📞 {{PHONE}}</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:{{EMAIL}}" style="color:#475569;text-decoration:none;">✉ {{EMAIL}}</a>
+      </div>
+      <div style="font-size:11px;color:#94a3b8;margin:6px 0 0;">
+        <a href="https://aegisx.io" style="color:#6366f1;text-decoration:none;">aegisx.io</a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<!--
+  Variant: dark background email theme (rare — most clients force white)
+  swap horizontal-light@2x.png → horizontal-dark@2x.png and bg color in <td>.
+
+  Compliance footer (optional, append below the table):
+-->
+<p style="font-family:-apple-system,sans-serif;font-size:10px;color:#94a3b8;margin:12px 0 0;line-height:1.4;max-width:480px;">
+  CONFIDENTIALITY NOTICE: This email and any attachments may contain
+  confidential or privileged health information protected by law. If you
+  are not the intended recipient, please notify the sender and delete this
+  message. Unauthorized review, use, disclosure, or distribution is
+  prohibited.
+</p>

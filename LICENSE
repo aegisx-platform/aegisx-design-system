@@ -1,0 +1,37 @@
+Copyright (c) 2026 AegisX Platform
+
+All rights reserved.
+
+This software and associated design assets (icons, logos, brand patterns,
+specifications) are the proprietary property of AegisX Platform. They are
+licensed, not sold, for use solely within products and services of the
+AegisX Platform organization and its authorized contractors.
+
+You may NOT, without explicit prior written permission from AegisX Platform:
+
+  1. Redistribute, republish, sublicense, sell, rent, or lease any portion
+     of this work to third parties.
+  2. Use the AegisX name, AegisX logo, or AegisX brand assets to endorse,
+     promote, or identify products or services not produced by or for
+     AegisX Platform.
+  3. Modify the AegisX logo, brand colors, or icon system in a way that
+     misrepresents the AegisX brand identity.
+  4. Use these assets in any context that violates applicable laws,
+     regulations, or healthcare industry standards.
+
+Authorized internal use within the AegisX Platform organization is
+permitted, including:
+
+  - Embedding icons, logos, and brand assets in AegisX products
+    (web apps, mobile apps, PDFs, print materials, presentations).
+  - Modifying source code (TypeScript, SCSS) for internal product
+    integration, subject to the technical specifications in this
+    repository.
+
+For licensing inquiries, contact: opensource@aegisx.io
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.

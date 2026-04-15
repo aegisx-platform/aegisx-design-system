@@ -1,0 +1,131 @@
+<!doctype html>
+<!--
+  AegisX printable letterhead — A4 portrait.
+
+  Use as a starting template for hospital documents (memos, contracts,
+  patient correspondence). Browser print-to-PDF gives a pixel-accurate
+  result. Do NOT edit the @page or letterhead band styles — they are
+  brand-locked.
+
+  Replace the {{...}} placeholders before printing.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AegisX Letterhead</title>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 11pt/1.55 'Inter', 'IBM Plex Sans Thai', system-ui, sans-serif; color: #0f172a; }
+
+  .page {
+    width: 210mm; height: 297mm; padding: 25mm 22mm 30mm; position: relative;
+    page-break-after: always;
+  }
+
+  /* Top band — brand-locked, do not modify */
+  .letterhead {
+    position: absolute; top: 0; left: 0; right: 0; height: 38mm;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    color: #fff; padding: 12mm 22mm 0;
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .letterhead img { height: 16mm; }
+  .letterhead .org { text-align: right; font-size: 9pt; line-height: 1.4; opacity: .8; }
+  .letterhead .org b { display: block; font-size: 10pt; opacity: 1; }
+
+  /* Bottom band — brand-locked, do not modify */
+  .footer {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 18mm;
+    border-top: 2pt solid #6366f1;
+    padding: 5mm 22mm 0;
+    font-size: 8pt; color: #64748b;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .footer .left b { color: #0f172a; }
+  .footer .right { text-align: right; }
+
+  /* Body content area */
+  .body { margin-top: 28mm; }
+  .meta { color: #475569; font-size: 9pt; margin: 0 0 8mm; }
+  .meta .row { display: flex; gap: 12mm; margin-bottom: 1mm; }
+  .meta .row b { color: #0f172a; min-width: 22mm; display: inline-block; }
+
+  h1 { font-size: 16pt; font-weight: 700; margin: 0 0 6mm; letter-spacing: -.01em; color: #0f172a; }
+  h2 { font-size: 12pt; font-weight: 600; margin: 8mm 0 3mm; color: #0f172a; }
+  p  { margin: 0 0 4mm; }
+
+  .signature { margin-top: 18mm; }
+  .signature .line { border-top: 1pt solid #cbd5e1; width: 60mm; margin-bottom: 2mm; }
+  .signature .name { font-size: 10pt; font-weight: 600; }
+  .signature .title { font-size: 9pt; color: #64748b; }
+
+  /* Page number */
+  .page-no { position: absolute; bottom: 8mm; right: 22mm; font-size: 8pt; color: #94a3b8; }
+
+  @media screen { body { background: #e2e8f0; padding: 20px; } .page { box-shadow: 0 4px 16px rgba(0,0,0,.15); margin: 0 auto; background: #fff; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="letterhead">
+    <img src="../logo/png/horizontal-mono-inverse@2x.png" alt="AegisX">
+    <div class="org">
+      <b>AegisX Hospital Platform</b>
+      99/1 Sukhumvit Rd · Bangkok 10110 · Thailand<br>
+      +66 2 000 0000 · contact@aegisx.io · aegisx.io
+    </div>
+  </header>
+
+  <div class="body">
+    <p class="meta">
+      <span class="row"><b>Date</b> {{DATE}}</span>
+      <span class="row"><b>Reference</b> {{REF_NO}}</span>
+      <span class="row"><b>To</b> {{RECIPIENT}}</span>
+      <span class="row"><b>Subject</b> {{SUBJECT}}</span>
+    </p>
+
+    <h1>{{DOCUMENT_TITLE}}</h1>
+
+    <p>Dear {{RECIPIENT_FIRST_NAME}},</p>
+
+    <p>
+      {{BODY_PARAGRAPH_1}}
+    </p>
+
+    <p>
+      {{BODY_PARAGRAPH_2}}
+    </p>
+
+    <h2>Next steps</h2>
+    <p>
+      {{BODY_PARAGRAPH_3}}
+    </p>
+
+    <div class="signature">
+      <p>Sincerely,</p>
+      <div class="line"></div>
+      <div class="name">{{SIGNATORY_NAME}}</div>
+      <div class="title">{{SIGNATORY_TITLE}}</div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="left">
+      <b>AegisX Hospital Platform Co., Ltd.</b><br>
+      Tax ID 0-1055-00000-00-0
+    </div>
+    <div class="right">
+      Confidential — for the addressee only<br>
+      aegisx.io
+    </div>
+  </footer>
+
+  <div class="page-no">Page 1 of 1</div>
+
+</div>
+
+</body>
+</html>
