@@ -6,6 +6,51 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-04-15
+
+### Added
+- **Design token foundation** (`tokens/`) — authoritative source for all design primitives:
+  - W3C DTCG JSON in `tokens/dtcg/` (color, spacing, typography, radius, border-width, shadow, motion, breakpoint)
+  - Compiled `tokens/css/tokens.css` with 3-layer architecture (primitive → semantic → component), prefix `--ax-*`
+  - SCSS maps in `tokens/scss/_tokens.scss`
+- **Component CSS library** (`tokens/css/components.css`) — reusable classes using tokens: `.ax-button`, `.ax-input`, `.ax-card`, `.ax-alert`, `.ax-badge`, `.ax-chip`, `.ax-dialog`, `.ax-toast`, `.ax-link`, `.ax-table`.
+- **Angular Material v3 bridge** (`tokens/scss/`) — three-file consumer integration:
+  - `aegisx-material-theme.scss` — M3 theme API (density -1, IBM Plex Sans Thai)
+  - `aegisx-material-bridge.scss` — maps `--mat-sys-*` / `--mdc-*` onto `--ax-*`
+  - `aegisx-material-overrides.scss` — minimal per-component polish (cards, buttons, form fields, tables, dialogs, menus, chips, tooltip, snackbar, progress bar, checkbox/radio/toggle, tabs, ripple)
+- **Consumer setup guide** (`tokens/ANGULAR-MATERIAL-SETUP.md`) — step-by-step integration with gotchas, dark-mode wiring, and verification checklist.
+- **Live preview pages** served under `/tokens/`:
+  - `preview.html` — palette, semantic roles, typography, spacing, radius, shadow, elevation, motion, breakpoints
+  - `components.html` — all `.ax-*` component classes with composition demo
+  - `a11y.html` — runtime WCAG 2.1 contrast audit (text × background, buttons, alerts, borders) with theme toggle
+- **Token build pipeline** (`scripts/build-tokens.mjs`) — DTCG JSON → CSS generator:
+  - `pnpm tokens:build` writes `tokens/css/tokens.generated.css`
+  - `pnpm tokens:verify` diffs against canonical `tokens.css` (CI drift gate)
+- **AegisX Design Principles** (`AEGISX-DESIGN-PRINCIPLES.md`) — codified north star:
+  - Five pillars: Calm · High-contrast · Thai-first · Clinical-dense · No ornamentation
+  - Explicit "what AegisX is NOT" (not Untitled UI, not Material out-of-the-box)
+  - Strict domain-token policy: triage / NHSO / ward-type / drug-interaction tokens live in consumer apps as `--app-*` aliases of `--ax-*`, not in this repo
+
+### Changed
+- **BREAKING — tokens v0.2:** rewrite to align with `aegisx-ui-design` skill (Untitled UI + Angular Material v3):
+  - Gray palette: Tailwind **Zinc** (not gray) — `#fafafa → #09090b`
+  - Font stack: **IBM Plex Sans Thai** (Thai-first, not Inter)
+  - Body base: **14px** (`text-sm` — clinical density, not 16px)
+  - Type scale: Untitled UI `text-{xs..xl}` + `display-{xs..lg}` (dropped Material 3 role tokens like `--ax-body-medium-size`)
+  - Token renames: `--ax-bg-*` → `--ax-background-*`, `--ax-text-primary` → `--ax-text-default`
+  - Radius: `md` 10px → 8px, `lg` 16px → 12px per Untitled UI
+- Display typography capped at `display-lg` (48px). Removed `display-xl` (60px) and `display-2xl` (72px) — clinical UIs do not need them.
+- `CLAUDE.md` elevates `AEGISX-DESIGN-PRINCIPLES.md` to rule 0 (read before any token/spec change).
+
+### Migration notes
+Consumer apps (`aegisx-ui`, `aegisx-starter-1`) must rename referenced tokens:
+```
+--ax-bg-*                             → --ax-background-*
+--ax-text-primary                     → --ax-text-default
+--ax-{body|title|label}-*-size  (M3)  → --ax-text-*-size / --ax-display-*-size
+```
+Domain tokens (triage, NHSO status, ward type, drug interaction) must now be defined per-app as `--app-*` aliases, not pulled from the design system.
+
 ## [0.2.0] — 2026-04-15
 
 ### Added
