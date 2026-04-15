@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AegisX Design System — Components</title>
+  <link rel="icon" href="../assets/logo/favicons/favicon.ico" />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <style>
+    /* Chrome — matches site/index.html and preview.html */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
+    code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .9em; background: #f1f5f9; color: #334155; padding: 1px 6px; border-radius: 6px; }
+
+    header.page-head { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 36px 32px 44px; }
+    header.page-head h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+    header.page-head p { margin: 0; opacity: .65; font-size: 13px; }
+    header.page-head .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    header.page-head .badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); font-family: ui-monospace, monospace; }
+    header.page-head .spacer { flex: 1; }
+    header.page-head .toggle { display: inline-flex; padding: 3px; gap: 2px; background: rgba(255,255,255,.08); border-radius: 999px; border: 1px solid rgba(255,255,255,.1); }
+    header.page-head .toggle button { all: unset; cursor: pointer; padding: 5px 14px; font-size: 11px; font-weight: 500; border-radius: 999px; color: rgba(255,255,255,.65); font-family: ui-monospace, monospace; }
+    header.page-head .toggle button:hover { color: #fff; }
+    header.page-head .toggle button[aria-pressed="true"] { background: #6366f1; color: #fff; }
+
+    nav.tabs { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 32px; display: flex; gap: 24px; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 3px rgba(15,23,42,.04); overflow-x: auto; }
+    nav.tabs a { padding: 14px 0; color: #475569; border-bottom: 2px solid transparent; font-weight: 500; font-size: 13px; white-space: nowrap; text-decoration: none; }
+    nav.tabs a:hover { color: #0f172a; }
+    nav.tabs a.home { color: #6366f1; }
+
+    main { padding: 32px; max-width: 1280px; margin: 0 auto; }
+    section.block + section.block { margin-top: 56px; }
+    section.block > h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; color: #0f172a; }
+    section.block > p.muted { margin: 0 0 20px; color: #64748b; font-size: 13px; }
+    section.block > h3 { margin: 28px 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #64748b; font-weight: 600; }
+
+    .demo {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .demo + .demo { margin-top: 12px; }
+    .demo.stack { flex-direction: column; align-items: stretch; }
+    .demo.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .demo.center { justify-content: center; }
+
+    .snippet {
+      margin-top: 6px;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      color: #64748b;
+      padding: 10px 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+    .snippet .t { color: #93c5fd; }
+    .snippet .a { color: #fbbf24; }
+    .snippet .s { color: #86efac; }
+
+    /* dark chrome */
+    [data-theme="dark"] body { background: #030712; color: #e2e8f0; }
+    [data-theme="dark"] section.block > h2 { color: #f8fafc; }
+    [data-theme="dark"] section.block > p.muted { color: #94a3b8; }
+    [data-theme="dark"] nav.tabs { background: #111827; border-bottom-color: #1f2937; }
+    [data-theme="dark"] nav.tabs a { color: #94a3b8; }
+    [data-theme="dark"] nav.tabs a:hover { color: #f8fafc; }
+    [data-theme="dark"] nav.tabs a.home { color: #a5b4fc; }
+    [data-theme="dark"] .demo { background: #1f2937; border-color: #334155; }
+    [data-theme="dark"] code { background: #1f2937; color: #e2e8f0; }
+  </style>
+</head>
+<body>
+
+<header class="page-head">
+  <h1>Components</h1>
+  <p>Reusable component primitives built on top of <code style="background:rgba(255,255,255,.1);color:#e2e8f0;">--ax-*</code> tokens. Copy <code style="background:rgba(255,255,255,.1);color:#e2e8f0;">tokens/css/components.css</code> into your app alongside <code style="background:rgba(255,255,255,.1);color:#e2e8f0;">tokens.css</code>.</p>
+  <div class="row">
+    <span class="badge">v0.1 · preview</span>
+    <span class="badge">10 components</span>
+    <span class="badge">token-driven</span>
+    <span class="spacer"></span>
+    <div class="toggle" role="tablist" aria-label="Theme">
+      <button data-set-theme="light" aria-pressed="true">LIGHT</button>
+      <button data-set-theme="dark"  aria-pressed="false">DARK</button>
+      <button data-set-theme="auto"  aria-pressed="false">AUTO</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <a class="home" href="../">← Home</a>
+  <a href="preview.html">Tokens</a>
+  <a href="components.html" aria-current="page">Components</a>
+  <a href="ANGULAR-MATERIAL-SETUP.md">Angular Material ↗</a>
+  <span style="flex:1"></span>
+  <a href="#buttons">Button</a>
+  <a href="#inputs">Input</a>
+  <a href="#cards">Card</a>
+  <a href="#alerts">Alert</a>
+  <a href="#badges">Badge</a>
+  <a href="#chips">Chip</a>
+  <a href="#dialog">Dialog</a>
+  <a href="#toast">Toast</a>
+</nav>
+
+<main>
+
+  <section class="block" id="buttons">
+    <h2>Button</h2>
+    <p class="muted">Five variants × three sizes × four states. All transitions use <code>--ax-duration-fast</code> + <code>--ax-easing-easeOut</code>.</p>
+
+    <h3>Variants</h3>
+    <div class="demo">
+      <button class="ax-button ax-button--primary">Primary</button>
+      <button class="ax-button ax-button--secondary">Secondary</button>
+      <button class="ax-button ax-button--outline">Outline</button>
+      <button class="ax-button ax-button--ghost">Ghost</button>
+      <button class="ax-button ax-button--danger">Danger</button>
+    </div>
+
+    <h3>Sizes</h3>
+    <div class="demo">
+      <button class="ax-button ax-button--primary ax-button--sm">Small</button>
+      <button class="ax-button ax-button--primary">Medium</button>
+      <button class="ax-button ax-button--primary ax-button--lg">Large</button>
+    </div>
+
+    <h3>States</h3>
+    <div class="demo">
+      <button class="ax-button ax-button--primary">Default</button>
+      <button class="ax-button ax-button--primary" disabled>Disabled</button>
+      <button class="ax-button ax-button--primary" aria-busy="true" disabled>
+        <span aria-hidden="true" style="display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;"></span>
+        Loading…
+      </button>
+    </div>
+    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+  </section>
+
+  <section class="block" id="inputs">
+    <h2>Input</h2>
+    <p class="muted">Form controls with consistent focus ring (<code>--ax-brand-faint</code> 3px) and error state.</p>
+    <div class="demo grid">
+      <div class="ax-field">
+        <label class="ax-field__label" for="i-default">Email</label>
+        <input id="i-default" class="ax-input" type="email" placeholder="you@aegisx.health" />
+        <span class="ax-field__hint">We'll never share your email.</span>
+      </div>
+      <div class="ax-field">
+        <label class="ax-field__label" for="i-error">Patient ID</label>
+        <input id="i-error" class="ax-input ax-input--error" type="text" value="HN-ABCDE" />
+        <span class="ax-field__error">Format is HN-##### (digits only).</span>
+      </div>
+      <div class="ax-field">
+        <label class="ax-field__label" for="i-disabled">Department</label>
+        <input id="i-disabled" class="ax-input" type="text" value="Cardiology" disabled />
+      </div>
+      <div class="ax-field">
+        <label class="ax-field__label" for="i-ta">Clinical note</label>
+        <textarea id="i-ta" class="ax-textarea" placeholder="Enter observation…"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="cards">
+    <h2>Card</h2>
+    <p class="muted">Surface container with three elevation modes. Use for grouped content, list items, dashboard tiles.</p>
+    <div class="demo grid">
+      <div class="ax-card ax-card--flat">
+        <div class="ax-card__header">
+          <h4 class="ax-card__title">Flat card</h4>
+          <p class="ax-card__subtitle">Default border, no shadow</p>
+        </div>
+        <div class="ax-card__body">Use for list items and dense layouts where elevation would compete.</div>
+      </div>
+      <div class="ax-card ax-card--elevated">
+        <div class="ax-card__header">
+          <h4 class="ax-card__title">Elevated card</h4>
+          <p class="ax-card__subtitle">elevation-1</p>
+        </div>
+        <div class="ax-card__body">Use for dashboard tiles and standalone content.</div>
+        <div class="ax-card__footer" style="display:flex;justify-content:flex-end;gap:8px;">
+          <button class="ax-button ax-button--ghost ax-button--sm">Cancel</button>
+          <button class="ax-button ax-button--primary ax-button--sm">Save</button>
+        </div>
+      </div>
+      <div class="ax-card ax-card--floating">
+        <div class="ax-card__header">
+          <h4 class="ax-card__title">Floating card</h4>
+          <p class="ax-card__subtitle">elevation-3 · menus, popovers</p>
+        </div>
+        <div class="ax-card__body">Use sparingly — reserve for transient UI.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="alerts">
+    <h2>Alert · Banner</h2>
+    <p class="muted">Inline message for status, validation, or system notices. Pairs role <code>faint</code> bg + <code>emphasis</code> text + <code>default</code> accent.</p>
+    <div class="demo stack">
+      <div class="ax-alert ax-alert--success">
+        <div class="ax-alert__icon">✓</div>
+        <div class="ax-alert__body">
+          <p class="ax-alert__title">Patient record saved</p>
+          <p class="ax-alert__text">Updated by Dr. Chaiyaphum · 2 minutes ago.</p>
+        </div>
+      </div>
+      <div class="ax-alert ax-alert--warning">
+        <div class="ax-alert__icon">!</div>
+        <div class="ax-alert__body">
+          <p class="ax-alert__title">Drug interaction possible</p>
+          <p class="ax-alert__text">Warfarin + Aspirin — review anticoagulant protocol before dispense.</p>
+        </div>
+      </div>
+      <div class="ax-alert ax-alert--error">
+        <div class="ax-alert__icon">×</div>
+        <div class="ax-alert__body">
+          <p class="ax-alert__title">NHSO claim rejected</p>
+          <p class="ax-alert__text">Missing ICD-10 secondary code. Edit claim HN-44821 to resubmit.</p>
+        </div>
+      </div>
+      <div class="ax-alert ax-alert--info">
+        <div class="ax-alert__icon">i</div>
+        <div class="ax-alert__body">
+          <p class="ax-alert__title">Scheduled downtime</p>
+          <p class="ax-alert__text">System maintenance this Sunday 02:00–03:00 ICT.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="badges">
+    <h2>Badge</h2>
+    <p class="muted">Three styles × five roles = 15 combinations. Pick based on visual weight needed.</p>
+
+    <h3>Solid</h3>
+    <div class="demo">
+      <span class="ax-badge ax-badge--solid-success">Active</span>
+      <span class="ax-badge ax-badge--solid-warning">Pending</span>
+      <span class="ax-badge ax-badge--solid-error">Rejected</span>
+      <span class="ax-badge ax-badge--solid-info">Draft</span>
+      <span class="ax-badge ax-badge--solid-brand">New</span>
+    </div>
+
+    <h3>Soft</h3>
+    <div class="demo">
+      <span class="ax-badge ax-badge--soft-success">Active</span>
+      <span class="ax-badge ax-badge--soft-warning">Pending</span>
+      <span class="ax-badge ax-badge--soft-error">Rejected</span>
+      <span class="ax-badge ax-badge--soft-info">Draft</span>
+      <span class="ax-badge ax-badge--soft-brand">New</span>
+    </div>
+
+    <h3>Outline</h3>
+    <div class="demo">
+      <span class="ax-badge ax-badge--outline-success">Active</span>
+      <span class="ax-badge ax-badge--outline-warning">Pending</span>
+      <span class="ax-badge ax-badge--outline-error">Rejected</span>
+      <span class="ax-badge ax-badge--outline-info">Draft</span>
+      <span class="ax-badge ax-badge--outline-brand">New</span>
+    </div>
+  </section>
+
+  <section class="block" id="chips">
+    <h2>Chip</h2>
+    <p class="muted">Removable tag for filters, selected items, multi-select.</p>
+    <div class="demo">
+      <span class="ax-chip">Cardiology <button class="ax-chip__close" aria-label="Remove">×</button></span>
+      <span class="ax-chip">In-patient <button class="ax-chip__close" aria-label="Remove">×</button></span>
+      <span class="ax-chip">Today <button class="ax-chip__close" aria-label="Remove">×</button></span>
+      <span class="ax-chip">Priority: High <button class="ax-chip__close" aria-label="Remove">×</button></span>
+    </div>
+  </section>
+
+  <section class="block" id="dialog">
+    <h2>Dialog · Modal</h2>
+    <p class="muted">Static preview of the dialog structure — wire up focus trap and <code>role="dialog"</code> in your framework.</p>
+    <div class="demo" style="display:block; padding:0; border:none; background:transparent;">
+      <div class="ax-scrim">
+        <div class="ax-dialog" role="dialog" aria-modal="true" aria-labelledby="d-title">
+          <div class="ax-dialog__header">
+            <h3 class="ax-dialog__title" id="d-title">Discharge patient?</h3>
+          </div>
+          <div class="ax-dialog__body">
+            HN-44821 · Somchai Prasert will be moved to discharge queue. This action can be reverted within 24 hours.
+          </div>
+          <div class="ax-dialog__footer">
+            <button class="ax-button ax-button--ghost ax-button--sm">Cancel</button>
+            <button class="ax-button ax-button--primary ax-button--sm">Confirm discharge</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="toast">
+    <h2>Toast</h2>
+    <p class="muted">Ephemeral notification with role-coded left border.</p>
+    <div class="demo stack">
+      <div class="ax-toast ax-toast--success">
+        <span style="flex:1">Lab results received for HN-44821.</span>
+        <button class="ax-button ax-button--ghost ax-button--sm">View</button>
+      </div>
+      <div class="ax-toast ax-toast--info">
+        <span style="flex:1">4 draft claims ready to submit.</span>
+      </div>
+      <div class="ax-toast ax-toast--warning">
+        <span style="flex:1">Medication stock low: Warfarin 5mg.</span>
+      </div>
+      <div class="ax-toast ax-toast--error">
+        <span style="flex:1">Failed to sync with HIS — retrying.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="compose">
+    <h2>Composition · Login form</h2>
+    <p class="muted">All component primitives composed into a real screen using only <code>--ax-*</code> tokens.</p>
+    <div class="demo center" style="padding: 40px 24px; background: var(--ax-background-muted);">
+      <div class="ax-card ax-card--floating" style="max-width: 380px; width: 100%;">
+        <div class="ax-card__header" style="text-align: center;">
+          <h4 class="ax-card__title">Sign in to AegisX</h4>
+          <p class="ax-card__subtitle">Hospital staff portal</p>
+        </div>
+        <div class="ax-card__body" style="display:flex;flex-direction:column;gap:var(--ax-spacing-md);">
+          <div class="ax-field">
+            <label class="ax-field__label" for="lf-user">Username</label>
+            <input id="lf-user" class="ax-input" placeholder="staff@hospital.go.th" />
+          </div>
+          <div class="ax-field">
+            <label class="ax-field__label" for="lf-pw">Password</label>
+            <input id="lf-pw" class="ax-input" type="password" value="••••••••" />
+          </div>
+          <button class="ax-button ax-button--primary" style="margin-top:8px;">Sign in</button>
+          <a href="#" class="ax-link" style="text-align:center;font-size:var(--ax-text-sm-size);">Forgot password?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  const apply = (mode) => {
+    if (mode === 'auto') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', mode);
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === mode)));
+    try { localStorage.setItem('ax-theme', mode); } catch (e) {}
+  };
+  buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.setTheme)));
+  let saved = 'light';
+  try { saved = localStorage.getItem('ax-theme') || 'light'; } catch (e) {}
+  apply(saved);
+</script>
+
+</body>
+</html>

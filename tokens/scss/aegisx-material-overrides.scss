@@ -1,0 +1,203 @@
+/**
+ * AegisX · Angular Material v3 component overrides
+ *
+ * Tweaks that the M3 theme API + bridge cannot express:
+ *   - Suppress Material's heavy elevation on cards (skill: "subtle border")
+ *   - Replace ripple/state-layer focus with box-shadow ring
+ *   - Flatten radii to 6px buttons / 8px menus / 12px cards
+ *   - Reduce form-field height to 40px for clinical density
+ *
+ * A more exhaustive 988-line version lives in the skill repo at:
+ *   aegisx-skill/skills/aegisx-ui-design/references/aegisx-material-overrides.scss
+ * Pull that in instead of this file if you need per-component parity with
+ * the Untitled UI reference — this file is the minimal, opinionated subset.
+ *
+ * Depends on: aegisx-material-theme.scss + aegisx-material-bridge.scss
+ */
+
+/* ────────────────────────────────────────────────────────────
+ * CARD — subtle border + shadow-sm, no heavy Material elevation
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-card {
+  box-shadow: var(--ax-elevation-1) !important;
+  border: var(--ax-border-width-thin) solid var(--ax-border-default);
+  border-radius: var(--ax-radius-lg);
+  --mdc-elevated-card-container-elevation: none;
+}
+.mat-mdc-card-outlined {
+  box-shadow: none !important;
+  border-color: var(--ax-border-default);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * BUTTON — radius 6px, no ripple, box-shadow focus ring
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button {
+  --mdc-filled-button-container-shape:   var(--ax-radius-sm);
+  --mdc-outlined-button-container-shape: var(--ax-radius-sm);
+  --mdc-text-button-container-shape:     var(--ax-radius-sm);
+  --mdc-protected-button-container-shape: var(--ax-radius-sm);
+  letter-spacing: 0 !important;
+  font-weight: var(--ax-font-weight-medium) !important;
+  text-transform: none !important;
+}
+
+.mat-mdc-raised-button {
+  box-shadow: var(--ax-shadow-xs) !important;
+}
+.mat-mdc-raised-button:hover {
+  box-shadow: var(--ax-shadow-sm) !important;
+}
+
+/* focus ring (replaces M3 state layer) */
+.mat-mdc-button:focus-visible,
+.mat-mdc-outlined-button:focus-visible,
+.mat-mdc-unelevated-button:focus-visible,
+.mat-mdc-raised-button:focus-visible {
+  outline: none;
+  box-shadow: var(--ax-focus-ring) !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * FORM FIELD — 40px height, flat border, focus ring
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape:       var(--ax-radius-sm);
+  --mdc-filled-text-field-container-shape:         var(--ax-radius-sm);
+  --mdc-outlined-text-field-outline-color:         var(--ax-input-border);
+  --mdc-outlined-text-field-hover-outline-color:   var(--ax-input-border-hover);
+  --mdc-outlined-text-field-focus-outline-color:   var(--ax-input-border-focus);
+  --mdc-outlined-text-field-error-outline-color:   var(--ax-input-border-error);
+  --mdc-outlined-text-field-label-text-color:      var(--ax-text-secondary);
+  --mdc-outlined-text-field-input-text-color:      var(--ax-text-heading);
+  --mdc-outlined-text-field-input-text-placeholder-color: var(--ax-input-placeholder);
+  font-family: var(--ax-font-sans);
+}
+
+/* Remove Material's filled form-field underline for a flatter look */
+.mat-mdc-form-field-appearance-fill .mdc-line-ripple {
+  display: none;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * TABLE — header bg + row hover per skill
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-table {
+  --mat-table-background-color: var(--ax-background-default);
+  --mat-table-header-container-color: var(--ax-table-header-bg);
+  --mat-table-row-item-container-color: var(--ax-background-default);
+  --mat-table-header-headline-color: var(--ax-table-header-text);
+  --mat-table-row-item-label-text-color: var(--ax-table-cell-text);
+  --mat-table-row-item-outline-color: var(--ax-table-cell-border);
+  font-family: var(--ax-font-sans);
+}
+.mat-mdc-header-cell {
+  font-size: var(--ax-text-xs-size);
+  font-weight: var(--ax-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-widest);
+}
+.mat-mdc-row:hover .mat-mdc-cell {
+  background: var(--ax-table-row-hover-bg);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * DIALOG — 12px radius, scrim per bridge
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-dialog-surface {
+  --mdc-dialog-container-shape: var(--ax-radius-lg);
+  box-shadow: var(--ax-elevation-3) !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * MENU / AUTOCOMPLETE — 8px radius, shadow-md
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-menu-panel,
+.mat-mdc-autocomplete-panel,
+.mat-mdc-select-panel {
+  --mat-menu-container-shape: var(--ax-radius-md);
+  border-radius: var(--ax-radius-md) !important;
+  box-shadow: var(--ax-elevation-2) !important;
+  border: var(--ax-border-width-thin) solid var(--ax-border-default);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * CHIP — pill style matching .ax-badge
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-chip {
+  --mdc-chip-container-shape: var(--ax-radius-full);
+  --mdc-chip-label-text-font: var(--ax-font-sans);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * TOOLTIP — flat zinc-900 bg, 6px radius
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-tooltip {
+  --mdc-plain-tooltip-container-shape: var(--ax-radius-sm);
+  --mdc-plain-tooltip-container-color: var(--ax-color-zinc-900);
+  --mdc-plain-tooltip-supporting-text-color: #ffffff;
+  font-family: var(--ax-font-sans);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * SNACKBAR (toast) — brand-colored left border per .ax-toast
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-shape: var(--ax-radius-md);
+  --mdc-snackbar-container-color: var(--ax-background-default);
+  --mdc-snackbar-supporting-text-color: var(--ax-text-default);
+}
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-left: 4px solid var(--ax-primary);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * PROGRESS BAR — indigo track
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: var(--ax-primary);
+  --mdc-linear-progress-track-color: var(--ax-brand-faint);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * CHECKBOX / RADIO / SLIDE-TOGGLE — brand-colored on
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-checkbox {
+  --mdc-checkbox-selected-icon-color: var(--ax-primary);
+  --mdc-checkbox-selected-focus-icon-color: var(--ax-primary-dark);
+  --mdc-checkbox-selected-hover-icon-color: var(--ax-primary-dark);
+}
+.mat-mdc-radio-button {
+  --mdc-radio-selected-icon-color: var(--ax-primary);
+  --mdc-radio-selected-focus-icon-color: var(--ax-primary-dark);
+}
+.mat-mdc-slide-toggle {
+  --mdc-switch-selected-track-color: var(--ax-primary);
+  --mdc-switch-selected-focus-track-color: var(--ax-primary-dark);
+  --mdc-switch-selected-hover-track-color: var(--ax-primary-dark);
+  --mdc-switch-selected-pressed-track-color: var(--ax-primary-dark);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * TABS — indigo underline, no ripple
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-tab-group {
+  --mat-tab-header-active-label-text-color: var(--ax-primary);
+  --mat-tab-header-active-focus-label-text-color: var(--ax-primary-dark);
+  --mat-tab-header-active-hover-label-text-color: var(--ax-primary-dark);
+  --mat-tab-header-active-focus-indicator-color: var(--ax-primary);
+  --mat-tab-header-active-hover-indicator-color: var(--ax-primary);
+  --mat-tab-header-active-indicator-color: var(--ax-primary);
+  font-family: var(--ax-font-sans);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * RIPPLE — reduce intensity
+ * ──────────────────────────────────────────────────────────── */
+.mat-ripple-element {
+  background-color: var(--ax-text-default) !important;
+  opacity: 0.06 !important;
+}

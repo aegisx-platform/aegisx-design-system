@@ -1,92 +1,143 @@
 # AegisX Design Tokens — Specification
 
-**Status:** v0.1 (authoritative)
+**Status:** v0.2 (authoritative) · aligned to `aegisx-ui-design` skill (Untitled UI + Angular Material v3)
 **Source of truth:** this folder (`aegisx-design-system/tokens/`)
-**Downstream mirror:** `aegisx-starter-1/libs/aegisx-ui/src/lib/foundations/*` — TypeScript token files there must match these JSON files. When they drift, these JSON files win.
+**Downstream:** `aegisx-starter-1/libs/aegisx-ui/src/lib/foundations/*` (TS) and Tokens Studio JSON (Figma). When they drift, these files win.
 
 ---
 
-## Scope
+## Design language
 
-AegisX tokens cover **7 foundations**:
+AegisX follows the **"Clean Clinical SaaS"** aesthetic:
+- Neutral gray-dominant surfaces (Tailwind **Zinc** scale)
+- Indigo brand accent used sparingly for actions & status
+- Low elevation — subtle borders over heavy shadows
+- Dense but readable — 14px body base for clinical screens
+- IBM Plex Sans Thai (Thai-first typography)
 
-| Foundation | File | Consumers |
+Reference: `aegisx-platform/aegisx-skill → skills/aegisx-ui-design/SKILL.md`
+
+---
+
+## Three-layer token architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 1. PRIMITIVE  --ax-color-{zinc|indigo|green|amber|red|blue} │  raw palette
+│               -{50..950}                                     │
+├─────────────────────────────────────────────────────────────┤
+│ 2. SEMANTIC   --ax-background-*, --ax-text-*, --ax-border-* │  role aliases
+│               --ax-primary, --ax-{brand|success|warning|    │  (theme-aware)
+│               error|info}-*                                  │
+├─────────────────────────────────────────────────────────────┤
+│ 3. COMPONENT  --ax-nav-*, --ax-button-*, --ax-input-*,      │  scoped
+│               --ax-table-*                                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Rule:** UI code uses layer 2 or 3. Layer 1 is never referenced from app code.
+
+---
+
+## Foundations covered
+
+| Foundation | File | Notes |
 |---|---|---|
-| Color | `dtcg/color.json` | all UI |
-| Spacing | `dtcg/spacing.json` | layout, components |
-| Typography | `dtcg/typography.json` | all text |
-| Radius | `dtcg/radius.json` | components |
-| Border width | `dtcg/border-width.json` | components |
-| Shadow / Elevation | `dtcg/shadow.json`, `dtcg/elevation.json` | cards, overlays |
-| Motion | `dtcg/motion.json` (duration + easing) | transitions, animations |
-| Breakpoints | `dtcg/breakpoint.json` | responsive layout |
+| Color | `dtcg/color.json` | Zinc gray + Indigo brand + Tailwind status hues · light/dark semantic layers |
+| Spacing | `dtcg/spacing.json` | 4px grid · xs → 4xl with semantic aliases |
+| Typography | `dtcg/typography.json` | IBM Plex Sans Thai · Untitled scale (text xs→xl + display xs→2xl) · 14px base |
+| Radius | `dtcg/radius.json` | sm=6 buttons · md=8 cards · lg=12 modals |
+| Border width | `dtcg/border-width.json` | 1px dominant · 2px thick |
+| Shadow / Elevation | `dtcg/shadow.json` | Untitled UI gentle shadows · elevation 0–4 + focus ring |
+| Motion | `dtcg/motion.json` | duration + easing (+ M3 variants) |
+| Breakpoints | `dtcg/breakpoint.json` | xs → 2xl mobile-first |
 
 ---
 
-## Format
+## Color tokens
 
-- **Source:** [W3C Design Tokens Community Group (DTCG) draft](https://tr.designtokens.org/format/) JSON format. Each leaf is `{ "$value": ..., "$type": ... }`.
-- **Prefix:** all CSS custom properties are emitted with `--ax-` prefix.
-- **Theme:** `color` is the only foundation that forks light/dark. Every other foundation is theme-agnostic.
+### Primitive palette
+All hues use 50–900 scale (Zinc also 950). Tailwind source values.
+
+### Semantic (layer 2) — light theme default
+
+**Background**
+- `--ax-background-page` = zinc-50 (app root)
+- `--ax-background-default` = white (cards/surfaces)
+- `--ax-background-subtle` = zinc-100 (hover, divider)
+- `--ax-background-muted` = zinc-50 (table stripe, inset panel)
+- `--ax-background-emphasis` = zinc-700 (dark header)
+
+**Text**
+- `--ax-text-disabled` = zinc-300
+- `--ax-text-subtle` = zinc-400 (icon default, placeholder)
+- `--ax-text-secondary` = zinc-500
+- `--ax-text-default` = zinc-700 (body text)
+- `--ax-text-strong` = zinc-900
+- `--ax-text-heading` = zinc-950
+- `--ax-text-inverted` = white
+
+**Border**
+- `--ax-border-subtle` = zinc-100
+- `--ax-border-default` = zinc-200
+- `--ax-border-emphasis` = zinc-300
+
+**Primary (brand shorthand)**
+- `--ax-primary` = indigo-500
+- `--ax-primary-light` = indigo-300
+- `--ax-primary-dark` = indigo-700
+
+**Role palettes** — 9 roles × 6 variants
+Each of `brand / success / warning / error / info` has `faint / muted / subtle / default / emphasis / inverted`.
+
+### Dark theme
+Activated via `[data-theme="dark"]` or `prefers-color-scheme: dark` (when `data-theme` is unset or `"auto"`). Also honors `prefers-reduced-motion`.
+
+Brand/status use the **400 step** in dark mode (softer). Shadows are more opaque to preserve perceived depth.
 
 ---
 
-## Color — two layers
+## Component token layer (layer 3)
 
-1. **Reference palette** (`color.palette.*`) — raw hues with 50–900 scale (Tailwind-aligned). Do not use directly in UI code.
-2. **Semantic tokens** (`color.semantic.*`) — role-based aliases (`background.default`, `text.primary`, `brand.emphasis`, etc.) that reference the palette. **UI code uses these.**
-
-Light is the default (`:root`). Dark overrides via `[data-theme="dark"]` and `@media (prefers-color-scheme: dark)`.
-
-### Semantic categories
-- `background`: `muted | subtle | default | emphasis`
-- `text`: `disabled | subtle | secondary | primary | heading | inverted`
-- `border`: `muted | default | emphasis`
-- Status / accent palettes (`success | warning | error | info | cyan | purple | indigo | pink | brand`), each with `faint | muted | subtle | default | emphasis | inverted`.
+- **Navigation**: `--ax-nav-bg`, `--ax-nav-text`, `--ax-nav-text-hover`, `--ax-nav-text-active`, `--ax-nav-bg-active`, `--ax-nav-border`
+- **Table**: `--ax-table-header-bg`, `--ax-table-header-text`, `--ax-table-row-hover-bg`, `--ax-table-cell-border`, `--ax-table-cell-text`
+- **Button**: `--ax-button-primary-*`, `--ax-button-secondary-*`, `--ax-button-danger-*`
+- **Input**: `--ax-input-bg`, `--ax-input-border`, `--ax-input-border-focus`, `--ax-input-ring-focus`, `--ax-input-border-error`, `--ax-input-ring-error`
+- **Focus ring**: `--ax-focus-ring` (indigo @ 18% · 3px)
 
 ---
-
-## Spacing — 8pt grid
-
-4, 8, 12, 16, 24, 32, 48, 64 (px) as `xs | sm | md | lg | xl | 2xl | 3xl | 4xl`. Semantic groups (`component.*`, `layout.*`, `container.*`, `inset.*`, `stack.*`) alias to the base scale.
 
 ## Typography
 
-- Sans stack: `Inter, "Noto Sans Thai", …system` (Thai language is a first-class citizen — do not drop it).
-- Mono stack: `"JetBrains Mono", "Fira Code", …`
-- Size scale: `xs … 4xl` matches Tailwind.
-- Weights: 400 / 500 / 600 / 700.
-- **Material 3 roles:** `display | headline | title | body | label` × `large | medium | small`. Use these for semantic headings in products (not raw `fontSize`).
+- **Font stack**: IBM Plex Sans Thai (primary) → IBM Plex Sans → system-ui
+- **Body base**: 14px (`--ax-text-sm`) — NOT 16px
+- **Weights**: 400 regular · 500 medium (labels/nav) · 600 semibold (headings/card titles) · 700 bold (sparingly)
+- **Body scale**: `--ax-text-{xs|sm|md|lg|xl}` — 12/14/16/18/20 px
+- **Display scale**: `--ax-display-{xs|sm|md|lg|xl|2xl}` — 24/30/36/48/60/72 px
 
-## Radius
+---
 
-`none | sm(6px) | md(10px) | lg(16px) | xl(20px) | 2xl(24px) | full(9999px)`.
+## Angular Material v3 integration
 
-## Border width
-
-`none | thin(1px) | default(2px) | thick(4px)`.
-
-## Shadow & Elevation
-
-Two parallel scales:
-- `shadow.{none|xs|sm|md|lg|xl}` — general-purpose (Tailwind-aligned).
-- `elevation.{0..5}` — Material 3 depth levels. Use these for component specs (cards=1, raised buttons=2, menus=3, modals=4, max=5).
-
-## Motion
-
-- `duration.{instant|fast|normal|slow|slower}` = 75 / 150 / 250 / 350 / 500 ms.
-- Plus M3 scale `duration.m3.{short1..long4}` (50 → 600 ms).
-- `easing.{linear|ease|easeIn|easeOut|easeInOut}` + M3 `easing.m3.{standard|emphasized|...}`.
-
-## Breakpoints
-
-Mobile-first: `xs=0 | sm=600 | md=960 | lg=1280 | xl=1440 | 2xl=1920`. Container max-widths defined separately (`container.{sm..2xl}`).
+See `ANGULAR-MATERIAL-SETUP.md` for consumer setup. TL;DR:
+1. Import `css/tokens.css` (defines `--ax-*`)
+2. Import `scss/aegisx-material-theme.scss` (M3 API + density -1 + IBM Plex)
+3. Import `scss/aegisx-material-bridge.scss` (aliases `--mat-sys-*` → `--ax-*`)
+4. Import `scss/aegisx-material-overrides.scss` (per-component polish)
 
 ---
 
 ## Governance
 
-1. **Add / change a token:** PR modifies `dtcg/*.json` first. Regenerate `css/tokens.css` and `scss/_tokens.scss` in the same PR. Bump this spec's version.
-2. **Consumer sync:** `aegisx-ui/src/lib/foundations/*` must be updated by the consumer repo owner in a follow-up PR referencing the design-system version. Never edit the TS tokens directly without updating the JSON here first.
-3. **Naming rule:** semantic tokens refer to *role*, not *value*. Do not introduce `color.blue.500` as a semantic name — use `color.info.default` or add a new semantic role.
-4. **Deprecation:** mark old tokens `$deprecated: true` with `$replacement`. Keep for one minor version before removal.
+1. **Changes start in `dtcg/*.json`.** Regenerate `css/tokens.css`, `scss/_tokens.scss`, `scss/aegisx-material-bridge.scss` in the same PR.
+2. **Never edit `--mat-sys-*` / `--mdc-*` in app code.** Single source of truth is `--ax-*`.
+3. **Name by role, not value.** `--ax-text-default`, not `--ax-text-zinc-700`.
+4. **Deprecation:** mark old tokens with `$deprecated: true` + `$replacement`. Keep for one minor version.
+5. **Consumer sync:** after JSON changes land here, mirror into `aegisx-ui/foundations/*` in a follow-up PR referencing this version.
+
+---
+
+## Version history
+
+- **v0.2** — Align to `aegisx-ui-design` skill: Zinc palette, IBM Plex Sans Thai, 14px base, Untitled UI type scale, 3-layer token architecture, Angular Material v3 bridge files. **Breaking renames:** `--ax-bg-*` → `--ax-background-*`, `--ax-text-primary` → `--ax-text-default`, M3 role tokens dropped in favor of Untitled text/display scale.
+- **v0.1** — Initial promotion from `aegisx-ui/foundations`. Gray (Tailwind gray, not Zinc), Inter font, Material 3 role tokens.

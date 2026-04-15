@@ -22,10 +22,15 @@ cpSync(resolve(root, 'icons/featured-error'), resolve(out, 'assets/featured-erro
 cpSync(resolve(root, 'logo'), resolve(out, 'assets/logo'), { recursive: true });
 cpSync(resolve(root, 'brand'), resolve(out, 'assets/brand'), { recursive: true });
 
-// Design tokens preview page + compiled CSS (clean URL: /tokens/).
+// Design tokens preview + components + Angular Material setup guide.
 mkdirSync(resolve(out, 'tokens'), { recursive: true });
-cpSync(resolve(root, 'tokens/preview.html'), resolve(out, 'tokens/index.html'));
-cpSync(resolve(root, 'tokens/css'), resolve(out, 'tokens/css'), { recursive: true });
+cpSync(resolve(root, 'tokens/preview.html'),     resolve(out, 'tokens/index.html'));
+cpSync(resolve(root, 'tokens/preview.html'),     resolve(out, 'tokens/preview.html'));
+cpSync(resolve(root, 'tokens/components.html'),  resolve(out, 'tokens/components.html'));
+cpSync(resolve(root, 'tokens/css'),              resolve(out, 'tokens/css'),  { recursive: true });
+cpSync(resolve(root, 'tokens/scss'),             resolve(out, 'tokens/scss'), { recursive: true });
+cpSync(resolve(root, 'tokens/ANGULAR-MATERIAL-SETUP.md'), resolve(out, 'tokens/ANGULAR-MATERIAL-SETUP.md'));
+cpSync(resolve(root, 'tokens/AEGISX-TOKENS-SPEC.md'),     resolve(out, 'tokens/AEGISX-TOKENS-SPEC.md'));
 
 // Social assets (logo/social/*.png) are picked up via the logo cpSync above —
 // they live under assets/logo/social/.
@@ -204,6 +209,7 @@ const html = `<!doctype html>
   <a href="#install">Install</a>
   <a href="#usage">Usage</a>
   <a href="tokens/">Tokens ↗</a>
+  <a href="tokens/components.html">Components ↗</a>
   <a href="#logos">Logos</a>
   <a href="mockups.html">Mockups ↗</a>
   <a href="#brand">Brand</a>

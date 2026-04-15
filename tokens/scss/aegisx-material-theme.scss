@@ -1,0 +1,65 @@
+/**
+ * AegisX · Angular Material v3 theme entry point
+ *
+ * Usage in consumer Angular app:
+ *   // styles.scss
+ *   @use './aegisx-material-theme';
+ *   @use './aegisx-material-bridge';    // maps --ax-* → --mat-sys-*
+ *   @use './aegisx-material-overrides'; // per-component tweaks
+ *
+ * This file defines the Material theme via the v3 API so Material's internal
+ * machinery (density, typography hierarchy, component themes) works correctly.
+ * The final brand colors are then *overridden* by the bridge file to match
+ * AegisX Indigo exactly — using a built-in palette here is only to satisfy
+ * the M3 API's palette contract.
+ */
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+/* ────────────────────────────────────────────────────────────
+ * Light theme
+ * ──────────────────────────────────────────────────────────── */
+$aegisx-light: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$violet-palette,   // closest built-in to Indigo; bridge overrides exact hue
+    tertiary: mat.$green-palette,
+  ),
+  typography: (
+    plain-family: '"IBM Plex Sans Thai", "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+    brand-family: '"IBM Plex Sans Thai", "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+    regular-weight: 400,
+    medium-weight: 500,
+    bold-weight: 600,
+  ),
+  density: (
+    scale: -1,   // clinical density — 14px body, tighter component heights
+  ),
+));
+
+:root {
+  @include mat.all-component-themes($aegisx-light);
+  @include mat.color-variants-backwards-compatibility($aegisx-light);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * Dark theme — activates via [data-theme="dark"]
+ * ──────────────────────────────────────────────────────────── */
+$aegisx-dark: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$violet-palette,
+    tertiary: mat.$green-palette,
+  ),
+  typography: (
+    plain-family: '"IBM Plex Sans Thai", "IBM Plex Sans", system-ui, sans-serif',
+    brand-family: '"IBM Plex Sans Thai", "IBM Plex Sans", system-ui, sans-serif',
+  ),
+  density: (scale: -1),
+));
+
+[data-theme="dark"] {
+  @include mat.all-component-colors($aegisx-dark);
+}
