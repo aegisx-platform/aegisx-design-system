@@ -1,0 +1,28 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "AegisX dark-mode surface, text, and border overrides. Use ALONGSIDE aegisx-tokens.json — the base file holds brand/semantic/category/scales which are mode-invariant; this file only re-defines tokens that change between light and dark surfaces. In Tokens Studio: load both as separate sets and define a Dark theme that picks core + dark-surface + dark-text + dark-border.",
+  "color": {
+    "surface": {
+      "background":    { "$value": "#0f172a", "$type": "color" },
+      "card":          { "$value": "#1e293b", "$type": "color" },
+      "muted":         { "$value": "#334155", "$type": "color" },
+      "border":        { "$value": "#334155", "$type": "color" },
+      "border-strong": { "$value": "#475569", "$type": "color" }
+    },
+    "text": {
+      "primary":   { "$value": "#f8fafc", "$type": "color" },
+      "secondary": { "$value": "#cbd5e1", "$type": "color" },
+      "muted":     { "$value": "#94a3b8", "$type": "color" },
+      "disabled":  { "$value": "#64748b", "$type": "color" },
+      "inverse":   { "$value": "#0f172a", "$type": "color" }
+    }
+  },
+  "shadow": {
+    "$description": "On dark surfaces, shadows from the light token set become invisible. Use ring/border accents instead, or these inverted shadows (rare).",
+    "xs": { "$value": "0 1px 2px rgba(0,0,0,0.40)", "$type": "shadow" },
+    "sm": { "$value": "0 1px 3px rgba(0,0,0,0.50), 0 1px 2px rgba(0,0,0,0.30)", "$type": "shadow" },
+    "md": { "$value": "0 4px 6px -1px rgba(0,0,0,0.50), 0 2px 4px -2px rgba(0,0,0,0.30)", "$type": "shadow" },
+    "lg": { "$value": "0 10px 15px -3px rgba(0,0,0,0.55), 0 4px 6px -4px rgba(0,0,0,0.35)", "$type": "shadow" },
+    "xl": { "$value": "0 20px 25px -5px rgba(0,0,0,0.60), 0 8px 10px -6px rgba(0,0,0,0.40)", "$type": "shadow" }
+  }
+}

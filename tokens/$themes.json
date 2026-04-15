@@ -1,0 +1,21 @@
+[
+  {
+    "id": "aegisx-light",
+    "name": "AegisX Light",
+    "selectedTokenSets": {
+      "aegisx-tokens": "enabled"
+    },
+    "$figmaCollectionId": null,
+    "$figmaModeId": null
+  },
+  {
+    "id": "aegisx-dark",
+    "name": "AegisX Dark",
+    "selectedTokenSets": {
+      "aegisx-tokens": "source",
+      "aegisx-tokens-dark": "enabled"
+    },
+    "$figmaCollectionId": null,
+    "$figmaModeId": null
+  }
+]

@@ -9,11 +9,15 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 ### Added
 - Typography spec (`specs/AEGISX-TYPOGRAPHY.md`)
 - Spacing / radius / shadow scale spec (`specs/AEGISX-SPACING.md`)
+- Dark-mode spec (`specs/AEGISX-DARK-MODE.md`) + dark token overrides (`tokens/aegisx-tokens-dark.json`)
 - Style Dictionary token export (`tokens/aegisx-tokens.json`)
+- Tokens Studio multi-set wiring (`tokens/$themes.json`, `tokens/$metadata.json`)
+- Figma sync workflow guide (`docs/FIGMA-SYNC.md`)
 - WCAG AA contrast checker (`scripts/check-contrast.mjs` + `pnpm run check:contrast`)
 - Email signature HTML template (`email/aegisx-signature.html`)
 - Print letterhead template (`print/letterhead.html`)
 - `CONTRIBUTING.md` and `LICENSE`
+- `getIconClasses(icon, size, mode)` accepts `'light' | 'dark'` mode parameter
 
 ## [0.1.0] — 2026-04-15
 

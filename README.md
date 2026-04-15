@@ -22,7 +22,10 @@ This repository is the single source of truth for logos, icons, brand background
 - [`logo/preview.html`](logo/preview.html) — open in a browser to preview every variant on every bg
 - [`specs/AEGISX-TYPOGRAPHY.md`](specs/AEGISX-TYPOGRAPHY.md) — type families, scale, weight, line height, print
 - [`specs/AEGISX-SPACING.md`](specs/AEGISX-SPACING.md) — spacing, radius, shadow, border, z-index, grid
-- [`tokens/aegisx-tokens.json`](tokens/aegisx-tokens.json) — Style Dictionary / W3C Design Tokens export
+- [`tokens/aegisx-tokens.json`](tokens/aegisx-tokens.json) — Style Dictionary / W3C Design Tokens export (light)
+- [`tokens/aegisx-tokens-dark.json`](tokens/aegisx-tokens-dark.json) — dark surface/text/border overrides
+- [`specs/AEGISX-DARK-MODE.md`](specs/AEGISX-DARK-MODE.md) — when to use dark, surface pairings, Tailwind shifts
+- [`docs/FIGMA-SYNC.md`](docs/FIGMA-SYNC.md) — Tokens Studio sync workflow Figma ↔ code
 - [`docs/MIGRATING-AEGISX-UI.md`](docs/MIGRATING-AEGISX-UI.md) — how `@aegisx/ui` should consume this package
 - [`email/aegisx-signature.html`](email/aegisx-signature.html) — email signature template (table-based, Outlook-safe)
 - [`print/letterhead.html`](print/letterhead.html) — A4 letterhead template (browser print → PDF)

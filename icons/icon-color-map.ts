@@ -146,12 +146,45 @@ export type IconCategory =
   | 'thai-integration'
   | 'analytics';
 
-export function getIconClasses(icon: IconName, size: 'sm' | 'md' | 'lg' = 'md'): string {
+export type ColorMode = 'light' | 'dark';
+
+const SIZE_CLASSES = {
+  sm: 'w-8 h-8 rounded-md',
+  md: 'w-10 h-10 rounded-lg',
+  lg: 'w-12 h-12 rounded-xl',
+} as const;
+
+/**
+ * Convert a Tailwind text shade designed for light surfaces into one
+ * that reads on a dark surface. text-blue-600 → text-blue-400, etc.
+ */
+function darkenText(tw: string): string {
+  return tw
+    .replace(/-700\b/, '-300')
+    .replace(/-600\b/, '-400')
+    .replace(/-800\b/, '-300');
+}
+
+/**
+ * Convert a Tailwind 50-shade bg into a translucent 950 wash that
+ * sits on a dark surface without colour-clashing with the icon glyph.
+ * bg-blue-50 → bg-blue-950/30
+ */
+function darkenBg(tw: string): string {
+  return tw.replace(/-50\b/, '-950') + '/30';
+}
+
+export function getIconClasses(
+  icon: IconName,
+  size: 'sm' | 'md' | 'lg' = 'md',
+  mode: ColorMode = 'light',
+): string {
   const { tailwind, bg } = ICON_COLOR_MAP[icon];
-  const s = { sm: 'w-8 h-8 rounded-md', md: 'w-10 h-10 rounded-lg', lg: 'w-12 h-12 rounded-xl' };
-  return `inline-flex items-center justify-center ${s[size]} ${bg} ${tailwind}`;
+  const fg = mode === 'dark' ? darkenText(tailwind) : tailwind;
+  const wash = mode === 'dark' ? darkenBg(bg) : bg;
+  return `inline-flex items-center justify-center ${SIZE_CLASSES[size]} ${wash} ${fg}`;
 }
 
 export function getIconsByCategory(category: IconCategory): IconName[] {
-  return (Object.keys(ICON_COLOR_MAP) as IconName[]).filter(n => ICON_COLOR_MAP[n].category === category);
+  return (Object.keys(ICON_COLOR_MAP) as IconName[]).filter((n) => ICON_COLOR_MAP[n].category === category);
 }
