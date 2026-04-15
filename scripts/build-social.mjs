@@ -72,26 +72,22 @@ const iconInner = iconDarkRaw
   .replace(/<\/svg>\s*$/, '');
 
 /**
- * The icon's native viewBox is 0 0 120 120, but the visual mass of the
- * 3-layer stack centroid sits at roughly (70, 50) — 10px right of and
- * above the geometric centre — because the mid- and outer-shadow
- * diamonds offset upper-right per the brand spec.
- *
- * To present the icon cleanly inside a circular avatar crop, we wrap
- * it in a nested <svg> with a shifted viewBox: shifting the visible
- * region right & up moves the visual centroid back to (60, 60). The
- * shapes themselves are untouched.
+ * The icon's native viewBox is 0 0 120 120 and its visual centroid is
+ * already near (60, 60). The 3-layer stack extends slightly upper-right
+ * (mid + outer shadow diamonds), pushing the bounding box out to about
+ * (2, 1) → (117, 116). Use a viewBox padded equally on all sides so
+ * every layer is visible AND the composite reads as centered. No shape
+ * coordinates are altered — brand intact.
  */
 function composeIconCenter({ width, height }) {
-  const VB_X = 10;     // shift viewBox right → moves art left in canvas
-  const VB_Y = -10;    // shift viewBox up   → moves art down in canvas
-  const VB_SIZE = 120;
-  const innerSize = Math.min(width, height) * 0.78; // 22% breathing room
+  const PAD = 8;                                  // breathing room around all layers
+  const VB = `${-PAD} ${-PAD} ${120 + PAD * 2} ${120 + PAD * 2}`;
+  const innerSize = Math.min(width, height) * 0.82;
   const ix = (width - innerSize) / 2;
   const iy = (height - innerSize) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
-  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="${VB_X} ${VB_Y} ${VB_SIZE} ${VB_SIZE}" overflow="visible">
+  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="${VB}" preserveAspectRatio="xMidYMid meet">
     ${iconInner}
   </svg>
 </svg>`;
