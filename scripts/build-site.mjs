@@ -22,6 +22,11 @@ cpSync(resolve(root, 'icons/featured-error'), resolve(out, 'assets/featured-erro
 cpSync(resolve(root, 'logo'), resolve(out, 'assets/logo'), { recursive: true });
 cpSync(resolve(root, 'brand'), resolve(out, 'assets/brand'), { recursive: true });
 
+// Design tokens preview page + compiled CSS (clean URL: /tokens/).
+mkdirSync(resolve(out, 'tokens'), { recursive: true });
+cpSync(resolve(root, 'tokens/preview.html'), resolve(out, 'tokens/index.html'));
+cpSync(resolve(root, 'tokens/css'), resolve(out, 'tokens/css'), { recursive: true });
+
 // Social assets (logo/social/*.png) are picked up via the logo cpSync above —
 // they live under assets/logo/social/.
 const socialDir = resolve(root, 'logo/social');
@@ -198,6 +203,7 @@ const html = `<!doctype html>
 <nav class="tabs">
   <a href="#install">Install</a>
   <a href="#usage">Usage</a>
+  <a href="tokens/">Tokens ↗</a>
   <a href="#logos">Logos</a>
   <a href="mockups.html">Mockups ↗</a>
   <a href="#brand">Brand</a>
