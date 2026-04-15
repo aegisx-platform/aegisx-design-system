@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AegisX Design System — Accessibility</title>
+  <link rel="icon" href="../assets/logo/favicons/favicon.ico" />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
+    code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .9em; background: #f1f5f9; color: #334155; padding: 1px 6px; border-radius: 6px; }
+
+    header.page-head { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 36px 32px 44px; }
+    header.page-head h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+    header.page-head p { margin: 0; opacity: .65; font-size: 13px; }
+    header.page-head .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    header.page-head .badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); font-family: ui-monospace, monospace; }
+    header.page-head .spacer { flex: 1; }
+    header.page-head .toggle { display: inline-flex; padding: 3px; gap: 2px; background: rgba(255,255,255,.08); border-radius: 999px; border: 1px solid rgba(255,255,255,.1); }
+    header.page-head .toggle button { all: unset; cursor: pointer; padding: 5px 14px; font-size: 11px; font-weight: 500; border-radius: 999px; color: rgba(255,255,255,.65); font-family: ui-monospace, monospace; }
+    header.page-head .toggle button:hover { color: #fff; }
+    header.page-head .toggle button[aria-pressed="true"] { background: #6366f1; color: #fff; }
+
+    nav.tabs { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 32px; display: flex; gap: 24px; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 3px rgba(15,23,42,.04); overflow-x: auto; }
+    nav.tabs a { padding: 14px 0; color: #475569; border-bottom: 2px solid transparent; font-weight: 500; font-size: 13px; white-space: nowrap; text-decoration: none; }
+    nav.tabs a:hover { color: #0f172a; }
+    nav.tabs a.home { color: #6366f1; }
+
+    main { padding: 32px; max-width: 1280px; margin: 0 auto; }
+    section.block + section.block { margin-top: 56px; }
+    section.block > h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; color: #0f172a; }
+    section.block > p.muted { margin: 0 0 20px; color: #64748b; font-size: 13px; }
+
+    .summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .summary .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 18px; }
+    .summary .card .n { font-size: 28px; font-weight: 700; letter-spacing: -.02em; }
+    .summary .card .lbl { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
+    .summary .card.pass .n { color: #16a34a; }
+    .summary .card.fail .n { color: #dc2626; }
+    .summary .card.warn .n { color: #d97706; }
+
+    table.contrast { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+    table.contrast th, table.contrast td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #f1f5f9; }
+    table.contrast th { background: #fafafa; color: #52525b; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+    table.contrast tbody tr:last-child td { border-bottom: 0; }
+    table.contrast td.sample { font-weight: 600; font-size: 14px; min-width: 140px; }
+    table.contrast td.mono { font-family: ui-monospace, monospace; font-size: 11px; color: #52525b; word-break: break-all; }
+    table.contrast td.ratio { font-family: ui-monospace, monospace; font-weight: 600; text-align: right; width: 80px; }
+    table.contrast td.result { width: 70px; }
+    .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; font-family: ui-monospace, monospace; letter-spacing: .04em; }
+    .pill.pass { background: #dcfce7; color: #15803d; }
+    .pill.warn { background: #fef3c7; color: #b45309; }
+    .pill.fail { background: #fee2e2; color: #b91c1c; }
+
+    [data-theme="dark"] body { background: #09090b; color: #e4e4e7; }
+    [data-theme="dark"] section.block > h2 { color: #fafafa; }
+    [data-theme="dark"] section.block > p.muted { color: #a1a1aa; }
+    [data-theme="dark"] nav.tabs { background: #18181b; border-bottom-color: #27272a; }
+    [data-theme="dark"] nav.tabs a { color: #a1a1aa; }
+    [data-theme="dark"] nav.tabs a:hover { color: #fafafa; }
+    [data-theme="dark"] nav.tabs a.home { color: #a5b4fc; }
+    [data-theme="dark"] code { background: #27272a; color: #e4e4e7; }
+    [data-theme="dark"] .summary .card { background: #18181b; border-color: #3f3f46; }
+    [data-theme="dark"] table.contrast { background: #18181b; border-color: #3f3f46; }
+    [data-theme="dark"] table.contrast th { background: #27272a; color: #a1a1aa; }
+    [data-theme="dark"] table.contrast td { border-bottom-color: #27272a; }
+    [data-theme="dark"] table.contrast td.mono { color: #a1a1aa; }
+  </style>
+</head>
+<body>
+
+<header class="page-head">
+  <h1>Accessibility · WCAG contrast audit</h1>
+  <p>Runtime contrast check of every semantic text × background pairing. Values are computed from resolved CSS custom properties — flip theme to re-run.</p>
+  <div class="row">
+    <span class="badge">WCAG 2.1</span>
+    <span class="badge">AA ≥ 4.5 · AAA ≥ 7</span>
+    <span class="badge">Non-text ≥ 3</span>
+    <span class="spacer"></span>
+    <div class="toggle" role="tablist" aria-label="Theme">
+      <button data-set-theme="light" aria-pressed="true">LIGHT</button>
+      <button data-set-theme="dark"  aria-pressed="false">DARK</button>
+      <button data-set-theme="auto"  aria-pressed="false">AUTO</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <a class="home" href="../">← Home</a>
+  <a href="preview.html">Tokens</a>
+  <a href="components.html">Components</a>
+  <a href="a11y.html" aria-current="page">A11y</a>
+  <a href="ANGULAR-MATERIAL-SETUP.md">Angular Material ↗</a>
+</nav>
+
+<main>
+
+  <section class="block">
+    <h2>Summary</h2>
+    <p class="muted">Counts recompute when you flip the theme.</p>
+    <div class="summary" id="summary"></div>
+  </section>
+
+  <section class="block">
+    <h2>Text on surfaces</h2>
+    <p class="muted">All <code>--ax-text-*</code> × <code>--ax-background-*</code> combinations (threshold AA 4.5).</p>
+    <table class="contrast" id="tbl-text-bg"><thead><tr>
+      <th>Text token</th><th>Background</th><th>Sample</th><th>Colors</th>
+      <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
+    </tr></thead><tbody></tbody></table>
+  </section>
+
+  <section class="block">
+    <h2>Button contrast</h2>
+    <p class="muted">Button label on filled background for each role.</p>
+    <table class="contrast" id="tbl-buttons"><thead><tr>
+      <th>Button</th><th>Text</th><th>Background</th><th>Sample</th>
+      <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
+    </tr></thead><tbody></tbody></table>
+  </section>
+
+  <section class="block">
+    <h2>Alerts &amp; status</h2>
+    <p class="muted">Alert text (<code>role-emphasis</code>) on its faint background.</p>
+    <table class="contrast" id="tbl-alerts"><thead><tr>
+      <th>Role</th><th>Text</th><th>Background</th><th>Sample</th>
+      <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
+    </tr></thead><tbody></tbody></table>
+  </section>
+
+  <section class="block">
+    <h2>Border visibility</h2>
+    <p class="muted">Non-text WCAG minimum is 3:1.</p>
+    <table class="contrast" id="tbl-borders"><thead><tr>
+      <th>Border</th><th>Surface</th><th>Demo</th>
+      <th style="text-align:right">Ratio</th><th>≥3</th>
+    </tr></thead><tbody></tbody></table>
+  </section>
+
+  <section class="block">
+    <h2>How this works</h2>
+    <p class="muted" style="max-width: 720px; line-height: 1.7;">
+      Each cell's <code>color</code> and <code>background</code> are resolved through <code>getComputedStyle</code>. Relative luminance follows the <a style="color:#6366f1" href="https://www.w3.org/TR/WCAG21/#dfn-relative-luminance" target="_blank" rel="noopener">WCAG 2.1 formula</a>; contrast ratio is <code>(L1 + 0.05) / (L2 + 0.05)</code>. Thresholds: <strong>AA normal text ≥ 4.5</strong>, <strong>AAA ≥ 7</strong>, <strong>non-text ≥ 3</strong>.
+    </p>
+  </section>
+
+</main>
+
+<script>
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  const apply = (mode) => {
+    if (mode === 'auto') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', mode);
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === mode)));
+    try { localStorage.setItem('ax-theme', mode); } catch (e) {}
+    requestAnimationFrame(run);
+  };
+  buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.setTheme)));
+  let saved = 'light';
+  try { saved = localStorage.getItem('ax-theme') || 'light'; } catch (e) {}
+  apply(saved);
+
+  const parseColor = (str) => {
+    const m = str.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
+    return m ? [+m[1], +m[2], +m[3]] : [0, 0, 0];
+  };
+  const lum = ([r, g, b]) => {
+    const f = (c) => {
+      const v = c / 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  };
+  const ratio = (c1, c2) => {
+    const a = lum(c1), b = lum(c2);
+    const [hi, lo] = a > b ? [a, b] : [b, a];
+    return (hi + 0.05) / (lo + 0.05);
+  };
+  const resolve = (cssVar) => {
+    const probe = document.createElement('div');
+    probe.style.position = 'absolute';
+    probe.style.visibility = 'hidden';
+    probe.style.backgroundColor = 'var(' + cssVar + ')';
+    document.body.appendChild(probe);
+    const bg = getComputedStyle(probe).backgroundColor;
+    probe.remove();
+    return parseColor(bg);
+  };
+  const hex = ([r, g, b]) => '#' + [r, g, b].map(n => n.toString(16).padStart(2, '0')).join('');
+
+  const el = (tag, attrs = {}, children = []) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === 'text') n.textContent = v;
+      else if (k === 'style') n.style.cssText = v;
+      else if (k === 'class') n.className = v;
+      else n.setAttribute(k, v);
+    }
+    children.forEach(c => n.appendChild(c));
+    return n;
+  };
+
+  const makeRow = (cells) => {
+    const tr = el('tr');
+    cells.forEach(c => tr.appendChild(c));
+    return tr;
+  };
+  const sampleCell = (fg, bg, label) => {
+    const td = el('td', { class: 'sample' });
+    td.style.background = 'var(' + bg + ')';
+    td.style.color = 'var(' + fg + ')';
+    td.textContent = label || 'Aa ก · Sample ทดสอบ';
+    return td;
+  };
+  const ratioCell = (r) => el('td', { class: 'ratio', text: r.toFixed(2) });
+  const resultCell = (r, threshold) => {
+    const td = el('td', { class: 'result' });
+    const pass = r >= threshold;
+    td.appendChild(el('span', {
+      class: 'pill ' + (pass ? 'pass' : (r >= threshold * 0.67 ? 'warn' : 'fail')),
+      text: pass ? 'PASS' : 'FAIL'
+    }));
+    return td;
+  };
+
+  const textTokens = ['disabled','subtle','secondary','default','strong','heading'];
+  const bgTokens   = ['page','default','subtle','muted'];
+
+  const buttonPairs = [
+    { name: 'primary',   fg: '--ax-brand-inverted',   bg: '--ax-primary' },
+    { name: 'danger',    fg: '--ax-error-inverted',   bg: '--ax-error-default' },
+    { name: 'success',   fg: '--ax-success-inverted', bg: '--ax-success-default' },
+    { name: 'warning',   fg: '--ax-warning-inverted', bg: '--ax-warning-default' },
+    { name: 'info',      fg: '--ax-info-inverted',    bg: '--ax-info-default' },
+    { name: 'secondary', fg: '--ax-button-secondary-text', bg: '--ax-button-secondary-bg' },
+    { name: 'ghost',     fg: '--ax-text-default',     bg: '--ax-background-default' },
+  ];
+
+  const alertPairs = [
+    { name: 'success', fg: '--ax-success-emphasis', bg: '--ax-success-faint' },
+    { name: 'warning', fg: '--ax-warning-emphasis', bg: '--ax-warning-faint' },
+    { name: 'error',   fg: '--ax-error-emphasis',   bg: '--ax-error-faint' },
+    { name: 'info',    fg: '--ax-info-emphasis',    bg: '--ax-info-faint' },
+    { name: 'brand',   fg: '--ax-brand-emphasis',   bg: '--ax-brand-faint' },
+  ];
+
+  const borderPairs = [
+    { name: '--ax-border-subtle',   surface: '--ax-background-default' },
+    { name: '--ax-border-default',  surface: '--ax-background-default' },
+    { name: '--ax-border-emphasis', surface: '--ax-background-default' },
+    { name: '--ax-border-default',  surface: '--ax-background-muted' },
+  ];
+
+  const clear = (node) => {
+    while (node.firstChild) node.removeChild(node.firstChild);
+  };
+
+  const counts = { pass: 0, warn: 0, fail: 0, total: 0 };
+  const incr = (r, threshold) => {
+    counts.total++;
+    if (r >= threshold) counts.pass++;
+    else if (r >= threshold * 0.67) counts.warn++;
+    else counts.fail++;
+  };
+
+  function run() {
+    counts.pass = counts.warn = counts.fail = counts.total = 0;
+
+    const tbody1 = document.querySelector('#tbl-text-bg tbody');
+    clear(tbody1);
+    for (const tk of textTokens) {
+      for (const bk of bgTokens) {
+        const fgVar = '--ax-text-' + tk;
+        const bgVar = '--ax-background-' + bk;
+        const fg = resolve(fgVar), bg = resolve(bgVar);
+        const r = ratio(fg, bg);
+        incr(r, 4.5);
+        tbody1.appendChild(makeRow([
+          el('td', { class: 'mono', text: fgVar }),
+          el('td', { class: 'mono', text: bgVar }),
+          sampleCell(fgVar, bgVar),
+          el('td', { class: 'mono', text: hex(fg) + '  /  ' + hex(bg) }),
+          ratioCell(r),
+          resultCell(r, 4.5),
+          resultCell(r, 7),
+        ]));
+      }
+    }
+
+    const tbody2 = document.querySelector('#tbl-buttons tbody');
+    clear(tbody2);
+    for (const p of buttonPairs) {
+      const fg = resolve(p.fg), bg = resolve(p.bg);
+      const r = ratio(fg, bg);
+      incr(r, 4.5);
+      tbody2.appendChild(makeRow([
+        el('td', { text: p.name, style: 'text-transform: capitalize; font-weight: 500' }),
+        el('td', { class: 'mono', text: p.fg }),
+        el('td', { class: 'mono', text: p.bg }),
+        sampleCell(p.fg, p.bg, 'Button'),
+        ratioCell(r),
+        resultCell(r, 4.5),
+        resultCell(r, 7),
+      ]));
+    }
+
+    const tbody3 = document.querySelector('#tbl-alerts tbody');
+    clear(tbody3);
+    for (const p of alertPairs) {
+      const fg = resolve(p.fg), bg = resolve(p.bg);
+      const r = ratio(fg, bg);
+      incr(r, 4.5);
+      tbody3.appendChild(makeRow([
+        el('td', { text: p.name, style: 'text-transform: capitalize; font-weight: 500' }),
+        el('td', { class: 'mono', text: p.fg }),
+        el('td', { class: 'mono', text: p.bg }),
+        sampleCell(p.fg, p.bg, 'Alert · ข้อความแจ้งเตือน'),
+        ratioCell(r),
+        resultCell(r, 4.5),
+        resultCell(r, 7),
+      ]));
+    }
+
+    const tbody4 = document.querySelector('#tbl-borders tbody');
+    clear(tbody4);
+    for (const p of borderPairs) {
+      const fg = resolve(p.name), bg = resolve(p.surface);
+      const r = ratio(fg, bg);
+      incr(r, 3);
+      const demo = el('td');
+      demo.style.background = 'var(' + p.surface + ')';
+      demo.style.padding = '10px 14px';
+      demo.appendChild(el('div', {
+        style: 'width:80%; height:28px; border-radius:6px; border: 2px solid var(' + p.name + ');'
+      }));
+      tbody4.appendChild(makeRow([
+        el('td', { class: 'mono', text: p.name }),
+        el('td', { class: 'mono', text: p.surface }),
+        demo,
+        ratioCell(r),
+        resultCell(r, 3),
+      ]));
+    }
+
+    const summary = document.getElementById('summary');
+    clear(summary);
+    const cards = [
+      { cls: '',     n: counts.total, lbl: 'Pairs tested' },
+      { cls: 'pass', n: counts.pass,  lbl: 'Pass' },
+      { cls: 'warn', n: counts.warn,  lbl: 'Borderline' },
+      { cls: 'fail', n: counts.fail,  lbl: 'Fail' },
+    ];
+    cards.forEach(c => {
+      const card = el('div', { class: 'card ' + c.cls });
+      card.appendChild(el('div', { class: 'n', text: String(c.n) }));
+      card.appendChild(el('div', { class: 'lbl', text: c.lbl }));
+      summary.appendChild(card);
+    });
+  }
+</script>
+
+</body>
+</html>

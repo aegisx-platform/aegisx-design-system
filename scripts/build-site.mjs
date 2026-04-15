@@ -27,6 +27,7 @@ mkdirSync(resolve(out, 'tokens'), { recursive: true });
 cpSync(resolve(root, 'tokens/preview.html'),     resolve(out, 'tokens/index.html'));
 cpSync(resolve(root, 'tokens/preview.html'),     resolve(out, 'tokens/preview.html'));
 cpSync(resolve(root, 'tokens/components.html'),  resolve(out, 'tokens/components.html'));
+cpSync(resolve(root, 'tokens/a11y.html'),        resolve(out, 'tokens/a11y.html'));
 cpSync(resolve(root, 'tokens/css'),              resolve(out, 'tokens/css'),  { recursive: true });
 cpSync(resolve(root, 'tokens/scss'),             resolve(out, 'tokens/scss'), { recursive: true });
 cpSync(resolve(root, 'tokens/ANGULAR-MATERIAL-SETUP.md'), resolve(out, 'tokens/ANGULAR-MATERIAL-SETUP.md'));
@@ -210,6 +211,7 @@ const html = `<!doctype html>
   <a href="#usage">Usage</a>
   <a href="tokens/">Tokens ↗</a>
   <a href="tokens/components.html">Components ↗</a>
+  <a href="tokens/a11y.html">A11y ↗</a>
   <a href="#logos">Logos</a>
   <a href="mockups.html">Mockups ↗</a>
   <a href="#brand">Brand</a>
