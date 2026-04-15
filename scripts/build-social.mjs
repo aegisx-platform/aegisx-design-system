@@ -70,9 +70,12 @@ ${bgDefs(width, height)}
 }
 
 function composeIconCenter({ width, height }) {
-  const scale = Math.min(width, height) / 64 * 0.6;
-  const ix = (width - 64 * scale) / 2;
-  const iy = (height - 64 * scale) / 2;
+  // icon-dark.svg has viewBox 0 0 120 120; pad ~28% so the diamond
+  // breathes inside any platform's circular crop.
+  const ICON_VIEWBOX = 120;
+  const scale = (Math.min(width, height) * 0.72) / ICON_VIEWBOX;
+  const ix = (width - ICON_VIEWBOX * scale) / 2;
+  const iy = (height - ICON_VIEWBOX * scale) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
   <g transform="translate(${ix} ${iy}) scale(${scale})">
