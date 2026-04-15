@@ -1,24 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
 
   <defs>
-    <radialGradient id="g1" cx="896" cy="128" r="576" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#1e293b" stop-opacity=".85"/>
-      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g2" cx="230.39999999999998" cy="544" r="448" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#312e81" stop-opacity=".5"/>
-      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    <radialGradient id="bg-glow" cx="640" cy="320" r="768" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
     </radialGradient>
   </defs>
-  <rect width="1280" height="640" fill="#0f172a"/>
-  <rect width="1280" height="640" fill="url(#g1)"/>
-  <rect width="1280" height="640" fill="url(#g2)"/>
-  <g opacity=".06" stroke="#fff" stroke-width="1" fill="none">
-    <rect x="918.528" y="45.31199999999998" width="159.74400000000003" height="139.776" rx="9.36" transform="rotate(45 998.4000000000001 115.19999999999999)"/><rect x="914.4320000000001" y="41.72799999999998" width="167.936" height="146.94400000000002" rx="9.84" transform="rotate(45 998.4000000000001 115.19999999999999)"/><rect x="910.3360000000001" y="38.14399999999998" width="176.12800000000001" height="154.11200000000002" rx="10.32" transform="rotate(45 998.4000000000001 115.19999999999999)"/>
-  </g>
-  <g opacity=".04" stroke="#6366f1" stroke-width="1.2" fill="none">
-    <path d="M0 396.8 L230.39999999999998 396.8 L281.6 320 L345.6 499.20000000000005 L384 396.8 L1280 396.8"/>
-  </g>
+  <rect width="1280" height="640" fill="url(#bg-glow)"/>
   <g transform="translate(376 194) scale(2.4)" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif">
     <rect width="38" height="38" x="-19" y="-19" fill="#fff" opacity=".06" rx="8" transform="rotate(45 -10.506 73.648)"/><rect width="42" height="42" x="-21" y="-21" fill="#fff" opacity=".12" rx="9" transform="rotate(45 -22.456 68.698)"/><rect width="46" height="46" x="-23" y="-23" fill="#fff" rx="10" transform="rotate(45 -34.406 63.749)"/><path stroke="#0f172a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 43h14l3-18 5 31 4-19 3 6h15"/><circle cx="30" cy="25" r="2" fill="#0f172a" opacity=".85"/><text x="79" y="43" fill="#fff" font-family="'IBM Plex Sans', sans-serif" font-size="32" font-weight="700" letter-spacing=".06em">AEGISX</text><text x="79" y="61" fill="#fff" font-family="'IBM Plex Sans', sans-serif" font-size="10" font-weight="400" letter-spacing=".2em" opacity=".5">HOSPITAL PLATFORM</text>
   </g>

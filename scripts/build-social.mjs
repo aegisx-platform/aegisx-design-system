@@ -27,28 +27,18 @@ const horizontalInner = horizontalRaw
   .replace(/^[\s\S]*?<svg[^>]*viewBox="0 0 220 80"[^>]*>/, '')
   .replace(/<\/svg>\s*$/, '');
 
-/** Brand-aligned background: navy base + radial glows + diamond ripple accents. */
+/** Clean background — flat navy with a single subtle radial glow.
+ *  No decorative diamond / EKG shapes — those would conflict with the
+ *  logo mark itself. Logo speaks; background stays out of its way. */
 function bgDefs(w, h) {
   return `
   <defs>
-    <radialGradient id="g1" cx="${w * 0.7}" cy="${h * 0.2}" r="${Math.max(w, h) * 0.45}" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#1e293b" stop-opacity=".85"/>
-      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g2" cx="${w * 0.18}" cy="${h * 0.85}" r="${Math.max(w, h) * 0.35}" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#312e81" stop-opacity=".5"/>
-      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    <radialGradient id="bg-glow" cx="${w / 2}" cy="${h / 2}" r="${Math.max(w, h) * 0.6}" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
     </radialGradient>
   </defs>
-  <rect width="${w}" height="${h}" fill="#0f172a"/>
-  <rect width="${w}" height="${h}" fill="url(#g1)"/>
-  <rect width="${w}" height="${h}" fill="url(#g2)"/>
-  <g opacity=".06" stroke="#fff" stroke-width="1" fill="none">
-    ${[0.78, 0.82, 0.86].map((s) => `<rect x="${w * 0.78 - (w * 0.08 * s)}" y="${h * 0.18 - (h * 0.14 * s)}" width="${w * 0.16 * s}" height="${h * 0.28 * s}" rx="${12 * s}" transform="rotate(45 ${w * 0.78} ${h * 0.18})"/>`).join('')}
-  </g>
-  <g opacity=".04" stroke="#6366f1" stroke-width="1.2" fill="none">
-    <path d="M0 ${h * 0.62} L${w * 0.18} ${h * 0.62} L${w * 0.22} ${h * 0.5} L${w * 0.27} ${h * 0.78} L${w * 0.3} ${h * 0.62} L${w} ${h * 0.62}"/>
-  </g>`;
+  <rect width="${w}" height="${h}" fill="url(#bg-glow)"/>`;
 }
 
 function composeWithLogo({ width, height, logoScale, logoX, logoY, tagline, taglineY, taglineSize = 18 }) {
@@ -82,38 +72,26 @@ ${bgDefs(width, height)}
  * Plus the EKG pulse line (with glow) and peak dot, all drawn in the
  * SAME local frame so the entire composition stays anchored.
  */
-function avatarMarkLocal() {
-  return `
-    <g>
-      <!-- single solid diamond — no offset shadow stack (avatar crop is too tight) -->
-      <g transform="rotate(45)">
-        <rect x="-44" y="-44" width="88" height="88" rx="16" fill="#1e293b"/>
-        <rect x="-44" y="-44" width="88" height="88" rx="16"
-              fill="none" stroke="#3b82f6" stroke-width=".8" opacity=".4"/>
-      </g>
-      <!-- EKG glow + main line, centered around (0, 0) -->
-      <path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="4.5" fill="none"
-            d="M-34 8 h18 l5-28 l7 48 l5-29 l5 9 h18"/>
-      <path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" fill="none" opacity=".3"
-            d="M-34 8 h18 l5-28 l7 48 l5-29 l5 9 h18"/>
-      <!-- peak dot + halo -->
-      <circle cx="-5" cy="-20" r="4.5" fill="#60a5fa"/>
-      <circle cx="-5" cy="-20" r="8"   fill="#3b82f6" opacity=".2"/>
-    </g>`;
-}
+// Brand icon — embedded verbatim from logo/icon-dark.svg. The logo
+// has its own design standard (logo/AEGISX-LOGO-STANDARD.md); we never
+// modify its geometry.
+const iconDarkRaw = readFileSync(resolve(root, 'logo/icon-dark.svg'), 'utf8');
+const iconInner = iconDarkRaw
+  .replace(/^[\s\S]*?<svg[^>]*>/, '')
+  .replace(/<\/svg>\s*$/, '');
 
 function composeIconCenter({ width, height }) {
-  // Solid diamond rotated 45° from a 88×88 rect → spans ~125×125 in
-  // local coords; pad ~25% inside any platform's circular crop.
-  const span = 125;
-  const scale = (Math.min(width, height) * 0.75) / span;
+  // icon-dark.svg's native viewBox is 0 0 120 120. Embed it untouched
+  // via a nested <svg> so its preserveAspectRatio handles centering.
+  // Pad the canvas, not the logo.
+  const innerSize = Math.min(width, height) * 0.78;
+  const ix = (width - innerSize) / 2;
+  const iy = (height - innerSize) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
-  <g transform="translate(${width / 2} ${height / 2}) scale(${scale})">
-    ${avatarMarkLocal()}
-  </g>
+  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="0 0 120 120">
+    ${iconInner}
+  </svg>
 </svg>`;
 }
 
