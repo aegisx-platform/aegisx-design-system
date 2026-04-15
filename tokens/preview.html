@@ -385,7 +385,7 @@
 
   // Typography — display
   const displayEl = document.getElementById('type-display');
-  ['xs','sm','md','lg','xl','2xl'].forEach(size => {
+  ['xs','sm','md','lg'].forEach(size => {
     const row = el('div', { class: 'type-row' });
     row.appendChild(el('div', { class: 'name', text: '--ax-display-' + size }));
     const sample = el('div', { class: 'sample', text: 'AegisX ทดสอบ' });

@@ -41,12 +41,11 @@
     },
 
     "display": {
-      "xs":  { "$type": "typography", "$value": { "fontSize": "1.5rem",   "lineHeight": "2rem",     "fontWeight": 600, "letterSpacing": "0" },        "$description": "24 / 32" },
-      "sm":  { "$type": "typography", "$value": { "fontSize": "1.875rem", "lineHeight": "2.375rem", "fontWeight": 600, "letterSpacing": "0" },        "$description": "30 / 38" },
-      "md":  { "$type": "typography", "$value": { "fontSize": "2.25rem",  "lineHeight": "2.75rem",  "fontWeight": 600, "letterSpacing": "-0.02em" }, "$description": "36 / 44" },
-      "lg":  { "$type": "typography", "$value": { "fontSize": "3rem",     "lineHeight": "3.75rem",  "fontWeight": 700, "letterSpacing": "-0.02em" }, "$description": "48 / 60" },
-      "xl":  { "$type": "typography", "$value": { "fontSize": "3.75rem",  "lineHeight": "4.5rem",   "fontWeight": 700, "letterSpacing": "-0.02em" }, "$description": "60 / 72" },
-      "2xl": { "$type": "typography", "$value": { "fontSize": "4.5rem",   "lineHeight": "5.625rem", "fontWeight": 700, "letterSpacing": "-0.02em" }, "$description": "72 / 90" }
-    }
+      "xs": { "$type": "typography", "$value": { "fontSize": "1.5rem",   "lineHeight": "2rem",     "fontWeight": 600, "letterSpacing": "0" },       "$description": "24 / 32 — section/card headline" },
+      "sm": { "$type": "typography", "$value": { "fontSize": "1.875rem", "lineHeight": "2.375rem", "fontWeight": 600, "letterSpacing": "0" },       "$description": "30 / 38 — page title" },
+      "md": { "$type": "typography", "$value": { "fontSize": "2.25rem",  "lineHeight": "2.75rem",  "fontWeight": 600, "letterSpacing": "-0.02em" }, "$description": "36 / 44 — dashboard hero" },
+      "lg": { "$type": "typography", "$value": { "fontSize": "3rem",     "lineHeight": "3.75rem",  "fontWeight": 700, "letterSpacing": "-0.02em" }, "$description": "48 / 60 — splash / onboarding MAX" }
+    },
+    "$display_rationale": "Clinical UIs cap at 48px display. Untitled UI's xl (60) and 2xl (72) are intentionally omitted — a hospital dashboard that needs 72px type is usually communicating hierarchy wrong."
   }
 }

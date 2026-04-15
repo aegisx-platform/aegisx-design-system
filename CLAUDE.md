@@ -23,6 +23,8 @@ Nothing is published as an npm package. Edits here do not auto-propagate — cha
 
 ## Architectural Rules (the "big picture")
 
+0. **Design principles are the north star.** `AEGISX-DESIGN-PRINCIPLES.md` at repo root defines the five pillars (Calm · High-contrast · Thai-first · Clinical-dense · No ornamentation) and the rule that domain-specific tokens (triage, NHSO status, ward type, drug interaction) live in consumer apps as `--app-*` aliases, NOT in this repo. Read it before any token/spec change.
+
 1. **Specs are authoritative.** Before adding or modifying an icon, logo, brand asset, or token, read the corresponding spec in `specs/`, `tokens/AEGISX-TOKENS-SPEC.md`, or the per-folder standard doc. `specs/AEGISX-ICON-CATALOG.md` is the master list of every approved app icon across the platform (Clinical, Inventory, Finance, Back Office, Quality, Platform). Do not invent new icon IDs without updating this catalog.
 
 2. **Two icon systems coexist — keep them separate.**

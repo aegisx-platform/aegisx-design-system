@@ -32,6 +32,7 @@ cpSync(resolve(root, 'tokens/css'),              resolve(out, 'tokens/css'),  { 
 cpSync(resolve(root, 'tokens/scss'),             resolve(out, 'tokens/scss'), { recursive: true });
 cpSync(resolve(root, 'tokens/ANGULAR-MATERIAL-SETUP.md'), resolve(out, 'tokens/ANGULAR-MATERIAL-SETUP.md'));
 cpSync(resolve(root, 'tokens/AEGISX-TOKENS-SPEC.md'),     resolve(out, 'tokens/AEGISX-TOKENS-SPEC.md'));
+cpSync(resolve(root, 'AEGISX-DESIGN-PRINCIPLES.md'),      resolve(out, 'AEGISX-DESIGN-PRINCIPLES.md'));
 
 // Social assets (logo/social/*.png) are picked up via the logo cpSync above —
 // they live under assets/logo/social/.
@@ -208,6 +209,7 @@ const html = `<!doctype html>
 
 <nav class="tabs">
   <a href="#install">Install</a>
+  <a href="AEGISX-DESIGN-PRINCIPLES.md">Principles ↗</a>
   <a href="#usage">Usage</a>
   <a href="tokens/">Tokens ↗</a>
   <a href="tokens/components.html">Components ↗</a>

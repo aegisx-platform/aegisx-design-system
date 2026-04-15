@@ -250,13 +250,11 @@
   --ax-text-lg-size: 1.125rem;  --ax-text-lg-line: 1.75rem;   /* 18 / 28 */
   --ax-text-xl-size: 1.25rem;   --ax-text-xl-line: 1.875rem;  /* 20 / 30 */
 
-  /* Display scale (Untitled UI) */
-  --ax-display-xs-size:  1.5rem;   --ax-display-xs-line:  2rem;     --ax-display-xs-tracking:  0;
-  --ax-display-sm-size:  1.875rem; --ax-display-sm-line:  2.375rem; --ax-display-sm-tracking:  0;
-  --ax-display-md-size:  2.25rem;  --ax-display-md-line:  2.75rem;  --ax-display-md-tracking: -0.02em;
-  --ax-display-lg-size:  3rem;     --ax-display-lg-line:  3.75rem;  --ax-display-lg-tracking: -0.02em;
-  --ax-display-xl-size:  3.75rem;  --ax-display-xl-line:  4.5rem;   --ax-display-xl-tracking: -0.02em;
-  --ax-display-2xl-size: 4.5rem;   --ax-display-2xl-line: 5.625rem; --ax-display-2xl-tracking: -0.02em;
+  /* Display scale — capped at 48px for clinical UI (no xl/2xl) */
+  --ax-display-xs-size: 1.5rem;   --ax-display-xs-line: 2rem;     --ax-display-xs-tracking:  0;
+  --ax-display-sm-size: 1.875rem; --ax-display-sm-line: 2.375rem; --ax-display-sm-tracking:  0;
+  --ax-display-md-size: 2.25rem;  --ax-display-md-line: 2.75rem;  --ax-display-md-tracking: -0.02em;
+  --ax-display-lg-size: 3rem;     --ax-display-lg-line: 3.75rem;  --ax-display-lg-tracking: -0.02em;
 
   --ax-font-weight-regular:  400;
   --ax-font-weight-medium:   500;
