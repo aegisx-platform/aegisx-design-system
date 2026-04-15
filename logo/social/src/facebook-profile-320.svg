@@ -19,7 +19,15 @@
   <g opacity=".04" stroke="#6366f1" stroke-width="1.2" fill="none">
     <path d="M0 198.4 L57.599999999999994 198.4 L70.4 160 L86.4 249.60000000000002 L96 198.4 L320 198.4"/>
   </g>
-  <g transform="translate(44.80000000000001 44.80000000000001) scale(1.9199999999999997)">
-    <rect width="60" height="60" x="-30" y="-30" fill="#60a5fa" opacity=".06" rx="12" transform="rotate(45 -16.113 111.326)"/><rect width="68" height="68" x="-34" y="-34" fill="#60a5fa" opacity=".1" rx="14" transform="rotate(45 -31.477 104.962)"/><g transform="rotate(45 -46.84 98.598)"><rect width="76" height="76" x="-38" y="-38" fill="#1e293b" rx="15"/><rect width="76" height="76" x="-38" y="-38" stroke="#3b82f6" stroke-width=".5" opacity=".3" rx="15"/></g><path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M25 62h19l5-26 7 45 5-27 5 8h21"/><path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round" d="M25 62h19l5-26 7 45 5-27 5 8h21" opacity=".2"/><circle cx="49" cy="36" r="3.5" fill="#60a5fa"/><circle cx="49" cy="36" r="6" fill="#3b82f6" opacity=".15"/>
+  <g transform="translate(160 160) scale(2.1818181818181817)">
+    
+    <g transform="rotate(45)">
+      <rect x="-40" y="-40" width="80" height="80" rx="14" fill="#1e293b"/>
+      <rect x="-40" y="-40" width="80" height="80" rx="14" fill="none" stroke="#3b82f6" stroke-width=".6" opacity=".35"/>
+    </g>
+    <path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" fill="none" d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
+    <path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity=".25" d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
+    <circle cx="-5" cy="-20" r="4" fill="#60a5fa"/>
+    <circle cx="-5" cy="-20" r="7" fill="#3b82f6" opacity=".18"/>
   </g>
 </svg>

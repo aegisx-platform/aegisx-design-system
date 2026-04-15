@@ -27,11 +27,6 @@ const horizontalInner = horizontalRaw
   .replace(/^[\s\S]*?<svg[^>]*viewBox="0 0 220 80"[^>]*>/, '')
   .replace(/<\/svg>\s*$/, '');
 
-const iconDarkRaw = readFileSync(resolve(root, 'logo/icon-dark.svg'), 'utf8');
-const iconInner = iconDarkRaw
-  .replace(/^[\s\S]*?<svg[^>]*>/, '')
-  .replace(/<\/svg>\s*$/, '');
-
 /** Brand-aligned background: navy base + radial glows + diamond ripple accents. */
 function bgDefs(w, h) {
   return `
@@ -69,17 +64,34 @@ ${bgDefs(width, height)}
 </svg>`;
 }
 
+/**
+ * Avatar-grade centered diamond — flat, single-layer, EKG + peak dot
+ * geometrically centered. The brand's offset 3-layer stack lives in
+ * icon-dark.svg for horizontal lockups; for square avatars we use
+ * this clean stamp so the diamond sits dead-center in every platform's
+ * circular crop. Drawn in local space (-50..+50) around (0,0).
+ */
+function avatarIconLocal() {
+  return `
+    <g transform="rotate(45)">
+      <rect x="-40" y="-40" width="80" height="80" rx="14" fill="#1e293b"/>
+      <rect x="-40" y="-40" width="80" height="80" rx="14" fill="none" stroke="#3b82f6" stroke-width=".6" opacity=".35"/>
+    </g>
+    <path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" fill="none" d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
+    <path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity=".25" d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
+    <circle cx="-5" cy="-20" r="4" fill="#60a5fa"/>
+    <circle cx="-5" cy="-20" r="7" fill="#3b82f6" opacity=".18"/>`;
+}
+
 function composeIconCenter({ width, height }) {
-  // icon-dark.svg has viewBox 0 0 120 120; pad ~28% so the diamond
-  // breathes inside any platform's circular crop.
-  const ICON_VIEWBOX = 120;
-  const scale = (Math.min(width, height) * 0.72) / ICON_VIEWBOX;
-  const ix = (width - ICON_VIEWBOX * scale) / 2;
-  const iy = (height - ICON_VIEWBOX * scale) / 2;
+  // Avatar icon is drawn in local coords roughly -55..+55 → 110 units.
+  // Pad ~25% breathing room inside any circular crop.
+  const span = 110;
+  const scale = (Math.min(width, height) * 0.75) / span;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
-  <g transform="translate(${ix} ${iy}) scale(${scale})">
-    ${iconInner}
+  <g transform="translate(${width / 2} ${height / 2}) scale(${scale})">
+    ${avatarIconLocal()}
   </g>
 </svg>`;
 }
