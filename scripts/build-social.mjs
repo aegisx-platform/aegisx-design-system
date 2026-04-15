@@ -64,35 +64,36 @@ ${bgDefs(width, height)}
 </svg>`;
 }
 
-/**
- * Avatar-grade centered diamond — flat, single-layer, EKG + peak dot
- * geometrically centered. The brand's offset 3-layer stack lives in
- * icon-dark.svg for horizontal lockups; for square avatars we use
- * this clean stamp so the diamond sits dead-center in every platform's
- * circular crop. Drawn in local space (-50..+50) around (0,0).
- */
-function avatarIconLocal() {
-  return `
-    <g transform="rotate(45)">
-      <rect x="-40" y="-40" width="80" height="80" rx="14" fill="#1e293b"/>
-      <rect x="-40" y="-40" width="80" height="80" rx="14" fill="none" stroke="#3b82f6" stroke-width=".6" opacity=".35"/>
-    </g>
-    <path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" fill="none" d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
-    <path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity=".25" d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
-    <circle cx="-5" cy="-20" r="4" fill="#60a5fa"/>
-    <circle cx="-5" cy="-20" r="7" fill="#3b82f6" opacity=".18"/>`;
-}
+// Brand icon (icon-dark.svg) inner shapes, kept verbatim so the 3-layer
+// offset diamond stack — the AegisX signature — survives intact.
+const iconDarkRaw = readFileSync(resolve(root, 'logo/icon-dark.svg'), 'utf8');
+const iconInner = iconDarkRaw
+  .replace(/^[\s\S]*?<svg[^>]*>/, '')
+  .replace(/<\/svg>\s*$/, '');
 
+/**
+ * The icon's native viewBox is 0 0 120 120, but the visual mass of the
+ * 3-layer stack centroid sits at roughly (70, 50) — 10px right of and
+ * above the geometric centre — because the mid- and outer-shadow
+ * diamonds offset upper-right per the brand spec.
+ *
+ * To present the icon cleanly inside a circular avatar crop, we wrap
+ * it in a nested <svg> with a shifted viewBox: shifting the visible
+ * region right & up moves the visual centroid back to (60, 60). The
+ * shapes themselves are untouched.
+ */
 function composeIconCenter({ width, height }) {
-  // Avatar icon is drawn in local coords roughly -55..+55 → 110 units.
-  // Pad ~25% breathing room inside any circular crop.
-  const span = 110;
-  const scale = (Math.min(width, height) * 0.75) / span;
+  const VB_X = 10;     // shift viewBox right → moves art left in canvas
+  const VB_Y = -10;    // shift viewBox up   → moves art down in canvas
+  const VB_SIZE = 120;
+  const innerSize = Math.min(width, height) * 0.78; // 22% breathing room
+  const ix = (width - innerSize) / 2;
+  const iy = (height - innerSize) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
-  <g transform="translate(${width / 2} ${height / 2}) scale(${scale})">
-    ${avatarIconLocal()}
-  </g>
+  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="${VB_X} ${VB_Y} ${VB_SIZE} ${VB_SIZE}" overflow="visible">
+    ${iconInner}
+  </svg>
 </svg>`;
 }
 
