@@ -18,6 +18,8 @@ This repository is the single source of truth for logos, icons, brand background
 - [`specs/AEGISX-BRAND-GUIDE.md`](specs/AEGISX-BRAND-GUIDE.md) — master brand guide
 - [`specs/AEGISX-ICON-CATALOG.md`](specs/AEGISX-ICON-CATALOG.md) — every approved app icon across the platform
 - [`logo/AEGISX-LOGO-STANDARD.md`](logo/AEGISX-LOGO-STANDARD.md) — logo anatomy & usage rules
+- [`logo/USAGE-EXAMPLES.md`](logo/USAGE-EXAMPLES.md) — variant picker, favicon/PWA setup, do's & don'ts
+- [`logo/preview.html`](logo/preview.html) — open in a browser to preview every variant on every bg
 - [`brand/AEGISX-BRAND-BG-SPEC.md`](brand/AEGISX-BRAND-BG-SPEC.md) — branded background spec
 - [`icons/README.md`](icons/README.md) — icon quick start
 - [`CLAUDE.md`](CLAUDE.md) — guidance for Claude Code contributors

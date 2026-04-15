@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AegisX Logo — Preview</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0; padding: 32px; background: #f8fafc; color: #0f172a;
+  }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  p.lead { margin: 0 0 32px; color: #64748b; }
+  h2 { margin: 40px 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: #475569; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .tile {
+    border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;
+    background: #fff; display: flex; flex-direction: column;
+  }
+  .tile .stage { padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 140px; }
+  .tile .stage.dark  { background: #0f172a; }
+  .tile .stage.light { background: #fff; }
+  .tile .stage.grey  { background: #f1f5f9; }
+  .tile .stage.photo { background: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=40') center/cover; }
+  .tile .label { padding: 10px 12px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; color: #334155; border-top: 1px solid #e2e8f0; background: #f8fafc; }
+  .tile img { max-width: 100%; height: auto; }
+  .tile .stage.dark img, .tile .stage.photo img { filter: none; }
+  .size-row { display: flex; gap: 24px; align-items: flex-end; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; flex-wrap: wrap; }
+  .size-row figure { margin: 0; text-align: center; }
+  .size-row figcaption { margin-top: 8px; font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; }
+  .clearspace {
+    display: inline-block; position: relative; padding: 24px; background: #fff;
+    border: 1px dashed #94a3b8; border-radius: 8px;
+  }
+  .clearspace::before {
+    content: ''; position: absolute; inset: 8px; border: 1px dashed #cbd5e1; border-radius: 6px;
+  }
+  .favicon-strip { display: flex; gap: 16px; align-items: flex-end; padding: 16px 20px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; flex-wrap: wrap; }
+  .favicon-strip figure { margin: 0; text-align: center; }
+  .favicon-strip figcaption { font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<h1>AegisX Logo Preview</h1>
+<p class="lead">Every variant on every background it's meant to live on. Open this file in a browser from the repo root so the relative paths resolve.</p>
+
+<h2>Horizontal</h2>
+<div class="grid">
+  <div class="tile"><div class="stage light"><img src="horizontal-light.svg" alt="" style="width:220px"></div><div class="label">horizontal-light.svg · on white</div></div>
+  <div class="tile"><div class="stage dark"><img src="horizontal-dark.svg" alt="" style="width:220px"></div><div class="label">horizontal-dark.svg · on navy</div></div>
+  <div class="tile"><div class="stage light"><img src="horizontal-mono.svg" alt="" style="width:220px"></div><div class="label">horizontal-mono.svg · 1-colour print</div></div>
+  <div class="tile"><div class="stage dark"><img src="horizontal-mono-inverse.svg" alt="" style="width:220px"></div><div class="label">horizontal-mono-inverse.svg · on dark</div></div>
+  <div class="tile"><div class="stage photo"><img src="horizontal-mono-inverse.svg" alt="" style="width:220px"></div><div class="label">horizontal-mono-inverse.svg · on photo</div></div>
+</div>
+
+<h2>Vertical</h2>
+<div class="grid">
+  <div class="tile"><div class="stage light"><img src="vertical-light.svg" alt="" style="width:160px"></div><div class="label">vertical-light.svg</div></div>
+  <div class="tile"><div class="stage dark"><img src="vertical-dark.svg" alt="" style="width:160px"></div><div class="label">vertical-dark.svg</div></div>
+</div>
+
+<h2>Icon only</h2>
+<div class="grid">
+  <div class="tile"><div class="stage light"><img src="icon-light.svg" alt="" style="width:96px"></div><div class="label">icon-light.svg</div></div>
+  <div class="tile"><div class="stage dark"><img src="icon-dark.svg" alt="" style="width:96px"></div><div class="label">icon-dark.svg</div></div>
+  <div class="tile"><div class="stage grey"><img src="icon-light.svg" alt="" style="width:96px"></div><div class="label">icon-light.svg · on grey</div></div>
+</div>
+
+<h2>Size scale</h2>
+<div class="size-row">
+  <figure><img src="horizontal-light.svg" style="width:120px"><figcaption>120 px · min web</figcaption></figure>
+  <figure><img src="horizontal-light.svg" style="width:200px"><figcaption>200 px · navbar</figcaption></figure>
+  <figure><img src="horizontal-light.svg" style="width:320px"><figcaption>320 px · hero</figcaption></figure>
+  <figure><img src="icon-light.svg" style="width:24px"><figcaption>24 px · min icon</figcaption></figure>
+  <figure><img src="icon-light.svg" style="width:48px"><figcaption>48 px · favicon</figcaption></figure>
+  <figure><img src="icon-light.svg" style="width:96px"><figcaption>96 px · app tile</figcaption></figure>
+</div>
+
+<h2>Clear space (1× peak-dot radius margin)</h2>
+<div class="clearspace">
+  <img src="horizontal-light.svg" style="width:240px">
+</div>
+
+<h2>Favicons</h2>
+<div class="favicon-strip">
+  <figure><img src="favicons/favicon-16.png"><figcaption>16 px</figcaption></figure>
+  <figure><img src="favicons/favicon-32.png"><figcaption>32 px</figcaption></figure>
+  <figure><img src="favicons/favicon-48.png"><figcaption>48 px</figcaption></figure>
+  <figure><img src="favicons/apple-touch-icon.png" style="width:60px"><figcaption>180 px · apple-touch</figcaption></figure>
+  <figure><img src="favicons/icon-192.png" style="width:60px"><figcaption>192 px · PWA</figcaption></figure>
+  <figure><img src="favicons/icon-512.png" style="width:60px"><figcaption>512 px · PWA splash</figcaption></figure>
+</div>
+
+</body>
+</html>
