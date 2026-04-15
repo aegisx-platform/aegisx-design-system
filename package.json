@@ -50,6 +50,10 @@
       "types": "./dist/icons/ax-diamond-icon.component.d.ts",
       "import": "./dist/icons/ax-diamond-icon.component.js"
     },
+    "./icons/data": {
+      "types": "./dist/icons/data/index.d.ts",
+      "import": "./dist/icons/data/index.js"
+    },
     "./assets/icons/*.svg": "./icons/svg/*.svg",
     "./assets/icons-sprite.svg": "./icons/svg-sprite/aegisx-icons.svg",
     "./assets/featured-error/*.svg": "./icons/featured-error/*.svg",
@@ -81,7 +85,10 @@
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "svgo": "svgo --config=.svgo.config.js -rf icons/svg -rf logo -rf brand -rf icons/featured-error",
     "assets:logo": "./logo/build-assets.sh",
-    "check:icons": "node scripts/check-icons.mjs"
+    "check:icons": "node scripts/check-icons.mjs",
+    "gen:icon-data": "node scripts/generate-icon-data.mjs",
+    "site:build": "node scripts/build-site.mjs",
+    "prebuild": "pnpm run gen:icon-data"
   },
   "keywords": [
     "aegisx",

@@ -5,6 +5,6 @@
     "rootDir": ".",
     "noEmit": false
   },
-  "include": ["src/index.ts", "icons/*.ts"],
+  "include": ["src/index.ts", "icons/*.ts", "icons/data/*.ts"],
   "exclude": ["dist", "node_modules", "**/*.spec.ts"]
 }
