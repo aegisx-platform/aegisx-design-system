@@ -89,7 +89,7 @@ function composeIconCenter({ width, height }) {
   const iy = (height - innerSize) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
-  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="0 0 120 120">
+  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="0 0 120 120" fill="none">
     ${iconInner}
   </svg>
 </svg>`;
