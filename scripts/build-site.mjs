@@ -199,6 +199,7 @@ const html = `<!doctype html>
   <a href="#install">Install</a>
   <a href="#usage">Usage</a>
   <a href="#logos">Logos</a>
+  <a href="mockups.html">Mockups ↗</a>
   <a href="#brand">Brand</a>
   <a href="#social">Social</a>
   <a href="#favicons">Favicons</a>
@@ -448,4 +449,11 @@ cls = getIconClasses(<span class="s">'pharmacy'</span>, <span class="s">'md'</sp
 </body></html>`;
 
 writeFileSync(resolve(out, 'index.html'), html);
+
+// Copy static pages from site-src/ (e.g. mockups.html)
+const siteSrc = resolve(root, 'site-src');
+if (existsSync(siteSrc)) {
+  cpSync(siteSrc, out, { recursive: true });
+}
+
 console.log(`✓ Built site/ (${svgIcons.length} icons, ${Object.keys(byCategory).length} categories)`);

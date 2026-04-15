@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AegisX — Logo in Context</title>
+<link rel="icon" href="assets/logo/favicons/favicon.ico">
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<style>
+  :root {
+    --navy: #0f172a;
+    --navy-2: #1e293b;
+    --indigo: #6366f1;
+    --indigo-2: #4f46e5;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #eef2f7; color: #0f172a; }
+  .page-head { background: linear-gradient(180deg,#0f172a,#1e293b); color: #fff; padding: 32px; }
+  .page-head h1 { margin: 0 0 6px; font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+  .page-head p { margin: 0; opacity: .65; font-size: 13px; }
+  .page-head a { color: #a5b4fc; text-decoration: none; font-size: 12px; }
+  main { padding: 32px; max-width: 1280px; margin: 0 auto; display: grid; gap: 40px; }
+  section.demo { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(15,23,42,.06); }
+  section.demo > header { padding: 14px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: #f8fafc; }
+  section.demo > header h2 { margin: 0; font-size: 13px; font-weight: 600; color: #0f172a; }
+  section.demo > header .tag { font-size: 10px; font-family: ui-monospace, monospace; color: #64748b; text-transform: uppercase; letter-spacing: .08em; }
+  .browser { background: #f1f5f9; padding: 10px 14px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
+  .browser .dot { width: 11px; height: 11px; border-radius: 50%; background: #cbd5e1; }
+  .browser .dot.r { background: #fca5a5; } .browser .dot.y { background: #fcd34d; } .browser .dot.g { background: #86efac; }
+  .browser .url { flex: 1; background: #fff; border-radius: 6px; padding: 5px 12px; font-family: ui-monospace, monospace; font-size: 11px; color: #64748b; border: 1px solid #e2e8f0; }
+
+  /* ============ LOGIN ============ */
+  .login-stage {
+    position: relative;
+    min-height: 520px;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(99,102,241,.22), transparent 55%),
+      radial-gradient(ellipse at 75% 80%, rgba(56,189,248,.16), transparent 55%),
+      url('assets/brand/aegisx-brand-bg.svg') center/cover,
+      var(--navy);
+    display: grid;
+    place-items: center;
+    padding: 40px 20px;
+  }
+  .login-card {
+    width: 100%; max-width: 400px;
+    background: rgba(255,255,255,.98);
+    border-radius: 18px;
+    padding: 36px 32px 30px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+  }
+  .login-card .logo-wrap { display: flex; justify-content: center; margin-bottom: 22px; }
+  .login-card .logo-wrap img { height: 44px; }
+  .login-card h3 { margin: 0 0 6px; text-align: center; font-size: 18px; font-weight: 600; color: #0f172a; }
+  .login-card .sub { text-align: center; color: #64748b; font-size: 12px; margin: 0 0 22px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 12px; font-weight: 500; color: #334155; margin-bottom: 6px; }
+  .field input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; background: #f8fafc; }
+  .field input:focus { outline: 2px solid #6366f1; outline-offset: 0; background: #fff; border-color: #6366f1; }
+  .btn-primary { width: 100%; padding: 11px; background: #0f172a; color: #fff; border: 0; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+  .btn-primary:hover { background: #1e293b; }
+  .login-card .meta { margin-top: 16px; text-align: center; font-size: 11px; color: #94a3b8; }
+  .login-card .meta a { color: #6366f1; text-decoration: none; }
+
+  /* ============ APP / DASHBOARD ============ */
+  .app { display: grid; grid-template-columns: 230px 1fr; min-height: 560px; background: #f8fafc; }
+  .app aside { background: var(--navy); color: #e2e8f0; padding: 22px 0; display: flex; flex-direction: column; }
+  .app aside .brand { padding: 0 22px 22px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .app aside .brand img { height: 30px; }
+  .app aside nav { padding: 14px 12px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .app aside nav a { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; color: #cbd5e1; text-decoration: none; font-size: 13px; }
+  .app aside nav a:hover { background: rgba(255,255,255,.05); color: #fff; }
+  .app aside nav a.active { background: rgba(99,102,241,.18); color: #fff; border-left: 2px solid #818cf8; }
+  .app aside nav a .ic { width: 16px; height: 16px; border-radius: 4px; background: rgba(255,255,255,.15); display: inline-block; }
+  .app aside nav a.active .ic { background: #818cf8; }
+  .app aside .foot { padding: 14px 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: 11px; color: #64748b; display: flex; justify-content: space-between; }
+
+  .app main.content { padding: 0; display: flex; flex-direction: column; }
+  .app .topbar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 12px 22px; display: flex; align-items: center; gap: 16px; }
+  .app .topbar .search { flex: 1; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; font-size: 12px; color: #94a3b8; }
+  .app .topbar .avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg,#6366f1,#38bdf8); display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 600; }
+  .app .body { padding: 22px; flex: 1; display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); grid-auto-rows: min-content; }
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+  .card.k { grid-column: span 1; }
+  .card.k .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .05em; }
+  .card.k .num { font-size: 22px; font-weight: 600; color: #0f172a; margin-top: 4px; }
+  .card.k .delta { font-size: 11px; color: #16a34a; margin-top: 2px; }
+  .card.wide { grid-column: span 4; }
+  .card.wide h4 { margin: 0 0 10px; font-size: 13px; font-weight: 600; }
+  .chart { height: 120px; background: linear-gradient(180deg, rgba(99,102,241,.12), rgba(99,102,241,0)); border-radius: 8px; position: relative; overflow: hidden; }
+  .chart svg { width: 100%; height: 100%; }
+
+  /* ============ MARKETING HERO ============ */
+  .hero {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(99,102,241,.25), transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(56,189,248,.18), transparent 50%),
+      url('assets/brand/aegisx-brand-bg.svg') center/cover,
+      var(--navy);
+    color: #fff;
+    padding: 60px 40px 70px;
+    position: relative;
+  }
+  .hero .mk-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+  .hero .mk-nav .logo img { height: 28px; }
+  .hero .mk-nav ul { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; }
+  .hero .mk-nav ul a { color: rgba(255,255,255,.75); text-decoration: none; font-size: 13px; }
+  .hero .mk-nav ul a:hover { color: #fff; }
+  .hero .mk-nav .cta { background: #fff; color: #0f172a; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 12px; text-decoration: none; }
+  .hero-body { max-width: 720px; }
+  .hero h2 { font-size: 44px; font-weight: 700; letter-spacing: -.02em; line-height: 1.08; margin: 0 0 18px; }
+  .hero h2 em { font-style: normal; background: linear-gradient(90deg,#a5b4fc,#7dd3fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { font-size: 16px; color: rgba(255,255,255,.72); margin: 0 0 28px; max-width: 560px; }
+  .hero .ctas { display: flex; gap: 10px; }
+  .hero .ctas .primary { background: #fff; color: #0f172a; padding: 11px 20px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 13px; }
+  .hero .ctas .ghost { border: 1px solid rgba(255,255,255,.25); color: #fff; padding: 11px 20px; border-radius: 10px; text-decoration: none; font-size: 13px; }
+
+  /* ============ MOBILE ============ */
+  .mobile-stage { padding: 40px; display: flex; gap: 40px; justify-content: center; align-items: center; background: linear-gradient(180deg,#f1f5f9,#e2e8f0); flex-wrap: wrap; }
+  .phone { width: 260px; height: 540px; border-radius: 36px; padding: 8px; background: #0f172a; box-shadow: 0 30px 50px -20px rgba(15,23,42,.4); position: relative; }
+  .phone::before { content: ''; position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 80px; height: 18px; background: #000; border-radius: 999px; z-index: 2; }
+  .phone .screen { width: 100%; height: 100%; border-radius: 30px; overflow: hidden; position: relative; }
+  .phone .screen.splash {
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(99,102,241,.3), transparent 60%),
+      url('assets/brand/aegisx-brand-bg.svg') center/cover,
+      var(--navy);
+    display: grid; place-items: center;
+  }
+  .phone .screen.splash img { height: 56px; }
+  .phone .screen.home { background: #f8fafc; padding: 48px 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+  .phone .screen.home .topbar { display: flex; justify-content: space-between; align-items: center; padding: 0 6px 8px; border-bottom: 1px solid #e2e8f0; }
+  .phone .screen.home .topbar img { height: 22px; }
+  .phone .screen.home .greet { padding: 6px; font-size: 13px; color: #0f172a; font-weight: 600; }
+  .phone .screen.home .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .phone .screen.home .tile { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; aspect-ratio: 1.3; display: flex; flex-direction: column; justify-content: space-between; }
+  .phone .screen.home .tile .sq { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg,#6366f1,#38bdf8); }
+  .phone .screen.home .tile .t { font-size: 11px; font-weight: 600; color: #0f172a; }
+  .phone .screen.home .tile .s { font-size: 9px; color: #94a3b8; }
+
+  /* ============ EMAIL ============ */
+  .email-stage { padding: 30px; background: #f1f5f9; }
+  .email { max-width: 540px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }
+  .email .eh { background: var(--navy); padding: 28px; text-align: center; }
+  .email .eh img { height: 32px; }
+  .email .eb { padding: 28px 32px; }
+  .email .eb h3 { margin: 0 0 10px; font-size: 18px; color: #0f172a; }
+  .email .eb p { color: #475569; font-size: 13px; margin: 0 0 14px; }
+  .email .eb .btn { display: inline-block; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; }
+  .email .ef { padding: 18px 32px 24px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 11px; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <a href="index.html">&larr; Back to design system</a>
+  <h1 style="margin-top:8px">Logo in Context</h1>
+  <p>Mock-ups showing the AegisX logo in real product surfaces — login, dashboard shell, marketing hero, mobile splash, transactional email.</p>
+</div>
+
+<main>
+
+  <!-- LOGIN -->
+  <section class="demo">
+    <header>
+      <h2>Login screen</h2>
+      <span class="tag">horizontal-light.svg on white card</span>
+    </header>
+    <div class="browser"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">https://app.aegisx.health/login</span></div>
+    <div class="login-stage">
+      <div class="login-card">
+        <div class="logo-wrap"><img src="assets/logo/horizontal-light.svg" alt="AegisX"></div>
+        <h3>ยินดีต้อนรับกลับ</h3>
+        <p class="sub">เข้าสู่ระบบเพื่อจัดการงานโรงพยาบาล</p>
+        <div class="field">
+          <label>อีเมล</label>
+          <input type="email" value="dr.somchai@aegisx.health">
+        </div>
+        <div class="field">
+          <label>รหัสผ่าน</label>
+          <input type="password" value="••••••••••">
+        </div>
+        <button class="btn-primary">เข้าสู่ระบบ</button>
+        <div class="meta">ลืมรหัสผ่าน? <a href="#">รีเซ็ต</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="demo">
+    <header>
+      <h2>App shell / dashboard</h2>
+      <span class="tag">horizontal-dark.svg in navy sidebar</span>
+    </header>
+    <div class="browser"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">https://app.aegisx.health/dashboard</span></div>
+    <div class="app">
+      <aside>
+        <div class="brand"><img src="assets/logo/horizontal-dark.svg" alt="AegisX"></div>
+        <nav>
+          <a class="active"><span class="ic"></span>แดชบอร์ด</a>
+          <a><span class="ic"></span>ผู้ป่วย</a>
+          <a><span class="ic"></span>เภสัชกรรม</a>
+          <a><span class="ic"></span>คลังเวชภัณฑ์</a>
+          <a><span class="ic"></span>การเงิน</a>
+          <a><span class="ic"></span>ตรวจสอบคุณภาพ</a>
+          <a><span class="ic"></span>รายงาน</a>
+        </nav>
+        <div class="foot"><span>v2.4.1</span><span>● Online</span></div>
+      </aside>
+      <main class="content">
+        <div class="topbar">
+          <div class="search">ค้นหาผู้ป่วย, คำสั่ง, เอกสาร…</div>
+          <div class="avatar">SS</div>
+        </div>
+        <div class="body">
+          <div class="card k"><div class="label">ผู้ป่วย OPD วันนี้</div><div class="num">248</div><div class="delta">+12% จากเมื่อวาน</div></div>
+          <div class="card k"><div class="label">เตียง IPD</div><div class="num">84<span style="color:#94a3b8;font-size:14px">/120</span></div><div class="delta" style="color:#ea580c">70% utilisation</div></div>
+          <div class="card k"><div class="label">ใบสั่งยา</div><div class="num">1,042</div><div class="delta">+5% สัปดาห์นี้</div></div>
+          <div class="card k"><div class="label">รายได้ MTD</div><div class="num">฿8.4M</div><div class="delta">+18% YoY</div></div>
+          <div class="card wide">
+            <h4>ผู้ป่วยรายวัน (30 วัน)</h4>
+            <div class="chart">
+              <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+                <path d="M0,90 C40,70 80,80 120,60 C160,40 200,55 240,35 C280,20 320,40 360,25 L400,30 L400,120 L0,120 Z" fill="rgba(99,102,241,.25)" />
+                <path d="M0,90 C40,70 80,80 120,60 C160,40 200,55 240,35 C280,20 320,40 360,25 L400,30" stroke="#6366f1" stroke-width="2" fill="none" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <!-- MARKETING -->
+  <section class="demo">
+    <header>
+      <h2>Marketing landing</h2>
+      <span class="tag">horizontal-dark.svg on brand-bg hero</span>
+    </header>
+    <div class="browser"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">https://aegisx.health</span></div>
+    <div class="hero">
+      <div class="mk-nav">
+        <div class="logo"><img src="assets/logo/horizontal-dark.svg" alt="AegisX"></div>
+        <ul>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Solutions</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Docs</a></li>
+        </ul>
+        <a class="cta" href="#">Book demo</a>
+      </div>
+      <div class="hero-body">
+        <h2>Hospital operations, <em>unified.</em></h2>
+        <p>AegisX เป็นแพลตฟอร์มบริหารโรงพยาบาลแบบครบวงจร ตั้งแต่ OPD/IPD, เภสัชกรรม, คลังเวชภัณฑ์ ไปจนถึงการเงินและคุณภาพ — ทุกโมดูลเชื่อมต่อบนฐานข้อมูลเดียว</p>
+        <div class="ctas">
+          <a class="primary" href="#">เริ่มทดลองใช้</a>
+          <a class="ghost" href="#">ดูเดโม →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE -->
+  <section class="demo">
+    <header>
+      <h2>Mobile splash & home</h2>
+      <span class="tag">icon-dark.svg splash · horizontal-light.svg home</span>
+    </header>
+    <div class="mobile-stage">
+      <div class="phone"><div class="screen splash"><img src="assets/logo/icon-dark.svg" alt="AegisX"></div></div>
+      <div class="phone"><div class="screen home">
+        <div class="topbar"><img src="assets/logo/horizontal-light.svg" alt="AegisX"><div style="width:24px;height:24px;border-radius:50%;background:#e2e8f0"></div></div>
+        <div class="greet">สวัสดี, คุณสาธิต 👋</div>
+        <div class="grid">
+          <div class="tile"><div class="sq"></div><div><div class="t">OPD</div><div class="s">248 วันนี้</div></div></div>
+          <div class="tile"><div class="sq" style="background:linear-gradient(135deg,#10b981,#34d399)"></div><div><div class="t">IPD</div><div class="s">84 เตียง</div></div></div>
+          <div class="tile"><div class="sq" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)"></div><div><div class="t">ยา</div><div class="s">1,042 ใบ</div></div></div>
+          <div class="tile"><div class="sq" style="background:linear-gradient(135deg,#ef4444,#f87171)"></div><div><div class="t">แจ้งเตือน</div><div class="s">3 รายการ</div></div></div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- EMAIL -->
+  <section class="demo">
+    <header>
+      <h2>Transactional email</h2>
+      <span class="tag">horizontal-dark.svg on navy header</span>
+    </header>
+    <div class="email-stage">
+      <div class="email">
+        <div class="eh"><img src="assets/logo/horizontal-dark.svg" alt="AegisX"></div>
+        <div class="eb">
+          <h3>ยืนยันอีเมลของคุณ</h3>
+          <p>สวัสดีคุณสาธิต, กรุณายืนยันอีเมลเพื่อเปิดใช้งานบัญชี AegisX ของคุณ ลิงก์จะหมดอายุใน 24 ชั่วโมง</p>
+          <a class="btn" href="#">ยืนยันอีเมล →</a>
+        </div>
+        <div class="ef">AegisX Hospital Platform · อีเมลอัตโนมัติ ไม่ต้องตอบกลับ</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

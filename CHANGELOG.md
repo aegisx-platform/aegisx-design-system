@@ -6,7 +6,10 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-04-15
+
 ### Added
+- "Logo in Context" mockups page (`site-src/mockups.html`) — login, dashboard shell, marketing hero, mobile splash/home, transactional email. Build wires it into the preview site via `site-src/` copy step.
 - Typography spec (`specs/AEGISX-TYPOGRAPHY.md`)
 - Spacing / radius / shadow scale spec (`specs/AEGISX-SPACING.md`)
 - Dark-mode spec (`specs/AEGISX-DARK-MODE.md`) + dark token overrides (`tokens/aegisx-tokens-dark.json`)
