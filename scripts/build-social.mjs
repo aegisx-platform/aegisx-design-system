@@ -64,32 +64,64 @@ ${bgDefs(width, height)}
 </svg>`;
 }
 
-// Brand icon (icon-dark.svg) inner shapes, kept verbatim so the 3-layer
-// offset diamond stack — the AegisX signature — survives intact.
-const iconDarkRaw = readFileSync(resolve(root, 'logo/icon-dark.svg'), 'utf8');
-const iconInner = iconDarkRaw
-  .replace(/^[\s\S]*?<svg[^>]*>/, '')
-  .replace(/<\/svg>\s*$/, '');
-
 /**
- * The icon's native viewBox is 0 0 120 120 and its visual centroid is
- * already near (60, 60). The 3-layer stack extends slightly upper-right
- * (mid + outer shadow diamonds), pushing the bounding box out to about
- * (2, 1) → (117, 116). Use a viewBox padded equally on all sides so
- * every layer is visible AND the composite reads as centered. No shape
- * coordinates are altered — brand intact.
+ * Avatar-grade brand mark.
+ *
+ * Keeps the AegisX 3-layer diamond stack (solid + mid + outer shadow,
+ * all per the brand spec) but draws them in local coordinates centered
+ * at (0, 0) with a *tight* upper-right offset so the composite reads
+ * cohesively inside a circular avatar crop. The original icon-dark.svg
+ * uses wide rotation-pivot offsets that suit the marketing horizontal
+ * lockup but spread the layers apart in a square crop — that's why
+ * we can't just embed icon-dark verbatim here.
+ *
+ * Layers (each rotated 45° to form a diamond):
+ *   - Outer shadow: 70×70, offset (+5, -5), opacity 0.10
+ *   - Mid shadow:   76×76, offset (+2.5, -2.5), opacity 0.18
+ *   - Solid:        82×82, centered, navy fill + thin brand-blue stroke
+ * Plus the EKG pulse line (with glow) and peak dot, all drawn in the
+ * SAME local frame so the entire composition stays anchored.
  */
+function avatarMarkLocal() {
+  return `
+    <g>
+      <!-- outer shadow diamond -->
+      <rect x="-35" y="-35" width="70" height="70" rx="11"
+            fill="#60a5fa" opacity=".10"
+            transform="translate(5 -5) rotate(45)"/>
+      <!-- mid shadow diamond -->
+      <rect x="-38" y="-38" width="76" height="76" rx="13"
+            fill="#60a5fa" opacity=".18"
+            transform="translate(2.5 -2.5) rotate(45)"/>
+      <!-- solid diamond -->
+      <g transform="rotate(45)">
+        <rect x="-41" y="-41" width="82" height="82" rx="14" fill="#1e293b"/>
+        <rect x="-41" y="-41" width="82" height="82" rx="14"
+              fill="none" stroke="#3b82f6" stroke-width=".6" opacity=".35"/>
+      </g>
+      <!-- EKG glow + main line, centered around (0, 0) -->
+      <path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="4" fill="none"
+            d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
+      <path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" fill="none" opacity=".25"
+            d="M-32 8 h17 l5-28 l7 48 l5-29 l5 9 h17"/>
+      <!-- peak dot + halo -->
+      <circle cx="-5" cy="-20" r="4"   fill="#60a5fa"/>
+      <circle cx="-5" cy="-20" r="7"   fill="#3b82f6" opacity=".18"/>
+    </g>`;
+}
+
 function composeIconCenter({ width, height }) {
-  const PAD = 8;                                  // breathing room around all layers
-  const VB = `${-PAD} ${-PAD} ${120 + PAD * 2} ${120 + PAD * 2}`;
-  const innerSize = Math.min(width, height) * 0.82;
-  const ix = (width - innerSize) / 2;
-  const iy = (height - innerSize) / 2;
+  // The mark spans roughly (-58..+62, -62..+58) in local coords because
+  // of the upper-right offset; budget 130 units total + 22% padding.
+  const span = 130;
+  const scale = (Math.min(width, height) * 0.78) / span;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
 ${bgDefs(width, height)}
-  <svg x="${ix}" y="${iy}" width="${innerSize}" height="${innerSize}" viewBox="${VB}" preserveAspectRatio="xMidYMid meet">
-    ${iconInner}
-  </svg>
+  <g transform="translate(${width / 2} ${height / 2}) scale(${scale})">
+    ${avatarMarkLocal()}
+  </g>
 </svg>`;
 }
 
