@@ -85,6 +85,7 @@
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "svgo": "svgo --config=.svgo.config.js -rf icons/svg -rf logo -rf brand -rf icons/featured-error",
     "assets:logo": "./logo/build-assets.sh",
+    "assets:social": "node scripts/build-social.mjs",
     "check:icons": "node scripts/check-icons.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
     "gen:icon-data": "node scripts/generate-icon-data.mjs",

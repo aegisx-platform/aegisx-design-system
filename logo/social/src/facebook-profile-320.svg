@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+
+  <defs>
+    <radialGradient id="g1" cx="224" cy="64" r="144" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e293b" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="57.599999999999994" cy="272" r="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#312e81" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="320" fill="#0f172a"/>
+  <rect width="320" height="320" fill="url(#g1)"/>
+  <rect width="320" height="320" fill="url(#g2)"/>
+  <g opacity=".06" stroke="#fff" stroke-width="1" fill="none">
+    <rect x="229.632" y="22.65599999999999" width="39.93600000000001" height="69.888" rx="9.36" transform="rotate(45 249.60000000000002 57.599999999999994)"/><rect x="228.60800000000003" y="20.86399999999999" width="41.984" height="73.47200000000001" rx="9.84" transform="rotate(45 249.60000000000002 57.599999999999994)"/><rect x="227.58400000000003" y="19.07199999999999" width="44.032000000000004" height="77.05600000000001" rx="10.32" transform="rotate(45 249.60000000000002 57.599999999999994)"/>
+  </g>
+  <g opacity=".04" stroke="#6366f1" stroke-width="1.2" fill="none">
+    <path d="M0 198.4 L57.599999999999994 198.4 L70.4 160 L86.4 249.60000000000002 L96 198.4 L320 198.4"/>
+  </g>
+  <g transform="translate(64 64) scale(3)">
+    <rect width="60" height="60" x="-30" y="-30" fill="#60a5fa" opacity=".06" rx="12" transform="rotate(45 -16.113 111.326)"/><rect width="68" height="68" x="-34" y="-34" fill="#60a5fa" opacity=".1" rx="14" transform="rotate(45 -31.477 104.962)"/><g transform="rotate(45 -46.84 98.598)"><rect width="76" height="76" x="-38" y="-38" fill="#1e293b" rx="15"/><rect width="76" height="76" x="-38" y="-38" stroke="#3b82f6" stroke-width=".5" opacity=".3" rx="15"/></g><path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M25 62h19l5-26 7 45 5-27 5 8h21"/><path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round" d="M25 62h19l5-26 7 45 5-27 5 8h21" opacity=".2"/><circle cx="49" cy="36" r="3.5" fill="#60a5fa"/><circle cx="49" cy="36" r="6" fill="#3b82f6" opacity=".15"/>
+  </g>
+</svg>
