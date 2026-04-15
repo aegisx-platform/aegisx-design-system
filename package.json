@@ -1,0 +1,113 @@
+{
+  "name": "@aegisx-platform/design-system",
+  "version": "0.1.0",
+  "description": "AegisX Hospital Platform design system — icons, logo, brand assets, and specs.",
+  "license": "UNLICENSED",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aegisx-platform/aegisx-design-system.git"
+  },
+  "homepage": "https://github.com/aegisx-platform/aegisx-design-system#readme",
+  "bugs": {
+    "url": "https://github.com/aegisx-platform/aegisx-design-system/issues"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    },
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js",
+      "default": "./dist/icons/index.js"
+    },
+    "./icons/registry": {
+      "types": "./dist/icons/aegisx-icon-registry.d.ts",
+      "import": "./dist/icons/aegisx-icon-registry.js"
+    },
+    "./icons/color-map": {
+      "types": "./dist/icons/icon-color-map.d.ts",
+      "import": "./dist/icons/icon-color-map.js"
+    },
+    "./icons/diamond": {
+      "types": "./dist/icons/diamond-color-map.d.ts",
+      "import": "./dist/icons/diamond-color-map.js"
+    },
+    "./icons/diamond-component": {
+      "types": "./dist/icons/ax-diamond-icon.component.d.ts",
+      "import": "./dist/icons/ax-diamond-icon.component.js"
+    },
+    "./assets/icons/*.svg": "./icons/svg/*.svg",
+    "./assets/icons-sprite.svg": "./icons/svg-sprite/aegisx-icons.svg",
+    "./assets/featured-error/*.svg": "./icons/featured-error/*.svg",
+    "./assets/logo/*.svg": "./logo/*.svg",
+    "./assets/logo/png/*.png": "./logo/png/*.png",
+    "./assets/logo/favicons/*": "./logo/favicons/*",
+    "./assets/brand/bg.svg": "./brand/aegisx-brand-bg.svg",
+    "./styles/brand-bg.scss": "./brand/aegisx-brand-bg.scss",
+    "./specs/*": "./specs/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "icons/svg",
+    "icons/svg-sprite",
+    "icons/featured-error",
+    "logo/*.svg",
+    "logo/png",
+    "logo/favicons",
+    "brand/aegisx-brand-bg.svg",
+    "brand/aegisx-brand-bg.scss",
+    "specs",
+    "CLAUDE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "svgo": "svgo --config=.svgo.config.js -rf icons/svg -rf logo -rf brand -rf icons/featured-error",
+    "assets:logo": "./logo/build-assets.sh",
+    "check:icons": "node scripts/check-icons.mjs"
+  },
+  "keywords": [
+    "aegisx",
+    "design-system",
+    "icons",
+    "angular",
+    "material",
+    "hospital",
+    "healthcare"
+  ],
+  "peerDependencies": {
+    "@angular/core": ">=18.0.0",
+    "@angular/material": ">=18.0.0",
+    "@angular/platform-browser": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/core": { "optional": true },
+    "@angular/material": { "optional": true },
+    "@angular/platform-browser": { "optional": true }
+  },
+  "devDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/material": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "svgo": "^3.3.2",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

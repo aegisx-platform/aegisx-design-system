@@ -1,0 +1,11 @@
+scripts/
+.github/
+.svgo.config.js
+tsconfig*.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
+node_modules/
+*.tsbuildinfo
+logo/preview.html
+logo/build-assets.sh
+specs/*.pdf

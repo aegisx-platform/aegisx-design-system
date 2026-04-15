@@ -76,7 +76,7 @@ export type IconCategory = 'platform' | 'clinical' | 'diagnostics' | 'finance' |
 export function getIconClasses(icon: IconName, size: 'sm' | 'md' | 'lg' = 'md'): string {
   const { tailwind, bg } = ICON_COLOR_MAP[icon];
   const s = { sm: 'w-8 h-8 rounded-md', md: 'w-10 h-10 rounded-lg', lg: 'w-12 h-12 rounded-xl' };
-  return \`inline-flex items-center justify-center \${s[size]} \${bg} \${tailwind}\`;
+  return `inline-flex items-center justify-center ${s[size]} ${bg} ${tailwind}`;
 }
 
 export function getIconsByCategory(category: IconCategory): IconName[] {

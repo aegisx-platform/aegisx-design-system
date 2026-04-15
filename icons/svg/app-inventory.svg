@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-  <path d="M3.27 6.96L12 12.01l8.73-5.05"/>
-  <line x1="12" y1="22.08" x2="12" y2="12"/>
-  <circle cx="18.5" cy="18.5" r="4" fill="white" stroke-width="1.5"/>
-  <line x1="16.8" y1="18.5" x2="20.2" y2="18.5" stroke-width="1.8"/>
-  <line x1="18.5" y1="16.8" x2="18.5" y2="20.2" stroke-width="1.8"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/><circle cx="18.5" cy="18.5" r="4" fill="#fff"/><path stroke-width="1.8" d="M16.8 18.5h3.4m-1.7-1.7v3.4"/></svg>

@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile=false --ignore-scripts
+
+      - name: Build (tsc)
+        run: pnpm run build
+
+      - name: Icon integrity (report)
+        run: pnpm run check:icons
+
+      - name: SVG optimisation drift
+        run: |
+          pnpm exec svgo --config=.svgo.config.js -rf icons/svg
+          pnpm exec svgo --config=.svgo.config.js -rf logo
+          pnpm exec svgo --config=.svgo.config.js -rf brand
+          pnpm exec svgo --config=.svgo.config.js -rf icons/featured-error
+          if ! git diff --quiet; then
+            echo "::warning::SVGs are not fully optimized. Run 'pnpm run svgo' and commit."
+            git diff --stat
+          fi

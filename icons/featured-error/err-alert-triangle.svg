@@ -1,9 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
-  <circle cx="30" cy="30" r="30" fill="#FFFAEB"/>
-  <circle cx="30" cy="30" r="24" fill="#FEF0C7"/>
-  <g transform="translate(30,30)" stroke="#DC6803" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M-1.5,-7 L-9.5,6 C-10,7 -9.5,8 -8.5,8 L8.5,8 C9.5,8 10,7 9.5,6 L1.5,-7 C1,-8 -1,-8 -1.5,-7Z"/>
-    <line x1="0" y1="-3" x2="0" y2="2"/>
-    <circle cx="0" cy="5" r="0.6" fill="#DC6803" stroke="none"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#FFFAEB"/><circle cx="30" cy="30" r="24" fill="#FEF0C7"/><g stroke="#DC6803" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" transform="translate(30 30)"><path d="m-1.5-7-8 13c-.5 1 0 2 1 2h17c1 0 1.5-1 1-2l-8-13C1-8-1-8-1.5-7M0-3v5"/><circle cy="5" r=".6" fill="#DC6803" stroke="none"/></g></svg>

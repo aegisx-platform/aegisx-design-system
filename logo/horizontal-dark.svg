@@ -1,14 +1,1 @@
-<svg width="220" height="80" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(49,29) rotate(45)"><rect x="-19" y="-19" width="38" height="38" rx="8" fill="#60a5fa" opacity="0.06"/></g>
-  <g transform="translate(42,36) rotate(45)"><rect x="-21" y="-21" width="42" height="42" rx="9" fill="#60a5fa" opacity="0.10"/></g>
-  <g transform="translate(35,43) rotate(45)">
-    <rect x="-23" y="-23" width="46" height="46" rx="10" fill="#1e293b"/>
-    <rect x="-23" y="-23" width="46" height="46" rx="10" fill="none" stroke="#3b82f6" stroke-width="0.4" opacity="0.3"/>
-  </g>
-  <path d="M13 43 L27 43 L30 25 L35 56 L39 37 L42 43 L57 43" fill="none" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M13 43 L27 43 L30 25 L35 56 L39 37 L42 43 L57 43" fill="none" stroke="#93c5fd" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.20"/>
-  <circle cx="30" cy="25" r="2" fill="#60a5fa"/>
-  <circle cx="30" cy="25" r="3.5" fill="#3b82f6" opacity="0.15"/>
-  <text x="79" y="43" font-family="'IBM Plex Sans', sans-serif" font-size="32" font-weight="700" letter-spacing="0.06em" fill="#f1f5f9">AEGIS<tspan fill="#3b82f6">X</tspan></text>
-  <text x="79" y="61" font-family="'IBM Plex Sans', sans-serif" font-size="10" font-weight="400" letter-spacing="0.2em" fill="#64748b">HOSPITAL PLATFORM</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 220 80"><rect width="38" height="38" x="-19" y="-19" fill="#60a5fa" opacity=".06" rx="8" transform="rotate(45 -10.506 73.648)"/><rect width="42" height="42" x="-21" y="-21" fill="#60a5fa" opacity=".1" rx="9" transform="rotate(45 -22.456 68.698)"/><g transform="rotate(45 -34.406 63.749)"><rect width="46" height="46" x="-23" y="-23" fill="#1e293b" rx="10"/><rect width="46" height="46" x="-23" y="-23" stroke="#3b82f6" stroke-width=".4" opacity=".3" rx="10"/></g><path stroke="#3b82f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 43h14l3-18 5 31 4-19 3 6h15"/><path stroke="#93c5fd" stroke-linecap="round" stroke-linejoin="round" stroke-width=".7" d="M13 43h14l3-18 5 31 4-19 3 6h15" opacity=".2"/><circle cx="30" cy="25" r="2" fill="#60a5fa"/><circle cx="30" cy="25" r="3.5" fill="#3b82f6" opacity=".15"/><text x="79" y="43" fill="#f1f5f9" font-family="'IBM Plex Sans', sans-serif" font-size="32" font-weight="700" letter-spacing=".06em">AEGIS<tspan fill="#3b82f6">X</tspan></text><text x="79" y="61" fill="#64748b" font-family="'IBM Plex Sans', sans-serif" font-size="10" font-weight="400" letter-spacing=".2em">HOSPITAL PLATFORM</text></svg>
