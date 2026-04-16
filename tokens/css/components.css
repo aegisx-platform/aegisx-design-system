@@ -1015,7 +1015,63 @@
   border-top: var(--ax-border-width-thin) solid var(--ax-border-subtle);
   font-size: var(--ax-text-xs-size);
   color: var(--ax-text-secondary);
+  display: flex; align-items: center; gap: var(--ax-spacing-sm);
 }
+
+/* ── Dark navy variant (matches AegisX production app) ───── */
+.ax-sidenav--dark {
+  background: #0f172a;
+  border-right-color: rgba(255,255,255,.08);
+}
+.ax-sidenav--dark .ax-sidenav__brand {
+  border-bottom-color: rgba(255,255,255,.08);
+}
+.ax-sidenav--dark .ax-sidenav__brand img { filter: brightness(10); }
+.ax-sidenav--dark .ax-sidenav__section {
+  color: rgba(255,255,255,.35);
+}
+.ax-sidenav--dark .ax-sidenav__item {
+  color: rgba(255,255,255,.6);
+  border-left: 2px solid transparent;
+  margin: 1px 0;
+  border-radius: 0;
+  padding: var(--ax-spacing-sm) var(--ax-spacing-lg);
+}
+.ax-sidenav--dark .ax-sidenav__item:hover {
+  color: #fff;
+  background: rgba(255,255,255,.06);
+}
+.ax-sidenav--dark .ax-sidenav__item.active {
+  color: #fff;
+  background: rgba(99,102,241,.18);
+  border-left-color: #818cf8;
+}
+.ax-sidenav--dark .ax-sidenav__footer {
+  border-top-color: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.5);
+}
+
+/* ── Rail variant (icon-only collapsed, ~56px) ───────────── */
+.ax-sidenav--rail {
+  width: 56px;
+  padding: var(--ax-spacing-md) var(--ax-spacing-xs);
+  align-items: center;
+}
+.ax-sidenav--rail .ax-sidenav__brand { padding: var(--ax-spacing-md) 0; justify-content: center; }
+.ax-sidenav--rail .ax-sidenav__brand img { height: 24px; }
+.ax-sidenav--rail .ax-sidenav__brand span { display: none; }
+.ax-sidenav--rail .ax-sidenav__section { display: none; }
+.ax-sidenav--rail .ax-sidenav__item {
+  justify-content: center;
+  padding: var(--ax-spacing-sm);
+  border-radius: var(--ax-radius-md);
+  border-left: none;
+  margin: 2px 0;
+  width: 40px; height: 40px;
+}
+.ax-sidenav--rail .ax-sidenav__item span:not(.ax-dot) { display: none; }
+.ax-sidenav--rail .ax-sidenav__footer { justify-content: center; }
+.ax-sidenav--rail .ax-sidenav__footer > *:not(:first-child) { display: none; }
 
 /* ────────────────────────────────────────────────────────────
  * ACCORDION  ·  mat-expansion-panel
