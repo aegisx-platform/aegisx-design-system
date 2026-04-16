@@ -5,65 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AegisX Design System — Navigation</title>
   <link rel="icon" href="../assets/logo/favicons/favicon.ico" />
-  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="../tokens/css/tokens.css" />
+  <link rel="stylesheet" href="_shared.css" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body { font: 14px/1.55 var(--ax-font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); background: var(--ax-background-page, #fafafa); color: #0f172a; }
-
-    .page-layout { display: flex; height: 100vh; }
-    .page-sidebar {
-      width: 80px; min-width: 80px; height: 100vh; position: sticky; top: 0;
-      background: #0f172a; display: flex; flex-direction: column; align-items: center;
-      padding: var(--ax-spacing-lg, 1.5rem) 0; flex-shrink: 0; z-index: 30;
-    }
-    .page-sidebar__logo { width: 48px; height: 48px; margin-bottom: 4px; cursor: pointer; }
-    .page-sidebar__logo img { width: 100%; height: 100%; }
-    .page-sidebar__divider { width: 46px; height: 1px; background: rgba(148,163,184,0.15); margin: 10px 0; }
-    .page-sidebar__btn {
-      width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center;
-      justify-content: center; border: none; cursor: pointer; background: transparent;
-      color: #94a3b8; transition: all 150ms; position: relative; text-decoration: none;
-    }
-    .page-sidebar__btn:hover { background: rgba(148,163,184,0.12); color: #cbd5e1; text-decoration: none; }
-    .page-sidebar__btn--active { background: rgba(59,130,246,0.2); color: #3b82f6; }
-    .page-sidebar__btn--active::before { content:''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 20px; background: #3b82f6; border-radius: 0 2px 2px 0; }
-    .page-sidebar__btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .page-sidebar__search { width: 46px; height: 34px; border-radius: 12px; border: 1px solid rgba(148,163,184,0.15); background: rgba(148,163,184,0.05); color: #94a3b8; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
-    .page-sidebar__search svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .page-sidebar__nav { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; overflow-y: auto; }
-    .page-sidebar__nav::-webkit-scrollbar { width: 0; }
-    .page-sidebar__bottom { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: auto; }
-    .page-sidebar__avatar { width: 38px; height: 38px; border-radius: 14px; background: linear-gradient(135deg,#3b82f6,#6366f1); border: 2px solid #0f172a; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
-    .page-main { flex: 1; min-width: 0; overflow: auto; }
-
+    /* ── Page-specific: demo header (not using shared page-head) ── */
     .demo-header { background: linear-gradient(180deg,#0f172a,#1e293b); color: #fff; padding: 36px 32px 44px; }
     .demo-header h1 { font-size: 24px; font-weight: 600; letter-spacing: -.01em; margin-bottom: 6px; }
     .demo-header p { opacity: .65; font-size: 13px; }
     .demo-header code { background: rgba(255,255,255,.1); color: #e4e4e7; padding: 1px 6px; border-radius: 6px; font-family: var(--ax-font-mono); font-size: .9em; }
+
+    /* ── Page-specific: demo sections ── */
     .demo-section { padding: 32px; max-width: 1280px; }
     .demo-section + .demo-section { padding-top: 0; }
     .demo-section h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
     .demo-section p.muted { color: #71717a; font-size: 13px; margin-bottom: 20px; }
     .demo-section h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #71717a; font-weight: 600; margin: 28px 0 12px; }
 
+    /* ── Page-specific: mode switch ── */
     .mode-switch { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
     .mode-switch button { padding: 8px 20px; border-radius: 999px; border: 1px solid #e4e4e7; background: #fff; color: #3f3f46; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 150ms; }
     .mode-switch button:hover { border-color: #d4d4d8; background: #f4f4f5; }
     .mode-switch button.active { background: var(--ax-brand-default,#3f51b5); color: #fff; border-color: var(--ax-brand-default,#3f51b5); }
+
+    /* ── Page-specific: accent color row ── */
     .accent-row { display: flex; gap: 8px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
     .accent-row span.label { font-size: 12px; color: #71717a; font-weight: 500; margin-right: 4px; }
     .accent-dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: all 150ms; }
     .accent-dot:hover { transform: scale(1.15); }
     .accent-dot.active { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.3); }
 
+    /* ── Page-specific: demo frame ── */
     .demo-frame { background: #eef1f5; border-radius: 12px; overflow: hidden; border: 1px solid #e4e4e7; position: relative; }
     .demo-frame--tall { height: 520px; }
 
+    /* ── Page-specific: spec table ── */
     .spec-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
     .spec-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #71717a; font-weight: 600; padding: 8px 12px; border-bottom: 1px solid #e4e4e7; }
     .spec-table td { padding: 8px 12px; font-size: 13px; border-bottom: 1px solid #f4f4f5; }
     .spec-table code { font-family: var(--ax-font-mono); font-size: 12px; background: #f4f4f5; padding: 2px 6px; border-radius: 4px; color: #3f3f46; }
+
+    /* ── Page-specific: color swatch ── */
     .swatch-sm { display: inline-block; width: 18px; height: 18px; border-radius: 4px; vertical-align: middle; margin-right: 6px; border: 1px solid rgba(0,0,0,0.06); }
   </style>
 </head>
@@ -76,7 +57,7 @@
     <button class="page-sidebar__search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
     <div class="page-sidebar__divider" style="background:rgba(148,163,184,0.1)"></div>
     <nav class="page-sidebar__nav">
-      <a href="preview.html" class="page-sidebar__btn" title="Tokens"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></a>
+      <a href="tokens.html" class="page-sidebar__btn" title="Tokens"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></a>
       <a href="components.html" class="page-sidebar__btn" title="Components"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a>
       <a href="navigation.html" class="page-sidebar__btn page-sidebar__btn--active" title="Navigation"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg></a>
       <a href="a11y.html" class="page-sidebar__btn" title="Accessibility"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></a>

@@ -21,13 +21,17 @@ cpSync(resolve(root, 'icons/featured-error'), resolve(out, 'assets/featured-erro
 cpSync(resolve(root, 'logo'), resolve(out, 'assets/logo'), { recursive: true });
 cpSync(resolve(root, 'brand'), resolve(out, 'assets/brand'), { recursive: true });
 
-// Tokens preview pages + their CSS/SCSS sources + setup docs
+// Pages — all HTML preview pages live in pages/, served under site/pages/
+mkdirSync(resolve(out, 'pages'), { recursive: true });
+const pageFiles = readdirSync(resolve(root, 'pages')).filter(f => f.endsWith('.html') || f.endsWith('.css'));
+for (const f of pageFiles) {
+  cpSync(resolve(root, 'pages', f), resolve(out, 'pages', f));
+}
+// Copy tokens.html as the default index for /pages/
+cpSync(resolve(root, 'pages/tokens.html'), resolve(out, 'pages/index.html'));
+
+// Token data (CSS, SCSS, DTCG) — used by pages via ../tokens/css/tokens.css
 mkdirSync(resolve(out, 'tokens'), { recursive: true });
-cpSync(resolve(root, 'tokens/preview.html'),     resolve(out, 'tokens/index.html'));
-cpSync(resolve(root, 'tokens/preview.html'),     resolve(out, 'tokens/preview.html'));
-cpSync(resolve(root, 'tokens/components.html'),  resolve(out, 'tokens/components.html'));
-cpSync(resolve(root, 'tokens/a11y.html'),        resolve(out, 'tokens/a11y.html'));
-cpSync(resolve(root, 'tokens/navigation.html'),  resolve(out, 'tokens/navigation.html'));
 cpSync(resolve(root, 'tokens/css'),              resolve(out, 'tokens/css'),  { recursive: true });
 cpSync(resolve(root, 'tokens/scss'),             resolve(out, 'tokens/scss'), { recursive: true });
 cpSync(resolve(root, 'tokens/ANGULAR-MATERIAL-SETUP.md'), resolve(out, 'tokens/ANGULAR-MATERIAL-SETUP.md'));
@@ -328,10 +332,10 @@ const html = `<!doctype html>
     <a href="#brand">Brand</a>
     <a href="#developers">Developers</a>
     <a href="#designers">Designers</a>
-    <a href="tokens/">Tokens ↗</a>
-    <a href="tokens/components.html">Components ↗</a>
-    <a href="tokens/navigation.html">Navigation ↗</a>
-    <a href="tokens/a11y.html">A11y ↗</a>
+    <a href="pages/">Tokens ↗</a>
+    <a href="pages/components.html">Components ↗</a>
+    <a href="pages/navigation.html">Navigation ↗</a>
+    <a href="pages/a11y.html">A11y ↗</a>
   </nav>
   <span class="ax-topbar__version">${pkg.name}@${pkg.version}</span>
 </header>
@@ -404,7 +408,7 @@ const html = `<!doctype html>
             <span style="background:var(--ax-success-default)"></span><span style="background:var(--ax-warning-default)"></span><span style="background:var(--ax-error-default)"></span><span style="background:var(--ax-info-default)"></span>
           </div>
         </div>
-        <a class="more" href="tokens/preview.html#palette">Explore palette →</a>
+        <a class="more" href="pages/tokens.html#palette">Explore palette →</a>
       </div>
 
       <div class="ax-found-card">
@@ -417,7 +421,7 @@ const html = `<!doctype html>
             <span class="t3">Body 14px · บอดี้ภาษาไทย</span>
           </div>
         </div>
-        <a class="more" href="tokens/preview.html#typography">Explore typography →</a>
+        <a class="more" href="pages/tokens.html#typography">Explore typography →</a>
       </div>
 
       <div class="ax-found-card">
@@ -433,7 +437,7 @@ const html = `<!doctype html>
             <div style="width:100%"></div>
           </div>
         </div>
-        <a class="more" href="tokens/preview.html#spacing">Explore spacing →</a>
+        <a class="more" href="pages/tokens.html#spacing">Explore spacing →</a>
       </div>
 
       <div class="ax-found-card">
@@ -446,7 +450,7 @@ const html = `<!doctype html>
             <div style="box-shadow: var(--ax-shadow-lg)"></div>
           </div>
         </div>
-        <a class="more" href="tokens/preview.html#shadow">Explore elevation →</a>
+        <a class="more" href="pages/tokens.html#shadow">Explore elevation →</a>
       </div>
     </div>
   </section>
@@ -490,7 +494,7 @@ const html = `<!doctype html>
         </div>
       </div>
     </div>
-    <p style="margin-top: var(--ax-spacing-md); font-size: var(--ax-text-sm-size); color: var(--ax-text-secondary);">→ View all components in the <a href="tokens/components.html">component preview</a></p>
+    <p style="margin-top: var(--ax-spacing-md); font-size: var(--ax-text-sm-size); color: var(--ax-text-secondary);">→ View all components in the <a href="pages/components.html">component preview</a></p>
   </section>
 
   <!-- ─────────── Brand ─────────── -->
@@ -594,8 +598,8 @@ File: tokens/aegisx-tokens-dark.json  <span class="c"># dark overrides</span>
         <ul>
           <li><a href="AEGISX-DESIGN-PRINCIPLES.md">Design principles</a> — five pillars + domain-token policy</li>
           <li><a href="tokens/AEGISX-TOKENS-SPEC.md">Tokens spec</a> — three-layer architecture</li>
-          <li><a href="tokens/preview.html">Live token preview</a> — palette, typography, spacing</li>
-          <li><a href="tokens/a11y.html">A11y audit</a> — WCAG contrast for every pair</li>
+          <li><a href="pages/tokens.html">Live token preview</a> — palette, typography, spacing</li>
+          <li><a href="pages/a11y.html">A11y audit</a> — WCAG contrast for every pair</li>
         </ul>
 
         <p style="margin: 0; font-size: var(--ax-text-sm-size);">→ Brand assets in the <a href="#brand">Brand section</a> above</p>
