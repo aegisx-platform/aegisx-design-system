@@ -2,6 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Current state — read first when resuming
+
+- **Last shipped:** `@aegisx-platform/design-system@v0.3.1` published 2026-04-16, SHA `306d022`. All 3 GitHub workflows green (CI / Pages / Publish to GitHub Packages).
+- **What changed since v0.1.0:** v0.2 added `tokens/` directory; v0.3 BREAKING-realigned tokens to the `aegisx-ui-design` skill (Tailwind Zinc + Indigo, IBM Plex Sans Thai, 14px clinical body base, Untitled UI type scale, 3-layer architecture, Angular Material v3 bridge, runtime WCAG audit page, AEGISX-DESIGN-PRINCIPLES.md as rule 0); v0.3.1 added pre-commit hook + CI gate + npm packaging for tokens.
+- **`pnpm tokens:verify` reports zero drift** across 255 `--ax-*` tokens vs the DTCG source.
+- **What to do next:** read `TODO.md` at repo root — it's the prioritised work list. Update it as items move; do not let it rot.
+- **Critical hands-off:** user explicitly said do **NOT** touch `aegisx-starter-1` or `aegisx-ui` library until design-system is fully finalised here. Migration to consumer-side is parked.
+
 ## Repository Purpose
 
 This is a **design asset / design-system repo** for the AegisX Hospital Platform. It contains no build system, no `package.json`, and no application code — only source SVG assets, brand tokens, Angular integration snippets meant to be copied into consumer apps, and authoritative specs that downstream apps must conform to.
