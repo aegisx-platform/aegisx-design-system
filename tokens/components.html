@@ -86,7 +86,7 @@
   <p>Reusable component primitives built on top of <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">--ax-*</code> tokens. Copy <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">tokens/css/components.css</code> into your app alongside <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">tokens.css</code>.</p>
   <div class="row">
     <span class="badge">v0.1 · preview</span>
-    <span class="badge">10 components</span>
+    <span class="badge">24 components</span>
     <span class="badge">token-driven</span>
     <span class="spacer"></span>
     <div class="toggle" role="tablist" aria-label="Theme">
@@ -112,6 +112,15 @@
   <a href="#chips">Chip</a>
   <a href="#dialog">Dialog</a>
   <a href="#toast">Toast</a>
+  <a href="#avatar">Avatar</a>
+  <a href="#tabs">Tabs</a>
+  <a href="#pagination">Pagination</a>
+  <a href="#progress">Progress</a>
+  <a href="#toggle">Toggle</a>
+  <a href="#menu">Menu</a>
+  <a href="#stat">Stat</a>
+  <a href="#kv">KV</a>
+  <a href="#table">Table</a>
 </nav>
 
 <main>
@@ -324,9 +333,212 @@
     </div>
   </section>
 
+  <section class="block" id="avatar">
+    <h2>Avatar</h2>
+    <p class="muted">Initials or image. Four sizes + role-coded variants.</p>
+    <div class="demo">
+      <span class="ax-avatar ax-avatar--sm">SP</span>
+      <span class="ax-avatar ax-avatar--md">จร</span>
+      <span class="ax-avatar ax-avatar--lg">AX</span>
+      <span class="ax-avatar ax-avatar--xl">Dr</span>
+      <span class="ax-avatar ax-avatar--md ax-avatar--success">+</span>
+      <span class="ax-avatar ax-avatar--md ax-avatar--warning">!</span>
+      <span class="ax-avatar ax-avatar--md ax-avatar--error">X</span>
+    </div>
+  </section>
+
+  <section class="block" id="status-dot">
+    <h2>Status dot</h2>
+    <p class="muted">Inline indicator. Pair with text — never rely on color alone.</p>
+    <div class="demo">
+      <span style="display:flex;align-items:center;gap:6px"><span class="ax-dot ax-dot--success"></span> Active</span>
+      <span style="display:flex;align-items:center;gap:6px"><span class="ax-dot ax-dot--warning"></span> Idle</span>
+      <span style="display:flex;align-items:center;gap:6px"><span class="ax-dot ax-dot--error"></span> Offline</span>
+      <span style="display:flex;align-items:center;gap:6px"><span class="ax-dot"></span> Unknown</span>
+    </div>
+  </section>
+
+  <section class="block" id="tabs">
+    <h2>Tab bar</h2>
+    <p class="muted">Section navigation. Use <code>aria-selected</code> or <code>.active</code> for the current tab.</p>
+    <div class="demo stack">
+      <div class="ax-tabs">
+        <button class="ax-tabs__item active">OPD</button>
+        <button class="ax-tabs__item">IPD</button>
+        <button class="ax-tabs__item">Emergency</button>
+        <button class="ax-tabs__item">Lab</button>
+        <button class="ax-tabs__item">Pharmacy</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="breadcrumb">
+    <h2>Breadcrumb</h2>
+    <p class="muted">Hierarchy trail.</p>
+    <div class="demo stack">
+      <nav class="ax-breadcrumb">
+        <a href="#">Home</a>
+        <span class="ax-breadcrumb__sep">/</span>
+        <a href="#">Clinical</a>
+        <span class="ax-breadcrumb__sep">/</span>
+        <a href="#">OPD</a>
+        <span class="ax-breadcrumb__sep">/</span>
+        <span class="ax-breadcrumb__current">Patient HN-44821</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="block" id="pagination">
+    <h2>Pagination</h2>
+    <p class="muted">Table companion. Use <code>aria-current="page"</code> for active.</p>
+    <div class="demo">
+      <nav class="ax-pagination">
+        <button class="ax-pagination__btn" disabled>&lt;</button>
+        <button class="ax-pagination__btn active" aria-current="page">1</button>
+        <button class="ax-pagination__btn">2</button>
+        <button class="ax-pagination__btn">3</button>
+        <span class="ax-pagination__info">...</span>
+        <button class="ax-pagination__btn">12</button>
+        <button class="ax-pagination__btn">&gt;</button>
+      </nav>
+    </div>
+  </section>
+
+  <section class="block" id="progress">
+    <h2>Progress bar</h2>
+    <p class="muted">Determinate progress. Role-coded variants for status.</p>
+    <div class="demo stack" style="gap:var(--ax-spacing-lg)">
+      <div style="display:flex;align-items:center;gap:var(--ax-spacing-md)"><span style="min-width:40px;font-family:var(--ax-font-mono);font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary)">72%</span><div class="ax-progress"><div class="ax-progress__bar" style="width:72%"></div></div></div>
+      <div style="display:flex;align-items:center;gap:var(--ax-spacing-md)"><span style="min-width:40px;font-family:var(--ax-font-mono);font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary)">100%</span><div class="ax-progress ax-progress--success"><div class="ax-progress__bar" style="width:100%"></div></div></div>
+      <div style="display:flex;align-items:center;gap:var(--ax-spacing-md)"><span style="min-width:40px;font-family:var(--ax-font-mono);font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary)">45%</span><div class="ax-progress ax-progress--warning ax-progress--lg"><div class="ax-progress__bar" style="width:45%"></div></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="spinner">
+    <h2>Spinner</h2>
+    <p class="muted">Indeterminate loading. Three sizes.</p>
+    <div class="demo">
+      <span class="ax-spinner ax-spinner--sm"></span>
+      <span class="ax-spinner"></span>
+      <span class="ax-spinner ax-spinner--lg"></span>
+    </div>
+  </section>
+
+  <section class="block" id="toggle">
+    <h2>Toggle</h2>
+    <p class="muted">Boolean on/off switch.</p>
+    <div class="demo">
+      <label class="ax-toggle"><input type="checkbox" checked><span class="ax-toggle__track"></span><span class="ax-toggle__thumb"></span></label>
+      <label class="ax-toggle"><input type="checkbox"><span class="ax-toggle__track"></span><span class="ax-toggle__thumb"></span></label>
+      <label class="ax-toggle"><input type="checkbox" disabled><span class="ax-toggle__track"></span><span class="ax-toggle__thumb"></span></label>
+    </div>
+  </section>
+
+  <section class="block" id="tooltip">
+    <h2>Tooltip</h2>
+    <p class="muted">CSS-only via <code>data-tooltip</code> attribute. Hover the buttons below.</p>
+    <div class="demo">
+      <button class="ax-button ax-button--secondary" data-tooltip="View patient record">Hover me</button>
+      <button class="ax-button ax-button--outline" data-tooltip="ดูรายละเอียด">ภาษาไทย</button>
+      <span class="ax-badge ax-badge--soft-info" data-tooltip="4 items pending review">Draft (4)</span>
+    </div>
+  </section>
+
+  <section class="block" id="menu">
+    <h2>Dropdown menu</h2>
+    <p class="muted">Action menu. Wire focus-trap and keyboard navigation in your framework.</p>
+    <div class="demo grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="ax-menu">
+        <div class="ax-menu__label">Actions</div>
+        <button class="ax-menu__item">View record</button>
+        <button class="ax-menu__item">Edit details</button>
+        <button class="ax-menu__item">Print summary</button>
+        <div class="ax-menu__sep"></div>
+        <button class="ax-menu__item ax-menu__item--danger">Delete</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="stat">
+    <h2>Stat card</h2>
+    <p class="muted">Dashboard KPI tile. Number + label + trend.</p>
+    <div class="demo grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="ax-stat">
+        <span class="ax-stat__label">Patients today</span>
+        <span class="ax-stat__value">284</span>
+        <span class="ax-stat__trend ax-stat__trend--up">+12.3%</span>
+      </div>
+      <div class="ax-stat">
+        <span class="ax-stat__label">Bed occupancy</span>
+        <span class="ax-stat__value">84/120</span>
+        <span class="ax-stat__trend ax-stat__trend--flat">70%</span>
+      </div>
+      <div class="ax-stat">
+        <span class="ax-stat__label">Claim rejection</span>
+        <span class="ax-stat__value">3.2%</span>
+        <span class="ax-stat__trend ax-stat__trend--down">-0.8%</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="kv">
+    <h2>Key-value</h2>
+    <p class="muted">Patient record layout. Striped variant via <code>.ax-kv--striped</code>.</p>
+    <div class="demo stack">
+      <div class="ax-kv ax-kv--striped">
+        <span class="ax-kv__key">HN</span>    <span class="ax-kv__val">44821</span>
+        <span class="ax-kv__key">ชื่อ-สกุล</span> <span class="ax-kv__val">สมชาย ประเสริฐ</span>
+        <span class="ax-kv__key">Ward</span>  <span class="ax-kv__val">IPD 5A · Bed 12</span>
+        <span class="ax-kv__key">Attending</span> <span class="ax-kv__val">Dr. Chaiyaphum Mongkol</span>
+        <span class="ax-kv__key">Diagnosis</span> <span class="ax-kv__val">DM type 2, uncontrolled (E11.65)</span>
+        <span class="ax-kv__key">Insurance</span> <span class="ax-kv__val"><span class="ax-badge ax-badge--soft-success">UC</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="empty">
+    <h2>Empty state</h2>
+    <p class="muted">No data, no results. Icon + title + description + optional CTA.</p>
+    <div class="demo" style="display:block; border:none; background: var(--ax-background-default); border-radius: var(--ax-radius-lg); border: 1px solid var(--ax-border-default);">
+      <div class="ax-empty">
+        <div class="ax-empty__icon">?</div>
+        <h3 class="ax-empty__title">ไม่พบผลการค้นหา</h3>
+        <p class="ax-empty__desc">ลองเปลี่ยนคำค้นหาหรือลบตัวกรองบางรายการ</p>
+        <button class="ax-button ax-button--outline ax-button--sm">ล้างตัวกรอง</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="divider">
+    <h2>Divider</h2>
+    <p class="muted">Section separator. Subtle variant for tight spacing.</p>
+    <div class="demo stack">
+      <span style="color:var(--ax-text-secondary)">Content above</span>
+      <hr class="ax-divider ax-divider--sm">
+      <span style="color:var(--ax-text-secondary)">Subtle divider (--sm)</span>
+      <hr class="ax-divider">
+      <span style="color:var(--ax-text-secondary)">Default divider</span>
+    </div>
+  </section>
+
+  <section class="block" id="table">
+    <h2>Table</h2>
+    <p class="muted">Untitled UI pattern. <code>text-xs uppercase</code> header, <code>text-sm</code> body, hover row.</p>
+    <div class="demo" style="display:block; padding:0; overflow:hidden;">
+      <table class="ax-table">
+        <thead><tr><th>HN</th><th>ชื่อ-สกุล</th><th>Ward</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>44821</td><td>สมชาย ประเสริฐ</td><td>IPD 5A</td><td><span class="ax-badge ax-badge--soft-success">Active</span></td></tr>
+          <tr><td>44822</td><td>สมศรี วิชัยดิษฐ์</td><td>OPD</td><td><span class="ax-badge ax-badge--soft-warning">Pending</span></td></tr>
+          <tr><td>44823</td><td>อนุชา แก้วมณี</td><td>ER</td><td><span class="ax-badge ax-badge--soft-error">Critical</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="block" id="compose">
     <h2>Composition · Login form</h2>
-    <p class="muted">All component primitives composed into a real screen using only <code>--ax-*</code> tokens.</p>
+    <p class="muted">Primitives composed into a real screen.</p>
     <div class="demo center" style="padding: 40px 24px; background: var(--ax-background-muted);">
       <div class="ax-card ax-card--floating" style="max-width: 380px; width: 100%;">
         <div class="ax-card__header" style="text-align: center;">
