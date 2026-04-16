@@ -17,8 +17,17 @@
  *   - Progress bar uses transform (not width) for GPU compositing
  */
 
+/* ════════════════════════════════════════════════════════════════
+ * MATERIAL-ALIGNED COMPONENTS
+ * These mirror Angular Material v3 components. Design values (radius,
+ * padding, color) match what the Material bridge produces on mat-* elements.
+ * In Angular apps, prefer mat-* + bridge; use .ax-* for non-Angular contexts.
+ * See COMPONENT-MAP.md for full mapping.
+ * ════════════════════════════════════════════════════════════════ */
+
 /* ────────────────────────────────────────────────────────────
- * BUTTON  ·  radius-sm (6px) per Untitled UI convention
+ * BUTTON  ·  mat-button / mat-flat-button / mat-stroked-button
+ * radius-sm (6px) · ring-based border (Untitled UI)
  * ──────────────────────────────────────────────────────────── */
 .ax-button {
   display: inline-flex;
@@ -102,7 +111,8 @@
 .ax-button--outline:hover { background: var(--ax-brand-faint); }
 
 /* ────────────────────────────────────────────────────────────
- * INPUT  ·  radius-sm · focus ring via --ax-input-ring-focus
+ * INPUT  ·  mat-form-field (appearance=outline)
+ * radius-sm · ring-based border · autofill handling
  * ──────────────────────────────────────────────────────────── */
 .ax-field { display: flex; flex-direction: column; gap: var(--ax-spacing-xs); }
 .ax-field__label {
@@ -178,7 +188,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * CARD  ·  radius-lg (12px) · subtle border + shadow-sm
+ * CARD  ·  mat-card · radius-lg (12px) · ring border + shadow-sm
  * ──────────────────────────────────────────────────────────── */
 .ax-card {
   background: var(--ax-background-default);
@@ -322,7 +332,7 @@
 .ax-chip__close:hover { background: var(--ax-border-default); color: var(--ax-text-heading); }
 
 /* ────────────────────────────────────────────────────────────
- * DIALOG / MODAL  ·  radius-lg (12px)
+ * DIALOG  ·  mat-dialog · radius-lg (12px) · elevation-3
  * ──────────────────────────────────────────────────────────── */
 .ax-dialog {
   background: var(--ax-background-default);
@@ -363,7 +373,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * TOAST
+ * TOAST  ·  mat-snack-bar · role-coded left border
  * ──────────────────────────────────────────────────────────── */
 .ax-toast {
   display: flex;
@@ -404,7 +414,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * TABLE · Untitled UI pattern
+ * TABLE  ·  mat-table · Untitled UI header pattern
  * ──────────────────────────────────────────────────────────── */
 .ax-table {
   width: 100%;
@@ -433,6 +443,12 @@
   transition: background-color var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
 .ax-table tbody tr:hover { background: var(--ax-table-row-hover-bg); }
+
+/* ════════════════════════════════════════════════════════════════
+ * AEGISX-CUSTOM COMPONENTS
+ * No Angular Material v3 equivalent. Pure AegisX patterns.
+ * Use .ax-* classes directly in any context.
+ * ════════════════════════════════════════════════════════════════ */
 
 /* ────────────────────────────────────────────────────────────
  * AVATAR · initials fallback for patient/staff photos
@@ -703,7 +719,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * TOGGLE · on/off switch
+ * TOGGLE  ·  mat-slide-toggle · on/off switch
  * ──────────────────────────────────────────────────────────── */
 .ax-toggle {
   position: relative;
@@ -733,7 +749,7 @@
 .ax-toggle input:disabled ~ .ax-toggle__track { opacity: 0.5; cursor: not-allowed; }
 
 /* ────────────────────────────────────────────────────────────
- * TOOLTIP · CSS-only (position via data-tooltip)
+ * TOOLTIP  ·  mat-tooltip · CSS-only via data-tooltip attr
  * ──────────────────────────────────────────────────────────── */
 [data-tooltip] {
   position: relative;
@@ -762,7 +778,7 @@
 [data-tooltip]:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
 
 /* ────────────────────────────────────────────────────────────
- * DROPDOWN MENU
+ * DROPDOWN MENU  ·  mat-menu
  * ──────────────────────────────────────────────────────────── */
 .ax-menu {
   background: var(--ax-background-default);
@@ -793,7 +809,7 @@
 .ax-menu__label { padding: var(--ax-spacing-sm) var(--ax-spacing-lg); font-size: var(--ax-text-xs-size); font-weight: var(--ax-font-weight-medium); color: var(--ax-text-secondary); text-transform: uppercase; letter-spacing: var(--ax-tracking-widest); }
 
 /* ────────────────────────────────────────────────────────────
- * CHECKBOX · styled, hides native input
+ * CHECKBOX  ·  mat-checkbox · styled, hides native input
  * ──────────────────────────────────────────────────────────── */
 .ax-checkbox {
   display: inline-flex;
@@ -821,7 +837,7 @@
 .ax-checkbox input:disabled ~ span { color: var(--ax-text-disabled); }
 
 /* ────────────────────────────────────────────────────────────
- * RADIO · styled, hides native input
+ * RADIO  ·  mat-radio-button · styled, hides native input
  * ──────────────────────────────────────────────────────────── */
 .ax-radio {
   display: inline-flex;
@@ -854,7 +870,7 @@
 .ax-radio input:disabled ~ .ax-radio__dot { opacity: 0.4; cursor: not-allowed; }
 
 /* ────────────────────────────────────────────────────────────
- * SELECT INPUT · styled wrapper (native <select> inside)
+ * SELECT  ·  mat-select · styled wrapper (native <select>)
  * ──────────────────────────────────────────────────────────── */
 .ax-select {
   position: relative;
@@ -911,7 +927,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * SIDEBAR NAV · vertical app navigation
+ * SIDEBAR NAV  ·  mat-sidenav · vertical app navigation
  * ──────────────────────────────────────────────────────────── */
 .ax-sidenav {
   width: 240px;
@@ -961,7 +977,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * ACCORDION / EXPANSION PANEL
+ * ACCORDION  ·  mat-expansion-panel
  * ──────────────────────────────────────────────────────────── */
 .ax-accordion {
   border: var(--ax-border-width-thin) solid var(--ax-border-default);
@@ -1163,7 +1179,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * DRAWER · slide-out panel
+ * DRAWER  ·  mat-drawer / mat-bottom-sheet · slide-out panel
  * ──────────────────────────────────────────────────────────── */
 .ax-drawer {
   position: fixed;
@@ -1627,7 +1643,7 @@
  * ════════════════════════════════════════════════════════════════ */
 
 /* ────────────────────────────────────────────────────────────
- * BUTTON GROUP · joined buttons sharing borders
+ * BUTTON GROUP  ·  mat-button-toggle-group · joined buttons
  * ──────────────────────────────────────────────────────────── */
 .ax-button-group {
   display: inline-flex;
@@ -1653,7 +1669,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * SLIDER · styled range input
+ * SLIDER  ·  mat-slider · styled range input
  * ──────────────────────────────────────────────────────────── */
 .ax-slider {
   width: 100%;
