@@ -563,7 +563,7 @@
     <p class="muted">Input with icon prefix via <code>.ax-search</code> wrapper.</p>
     <div class="demo" style="max-width:400px;">
       <div class="ax-search" style="flex:1">
-        <span class="ax-search__icon">⌕</span>
+        <span class="ax-search__icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><circle cx="11" cy="11" r="7.5"/><path stroke-linecap="round" d="m16.5 16.5 4 4"/></svg></span>
         <input class="ax-input" placeholder="ค้นหาผู้ป่วย (HN, ชื่อ)..." />
       </div>
     </div>
@@ -895,7 +895,7 @@ const { style } = getIconStyle('pharmacy', 'md');</div>
     <p class="muted">Search modal visual shell. Wire keyboard nav in framework.</p>
     <div class="demo" style="display:block;padding:var(--ax-spacing-xl);background:rgba(0,0,0,0.06);border-radius:var(--ax-radius-lg);border:none;">
       <div class="ax-command" style="margin:0 auto;">
-        <div class="ax-command__input"><span style="color:var(--ax-text-subtle)">⌕</span><input placeholder="Search patients, modules, actions…"><span class="ax-kbd">⌘K</span></div>
+        <div class="ax-command__input"><span style="color:var(--ax-text-subtle);display:flex;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><circle cx="11" cy="11" r="7.5"/><path stroke-linecap="round" d="m16.5 16.5 4 4"/></svg></span><input placeholder="Search patients, modules, actions…"><span class="ax-kbd">⌘K</span></div>
         <div class="ax-command__list">
           <div class="ax-command__item highlighted">Registration <span class="ax-kbd">⌘1</span></div>
           <div class="ax-command__item">OPD Queue</div>

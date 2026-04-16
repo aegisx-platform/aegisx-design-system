@@ -960,10 +960,12 @@
   left: var(--ax-spacing-md);
   top: 50%;
   transform: translateY(-50%);
+  width: 16px; height: 16px;
   color: var(--ax-text-subtle);
-  font-size: 16px;
   pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
 }
+.ax-search__icon svg { width: 16px; height: 16px; }
 
 /* ────────────────────────────────────────────────────────────
  * SIDEBAR NAV  ·  mat-sidenav · vertical app navigation
