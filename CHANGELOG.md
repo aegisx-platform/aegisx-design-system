@@ -6,6 +6,26 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-04-16
+
+### Added
+- **Pre-commit hook** (`.githooks/pre-commit`) — auto-runs `pnpm tokens:verify`, `pnpm check:icons`, and `tsc --noEmit` only on relevant changed files. Activated automatically via `pnpm install` (`prepare` script sets `core.hooksPath`).
+- **CI gates** — `.github/workflows/ci.yml` now runs `pnpm tokens:verify` (DTCG ↔ tokens.css drift) and `pnpm check:contrast` (WCAG audit) on every push and PR.
+- **`scripts/verify-tokens.mjs`** — semantic diff between canonical `tokens.css` and DTCG-generated `tokens.generated.css`. Fails CI on missing or drifted `--ax-*` properties.
+- **`getIconStyle(name, size, mode)`** API in `icons/icon-color-map.ts` — returns inline style + class strings using hex directly, avoiding Tailwind utility classes that don't flip with the theme.
+
+### Changed
+- **Token build pipeline** emits `var(--ax-color-*)` references (not literal hex) for role palettes and component tokens, so palette edits cascade without re-running the generator on every consumer.
+- **`borderWidth` DTCG** — `default` 2px → 1px, `thick` 4px → 2px to match the v0.3 "1px dominant" rule.
+- **`spacing` DTCG** — dropped the `container` group that collided with `breakpoint.container` max-widths; horizontal page padding uses `--ax-inset-*` instead.
+- **Package files / exports** — `package.json` now bundles `tokens/css`, `tokens/scss`, `tokens/dtcg`, `AEGISX-DESIGN-PRINCIPLES.md`, and exposes them via subpath exports (`@aegisx-platform/design-system/tokens/css/tokens.css`, `…/scss/material-bridge`, etc.).
+
+### Deprecated
+- `getIconClasses()` — kept for Tailwind-using consumers but marked `@deprecated` in JSDoc; prefer `getIconStyle()` in new code.
+
+### Verification
+- `pnpm tokens:verify` reports **255 tokens match DTCG source · zero drift**.
+
 ## [0.3.0] — 2026-04-15
 
 ### Added

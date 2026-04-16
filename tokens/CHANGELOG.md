@@ -6,6 +6,19 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). T
 
 ---
 
+## [0.3.1] — 2026-04-16 · Zero-drift pipeline
+
+### Added
+- `scripts/verify-tokens.mjs` — semantic diff between canonical `tokens.css` and DTCG-generated `tokens.generated.css`. Wired as `pnpm tokens:verify` in CI + pre-commit hook.
+- `tokens/dtcg/border-width.json` updated — `default` 1px (was 2px), `thick` 2px (was 4px) per v0.3 "1px dominant" rule.
+
+### Changed
+- Generator emits `var(--ax-color-*)` references (not literal hex) for role palettes and component tokens.
+- Removed the `spacing.container` group that collided with `breakpoint.container`.
+
+### Verified
+- 255 `--ax-*` tokens match DTCG source · zero drift.
+
 ## [0.3.0] — 2026-04-15 · Design discipline
 
 ### Added

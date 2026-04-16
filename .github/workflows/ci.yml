@@ -30,6 +30,12 @@ jobs:
       - name: Icon integrity (report)
         run: pnpm run check:icons
 
+      - name: Tokens drift — DTCG vs tokens.css
+        run: pnpm run tokens:verify
+
+      - name: A11y — WCAG contrast audit
+        run: pnpm run check:contrast
+
       - name: SVG optimisation drift
         run: |
           pnpm exec svgo --config=.svgo.config.js -rf icons/svg

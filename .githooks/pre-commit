@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# AegisX design-system pre-commit hook
+# Runs zero-dep checks before allowing the commit.
+# Activate once per clone:  git config core.hooksPath .githooks
+# (Done automatically by `pnpm install` via the prepare script.)
+
+set -e
+
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+RESET='\033[0m'
+
+run() {
+  echo -e "${YELLOW}▸${RESET} $1"
+  shift
+  if "$@"; then
+    echo -e "  ${GREEN}✓${RESET}"
+  else
+    echo -e "  ${RED}✗ failed${RESET}"
+    exit 1
+  fi
+}
+
+# Only run if relevant files changed.
+changed=$(git diff --cached --name-only --diff-filter=ACM)
+
+if echo "$changed" | grep -qE '^(tokens/|specs/|icons/icon-color-map\.ts|scripts/build-tokens\.mjs)'; then
+  run "tokens drift gate" pnpm tokens:verify
+fi
+
+if echo "$changed" | grep -qE '^icons/'; then
+  run "icon catalog integrity" pnpm check:icons
+fi
+
+if echo "$changed" | grep -qE '\.(ts|tsx)$'; then
+  run "typecheck" pnpm exec tsc --noEmit -p tsconfig.build.json
+fi
+
+echo -e "${GREEN}✓ pre-commit checks passed${RESET}"

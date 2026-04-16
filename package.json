@@ -1,6 +1,6 @@
 {
   "name": "@aegisx-platform/design-system",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "AegisX Hospital Platform design system — icons, logo, brand assets, and specs.",
   "license": "UNLICENSED",
   "private": false,
@@ -63,6 +63,15 @@
     "./assets/brand/bg.svg": "./brand/aegisx-brand-bg.svg",
     "./styles/brand-bg.scss": "./brand/aegisx-brand-bg.scss",
     "./specs/*": "./specs/*",
+    "./tokens/css/tokens.css":      "./tokens/css/tokens.css",
+    "./tokens/css/components.css":  "./tokens/css/components.css",
+    "./tokens/scss/tokens":         "./tokens/scss/_tokens.scss",
+    "./tokens/scss/material-theme": "./tokens/scss/aegisx-material-theme.scss",
+    "./tokens/scss/material-bridge":"./tokens/scss/aegisx-material-bridge.scss",
+    "./tokens/scss/material-overrides": "./tokens/scss/aegisx-material-overrides.scss",
+    "./tokens/dtcg/*":              "./tokens/dtcg/*",
+    "./tokens/aegisx-tokens.json":      "./tokens/aegisx-tokens.json",
+    "./tokens/aegisx-tokens-dark.json": "./tokens/aegisx-tokens-dark.json",
     "./package.json": "./package.json"
   },
   "files": [
@@ -76,6 +85,18 @@
     "brand/aegisx-brand-bg.svg",
     "brand/aegisx-brand-bg.scss",
     "specs",
+    "tokens/css",
+    "tokens/scss",
+    "tokens/dtcg",
+    "tokens/aegisx-tokens.json",
+    "tokens/aegisx-tokens-dark.json",
+    "tokens/$themes.json",
+    "tokens/$metadata.json",
+    "tokens/AEGISX-TOKENS-SPEC.md",
+    "tokens/ANGULAR-MATERIAL-SETUP.md",
+    "tokens/CHANGELOG.md",
+    "tokens/README.md",
+    "AEGISX-DESIGN-PRINCIPLES.md",
     "CLAUDE.md",
     "README.md"
   ],
@@ -92,6 +113,7 @@
     "site:build": "node scripts/build-site.mjs",
     "tokens:build": "node scripts/build-tokens.mjs",
     "tokens:verify": "node scripts/verify-tokens.mjs",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
     "prebuild": "pnpm run gen:icon-data"
   },
   "keywords": [
