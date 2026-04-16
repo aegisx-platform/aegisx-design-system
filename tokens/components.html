@@ -536,6 +536,470 @@
     </div>
   </section>
 
+  <section class="block" id="checkbox">
+    <h2>Checkbox</h2>
+    <p class="muted">Styled checkbox. Hides native input, uses <code>.ax-checkbox__box</code> for visual.</p>
+    <div class="demo">
+      <label class="ax-checkbox"><input type="checkbox" checked><span class="ax-checkbox__box">✓</span><span>Active patient</span></label>
+      <label class="ax-checkbox"><input type="checkbox"><span class="ax-checkbox__box">✓</span><span>Include discharged</span></label>
+      <label class="ax-checkbox"><input type="checkbox" disabled><span class="ax-checkbox__box">✓</span><span>Archived (disabled)</span></label>
+    </div>
+  </section>
+
+  <section class="block" id="radio">
+    <h2>Radio</h2>
+    <p class="muted">Styled radio buttons.</p>
+    <div class="demo">
+      <label class="ax-radio"><input type="radio" name="ward" checked><span class="ax-radio__dot"></span><span>OPD</span></label>
+      <label class="ax-radio"><input type="radio" name="ward"><span class="ax-radio__dot"></span><span>IPD</span></label>
+      <label class="ax-radio"><input type="radio" name="ward"><span class="ax-radio__dot"></span><span>ER</span></label>
+    </div>
+  </section>
+
+  <section class="block" id="select-input">
+    <h2>Select</h2>
+    <p class="muted">Native <code>&lt;select&gt;</code> with styled wrapper.</p>
+    <div class="demo grid">
+      <div class="ax-field">
+        <label class="ax-field__label">Ward</label>
+        <div class="ax-select">
+          <select><option>OPD</option><option>IPD 5A</option><option>ER</option><option>ICU</option></select>
+        </div>
+      </div>
+      <div class="ax-field">
+        <label class="ax-field__label">Insurance</label>
+        <div class="ax-select">
+          <select disabled><option>UC (บัตรทอง)</option></select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="search">
+    <h2>Search input</h2>
+    <p class="muted">Input with icon prefix via <code>.ax-search</code> wrapper.</p>
+    <div class="demo" style="max-width:400px;">
+      <div class="ax-search" style="flex:1">
+        <span class="ax-search__icon">⌕</span>
+        <input class="ax-input" placeholder="ค้นหาผู้ป่วย (HN, ชื่อ)..." />
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="kbd">
+    <h2>Kbd</h2>
+    <p class="muted">Keyboard shortcut badge.</p>
+    <div class="demo">
+      <span class="ax-kbd">⌘</span><span class="ax-kbd">K</span>
+      <span style="color:var(--ax-text-secondary);margin:0 8px">or</span>
+      <span class="ax-kbd">Ctrl</span><span class="ax-kbd">Shift</span><span class="ax-kbd">P</span>
+    </div>
+  </section>
+
+  <section class="block" id="code-block">
+    <h2>Code block + tabs</h2>
+    <p class="muted">Syntax-highlighted code with language tabs.</p>
+    <div class="demo" style="display:block;padding:0;border:none;background:transparent;">
+      <div class="ax-code-block">
+        <div class="ax-code-block__tabs">
+          <button class="ax-code-block__tab active">TypeScript</button>
+          <button class="ax-code-block__tab">HTML</button>
+        </div>
+        <div class="ax-code-block__body">import { getIconStyle } from '@aegisx-platform/design-system/icons/color-map';
+
+const { style } = getIconStyle('pharmacy', 'md');</div>
+      </div>
+      <div style="margin-top:var(--ax-spacing-sm);display:flex;gap:var(--ax-spacing-sm);">
+        <span class="ax-code-tag">TypeScript</span>
+        <span class="ax-code-tag">Angular</span>
+        <span class="ax-code-tag">v19+</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="field-display">
+    <h2>Field display</h2>
+    <p class="muted">Read-only label:value. Mono variant for IDs and codes.</p>
+    <div class="demo grid">
+      <div class="ax-field-display">
+        <span class="ax-field-display__label">Patient ID</span>
+        <span class="ax-field-display__value ax-field-display__value--mono">HN-44821</span>
+      </div>
+      <div class="ax-field-display">
+        <span class="ax-field-display__label">Full name</span>
+        <span class="ax-field-display__value">สมชาย ประเสริฐ</span>
+      </div>
+      <div class="ax-field-display">
+        <span class="ax-field-display__label">ICD-10</span>
+        <span class="ax-field-display__value ax-field-display__value--mono">E11.65</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="image-preview">
+    <h2>Image preview</h2>
+    <p class="muted">Card with hover overlay for zoom/view action.</p>
+    <div class="demo" style="max-width:240px;">
+      <div class="ax-image-preview">
+        <img src="../assets/logo/horizontal-light.svg" alt="preview" style="padding:32px;background:#fff;">
+        <div class="ax-image-preview__overlay">⤢</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="list-demo">
+    <h2>List</h2>
+    <p class="muted">Generic styled list. Bordered variant with status dots.</p>
+    <div class="demo" style="display:block;max-width:400px;">
+      <ul class="ax-list ax-list--bordered">
+        <li class="ax-list__item">Cardiology <span class="ax-dot ax-dot--success"></span></li>
+        <li class="ax-list__item">Orthopedics <span class="ax-dot ax-dot--success"></span></li>
+        <li class="ax-list__item">Radiology <span class="ax-dot ax-dot--warning"></span></li>
+        <li class="ax-list__item">Pathology <span class="ax-dot ax-dot--error"></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="circular">
+    <h2>Circular progress</h2>
+    <p class="muted">CSS SVG donut ring. Set <code>stroke-dashoffset</code> for percentage.</p>
+    <div class="demo">
+      <div class="ax-circular ax-circular--sm"><svg viewBox="0 0 36 36"><circle class="ax-circular__track" cx="18" cy="18" r="16"/><circle class="ax-circular__bar" cx="18" cy="18" r="16" stroke-dasharray="100" stroke-dashoffset="28"/></svg><span class="ax-circular__label">72</span></div>
+      <div class="ax-circular"><svg viewBox="0 0 36 36"><circle class="ax-circular__track" cx="18" cy="18" r="16"/><circle class="ax-circular__bar" cx="18" cy="18" r="16" stroke-dasharray="100" stroke-dashoffset="15"/></svg><span class="ax-circular__label">85%</span></div>
+      <div class="ax-circular ax-circular--lg ax-circular--success"><svg viewBox="0 0 36 36"><circle class="ax-circular__track" cx="18" cy="18" r="16"/><circle class="ax-circular__bar" cx="18" cy="18" r="16" stroke-dasharray="100" stroke-dashoffset="0"/></svg><span class="ax-circular__label">100%</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="segmented">
+    <h2>Segmented progress</h2>
+    <p class="muted">Multi-step bar. Mark segments <code>.done</code> or <code>.active</code>.</p>
+    <div class="demo stack" style="gap:var(--ax-spacing-md)">
+      <div class="ax-segmented-progress">
+        <div class="ax-segmented-progress__seg done"></div>
+        <div class="ax-segmented-progress__seg done"></div>
+        <div class="ax-segmented-progress__seg active"></div>
+        <div class="ax-segmented-progress__seg"></div>
+        <div class="ax-segmented-progress__seg"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="loading-bar">
+    <h2>Loading bar</h2>
+    <p class="muted">Top-of-page indeterminate bar. Fixed position, z-index toast.</p>
+    <div class="demo" style="display:block;padding:0;overflow:hidden;border-radius:var(--ax-radius-md);height:40px;position:relative;">
+      <div class="ax-loading-bar" style="position:absolute;">
+        <div class="ax-loading-bar__track"></div>
+      </div>
+      <div style="padding:12px 16px;color:var(--ax-text-secondary);font-size:var(--ax-text-xs-size);">Content behind loading bar</div>
+    </div>
+  </section>
+
+  <section class="block" id="sidebar">
+    <h2>Sidebar nav</h2>
+    <p class="muted">Vertical app navigation. Active state with indigo indicator.</p>
+    <div class="demo" style="display:block;padding:0;max-width:260px;border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);overflow:hidden;">
+      <nav class="ax-sidenav" style="width:100%;border-right:0;">
+        <div class="ax-sidenav__section">Clinical</div>
+        <a class="ax-sidenav__item active" href="#">Registration</a>
+        <a class="ax-sidenav__item" href="#">OPD</a>
+        <a class="ax-sidenav__item" href="#">IPD</a>
+        <div class="ax-sidenav__section">Inventory</div>
+        <a class="ax-sidenav__item" href="#">Drug master</a>
+        <a class="ax-sidenav__item" href="#">Stock overview <span class="ax-dot ax-dot--warning"></span></a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="block" id="navbar-demo">
+    <h2>Navbar</h2>
+    <p class="muted">Horizontal top nav with brand, links, actions, and user menu.</p>
+    <div class="demo" style="display:block;padding:0;border-radius:var(--ax-radius-lg);overflow:hidden;">
+      <div class="ax-navbar">
+        <div class="ax-navbar__brand"><span style="font-weight:var(--ax-font-weight-semibold)">AegisX</span></div>
+        <nav class="ax-navbar__nav">
+          <a class="ax-navbar__link active" href="#">Dashboard</a>
+          <a class="ax-navbar__link" href="#">Patients</a>
+          <a class="ax-navbar__link" href="#">Reports</a>
+        </nav>
+        <div class="ax-navbar__actions">
+          <button class="ax-navbar__icon-btn" data-tooltip="Notifications">🔔</button>
+          <div class="ax-navbar-user">
+            <span class="ax-avatar ax-avatar--sm">Dr</span>
+            <div><div class="ax-navbar-user__name">Dr. Chaiyaphum</div><div class="ax-navbar-user__role">Admin</div></div>
+            <span class="ax-navbar-user__chevron">▾</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="tab-pills">
+    <h2>Tab pills</h2>
+    <p class="muted">Pill-shaped tabs (vs underline <code>.ax-tabs</code>).</p>
+    <div class="demo">
+      <div class="ax-tab-pills">
+        <button class="ax-tab-pills__item active">All</button>
+        <button class="ax-tab-pills__item">Active</button>
+        <button class="ax-tab-pills__item">Pending</button>
+        <button class="ax-tab-pills__item">Closed</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="accordion">
+    <h2>Accordion</h2>
+    <p class="muted">Expansion panel using native <code>&lt;details&gt;</code>.</p>
+    <div class="demo" style="display:block;padding:0;border:none;background:transparent;">
+      <div class="ax-accordion">
+        <details class="ax-accordion__item" open>
+          <summary class="ax-accordion__trigger">Patient information</summary>
+          <div class="ax-accordion__body">HN-44821 · สมชาย ประเสริฐ · IPD 5A Bed 12</div>
+        </details>
+        <details class="ax-accordion__item">
+          <summary class="ax-accordion__trigger">Diagnosis history</summary>
+          <div class="ax-accordion__body">DM type 2 (E11.65) · Hypertension (I10)</div>
+        </details>
+        <details class="ax-accordion__item">
+          <summary class="ax-accordion__trigger">Medication</summary>
+          <div class="ax-accordion__body">Metformin 500mg bid · Amlodipine 5mg od</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skeleton">
+    <h2>Skeleton</h2>
+    <p class="muted">Loading placeholder. No shimmer (per design principles).</p>
+    <div class="demo stack" style="max-width:320px;">
+      <div style="display:flex;gap:var(--ax-spacing-md);align-items:center;">
+        <div class="ax-skeleton ax-skeleton--avatar"></div>
+        <div style="flex:1"><div class="ax-skeleton ax-skeleton--text"></div><div class="ax-skeleton ax-skeleton--text" style="width:60%"></div></div>
+      </div>
+      <div class="ax-skeleton ax-skeleton--heading"></div>
+      <div class="ax-skeleton ax-skeleton--rect"></div>
+    </div>
+  </section>
+
+  <section class="block" id="banner">
+    <h2>Banner</h2>
+    <p class="muted">Full-width dismissable notification.</p>
+    <div class="demo stack" style="padding:0;border:none;background:transparent;gap:var(--ax-spacing-sm);">
+      <div class="ax-banner ax-banner--info"><span class="ax-banner__text">ระบบจะปิดปรับปรุงวันอาทิตย์ 02:00–03:00 น.</span><button class="ax-banner__close">×</button></div>
+      <div class="ax-banner ax-banner--warning"><span class="ax-banner__text">Warfarin stock below reorder point.</span><button class="ax-banner__close">×</button></div>
+      <div class="ax-banner ax-banner--error"><span class="ax-banner__text">NHSO connection timeout — retrying.</span><button class="ax-banner__close">×</button></div>
+    </div>
+  </section>
+
+  <section class="block" id="counter">
+    <h2>Notification counter</h2>
+    <p class="muted">Badge count on avatar or icon.</p>
+    <div class="demo">
+      <div class="ax-counter-wrap"><span class="ax-avatar ax-avatar--md">จร</span><span class="ax-counter">3</span></div>
+      <div class="ax-counter-wrap"><button class="ax-navbar__icon-btn">🔔</button><span class="ax-counter">12</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="section-card">
+    <h2>Section card</h2>
+    <p class="muted">Card with labeled header section.</p>
+    <div class="demo" style="display:block;max-width:400px;padding:0;border:none;background:transparent;">
+      <div class="ax-section-card">
+        <div class="ax-section-card__label">Insurance details</div>
+        <div class="ax-section-card__body">
+          <div class="ax-kv">
+            <span class="ax-kv__key">Scheme</span><span class="ax-kv__val">UC (บัตรทอง)</span>
+            <span class="ax-kv__key">Valid</span><span class="ax-kv__val">2026-01-01 → 2026-12-31</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="select-card">
+    <h2>Select card</h2>
+    <p class="muted">Selectable option. Use with radio logic.</p>
+    <div class="demo grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="ax-select-card selected"><div><p class="ax-select-card__title">UC (บัตรทอง)</p><p class="ax-select-card__desc">NHSO universal coverage</p></div></div>
+      <div class="ax-select-card"><div><p class="ax-select-card__title">SSO (ประกันสังคม)</p><p class="ax-select-card__desc">Social Security Office</p></div></div>
+      <div class="ax-select-card"><div><p class="ax-select-card__title">Self-pay</p><p class="ax-select-card__desc">Cash / private insurance</p></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="form-section">
+    <h2>Form section</h2>
+    <p class="muted">Grouped fields with heading. Auto-grid for responsive columns.</p>
+    <div class="demo" style="display:block;padding:var(--ax-spacing-xl);border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);background:var(--ax-background-default);">
+      <div class="ax-form-section">
+        <div class="ax-form-section__head"><h3 class="ax-form-section__title">Patient demographics</h3><p class="ax-form-section__desc">Basic identification information.</p></div>
+        <div class="ax-form-section__fields">
+          <div class="ax-field"><label class="ax-field__label">First name</label><input class="ax-input" value="สมชาย"></div>
+          <div class="ax-field"><label class="ax-field__label">Last name</label><input class="ax-input" value="ประเสริฐ"></div>
+          <div class="ax-field"><label class="ax-field__label">Date of birth</label><input class="ax-input" type="date" value="1975-03-15"></div>
+        </div>
+      </div>
+      <div class="ax-form-section">
+        <div class="ax-form-section__head"><h3 class="ax-form-section__title">Contact</h3></div>
+        <div class="ax-form-section__fields">
+          <div class="ax-field"><label class="ax-field__label">Phone</label><input class="ax-input" value="081-234-5678"></div>
+          <div class="ax-field"><label class="ax-field__label">Email</label><input class="ax-input" value="somchai@email.com"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="otp">
+    <h2>OTP input</h2>
+    <p class="muted">Digit box grid for verification codes.</p>
+    <div class="demo">
+      <div class="ax-otp">
+        <input class="ax-otp__digit" maxlength="1" value="4">
+        <input class="ax-otp__digit" maxlength="1" value="8">
+        <input class="ax-otp__digit" maxlength="1" value="2">
+        <input class="ax-otp__digit" maxlength="1" value="">
+        <input class="ax-otp__digit" maxlength="1" value="">
+        <input class="ax-otp__digit" maxlength="1" value="">
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="error-state">
+    <h2>Error state</h2>
+    <p class="muted">Like empty state but error-themed.</p>
+    <div class="demo" style="display:block;border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);background:var(--ax-background-default);">
+      <div class="ax-error-state">
+        <div class="ax-error-state__icon">!</div>
+        <h3 class="ax-error-state__title">เกิดข้อผิดพลาด</h3>
+        <p class="ax-error-state__desc">ไม่สามารถเชื่อมต่อกับ HIS ได้ กรุณาลองใหม่อีกครั้ง</p>
+        <span class="ax-error-state__code">ERR_CONNECTION_TIMEOUT</span>
+        <button class="ax-button ax-button--outline ax-button--sm">ลองใหม่</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="loading-btn">
+    <h2>Loading button</h2>
+    <p class="muted">Button with inline spinner via <code>.ax-button--loading</code>.</p>
+    <div class="demo">
+      <button class="ax-button ax-button--primary ax-button--loading"><span class="ax-spinner ax-spinner--sm"></span> Saving…</button>
+      <button class="ax-button ax-button--secondary ax-button--loading"><span class="ax-spinner ax-spinner--sm"></span> Loading</button>
+    </div>
+  </section>
+
+  <section class="block" id="master-detail">
+    <h2>Master-detail</h2>
+    <p class="muted">List + detail split layout. Active item highlighted.</p>
+    <div class="demo" style="display:block;padding:0;border:none;background:transparent;">
+      <div class="ax-master-detail" style="min-height:240px;">
+        <div class="ax-master-detail__list">
+          <div class="ax-master-detail__list-item active"><span class="ax-avatar ax-avatar--sm">SP</span><div><div style="font-weight:var(--ax-font-weight-medium)">สมชาย ประเสริฐ</div><div style="font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary)">HN-44821</div></div></div>
+          <div class="ax-master-detail__list-item"><span class="ax-avatar ax-avatar--sm">SS</span><div><div style="font-weight:var(--ax-font-weight-medium)">สมศรี วิชัยดิษฐ์</div><div style="font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary)">HN-44822</div></div></div>
+          <div class="ax-master-detail__list-item"><span class="ax-avatar ax-avatar--sm">AK</span><div><div style="font-weight:var(--ax-font-weight-medium)">อนุชา แก้วมณี</div><div style="font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary)">HN-44823</div></div></div>
+        </div>
+        <div class="ax-master-detail__detail">
+          <div class="ax-page-header" style="border:none;padding-bottom:var(--ax-spacing-md);margin-bottom:var(--ax-spacing-md);">
+            <div class="ax-page-header__left"><h2 class="ax-page-header__title">สมชาย ประเสริฐ</h2><p class="ax-page-header__desc">HN-44821 · IPD 5A · Bed 12</p></div>
+            <div class="ax-page-header__actions"><span class="ax-badge ax-badge--soft-success">Active</span></div>
+          </div>
+          <div class="ax-kv"><span class="ax-kv__key">Diagnosis</span><span class="ax-kv__val">DM type 2 (E11.65)</span><span class="ax-kv__key">Attending</span><span class="ax-kv__val">Dr. Chaiyaphum</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="command">
+    <h2>Command palette</h2>
+    <p class="muted">Search modal visual shell. Wire keyboard nav in framework.</p>
+    <div class="demo" style="display:block;padding:var(--ax-spacing-xl);background:rgba(0,0,0,0.06);border-radius:var(--ax-radius-lg);border:none;">
+      <div class="ax-command" style="margin:0 auto;">
+        <div class="ax-command__input"><span style="color:var(--ax-text-subtle)">⌕</span><input placeholder="Search patients, modules, actions…"><span class="ax-kbd">⌘K</span></div>
+        <div class="ax-command__list">
+          <div class="ax-command__item highlighted">Registration <span class="ax-kbd">⌘1</span></div>
+          <div class="ax-command__item">OPD Queue</div>
+          <div class="ax-command__item">Pharmacy dispense</div>
+          <div class="ax-command__item">Lab results</div>
+        </div>
+        <div class="ax-command__footer"><span>↑↓ navigate</span><span>↵ select</span><span>esc close</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="launcher">
+    <h2>Launcher card</h2>
+    <p class="muted">App module launcher grid. Works with diamond icons.</p>
+    <div class="demo" style="display:block;border:none;background:transparent;padding:0;">
+      <div class="ax-launcher-grid" style="max-width:560px;">
+        <a class="ax-launcher-card" href="#"><div class="ax-launcher-card__icon" style="background:var(--ax-info-faint);color:var(--ax-info-emphasis);">⚕</div><div class="ax-launcher-card__name">Registration</div><div class="ax-launcher-card__desc">ลงทะเบียนผู้ป่วย</div></a>
+        <a class="ax-launcher-card" href="#"><div class="ax-launcher-card__icon" style="background:var(--ax-success-faint);color:var(--ax-success-emphasis);">💊</div><div class="ax-launcher-card__name">Pharmacy</div><div class="ax-launcher-card__desc">จ่ายยา</div></a>
+        <a class="ax-launcher-card" href="#"><div class="ax-launcher-card__icon" style="background:var(--ax-warning-faint);color:var(--ax-warning-emphasis);">📊</div><div class="ax-launcher-card__name">Reports</div><div class="ax-launcher-card__desc">รายงาน</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="drawer">
+    <h2>Drawer</h2>
+    <p class="muted">Slide-out panel (static preview — normally fixed positioned).</p>
+    <div class="demo" style="display:block;padding:0;border:none;background:transparent;">
+      <div style="border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);overflow:hidden;max-width:420px;">
+        <div class="ax-drawer" style="position:static;width:100%;border-left:0;box-shadow:none;">
+          <div class="ax-drawer__header"><h3 class="ax-drawer__title">Patient details</h3><button class="ax-button ax-button--ghost ax-button--sm">×</button></div>
+          <div class="ax-drawer__body" style="min-height:120px;">
+            <div class="ax-kv"><span class="ax-kv__key">HN</span><span class="ax-kv__val">44821</span><span class="ax-kv__key">Name</span><span class="ax-kv__val">สมชาย ประเสริฐ</span></div>
+          </div>
+          <div class="ax-drawer__footer"><button class="ax-button ax-button--ghost ax-button--sm">Close</button><button class="ax-button ax-button--primary ax-button--sm">Save</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="page-header">
+    <h2>Page header</h2>
+    <p class="muted">Title + breadcrumb + action buttons bar.</p>
+    <div class="demo" style="display:block;padding:var(--ax-spacing-xl);border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);background:var(--ax-background-default);">
+      <nav class="ax-breadcrumb" style="margin-bottom:var(--ax-spacing-sm)"><a href="#">Home</a><span class="ax-breadcrumb__sep">/</span><a href="#">Clinical</a><span class="ax-breadcrumb__sep">/</span><span class="ax-breadcrumb__current">OPD Queue</span></nav>
+      <div class="ax-page-header" style="border:none;padding:0;margin:0;">
+        <div class="ax-page-header__left"><h2 class="ax-page-header__title">OPD Queue</h2><p class="ax-page-header__desc">วันนี้ 284 ราย · 12 รอตรวจ</p></div>
+        <div class="ax-page-header__actions"><button class="ax-button ax-button--secondary ax-button--sm">Export</button><button class="ax-button ax-button--primary ax-button--sm">+ New patient</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="timeline">
+    <h2>Timeline</h2>
+    <p class="muted">Vertical event log with status dots.</p>
+    <div class="demo" style="display:block;max-width:480px;">
+      <div class="ax-timeline">
+        <div class="ax-timeline__item done"><div class="ax-timeline__dot"></div><div class="ax-timeline__time">09:15</div><div class="ax-timeline__title">Registration</div><div class="ax-timeline__desc">ลงทะเบียนผู้ป่วย HN-44821</div></div>
+        <div class="ax-timeline__item done"><div class="ax-timeline__dot"></div><div class="ax-timeline__time">09:32</div><div class="ax-timeline__title">Vitals recorded</div><div class="ax-timeline__desc">BP 130/85 · HR 78 · Temp 36.8°C</div></div>
+        <div class="ax-timeline__item"><div class="ax-timeline__dot"></div><div class="ax-timeline__time">10:00</div><div class="ax-timeline__title">Waiting for doctor</div><div class="ax-timeline__desc">Queue #12</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="upload">
+    <h2>File upload</h2>
+    <p class="muted">Dropzone with hover highlight.</p>
+    <div class="demo" style="display:block;max-width:400px;border:none;background:transparent;padding:0;">
+      <div class="ax-upload">
+        <div class="ax-upload__icon">↑</div>
+        <div class="ax-upload__title"><a class="ax-link" href="#">Click to upload</a> or drag and drop</div>
+        <div class="ax-upload__hint">PDF, PNG, JPG up to 10MB</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="splash">
+    <h2>Splash screen</h2>
+    <p class="muted">Full-page loading screen (static preview).</p>
+    <div class="demo" style="display:block;padding:0;border:none;background:transparent;">
+      <div style="border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);overflow:hidden;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--ax-spacing-lg);background:var(--ax-background-page);padding:var(--ax-spacing-2xl);">
+        <img src="../assets/logo/horizontal-light.svg" style="height:36px;" alt="AegisX">
+        <span class="ax-spinner"></span>
+        <span style="font-size:var(--ax-text-sm-size);color:var(--ax-text-secondary);">กำลังโหลด...</span>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="compose">
     <h2>Composition · Login form</h2>
     <p class="muted">Primitives composed into a real screen.</p>
