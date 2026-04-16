@@ -30,17 +30,34 @@
     nav.tabs a:hover { color: #0f172a; }
     nav.tabs a.home { color: #6366f1; }
 
-    /* Page layout — uses .ax-sidenav--dark component from components.css */
+    /* Page sidebar — plain functional nav for demo page only */
     .layout { display: grid; grid-template-columns: 220px 1fr; }
-    .layout > .ax-sidenav {
+    .page-sidebar {
       position: sticky; top: 45px; align-self: start;
       height: calc(100vh - 45px);
       overflow-y: auto; z-index: 5;
+      background: #fff; border-right: 1px solid #e4e4e7;
+      padding: 12px 0; font-size: 13px;
     }
+    .page-sidebar .grp-title {
+      padding: 10px 16px 4px; font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em; color: #a1a1aa;
+    }
+    .page-sidebar a {
+      display: block; padding: 5px 16px; color: #52525b;
+      text-decoration: none; font-weight: 450;
+    }
+    .page-sidebar a:hover { color: #18181b; background: #f4f4f5; }
+    .page-sidebar a.active { color: #6366f1; background: #eef2ff; font-weight: 500; }
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
-      .layout > .ax-sidenav { display: none; }
+      .page-sidebar { display: none; }
     }
+    [data-theme="dark"] .page-sidebar { background: #18181b; border-right-color: #27272a; }
+    [data-theme="dark"] .page-sidebar .grp-title { color: #71717a; }
+    [data-theme="dark"] .page-sidebar a { color: #a1a1aa; }
+    [data-theme="dark"] .page-sidebar a:hover { color: #fafafa; background: #27272a; }
+    [data-theme="dark"] .page-sidebar a.active { color: #818cf8; background: #312e81; }
 
     main { padding: 40px 40px 80px; max-width: 1100px; }
     section.block + section.block { margin-top: 56px; padding-top: 56px; border-top: 1px solid #e4e4e7; }
@@ -122,88 +139,269 @@
 
 <div class="layout">
 
-<nav class="ax-sidenav ax-sidenav--dark" id="sidebar">
-  <div class="ax-sidenav__brand">
-    <img src="../assets/logo/icon-dark.svg" alt="">
-    <span>AegisX</span>
-  </div>
-  <div class="ax-sidenav__section">Form controls</div>
-  <a class="ax-sidenav__item" href="#buttons">Button</a>
-  <a class="ax-sidenav__item" href="#button-group">Button group</a>
-  <a class="ax-sidenav__item" href="#inputs">Input</a>
-  <a class="ax-sidenav__item" href="#select-input">Select</a>
-  <a class="ax-sidenav__item" href="#search">Search</a>
-  <a class="ax-sidenav__item" href="#checkbox">Checkbox</a>
-  <a class="ax-sidenav__item" href="#radio">Radio</a>
-  <a class="ax-sidenav__item" href="#toggle">Toggle</a>
-  <a class="ax-sidenav__item" href="#slider">Slider</a>
-  <a class="ax-sidenav__item" href="#tag-input">Tag input</a>
-  <a class="ax-sidenav__item" href="#otp">OTP input</a>
-  <div class="ax-sidenav__section">Data display</div>
-  <a class="ax-sidenav__item" href="#avatar">Avatar</a>
-  <a class="ax-sidenav__item" href="#badges">Badge</a>
-  <a class="ax-sidenav__item" href="#chips">Chip</a>
-  <a class="ax-sidenav__item" href="#status-dot">Status dot</a>
-  <a class="ax-sidenav__item" href="#stat">Stat card</a>
-  <a class="ax-sidenav__item" href="#kv">Key-value</a>
-  <a class="ax-sidenav__item" href="#field-display">Field display</a>
-  <a class="ax-sidenav__item" href="#table">Table</a>
-  <a class="ax-sidenav__item" href="#list-demo">List</a>
-  <a class="ax-sidenav__item" href="#timeline">Timeline</a>
-  <a class="ax-sidenav__item" href="#code-block">Code block</a>
-  <a class="ax-sidenav__item" href="#kbd">Kbd</a>
-  <a class="ax-sidenav__item" href="#image-preview">Image preview</a>
-  <a class="ax-sidenav__item" href="#progress">Progress bar</a>
-  <a class="ax-sidenav__item" href="#circular">Circular progress</a>
-  <a class="ax-sidenav__item" href="#segmented">Segmented progress</a>
-  <a class="ax-sidenav__item" href="#featured-icon">Featured icon</a>
-  <div class="ax-sidenav__section">Feedback</div>
-  <a class="ax-sidenav__item" href="#alerts">Alert</a>
-  <a class="ax-sidenav__item" href="#banner">Banner</a>
-  <a class="ax-sidenav__item" href="#toast">Toast</a>
-  <a class="ax-sidenav__item" href="#empty">Empty state</a>
-  <a class="ax-sidenav__item" href="#error-state">Error state</a>
-  <a class="ax-sidenav__item" href="#spinner">Spinner</a>
-  <a class="ax-sidenav__item" href="#loading-bar">Loading bar</a>
-  <a class="ax-sidenav__item" href="#loading-btn">Loading button</a>
-  <a class="ax-sidenav__item" href="#skeleton">Skeleton</a>
-  <a class="ax-sidenav__item" href="#splash">Splash screen</a>
-  <a class="ax-sidenav__item" href="#tooltip">Tooltip</a>
-  <div class="ax-sidenav__section">Navigation</div>
-  <a class="ax-sidenav__item" href="#tabs">Tabs</a>
-  <a class="ax-sidenav__item" href="#tab-pills">Tab pills</a>
-  <a class="ax-sidenav__item" href="#breadcrumb">Breadcrumb</a>
-  <a class="ax-sidenav__item" href="#pagination">Pagination</a>
-  <a class="ax-sidenav__item" href="#sidebar">Sidebar nav</a>
-  <a class="ax-sidenav__item" href="#navbar-demo">Navbar</a>
-  <a class="ax-sidenav__item" href="#command">Command palette</a>
-  <a class="ax-sidenav__item" href="#stepper">Stepper</a>
-  <div class="ax-sidenav__section">Layout</div>
-    <a href="#cards">Card</a>
-    <a href="#dialog">Dialog</a>
-    <a href="#drawer">Drawer</a>
-    <a href="#menu">Menu</a>
-  <a class="ax-sidenav__item" href="#cards">Card</a>
-  <a class="ax-sidenav__item" href="#dialog">Dialog</a>
-  <a class="ax-sidenav__item" href="#drawer">Drawer</a>
-  <a class="ax-sidenav__item" href="#menu">Menu</a>
-  <a class="ax-sidenav__item" href="#accordion">Accordion</a>
-  <a class="ax-sidenav__item" href="#section-card">Section card</a>
-  <a class="ax-sidenav__item" href="#select-card">Select card</a>
-  <a class="ax-sidenav__item" href="#page-header">Page header</a>
-  <a class="ax-sidenav__item" href="#master-detail">Master-detail</a>
-  <a class="ax-sidenav__item" href="#form-section">Form section</a>
-  <a class="ax-sidenav__item" href="#divider">Divider</a>
-  <a class="ax-sidenav__item" href="#counter">Counter</a>
-  <a class="ax-sidenav__item" href="#launcher">Launcher</a>
-  <a class="ax-sidenav__item" href="#upload">File upload</a>
-  <div class="ax-sidenav__section">Composition</div>
-  <a class="ax-sidenav__item" href="#compose">Login form</a>
-  <div class="ax-sidenav__footer">
-    <span class="ax-avatar ax-avatar--sm" style="background:#6366f1;color:#fff;">DS</span>
-    <div><div style="color:rgba(255,255,255,.8);font-weight:500;font-size:12px;">Design System</div><div style="font-size:11px;">v0.3.2</div></div>
-  </div>
-</nav>
+<div class="page-sidebar" id="sidebar">
+  <div class="grp-title">Form controls</div>
+  <a href="#buttons">Button</a>
+  <a href="#button-group">Button group</a>
+  <a href="#inputs">Input</a>
+  <a href="#select-input">Select</a>
+  <a href="#search">Search</a>
+  <a href="#checkbox">Checkbox</a>
+  <a href="#radio">Radio</a>
+  <a href="#toggle">Toggle</a>
+  <a href="#slider">Slider</a>
+  <a href="#tag-input">Tag input</a>
+  <a href="#otp">OTP input</a>
+  <div class="grp-title">Data display</div>
+  <a href="#avatar">Avatar</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#badges">Badge</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#chips">Chip</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#status-dot">Status dot</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#stat">Stat card</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#kv">Key-value</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#field-display">Field display</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#table">Table</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#list-demo">List</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#timeline">Timeline</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#code-block">Code block</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#kbd">Kbd</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#image-preview">Image preview</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#progress">Progress bar</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#circular">Circular progress</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#segmented">Segmented progress</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <a href="#featured-icon">Featured icon</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#alerts">Alert</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#banner">Banner</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#toast">Toast</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#empty">Empty state</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#error-state">Error state</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#spinner">Spinner</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#loading-bar">Loading bar</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#loading-btn">Loading button</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#skeleton">Skeleton</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#splash">Splash screen</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <a href="#tooltip">Tooltip</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#tabs">Tabs</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#tab-pills">Tab pills</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#breadcrumb">Breadcrumb</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#pagination">Pagination</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#sidebar">Sidebar nav</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#navbar-demo">Navbar</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#command">Command palette</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <a href="#stepper">Stepper</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#cards">Card</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#dialog">Dialog</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#drawer">Drawer</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#menu">Menu</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#cards">Card</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#dialog">Dialog</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#drawer">Drawer</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#menu">Menu</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#accordion">Accordion</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#section-card">Section card</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#select-card">Select card</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#page-header">Page header</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#master-detail">Master-detail</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#form-section">Form section</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#divider">Divider</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#counter">Counter</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#launcher">Launcher</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <a href="#upload">File upload</a>
+  <div class="grp-title">Form controls</div>
+  <div class="grp-title">Data display</div>
+  <div class="grp-title">Feedback</div>
+  <div class="grp-title">Navigation</div>
+  <div class="grp-title">Layout</div>
+  <div class="grp-title">Composition</div>
+  <a href="#compose">Login form</a>
+</div>
 
 <main>
 
@@ -777,11 +975,14 @@ const { style } = getIconStyle('pharmacy', 'md');</div>
     </div>
   </section>
 
-  <section class="block" id="sidebar">
+  <section class="block" id="sidebar-demo">
     <h2>Sidebar nav</h2>
-    <p class="muted">Vertical app navigation. Active state with indigo indicator.</p>
-    <div class="demo" style="display:block;padding:0;max-width:260px;border:1px solid var(--ax-border-default);border-radius:var(--ax-radius-lg);overflow:hidden;">
+    <p class="muted">Vertical app navigation. Three variants: default (light), dark (navy), rail (icon-only collapsed).</p>
+
+    <h3>Default (light)</h3>
+    <div class="demo" style="display:block;padding:0;max-width:240px;border-radius:var(--ax-radius-lg);overflow:hidden;border:1px solid var(--ax-border-default);">
       <nav class="ax-sidenav" style="width:100%;border-right:0;">
+        <div class="ax-sidenav__brand"><img src="../assets/logo/icon-light.svg" alt="" style="height:22px;"><span>AegisX</span></div>
         <div class="ax-sidenav__section">Clinical</div>
         <a class="ax-sidenav__item active" href="#">Registration</a>
         <a class="ax-sidenav__item" href="#">OPD</a>
@@ -789,6 +990,34 @@ const { style } = getIconStyle('pharmacy', 'md');</div>
         <div class="ax-sidenav__section">Inventory</div>
         <a class="ax-sidenav__item" href="#">Drug master</a>
         <a class="ax-sidenav__item" href="#">Stock overview <span class="ax-dot ax-dot--warning"></span></a>
+        <div class="ax-sidenav__footer"><span class="ax-avatar ax-avatar--sm">SP</span><div><span style="font-weight:500;">Sathit S.</span></div></div>
+      </nav>
+    </div>
+
+    <h3>Dark (production style)</h3>
+    <div class="demo" style="display:block;padding:0;max-width:240px;border-radius:var(--ax-radius-lg);overflow:hidden;">
+      <nav class="ax-sidenav ax-sidenav--dark" style="width:100%;border-right:0;">
+        <div class="ax-sidenav__brand"><img src="../assets/logo/icon-dark.svg" alt="" style="height:22px;"><span>AegisX</span></div>
+        <div class="ax-sidenav__section">Clinical</div>
+        <a class="ax-sidenav__item active" href="#">Registration</a>
+        <a class="ax-sidenav__item" href="#">OPD</a>
+        <a class="ax-sidenav__item" href="#">IPD</a>
+        <div class="ax-sidenav__section">Inventory</div>
+        <a class="ax-sidenav__item" href="#">Drug master</a>
+        <a class="ax-sidenav__item" href="#">Stock overview <span class="ax-dot ax-dot--warning"></span></a>
+        <div class="ax-sidenav__footer"><span class="ax-avatar ax-avatar--sm" style="background:#6366f1;color:#fff;">SP</span><div><span style="color:rgba(255,255,255,.8);font-weight:500;font-size:12px;">Sathit S.</span><br><span style="font-size:11px;">Admin</span></div></div>
+      </nav>
+    </div>
+
+    <h3>Rail (icon-only collapsed)</h3>
+    <div class="demo" style="display:block;padding:0;max-width:60px;border-radius:var(--ax-radius-lg);overflow:hidden;">
+      <nav class="ax-sidenav ax-sidenav--dark ax-sidenav--rail" style="width:100%;border-right:0;height:auto;">
+        <div class="ax-sidenav__brand"><img src="../assets/logo/icon-dark.svg" alt="" style="height:22px;"></div>
+        <a class="ax-sidenav__item active" href="#" data-tooltip="Registration">⚕</a>
+        <a class="ax-sidenav__item" href="#" data-tooltip="OPD">🏥</a>
+        <a class="ax-sidenav__item" href="#" data-tooltip="Pharmacy">💊</a>
+        <a class="ax-sidenav__item" href="#" data-tooltip="Reports">📊</a>
+        <div class="ax-sidenav__footer"><span class="ax-avatar ax-avatar--sm" style="background:#6366f1;color:#fff;font-size:10px;">SP</span></div>
       </nav>
     </div>
   </section>
@@ -1189,7 +1418,7 @@ const { style } = getIconStyle('pharmacy', 'md');</div>
 
   // Sidebar scroll-spy: highlight active section
   const sections = document.querySelectorAll('section.block[id]');
-  const sidebarLinks = document.querySelectorAll('#sidebar .ax-sidenav__item');
+  const sidebarLinks = document.querySelectorAll('#sidebar a');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
