@@ -1,12 +1,13 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
   "duration": {
-    "instant": { "$value": "75ms",  "$type": "duration" },
+    "instant": { "$value": "0ms",   "$type": "duration", "$description": "Production: instant = 0ms" },
     "fast":    { "$value": "150ms", "$type": "duration" },
     "normal":  { "$value": "250ms", "$type": "duration" },
     "slow":    { "$value": "350ms", "$type": "duration" },
     "slower":  { "$value": "500ms", "$type": "duration" },
     "m3": {
+      "$description": "Material 3 motion durations",
       "short1":  { "$value": "50ms",  "$type": "duration" },
       "short2":  { "$value": "100ms", "$type": "duration" },
       "short3":  { "$value": "150ms", "$type": "duration" },
@@ -15,7 +16,7 @@
       "medium2": { "$value": "300ms", "$type": "duration" },
       "medium3": { "$value": "350ms", "$type": "duration" },
       "medium4": { "$value": "400ms", "$type": "duration" },
-      "long1":   { "$value": "450ms", "$type": "duration" },
+      "long1":   { "$value": "400ms", "$type": "duration" },
       "long2":   { "$value": "500ms", "$type": "duration" },
       "long3":   { "$value": "550ms", "$type": "duration" },
       "long4":   { "$value": "600ms", "$type": "duration" }
@@ -28,6 +29,7 @@
     "easeOut":   { "$value": "cubic-bezier(0, 0, 0.2, 1)",      "$type": "cubicBezier" },
     "easeInOut": { "$value": "cubic-bezier(0.4, 0, 0.2, 1)",    "$type": "cubicBezier" },
     "m3": {
+      "$description": "Material 3 easing curves",
       "standard":             { "$value": "cubic-bezier(0.2, 0, 0, 1)",       "$type": "cubicBezier" },
       "standardAccelerate":   { "$value": "cubic-bezier(0.3, 0, 1, 1)",       "$type": "cubicBezier" },
       "standardDecelerate":   { "$value": "cubic-bezier(0, 0, 0, 1)",         "$type": "cubicBezier" },

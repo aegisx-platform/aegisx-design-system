@@ -1,0 +1,47 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "Component-level tokens from production _aegisx-tokens.scss: form layout, surface/border per role, state layers, opacity, grid, a11y.",
+  "form": {
+    "gap": {
+      "dense":   { "$value": "0.75rem", "$type": "dimension", "$description": "12px — compact forms" },
+      "default": { "$value": "1rem",    "$type": "dimension", "$description": "16px — standard form gap" },
+      "relaxed": { "$value": "1rem",    "$type": "dimension", "$description": "16px — relaxed form gap" }
+    },
+    "sectionGap": { "$value": "2.5rem",  "$type": "dimension", "$description": "40px — gap between form sections" },
+    "cardPadding": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — padding inside form cards" }
+  },
+  "surface": {
+    "$description": "Per-role surface backgrounds (light mode)",
+    "info":    { "$value": "#dbeafe", "$type": "color" },
+    "warning": { "$value": "#fef3c7", "$type": "color" },
+    "success": { "$value": "#d1fae5", "$type": "color" },
+    "error":   { "$value": "#fee2e2", "$type": "color" }
+  },
+  "roleBorder": {
+    "$description": "Per-role border colors (light mode)",
+    "info":    { "$value": "#93c5fd", "$type": "color" },
+    "warning": { "$value": "#fcd34d", "$type": "color" },
+    "success": { "$value": "#6ee7b7", "$type": "color" },
+    "error":   { "$value": "#fca5a5", "$type": "color" }
+  },
+  "state": {
+    "hover":   { "$value": 0.08, "$type": "number", "$description": "M3 state layer — hover" },
+    "focus":   { "$value": 0.12, "$type": "number", "$description": "M3 state layer — focus" },
+    "pressed": { "$value": 0.12, "$type": "number", "$description": "M3 state layer — pressed" },
+    "dragged": { "$value": 0.16, "$type": "number", "$description": "M3 state layer — dragged" }
+  },
+  "opacity": {
+    "disabled": { "$value": 0.4, "$type": "number" },
+    "hover":    { "$value": 0.8, "$type": "number" },
+    "active":   { "$value": 0.6, "$type": "number" }
+  },
+  "grid": {
+    "columns": { "$value": 12,     "$type": "number" },
+    "gutter":  { "$value": "24px", "$type": "dimension" }
+  },
+  "a11y": {
+    "touchTargetMin":        { "$value": "48px", "$type": "dimension", "$description": "Minimum touch target (WCAG 2.5.8)" },
+    "textMinContrast":       { "$value": 4.5,    "$type": "number",    "$description": "AA minimum contrast ratio" },
+    "textEnhancedContrast":  { "$value": 7,      "$type": "number",    "$description": "AAA enhanced contrast ratio" }
+  }
+}

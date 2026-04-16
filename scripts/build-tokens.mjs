@@ -1,20 +1,14 @@
 #!/usr/bin/env node
 /**
- * Generate tokens/css/tokens.generated.css from tokens/dtcg/*.json.
+ * Generate tokens/css/tokens.css from tokens/dtcg/*.json.
  *
- * - Palette, spacing, radius, border-width, shadow, motion, breakpoint
- *   values come from DTCG JSON.
- * - Role palette variants (6 variants × 5 roles, light + dark) and the
- *   component-token layer are hardcoded here because they're config,
- *   not primitive data.
+ * - Palette, spacing, radius, border-width, shadow, motion, breakpoint,
+ *   z-index, component values come from DTCG JSON.
+ * - Role palette variants and component-token layer are config here.
  *
  * Usage:
- *   pnpm tokens:build      → writes tokens/css/tokens.generated.css
+ *   pnpm tokens:build      → writes tokens/css/tokens.css
  *   pnpm tokens:verify     → diffs against tokens/css/tokens.css (CI gate)
- *
- * The hand-written tokens.css remains canonical for now; this generator
- * gives drift protection against JSON changes. Once parity is stable we
- * can swap the hand-written file for the generated one.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -24,9 +18,6 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 const dtcg = resolve(root, 'tokens/dtcg');
-// v0.3.2: tokens.css IS the generated output. Drift = a JSON change that
-// didn't run through `pnpm tokens:build`. Pre-commit hook + CI gate
-// re-generate and byte-compare.
 const out = resolve(root, process.env.AX_OUT ?? 'tokens/css/tokens.css');
 
 const read = (name) => JSON.parse(readFileSync(resolve(dtcg, name), 'utf8'));
@@ -39,7 +30,8 @@ const border     = read('border-width.json').borderWidth;
 const shadow     = read('shadow.json');
 const motion     = read('motion.json');
 const breakpoint = read('breakpoint.json');
-const zIndex    = read('z-index.json').zIndex;
+const zIndex     = read('z-index.json').zIndex;
+const component  = read('component.json');
 
 // ─── helpers ──────────────────────────────────────────────────
 const REF_RE = /^\{([^}]+)\}$/;
@@ -54,24 +46,29 @@ const resolveRef = (root, value) => {
 };
 
 // ─── role palette mapping ─────────────────────────────────────
-// Variant → palette step, for light and dark modes.
+// Brand = Material Indigo (hardcoded hex because the palette steps don't map
+// to simple 50/100/200/500/700 like Tailwind).
+// Success = Emerald (not Green).
 const ROLE_PALETTES = {
   brand:   'indigo',
-  success: 'green',
+  success: 'emerald',
   warning: 'amber',
   error:   'red',
   info:    'blue',
 };
-// Role variant → palette step (referenced inline below).
-// Light: faint=50 · muted=100 · subtle=200 · default=500 · emphasis=700 · inverted=white
-// Dark:  faint=900 · muted=800 · subtle=700 · default=400 · emphasis=200 · inverted=zinc-950
 
-// (palette lookup helper — kept even though unused, for future generators that need literal hex)
-// Role/component tokens now emit as var(--ax-color-*) refs so palette edits cascade.
+// Brand light/dark — hardcoded from production _aegisx-tokens.scss
+// because Material Indigo palette steps ≠ Tailwind convention
+const BRAND_LIGHT = {
+  faint: '#e8eaf6', muted: '#9fa8da', subtle: '#7986cb',
+  default: '#3f51b5', emphasis: '#303f9f', inverted: '#ffffff',
+};
+const BRAND_DARK = {
+  faint: '#1a237e', muted: '#283593', subtle: '#303f9f',
+  default: '#5c6bc0', emphasis: '#9fa8da', inverted: '#1a237e',
+};
 
 // ─── semantic resolution helpers ──────────────────────────────
-// Emit reference-preserving values: `{color.palette.zinc.100}` → `var(--ax-color-zinc-100)`
-// Raw literals (e.g. `#ffffff`) pass through unchanged.
 const toCssVar = (value) => {
   if (typeof value !== 'string') return value;
   const m = value.match(REF_RE);
@@ -112,6 +109,7 @@ push(
 push('  /* ── Layer 1 · Primitive palette ── */');
 for (const [hue, shades] of Object.entries(color.palette)) {
   for (const [step, entry] of Object.entries(shades)) {
+    if (step.startsWith('$')) continue; // skip $description
     push(`  --ax-color-${hue}-${step}: ${entry.$value};`);
   }
   push('');
@@ -131,22 +129,46 @@ push('  /* Border */');
 for (const k of ['subtle','default','emphasis']) {
   push(`  --ax-border-${k}: ${resolveSemanticBorder('light', k)};`);
 }
-push('  /* Primary (brand) */');
+push('  /* Primary (brand — Material Indigo) */');
 for (const k of ['light','default','dark']) {
   const v = resolveSemanticPrimary('light', k);
   push(`  --ax-primary${k === 'default' ? '' : '-' + k}: ${v};`);
 }
 
-// Role palettes (light) — emit as var() refs so palette edits cascade
+// Role palettes (light)
 push('  /* Role palettes × 6 variants */');
+// Brand — hardcoded Material Indigo values
+for (const [variant, hex] of Object.entries(BRAND_LIGHT)) {
+  push(`  --ax-brand-${variant}:${variant.length <= 5 ? '    ' : ' '}${hex};`);
+}
+// Other roles — use palette refs
 for (const [role, hue] of Object.entries(ROLE_PALETTES)) {
-  push(`  --ax-${role}-faint:    var(--ax-color-${hue}-50);`);
+  if (role === 'brand') continue;
+  // Production faint values are specific (not always 50)
+  const faintOverrides = {
+    success: '#d1fae5',  // emerald-100
+    warning: '#fef3c7',  // amber-100
+    error:   '#fee2e2',  // red-100
+    info:    '#dbeafe',  // blue-100
+  };
+  push(`  --ax-${role}-faint:    ${faintOverrides[role] ?? `var(--ax-color-${hue}-50)`};`);
   push(`  --ax-${role}-muted:    var(--ax-color-${hue}-100);`);
   push(`  --ax-${role}-subtle:   var(--ax-color-${hue}-200);`);
   push(`  --ax-${role}-default:  var(--ax-color-${hue}-500);`);
   push(`  --ax-${role}-emphasis: var(--ax-color-${hue}-700);`);
   push(`  --ax-${role}-inverted: #ffffff;`);
 }
+
+// Surface & role border tokens
+push('  /* Surface / role border */');
+push(`  --ax-info-surface: ${component.surface.info.$value};`);
+push(`  --ax-info-border: ${component.roleBorder.info.$value};`);
+push(`  --ax-warning-surface: ${component.surface.warning.$value};`);
+push(`  --ax-warning-border: ${component.roleBorder.warning.$value};`);
+push(`  --ax-success-surface: ${component.surface.success.$value};`);
+push(`  --ax-success-border: ${component.roleBorder.success.$value};`);
+push(`  --ax-error-surface: ${component.surface.error.$value};`);
+push(`  --ax-error-border: ${component.roleBorder.error.$value};`);
 
 // Layer 3 — component tokens (light)
 push('');
@@ -183,11 +205,32 @@ push(`  --ax-input-border: var(--ax-border-default);`);
 push(`  --ax-input-border-hover: var(--ax-border-emphasis);`);
 push(`  --ax-input-border-focus: var(--ax-primary);`);
 push(`  --ax-input-border-error: var(--ax-error-default);`);
-push(`  --ax-input-ring-focus: 0 0 0 3px rgb(99 102 241 / 0.18);`);
-push(`  --ax-input-ring-error: 0 0 0 3px rgb(239 68 68 / 0.15);`);
 push('  /* Focus ring */');
-push(`  --ax-focus-ring: 0 0 0 3px rgb(99 102 241 / 0.18);`);
-push(`  --ax-focus-ring-offset: 2px;`);
+push(`  --ax-focus-ring-width: ${shadow.focusRing.width.$value};`);
+push(`  --ax-focus-ring-offset: ${shadow.focusRing.offset.$value};`);
+push(`  --ax-focus-ring-opacity: ${shadow.focusRing.opacity.$value};`);
+push(`  --ax-focus-ring-color: ${shadow.focusRing.color.$value};`);
+
+// Form layout
+push('  /* Form layout */');
+push(`  --ax-form-gap-dense: ${component.form.gap.dense.$value};`);
+push(`  --ax-form-gap-default: ${component.form.gap.default.$value};`);
+push(`  --ax-form-gap-relaxed: ${component.form.gap.relaxed.$value};`);
+push(`  --ax-form-section-gap: ${component.form.sectionGap.$value};`);
+push(`  --ax-form-card-padding: ${component.form.cardPadding.$value};`);
+
+// State layers
+push('  /* State layers (M3) */');
+push(`  --ax-state-hover-opacity: ${component.state.hover.$value};`);
+push(`  --ax-state-focus-opacity: ${component.state.focus.$value};`);
+push(`  --ax-state-pressed-opacity: ${component.state.pressed.$value};`);
+push(`  --ax-state-dragged-opacity: ${component.state.dragged.$value};`);
+
+// Opacity
+push('  /* Opacity */');
+push(`  --ax-opacity-disabled: ${component.opacity.disabled.$value};`);
+push(`  --ax-opacity-hover: ${component.opacity.hover.$value};`);
+push(`  --ax-opacity-active: ${component.opacity.active.$value};`);
 push('');
 
 // Spacing
@@ -265,8 +308,24 @@ push('  /* ── Motion ── */');
 for (const [k, entry] of Object.entries(motion.duration)) {
   if (typeof entry.$value === 'string') push(`  --ax-duration-${k}: ${entry.$value};`);
 }
+// M3 durations
+if (motion.duration.m3) {
+  for (const [k, entry] of Object.entries(motion.duration.m3)) {
+    if (k.startsWith('$')) continue;
+    push(`  --ax-duration-m3-${k}: ${entry.$value};`);
+  }
+}
 for (const [k, entry] of Object.entries(motion.easing)) {
   if (typeof entry.$value === 'string') push(`  --ax-easing-${k}: ${entry.$value};`);
+}
+// M3 easing
+if (motion.easing.m3) {
+  for (const [k, entry] of Object.entries(motion.easing.m3)) {
+    if (k.startsWith('$')) continue;
+    // camelCase → kebab-case
+    const kebab = k.replace(/([A-Z])/g, '-$1').toLowerCase();
+    push(`  --ax-easing-m3-${kebab}: ${entry.$value};`);
+  }
 }
 push('');
 
@@ -275,6 +334,19 @@ push('  /* ── Z-index scale ── */');
 for (const [k, entry] of Object.entries(zIndex)) {
   push(`  --ax-z-${k}: ${entry.$value};`);
 }
+push('');
+
+// Grid
+push('  /* ── Grid ── */');
+push(`  --ax-grid-columns: ${component.grid.columns.$value};`);
+push(`  --ax-grid-gutter: ${component.grid.gutter.$value};`);
+push('');
+
+// Accessibility
+push('  /* ── Accessibility ── */');
+push(`  --ax-a11y-touch-target-min: ${component.a11y.touchTargetMin.$value};`);
+push(`  --ax-a11y-text-min-contrast: ${component.a11y.textMinContrast.$value};`);
+push(`  --ax-a11y-text-enhanced-contrast: ${component.a11y.textEnhancedContrast.$value};`);
 push('');
 
 // Breakpoints
@@ -294,11 +366,11 @@ push('/* ═══════════════════════�
 push(' * DARK THEME');
 push(' * ══════════════════════════════════════════════════════════════ */');
 push('[data-theme="dark"] {');
-push('  /* Background */');
+push('  /* Background (Tremor palette) */');
 for (const k of ['page','default','subtle','muted','emphasis']) {
   push(`  --ax-background-${k}: ${resolveSemanticBg('dark', k)};`);
 }
-push('  /* Text */');
+push('  /* Text (Gray scale) */');
 for (const k of ['disabled','subtle','secondary','default','strong','heading','inverted']) {
   push(`  --ax-text-${k}: ${resolveSemanticText('dark', k)};`);
 }
@@ -311,8 +383,14 @@ for (const k of ['light','default','dark']) {
   const v = resolveSemanticPrimary('dark', k);
   push(`  --ax-primary${k === 'default' ? '' : '-' + k}: ${v};`);
 }
-push('  /* Role palettes (dark) — inverted scale + softer default */');
+// Brand dark — hardcoded Material Indigo dark values
+push('  /* Role palettes (dark) */');
+for (const [variant, hex] of Object.entries(BRAND_DARK)) {
+  push(`  --ax-brand-${variant}:${variant.length <= 5 ? '    ' : ' '}${hex};`);
+}
+// Other roles dark
 for (const [role, hue] of Object.entries(ROLE_PALETTES)) {
+  if (role === 'brand') continue;
   push(`  --ax-${role}-faint:    var(--ax-color-${hue}-900);`);
   push(`  --ax-${role}-muted:    var(--ax-color-${hue}-800);`);
   push(`  --ax-${role}-subtle:   var(--ax-color-${hue}-700);`);
@@ -327,19 +405,19 @@ push('  --ax-shadow-md: 0 2px 4px -2px rgb(0 0 0 / 0.5), 0 4px 8px -2px rgb(0 0 
 push('  --ax-shadow-lg: 0 4px 6px -2px rgb(0 0 0 / 0.3), 0 12px 16px -4px rgb(0 0 0 / 0.5);');
 push('  --ax-shadow-xl: 0 8px 8px -4px rgb(0 0 0 / 0.3), 0 20px 24px -4px rgb(0 0 0 / 0.5);');
 push('  /* Component dark overrides */');
-push(`  --ax-nav-bg: var(--ax-color-zinc-900);`);
-push(`  --ax-nav-text: var(--ax-color-zinc-400);`);
-push(`  --ax-nav-text-hover: var(--ax-color-zinc-50);`);
+push(`  --ax-nav-bg: var(--ax-color-gray-900);`);
+push(`  --ax-nav-text: var(--ax-color-gray-400);`);
+push(`  --ax-nav-text-hover: var(--ax-color-gray-50);`);
 push(`  --ax-nav-text-active: var(--ax-color-indigo-300);`);
-push(`  --ax-nav-bg-active: rgb(99 102 241 / 0.15);`);
-push(`  --ax-button-secondary-bg: var(--ax-color-zinc-800);`);
-push(`  --ax-button-secondary-bg-hover: var(--ax-color-zinc-700);`);
-push(`  --ax-input-bg: var(--ax-color-zinc-900);`);
-push(`  --ax-input-bg-disabled: var(--ax-color-zinc-800);`);
+push(`  --ax-nav-bg-active: rgb(63 81 181 / 0.15);`);
+push(`  --ax-button-secondary-bg: var(--ax-color-gray-800);`);
+push(`  --ax-button-secondary-bg-hover: var(--ax-color-gray-700);`);
+push(`  --ax-input-bg: var(--ax-color-gray-900);`);
+push(`  --ax-input-bg-disabled: var(--ax-color-gray-800);`);
 push('}');
 push('');
 
-// prefers-color-scheme fallback (minimal — just surfaces + text)
+// prefers-color-scheme fallback
 push('@media (prefers-color-scheme: dark) {');
 push('  :root:not([data-theme="light"]) {');
 for (const k of ['page','default','subtle','muted','emphasis']) {

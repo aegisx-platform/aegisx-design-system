@@ -1,13 +1,13 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
-  "$description": "Radius scale per aegisx-ui-design skill — Untitled UI conventions.",
+  "$description": "Radius scale per production _aegisx-tokens.scss.",
   "radius": {
-    "none": { "$value": "0",       "$type": "dimension" },
-    "xs":   { "$value": "0.25rem", "$type": "dimension", "$description": "4px — small badges, checkboxes" },
-    "sm":   { "$value": "0.375rem","$type": "dimension", "$description": "6px — buttons, inputs" },
-    "md":   { "$value": "0.5rem",  "$type": "dimension", "$description": "8px — cards, dropdowns" },
-    "lg":   { "$value": "0.75rem", "$type": "dimension", "$description": "12px — modals, large cards (preferred)" },
-    "xl":   { "$value": "1rem",    "$type": "dimension", "$description": "16px — hero panels" },
-    "full": { "$value": "9999px",  "$type": "dimension", "$description": "Pills, avatars" }
+    "none": { "$value": "0",        "$type": "dimension" },
+    "sm":   { "$value": "0.25rem",  "$type": "dimension", "$description": "4px — small badges, checkboxes" },
+    "md":   { "$value": "0.375rem", "$type": "dimension", "$description": "6px — buttons, inputs" },
+    "lg":   { "$value": "0.5rem",   "$type": "dimension", "$description": "8px — cards, dropdowns" },
+    "xl":   { "$value": "0.75rem",  "$type": "dimension", "$description": "12px — modals, large cards" },
+    "2xl":  { "$value": "1rem",     "$type": "dimension", "$description": "16px — hero panels" },
+    "full": { "$value": "9999px",   "$type": "dimension", "$description": "Pills, avatars" }
   }
 }

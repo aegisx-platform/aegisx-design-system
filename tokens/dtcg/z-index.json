@@ -1,14 +1,15 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
-  "$description": "Stacking order tokens. Always reference by name, never raw integers.",
+  "$description": "Stacking order tokens — 1000-scale per production _aegisx-tokens.scss.",
   "zIndex": {
     "base":     { "$value": 0,    "$type": "number", "$description": "Default" },
-    "dropdown": { "$value": 100,  "$type": "number", "$description": "Selects, autocomplete menus" },
-    "sticky":   { "$value": 200,  "$type": "number", "$description": "Sticky headers / nav" },
-    "overlay":  { "$value": 300,  "$type": "number", "$description": "Drawer backdrop, side panel" },
-    "modal":    { "$value": 400,  "$type": "number", "$description": "Modal / dialog" },
-    "popover":  { "$value": 500,  "$type": "number", "$description": "Popover, tooltip" },
-    "toast":    { "$value": 600,  "$type": "number", "$description": "Toast notifications" },
+    "dropdown": { "$value": 1000, "$type": "number", "$description": "Selects, autocomplete menus" },
+    "sticky":   { "$value": 1100, "$type": "number", "$description": "Sticky headers / nav" },
+    "fixed":    { "$value": 1200, "$type": "number", "$description": "Fixed position elements" },
+    "overlay":  { "$value": 1300, "$type": "number", "$description": "Drawer backdrop, side panel" },
+    "modal":    { "$value": 1400, "$type": "number", "$description": "Modal / dialog" },
+    "popover":  { "$value": 1450, "$type": "number", "$description": "Popover, tooltip" },
+    "toast":    { "$value": 1500, "$type": "number", "$description": "Toast notifications" },
     "debug":    { "$value": 9999, "$type": "number", "$description": "Dev-only overlays — not for production use" }
   }
 }
