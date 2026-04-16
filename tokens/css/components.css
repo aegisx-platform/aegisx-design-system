@@ -27,7 +27,8 @@
 
 /* ────────────────────────────────────────────────────────────
  * BUTTON  ·  mat-button / mat-flat-button / mat-stroked-button
- * radius-sm (6px) · ring-based border (Untitled UI)
+ * radius-md (6px) · ring-based border
+ * Source: _component-tokens.scss + _material-overrides.scss
  * ──────────────────────────────────────────────────────────── */
 .ax-button {
   display: inline-flex;
@@ -39,8 +40,8 @@
   line-height: 1;
   font-weight: var(--ax-font-weight-medium);
   border: none;
-  border-radius: var(--ax-radius-sm);
-  padding: 10px var(--ax-spacing-lg);
+  border-radius: var(--ax-radius-md);
+  padding: 10px var(--ax-spacing-md);
   height: 40px;
   cursor: pointer;
   text-decoration: none;
@@ -53,22 +54,21 @@
   position: relative;
 }
 .ax-button:focus-visible {
-  outline: 2px solid var(--ax-primary);
+  outline: var(--ax-focus-ring-width) solid var(--ax-focus-ring-color);
   outline-offset: var(--ax-focus-ring-offset);
-  box-shadow: var(--ax-focus-ring);
 }
 .ax-button:disabled,
 .ax-button[aria-disabled="true"],
 .ax-button[data-loading] {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: var(--ax-opacity-disabled);
   pointer-events: none;
 }
 
-/* 5 sizes (Untitled UI pattern) */
+/* 3 sizes (from _component-tokens.scss) + xs/xl for Untitled compat */
 .ax-button--xs { height: 28px; padding: 6px 10px; font-size: var(--ax-text-xs-size); gap: 4px; }
-.ax-button--sm { height: 32px; padding: 8px var(--ax-spacing-md); font-size: var(--ax-text-xs-size); }
-.ax-button--lg { height: 44px; padding: 10px var(--ax-spacing-xl); font-size: var(--ax-text-md-size); }
+.ax-button--sm { height: 32px; padding: 8px 0.75rem; font-size: var(--ax-text-xs-size); }
+.ax-button--lg { height: 48px; padding: 10px var(--ax-spacing-lg); font-size: var(--ax-text-md-size); }
 .ax-button--xl { height: 48px; padding: 12px var(--ax-spacing-xl); font-size: var(--ax-text-md-size); }
 
 /* Icon-only via data attribute (Untitled pattern) */
@@ -112,7 +112,8 @@
 
 /* ────────────────────────────────────────────────────────────
  * INPUT  ·  mat-form-field (appearance=outline)
- * radius-sm · ring-based border · autofill handling
+ * radius-md (6px) · 1px border · focus 2px brand
+ * Source: _material-overrides.scss + _component-tokens.scss
  * ──────────────────────────────────────────────────────────── */
 .ax-field { display: flex; flex-direction: column; gap: var(--ax-spacing-xs); }
 .ax-field__label {
@@ -129,7 +130,7 @@
 .ax-field__error {
   font-size: var(--ax-text-sm-size);
   line-height: var(--ax-text-sm-line);
-  color: var(--ax-error-emphasis);
+  color: var(--ax-error-default);
 }
 
 .ax-input,
@@ -141,13 +142,12 @@
   line-height: var(--ax-text-sm-line);
   color: var(--ax-input-text);
   background: var(--ax-input-bg);
-  border: none;
-  border-radius: var(--ax-radius-sm);
-  padding: 0 var(--ax-spacing-md);
+  border: 1px solid var(--ax-input-border);
+  border-radius: var(--ax-radius-md);
+  padding: 0 0.75rem;
   height: 40px;
-  box-shadow: inset 0 0 0 1px var(--ax-input-border);
   transition:
-    box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+    border-color var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
 .ax-textarea { height: auto; padding: var(--ax-spacing-md); min-height: 96px; resize: vertical; }
 
@@ -155,66 +155,68 @@
 .ax-textarea::placeholder { color: var(--ax-input-placeholder); }
 
 .ax-input:hover,
-.ax-textarea:hover { box-shadow: inset 0 0 0 1px var(--ax-input-border-hover); }
+.ax-textarea:hover { border-color: var(--ax-input-border-hover); }
 
 .ax-input:focus,
 .ax-textarea:focus {
-  outline: 2px solid var(--ax-input-border-focus);
-  outline-offset: -1px;
-  box-shadow: var(--ax-input-ring-focus);
+  outline: none;
+  border-color: var(--ax-input-border-focus);
+  border-width: 2px;
+  padding: 0 calc(0.75rem - 1px);
 }
+.ax-textarea:focus { padding: calc(var(--ax-spacing-md) - 1px); }
 
 .ax-input--error,
-.ax-textarea--error { box-shadow: inset 0 0 0 1px var(--ax-input-border-error); }
+.ax-textarea--error { border-color: var(--ax-input-border-error); }
 .ax-input--error:focus,
 .ax-textarea--error:focus {
-  outline-color: var(--ax-input-border-error);
-  box-shadow: var(--ax-input-ring-error);
+  border-color: var(--ax-input-border-error);
 }
 
 .ax-input:disabled,
 .ax-textarea:disabled {
   background: var(--ax-input-bg-disabled);
-  color: var(--ax-text-secondary);
+  color: var(--ax-text-disabled);
   cursor: not-allowed;
-  opacity: 0.65;
+  opacity: var(--ax-opacity-disabled);
 }
 
-/* Autofill styling (Untitled UI pattern) */
+/* Autofill styling */
 .ax-input:-webkit-autofill {
-  border-radius: var(--ax-radius-sm);
+  border-radius: var(--ax-radius-md);
   -webkit-text-fill-color: var(--ax-input-text);
-  box-shadow: inset 0 0 0 1px var(--ax-input-border), inset 0 0 0 100px var(--ax-input-bg);
+  box-shadow: inset 0 0 0 100px var(--ax-input-bg);
 }
 
 /* ────────────────────────────────────────────────────────────
- * CARD  ·  mat-card · radius-lg (12px) · ring border + shadow-sm
+ * CARD  ·  mat-card · radius-lg (8px) · border + shadow-xs
+ * Source: _material-overrides.scss + _component-tokens.scss
  * ──────────────────────────────────────────────────────────── */
 .ax-card {
   background: var(--ax-background-default);
-  box-shadow: inset 0 0 0 1px var(--ax-border-default);
+  border: 1px solid var(--ax-border-default);
   border-radius: var(--ax-radius-lg);
-  border: none;
+  box-shadow: var(--ax-shadow-xs);
   overflow: hidden;
   transition: box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
-.ax-card--flat {}
-.ax-card--elevated { box-shadow: inset 0 0 0 1px var(--ax-border-default), var(--ax-elevation-1); }
-.ax-card--floating { box-shadow: var(--ax-elevation-3); }
-.ax-card--interactive:hover { box-shadow: inset 0 0 0 1px var(--ax-border-emphasis), var(--ax-shadow-sm); }
+.ax-card--flat { box-shadow: none; }
+.ax-card--elevated { box-shadow: var(--ax-elevation-1); }
+.ax-card--floating { box-shadow: var(--ax-elevation-3); border: none; }
+.ax-card--interactive:hover { box-shadow: var(--ax-shadow-md); }
 
 .ax-card__header,
 .ax-card__footer {
-  padding: var(--ax-spacing-lg) var(--ax-spacing-xl);
+  padding: 1rem 1.5rem;
   font-family: var(--ax-font-sans);
 }
-.ax-card__header { border-bottom: var(--ax-border-width-thin) solid var(--ax-border-default); }
+.ax-card__header { border-bottom: 1px solid var(--ax-border-default); }
 .ax-card__footer {
-  border-top: var(--ax-border-width-thin) solid var(--ax-border-default);
+  border-top: 1px solid var(--ax-border-default);
   background: var(--ax-background-muted);
 }
 .ax-card__body {
-  padding: var(--ax-spacing-lg) var(--ax-spacing-xl);
+  padding: 1.5rem;
   color: var(--ax-text-default);
   font-size: var(--ax-text-sm-size);
   line-height: var(--ax-text-sm-line);
@@ -314,12 +316,12 @@
   align-items: center;
   gap: var(--ax-spacing-sm);
   padding: var(--ax-spacing-xs) var(--ax-spacing-md);
-  border-radius: var(--ax-radius-full);
-  background: var(--ax-background-default);
+  border-radius: var(--ax-radius-md);
+  background: transparent;
   color: var(--ax-text-default);
   font-family: var(--ax-font-sans);
   font-size: var(--ax-text-sm-size);
-  border: var(--ax-border-width-thin) solid var(--ax-border-default);
+  border: 1px solid var(--ax-border-default);
 }
 .ax-chip__close {
   all: unset; cursor: pointer;
@@ -332,26 +334,28 @@
 .ax-chip__close:hover { background: var(--ax-border-default); color: var(--ax-text-heading); }
 
 /* ────────────────────────────────────────────────────────────
- * DIALOG  ·  mat-dialog · radius-lg (12px) · elevation-3
+ * DIALOG  ·  mat-dialog · radius-xl (12px) · shadow-lg
+ * Source: _material-overrides.scss + _component-tokens.scss
  * ──────────────────────────────────────────────────────────── */
 .ax-dialog {
   background: var(--ax-background-default);
-  border-radius: var(--ax-radius-lg);
-  box-shadow: var(--ax-elevation-3);
+  border-radius: var(--ax-radius-xl);
+  border: 1px solid var(--ax-border-default);
+  box-shadow: var(--ax-shadow-lg);
   max-width: 420px;
   width: 100%;
   overflow: hidden;
 }
-.ax-dialog__header { padding: var(--ax-spacing-xl) var(--ax-spacing-xl) 0; }
+.ax-dialog__header { padding: 1.5rem; }
 .ax-dialog__title {
   margin: 0;
-  font-size: var(--ax-text-lg-size);
+  font-size: 1.25rem;
   line-height: var(--ax-text-lg-line);
   font-weight: var(--ax-font-weight-semibold);
   color: var(--ax-text-heading);
 }
 .ax-dialog__body {
-  padding: var(--ax-spacing-md) var(--ax-spacing-xl) var(--ax-spacing-lg);
+  padding: 0 1.5rem 1.5rem;
   color: var(--ax-text-default);
   font-size: var(--ax-text-sm-size);
   line-height: var(--ax-text-sm-line);
@@ -360,12 +364,13 @@
   display: flex;
   gap: var(--ax-spacing-sm);
   justify-content: flex-end;
-  padding: var(--ax-spacing-md) var(--ax-spacing-xl) var(--ax-spacing-xl);
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--ax-border-default);
 }
 
 .ax-scrim {
   position: relative;
-  background: rgba(15, 23, 42, 0.55);
+  background: rgba(0, 0, 0, 0.5);
   padding: var(--ax-spacing-2xl);
   border-radius: var(--ax-radius-lg);
   display: grid; place-items: center;
@@ -414,7 +419,8 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * TABLE  ·  mat-table · Untitled UI header pattern
+ * TABLE  ·  mat-table
+ * Source: _material-overrides.scss (12px header, 0.75rem 1rem cell)
  * ──────────────────────────────────────────────────────────── */
 .ax-table {
   width: 100%;
@@ -422,27 +428,30 @@
   background: var(--ax-background-default);
   font-family: var(--ax-font-sans);
   font-size: var(--ax-text-sm-size);
+  border-radius: inherit;
+  overflow: hidden;
 }
 .ax-table th {
   text-align: left;
-  padding: var(--ax-spacing-md) var(--ax-spacing-xl);
+  padding: 0.625rem 1rem;
   background: var(--ax-table-header-bg);
   color: var(--ax-table-header-text);
-  font-size: var(--ax-text-xs-size);
+  font-size: 0.75rem;
   font-weight: var(--ax-font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: var(--ax-tracking-widest);
-  border-bottom: var(--ax-border-width-thin) solid var(--ax-table-cell-border);
+  text-transform: none;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--ax-table-cell-border);
 }
 .ax-table td {
-  padding: var(--ax-spacing-lg) var(--ax-spacing-xl);
+  padding: 0.75rem 1rem;
   color: var(--ax-table-cell-text);
-  border-bottom: var(--ax-border-width-thin) solid var(--ax-table-cell-border);
+  border-bottom: 1px solid var(--ax-table-cell-border);
 }
 .ax-table tbody tr {
-  transition: background-color var(--ax-duration-fast) var(--ax-easing-easeOut);
+  transition: background-color 0.15s ease;
 }
 .ax-table tbody tr:hover { background: var(--ax-table-row-hover-bg); }
+.ax-table tbody tr:last-child td { border-bottom: none; }
 
 /* ════════════════════════════════════════════════════════════════
  * AEGISX-CUSTOM COMPONENTS
@@ -789,9 +798,9 @@
  * ──────────────────────────────────────────────────────────── */
 .ax-menu {
   background: var(--ax-background-default);
-  border: var(--ax-border-width-thin) solid var(--ax-border-default);
+  border: 1px solid var(--ax-border-default);
   border-radius: var(--ax-radius-md);
-  box-shadow: var(--ax-elevation-2);
+  box-shadow: var(--ax-shadow-md);
   min-width: 180px;
   padding: var(--ax-spacing-xs) 0;
   font-family: var(--ax-font-sans);
@@ -841,7 +850,7 @@
 .ax-checkbox__box {
   width: 18px; height: 18px;
   background: #fff;
-  border: 1.5px solid #d4d4d8;
+  border: 1.5px solid var(--ax-border-emphasis);
   border-radius: 4px;
   display: grid; place-items: center;
   transition: all 150ms ease;
@@ -855,14 +864,14 @@
   transform: rotate(-45deg) translateY(-1px);
 }
 .ax-checkbox input:checked ~ .ax-checkbox__box {
-  background: #6366f1;
-  border-color: #6366f1;
+  background: var(--ax-primary);
+  border-color: var(--ax-primary);
 }
 .ax-checkbox input:checked ~ .ax-checkbox__box::after {
   border-left-color: #fff;
   border-bottom-color: #fff;
 }
-.ax-checkbox input:focus-visible ~ .ax-checkbox__box { box-shadow: inset 0 0 0 1.5px var(--ax-primary), var(--ax-focus-ring); }
+.ax-checkbox input:focus-visible ~ .ax-checkbox__box { outline: var(--ax-focus-ring-width) solid var(--ax-focus-ring-color); outline-offset: var(--ax-focus-ring-offset); }
 .ax-checkbox input:disabled ~ .ax-checkbox__box { opacity: 0.4; cursor: not-allowed; }
 .ax-checkbox input:disabled ~ span { color: var(--ax-text-disabled); }
 
@@ -890,7 +899,7 @@
 .ax-radio__dot {
   width: 18px; height: 18px;
   background: #fff;
-  border: 1.5px solid #d4d4d8;
+  border: 1.5px solid var(--ax-border-emphasis);
   border-radius: 9999px;
   display: grid; place-items: center;
   transition: all 150ms ease;
@@ -903,9 +912,9 @@
   background: transparent;
   transition: background 150ms ease;
 }
-.ax-radio input:checked ~ .ax-radio__dot { border-color: #6366f1; }
-.ax-radio input:checked ~ .ax-radio__dot::after { background: #6366f1; }
-.ax-radio input:focus-visible ~ .ax-radio__dot { box-shadow: 0 0 0 3px rgb(99 102 241 / 0.18); }
+.ax-radio input:checked ~ .ax-radio__dot { border-color: var(--ax-primary); }
+.ax-radio input:checked ~ .ax-radio__dot::after { background: var(--ax-primary); }
+.ax-radio input:focus-visible ~ .ax-radio__dot { outline: var(--ax-focus-ring-width) solid var(--ax-focus-ring-color); outline-offset: var(--ax-focus-ring-offset); }
 .ax-radio input:disabled ~ .ax-radio__dot { opacity: 0.4; cursor: not-allowed; }
 
 /* ────────────────────────────────────────────────────────────
@@ -1044,7 +1053,7 @@
 .ax-sidenav--dark .ax-sidenav__item.active {
   color: #fff;
   background: rgba(99,102,241,.18);
-  border-left-color: #818cf8;
+  border-left-color: var(--ax-brand-subtle);
 }
 .ax-sidenav--dark .ax-sidenav__footer {
   border-top-color: rgba(255,255,255,.08);
