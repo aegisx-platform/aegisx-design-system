@@ -10,6 +10,31 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **What to do next:** read `TODO.md` at repo root — it's the prioritised work list. Update it as items move; do not let it rot.
 - **Critical hands-off:** user explicitly said do **NOT** touch `aegisx-starter-1` or `aegisx-ui` library until design-system is fully finalised here. Migration to consumer-side is parked.
 
+## MANDATORY RULES — violating any of these is unacceptable
+
+### Rule 1: NEVER write CSS from imagination
+`components.css` is a CSS extraction of `aegisx-starter-1/libs/aegisx-ui/src/lib/components/`. It is NOT original authoring. Before writing or modifying ANY CSS for a component:
+1. **Read the SCSS/TS source file** in `aegisx-starter-1/libs/aegisx-ui/src/lib/components/{component}/` first
+2. **Extract** exact values (padding, radius, color, shadow, transitions, animations) from that source
+3. **Never invent** CSS values, spacing, colors, or patterns — copy from the production code
+4. If the source uses `var(--ax-spacing-md)`, use exactly that. If it uses `all var(--ax-duration-normal) ease`, use exactly that.
+
+### Rule 2: Match production quality
+The user has built a polished production app. Screenshots exist at `/Users/sathitseethaphon/Desktop/Screenshot 2569-04-16*`. Every component must match that quality bar — not "functional but generic". Compare output against the real app before committing.
+
+### Rule 3: Components are for consumers, not for the demo page
+CSS components (`.ax-*` classes in `components.css`) are reusable building blocks for consumer apps. The demo page (`components.html`) shows them as previews inside demo cards. Never confuse "page chrome" (demo page's own navigation/layout) with "component" (reusable CSS class). Page chrome uses plain page-specific styles. Components are shown inside demo cards as examples.
+
+### Rule 4: Read existing code before writing anything
+When told to create/modify something, FIRST check if it already exists in:
+- `aegisx-starter-1/libs/aegisx-ui/` — the production component library
+- `aegisx-platform/aegisx-skill/skills/aegisx-ui-design/` — the design skill with reference files
+- This repo's existing files
+
+Do not write from scratch what already exists. Extract, refine, document.
+
+---
+
 ## Repository Purpose
 
 This is a **design asset / design-system repo** for the AegisX Hospital Platform. It contains no build system, no `package.json`, and no application code — only source SVG assets, brand tokens, Angular integration snippets meant to be copied into consumer apps, and authoritative specs that downstream apps must conform to.
