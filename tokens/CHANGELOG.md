@@ -6,6 +6,19 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). T
 
 ---
 
+## [0.3.2] — 2026-04-16 · Multi-platform + bidirectional Figma
+
+### Added
+- `scripts/build-platforms.mjs` — Tailwind preset + iOS Swift + Android XML + Flutter Dart from DTCG. Output `dist/tokens/`.
+- `scripts/build-tokens-studio.mjs` — auto-generate `tokens/aegisx-tokens.json` + `-dark.json` from DTCG. Closes the bidirectional sync loop with Figma.
+- `scripts/audit-dark-mode.mjs` — static audit for Slate hex / stale v0.2 token references. Wired into CI.
+
+### Changed
+- `tokens.css` IS the generator output (was hand-written + drift-checked). `tokens.generated.css` removed.
+- `pnpm tokens:verify` is now **byte-equal** (was semantic diff). Pre-commit and CI fail on any divergence.
+- `pnpm tokens:build` runs all 3 generators in sequence.
+- Preview pages chrome rewritten Slate→Zinc (header brand navy preserved).
+
 ## [0.3.1] — 2026-04-16 · Zero-drift pipeline
 
 ### Added

@@ -24,7 +24,10 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 const dtcg = resolve(root, 'tokens/dtcg');
-const out  = resolve(root, 'tokens/css/tokens.generated.css');
+// v0.3.2: tokens.css IS the generated output. Drift = a JSON change that
+// didn't run through `pnpm tokens:build`. Pre-commit hook + CI gate
+// re-generate and byte-compare.
+const out = resolve(root, process.env.AX_OUT ?? 'tokens/css/tokens.css');
 
 const read = (name) => JSON.parse(readFileSync(resolve(dtcg, name), 'utf8'));
 

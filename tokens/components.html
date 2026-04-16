@@ -11,8 +11,8 @@
     /* Chrome — matches site/index.html and preview.html */
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
-    body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
-    code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .9em; background: #f1f5f9; color: #334155; padding: 1px 6px; border-radius: 6px; }
+    body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fafafa; color: #0f172a; }
+    code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .9em; background: #f4f4f5; color: #3f3f46; padding: 1px 6px; border-radius: 6px; }
 
     header.page-head { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 36px 32px 44px; }
     header.page-head h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
@@ -25,20 +25,20 @@
     header.page-head .toggle button:hover { color: #fff; }
     header.page-head .toggle button[aria-pressed="true"] { background: #6366f1; color: #fff; }
 
-    nav.tabs { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 32px; display: flex; gap: 24px; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 3px rgba(15,23,42,.04); overflow-x: auto; }
-    nav.tabs a { padding: 14px 0; color: #475569; border-bottom: 2px solid transparent; font-weight: 500; font-size: 13px; white-space: nowrap; text-decoration: none; }
+    nav.tabs { background: #fff; border-bottom: 1px solid #e4e4e7; padding: 0 32px; display: flex; gap: 24px; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 3px rgba(15,23,42,.04); overflow-x: auto; }
+    nav.tabs a { padding: 14px 0; color: #52525b; border-bottom: 2px solid transparent; font-weight: 500; font-size: 13px; white-space: nowrap; text-decoration: none; }
     nav.tabs a:hover { color: #0f172a; }
     nav.tabs a.home { color: #6366f1; }
 
     main { padding: 32px; max-width: 1280px; margin: 0 auto; }
     section.block + section.block { margin-top: 56px; }
     section.block > h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; color: #0f172a; }
-    section.block > p.muted { margin: 0 0 20px; color: #64748b; font-size: 13px; }
-    section.block > h3 { margin: 28px 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #64748b; font-weight: 600; }
+    section.block > p.muted { margin: 0 0 20px; color: #71717a; font-size: 13px; }
+    section.block > h3 { margin: 28px 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #71717a; font-weight: 600; }
 
     .demo {
       background: #fff;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #e4e4e7;
       border-radius: 12px;
       padding: 24px;
       display: flex;
@@ -55,10 +55,10 @@
       margin-top: 6px;
       font-family: ui-monospace, 'SF Mono', Menlo, monospace;
       font-size: 11px;
-      color: #64748b;
+      color: #71717a;
       padding: 10px 14px;
       background: #0f172a;
-      color: #e2e8f0;
+      color: #e4e4e7;
       border-radius: 8px;
       overflow-x: auto;
       line-height: 1.55;
@@ -68,22 +68,22 @@
     .snippet .s { color: #86efac; }
 
     /* dark chrome */
-    [data-theme="dark"] body { background: #030712; color: #e2e8f0; }
-    [data-theme="dark"] section.block > h2 { color: #f8fafc; }
-    [data-theme="dark"] section.block > p.muted { color: #94a3b8; }
-    [data-theme="dark"] nav.tabs { background: #111827; border-bottom-color: #1f2937; }
-    [data-theme="dark"] nav.tabs a { color: #94a3b8; }
-    [data-theme="dark"] nav.tabs a:hover { color: #f8fafc; }
+    [data-theme="dark"] body { background: #09090b; color: #e4e4e7; }
+    [data-theme="dark"] section.block > h2 { color: #fafafa; }
+    [data-theme="dark"] section.block > p.muted { color: #a1a1aa; }
+    [data-theme="dark"] nav.tabs { background: #111827; border-bottom-color: #27272a; }
+    [data-theme="dark"] nav.tabs a { color: #a1a1aa; }
+    [data-theme="dark"] nav.tabs a:hover { color: #fafafa; }
     [data-theme="dark"] nav.tabs a.home { color: #a5b4fc; }
-    [data-theme="dark"] .demo { background: #1f2937; border-color: #334155; }
-    [data-theme="dark"] code { background: #1f2937; color: #e2e8f0; }
+    [data-theme="dark"] .demo { background: #27272a; border-color: #3f3f46; }
+    [data-theme="dark"] code { background: #27272a; color: #e4e4e7; }
   </style>
 </head>
 <body>
 
 <header class="page-head">
   <h1>Components</h1>
-  <p>Reusable component primitives built on top of <code style="background:rgba(255,255,255,.1);color:#e2e8f0;">--ax-*</code> tokens. Copy <code style="background:rgba(255,255,255,.1);color:#e2e8f0;">tokens/css/components.css</code> into your app alongside <code style="background:rgba(255,255,255,.1);color:#e2e8f0;">tokens.css</code>.</p>
+  <p>Reusable component primitives built on top of <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">--ax-*</code> tokens. Copy <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">tokens/css/components.css</code> into your app alongside <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">tokens.css</code>.</p>
   <div class="row">
     <span class="badge">v0.1 · preview</span>
     <span class="badge">10 components</span>

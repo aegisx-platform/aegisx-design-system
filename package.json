@@ -1,6 +1,6 @@
 {
   "name": "@aegisx-platform/design-system",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "AegisX Hospital Platform design system — icons, logo, brand assets, and specs.",
   "license": "UNLICENSED",
   "private": false,
@@ -72,6 +72,11 @@
     "./tokens/dtcg/*":              "./tokens/dtcg/*",
     "./tokens/aegisx-tokens.json":      "./tokens/aegisx-tokens.json",
     "./tokens/aegisx-tokens-dark.json": "./tokens/aegisx-tokens-dark.json",
+    "./tokens/tailwind/tailwind-preset": "./dist/tokens/tailwind/tailwind-preset.cjs",
+    "./tokens/ios/AegisXTokens.swift":   "./dist/tokens/ios/AegisXTokens.swift",
+    "./tokens/android/colors.xml":        "./dist/tokens/android/colors.xml",
+    "./tokens/android/dimens.xml":        "./dist/tokens/android/dimens.xml",
+    "./tokens/flutter/aegisx_tokens.dart":"./dist/tokens/flutter/aegisx_tokens.dart",
     "./package.json": "./package.json"
   },
   "files": [
@@ -92,6 +97,7 @@
     "tokens/aegisx-tokens-dark.json",
     "tokens/$themes.json",
     "tokens/$metadata.json",
+    "dist/tokens",
     "tokens/AEGISX-TOKENS-SPEC.md",
     "tokens/ANGULAR-MATERIAL-SETUP.md",
     "tokens/CHANGELOG.md",
@@ -111,10 +117,13 @@
     "check:contrast": "node scripts/check-contrast.mjs",
     "gen:icon-data": "node scripts/generate-icon-data.mjs",
     "site:build": "node scripts/build-site.mjs",
-    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:build": "node scripts/build-tokens.mjs && node scripts/build-tokens-studio.mjs && node scripts/build-platforms.mjs",
     "tokens:verify": "node scripts/verify-tokens.mjs",
+    "tokens:platforms": "node scripts/build-platforms.mjs",
+    "tokens:studio": "node scripts/build-tokens-studio.mjs",
+    "audit:dark-mode": "node scripts/audit-dark-mode.mjs",
     "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
-    "prebuild": "pnpm run gen:icon-data"
+    "prebuild": "pnpm run gen:icon-data && pnpm run tokens:build"
   },
   "keywords": [
     "aegisx",

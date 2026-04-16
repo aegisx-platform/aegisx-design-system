@@ -1,6 +1,6 @@
 # TODO — `aegisx-design-system`
 
-> Resume here. Last shipped: **v0.3.1** (2026-04-16, SHA `306d022`) — pre-commit hook + CI gate + npm packaging. All 3 GitHub workflows green.
+> Resume here. Last shipped: **v0.3.2** (2026-04-16) — multi-platform export · Tokens Studio bidirectional sync · dark-mode static audit · `tokens.css` is now generator output (byte-equal verify gate). All workflows green.
 
 This file is the **single source of truth for what to do next**. Update it as items move between sections. Do not let it rot.
 
@@ -14,34 +14,13 @@ This file is the **single source of truth for what to do next**. Update it as it
 
 ## 🟡 Ready to pick up (no blocker)
 
-### Visual dark-mode audit
-- **What:** open `/tokens/preview.html`, `/tokens/components.html`, `/tokens/a11y.html` in a real browser (Chromium + Safari + Firefox), toggle theme to **DARK** and **AUTO** on each, scroll through every section, check for:
-  - white-on-white text or invisible borders
-  - stranded light shadows on dark surfaces
-  - chrome (header/nav) that doesn't flip
-  - text contrast that fails AA in dark
-- **Why deferred:** can't be done headless without bringing in Playwright; tokens repo is intentionally zero-runtime-dep.
-- **Likely findings:** chrome in preview/components/a11y still uses Slate hex (`#0f172a`, `#475569`, `#e2e8f0`) instead of Zinc. Cosmetic but worth fixing for consistency.
-- **Acceptance:** zero visual bugs OR an issue per bug filed.
+### Visual dark-mode audit (browser, manual)
+- **What:** open `/tokens/preview.html`, `/tokens/components.html`, `/tokens/a11y.html` in a real browser (Chromium + Safari + Firefox), toggle theme to **DARK** and **AUTO** on each, check for stranded light shadows / white-on-white text / chrome that doesn't flip / contrast failures.
+- **Static audit done** (`pnpm audit:dark-mode`) — caught and fixed all Slate hex chrome references; remaining 12 warnings are intentional brand navy `#0f172a` text usage.
+- **Acceptance:** zero visual bugs OR file an issue per finding. Manual step — script can't see paint.
 
-### Tokens.css ↔ tokens.generated.css full parity
-- **State:** semantic-equal (zero drift on values), but byte-different (canonical has richer comments + intentional ordering). `pnpm tokens:verify` already passes.
-- **Decision needed:** keep canonical as hand-curated (current pattern, allows annotation) OR switch fully to generated (pure pipeline, no annotation). Pick one.
-- **If switching to generated:** delete `tokens.css`, rename `tokens.generated.css` → `tokens.css`, update build flow to write directly to `tokens.css`.
-
-### Style Dictionary multi-platform export
-- **What:** wire `tokens/dtcg/*.json` through Style Dictionary to emit:
-  - Tailwind preset (`dist/tailwind-preset.js`)
-  - iOS Swift (`dist/AegisXTokens.swift`)
-  - Android XML (`dist/colors.xml`, `dist/dimens.xml`)
-  - Flutter Dart (`dist/aegisx_tokens.dart`)
-- **Why:** consumer apps beyond Angular get the same source of truth.
-- **Stub:** mentioned in `docs/FIGMA-SYNC.md` v0.1.
-
-### Tokens Studio ↔ DTCG bidirectional sync
-- **State:** `tokens/aegisx-tokens.json` + `-dark.json` rewritten to v0.3 manually. No script generates them from `dtcg/`.
-- **Need:** `scripts/build-tokens-studio.mjs` that reads `dtcg/*.json` and emits the Tokens Studio single-file format. Wire into `pnpm tokens:build`.
-- **Why:** Figma stays in sync automatically when DTCG source changes.
+### Playwright snapshot tests
+- Add `@playwright/test` (only as dev dep), wire screenshot snapshot tests for `/tokens/preview.html`, `/tokens/components.html`, `/tokens/a11y.html` in light + dark modes. Catches regressions automatically.
 
 ---
 

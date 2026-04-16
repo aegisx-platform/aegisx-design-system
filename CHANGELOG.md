@@ -6,6 +6,29 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.3.2] — 2026-04-16
+
+### Added
+- **Multi-platform token export** (`scripts/build-platforms.mjs`) — emits `dist/tokens/`:
+  - `tailwind/tailwind-preset.cjs` — Tailwind v3 config preset (palette + spacing + radius + fontFamily)
+  - `ios/AegisXTokens.swift` — SwiftUI `Color` / `CGFloat` constants
+  - `android/colors.xml` + `dimens.xml` — Android resource files
+  - `flutter/aegisx_tokens.dart` — Flutter `Color` / spacing / radius constants
+  - Wired via `pnpm tokens:platforms` and chained into `pnpm tokens:build`
+- **Tokens Studio bidirectional sync** (`scripts/build-tokens-studio.mjs`) — generates `tokens/aegisx-tokens.json` + `aegisx-tokens-dark.json` directly from `dtcg/*.json`. Run `pnpm tokens:studio` after any DTCG change to keep Figma in sync.
+- **Dark-mode static audit** (`scripts/audit-dark-mode.mjs`) — flags Slate hex literals in chrome (must be Zinc per v0.3), stale v0.2 token references (`--ax-bg-*`, `--ax-text-primary`, M3 role tokens). Wired via `pnpm audit:dark-mode` and CI.
+- Subpath exports for native bindings: `@aegisx-platform/design-system/tokens/{tailwind,ios,android,flutter}/...`.
+
+### Changed
+- **`tokens.css` is now generator output** — single source of truth via `pnpm tokens:build`. The hand-written `tokens.css` and parallel `tokens.generated.css` collapsed into one file.
+- **`pnpm tokens:verify`** rewritten as **byte-equal** drift gate (was semantic diff). Runs the generator into a temp file and compares; pre-commit + CI fail on any divergence.
+- **`pnpm tokens:build`** chains all three generators (`build-tokens` → `build-tokens-studio` → `build-platforms`).
+- **`prebuild`** now runs `tokens:build` so `pnpm publish` always ships fresh native bindings.
+- **Preview pages chrome** — bulk Slate→Zinc rewrite in `tokens/preview.html`, `components.html`, `a11y.html`. Header brand navy (`#0f172a`, `#1e293b`) preserved as intentional brand identity.
+
+### CI
+- New steps: `audit:dark-mode` and `tokens:platforms`.
+
 ## [0.3.1] — 2026-04-16
 
 ### Added

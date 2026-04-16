@@ -36,6 +36,12 @@ jobs:
       - name: A11y — WCAG contrast audit
         run: pnpm run check:contrast
 
+      - name: Dark-mode static audit
+        run: pnpm run audit:dark-mode
+
+      - name: Tokens — multi-platform export
+        run: pnpm run tokens:platforms
+
       - name: SVG optimisation drift
         run: |
           pnpm exec svgo --config=.svgo.config.js -rf icons/svg

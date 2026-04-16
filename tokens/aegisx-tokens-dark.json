@@ -1,45 +1,243 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
-  "$description": "AegisX v0.3 dark-mode overrides. Use as a Tokens Studio set layered on top of aegisx-tokens.json — this file only re-defines the semantic aliases (surfaces/text/border/primary/roles) that flip between light and dark. The primitive palette in the base set is mode-invariant.",
-  "$version": "0.3.0",
-
+  "$description": "AegisX v0.3 dark-mode overrides — Tokens Studio mirror auto-generated from dtcg/. Layer on top of aegisx-tokens.json.",
+  "$version": "0.3.2",
   "color": {
     "semantic": {
       "background": {
-        "page":     { "$value": "{color.palette.zinc.950}", "$type": "color" },
-        "default":  { "$value": "{color.palette.zinc.900}", "$type": "color" },
-        "subtle":   { "$value": "{color.palette.zinc.800}", "$type": "color" },
-        "muted":    { "$value": "{color.palette.zinc.700}", "$type": "color" },
-        "emphasis": { "$value": "{color.palette.zinc.600}", "$type": "color" }
+        "page": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.zinc.900}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.zinc.800}",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "{color.palette.zinc.700}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.zinc.600}",
+          "$type": "color"
+        }
       },
       "text": {
-        "disabled":  { "$value": "{color.palette.zinc.600}", "$type": "color" },
-        "subtle":    { "$value": "{color.palette.zinc.500}", "$type": "color" },
-        "secondary": { "$value": "{color.palette.zinc.400}", "$type": "color" },
-        "default":   { "$value": "#e5e5e5",                   "$type": "color" },
-        "strong":    { "$value": "{color.palette.zinc.100}", "$type": "color" },
-        "heading":   { "$value": "{color.palette.zinc.50}",  "$type": "color" },
-        "inverted":  { "$value": "{color.palette.zinc.950}", "$type": "color" }
+        "disabled": {
+          "$value": "{color.palette.zinc.600}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.zinc.500}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{color.palette.zinc.400}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "#e5e5e5",
+          "$type": "color"
+        },
+        "strong": {
+          "$value": "{color.palette.zinc.100}",
+          "$type": "color"
+        },
+        "heading": {
+          "$value": "{color.palette.zinc.50}",
+          "$type": "color"
+        },
+        "inverted": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
       },
       "border": {
-        "subtle":   { "$value": "{color.palette.zinc.800}", "$type": "color" },
-        "default":  { "$value": "{color.palette.zinc.700}", "$type": "color" },
-        "emphasis": { "$value": "{color.palette.zinc.600}", "$type": "color" }
+        "subtle": {
+          "$value": "{color.palette.zinc.800}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.zinc.700}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.zinc.600}",
+          "$type": "color"
+        }
       },
       "primary": {
-        "light":   { "$value": "{color.palette.indigo.200}", "$type": "color" },
-        "default": { "$value": "{color.palette.indigo.400}", "$type": "color", "$description": "Softer in dark mode — indigo-400" },
-        "dark":    { "$value": "{color.palette.indigo.600}", "$type": "color" }
+        "light": {
+          "$value": "{color.palette.indigo.200}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.indigo.400}",
+          "$type": "color"
+        },
+        "dark": {
+          "$value": "{color.palette.indigo.600}",
+          "$type": "color"
+        }
+      }
+    },
+    "role": {
+      "brand": {
+        "faint": {
+          "$value": "{color.palette.indigo.900}",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "{color.palette.indigo.800}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.indigo.700}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.indigo.400}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.indigo.200}",
+          "$type": "color"
+        },
+        "inverted": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
+      },
+      "success": {
+        "faint": {
+          "$value": "{color.palette.green.900}",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "{color.palette.green.800}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.green.700}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.green.400}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.green.200}",
+          "$type": "color"
+        },
+        "inverted": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
+      },
+      "warning": {
+        "faint": {
+          "$value": "{color.palette.amber.900}",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "{color.palette.amber.800}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.amber.700}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.amber.400}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.amber.200}",
+          "$type": "color"
+        },
+        "inverted": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
+      },
+      "error": {
+        "faint": {
+          "$value": "{color.palette.red.900}",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "{color.palette.red.800}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.red.700}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.red.400}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.red.200}",
+          "$type": "color"
+        },
+        "inverted": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
+      },
+      "info": {
+        "faint": {
+          "$value": "{color.palette.blue.900}",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "{color.palette.blue.800}",
+          "$type": "color"
+        },
+        "subtle": {
+          "$value": "{color.palette.blue.700}",
+          "$type": "color"
+        },
+        "default": {
+          "$value": "{color.palette.blue.400}",
+          "$type": "color"
+        },
+        "emphasis": {
+          "$value": "{color.palette.blue.200}",
+          "$type": "color"
+        },
+        "inverted": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
       }
     }
   },
-
   "shadow": {
-    "$note": "Stronger opacity in dark mode to preserve perceived depth.",
-    "xs": { "$value": "0 1px 2px 0 rgb(0 0 0 / 0.5)",                                            "$type": "shadow" },
-    "sm": { "$value": "0 1px 2px 0 rgb(0 0 0 / 0.5), 0 1px 3px 0 rgb(0 0 0 / 0.4)",              "$type": "shadow" },
-    "md": { "$value": "0 2px 4px -2px rgb(0 0 0 / 0.5), 0 4px 8px -2px rgb(0 0 0 / 0.4)",        "$type": "shadow" },
-    "lg": { "$value": "0 4px 6px -2px rgb(0 0 0 / 0.3), 0 12px 16px -4px rgb(0 0 0 / 0.5)",      "$type": "shadow" },
-    "xl": { "$value": "0 8px 8px -4px rgb(0 0 0 / 0.3), 0 20px 24px -4px rgb(0 0 0 / 0.5)",      "$type": "shadow" }
+    "xs": {
+      "$value": "0 1px 2px 0 rgb(0 0 0 / 0.5)",
+      "$type": "shadow"
+    },
+    "sm": {
+      "$value": "0 1px 2px 0 rgb(0 0 0 / 0.5), 0 1px 3px 0 rgb(0 0 0 / 0.4)",
+      "$type": "shadow"
+    },
+    "md": {
+      "$value": "0 2px 4px -2px rgb(0 0 0 / 0.5), 0 4px 8px -2px rgb(0 0 0 / 0.4)",
+      "$type": "shadow"
+    },
+    "lg": {
+      "$value": "0 4px 6px -2px rgb(0 0 0 / 0.3), 0 12px 16px -4px rgb(0 0 0 / 0.5)",
+      "$type": "shadow"
+    },
+    "xl": {
+      "$value": "0 8px 8px -4px rgb(0 0 0 / 0.3), 0 20px 24px -4px rgb(0 0 0 / 0.5)",
+      "$type": "shadow"
+    }
   }
 }
