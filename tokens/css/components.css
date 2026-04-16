@@ -6,6 +6,15 @@
  *
  * Naming: BEM-ish — .ax-{component} · .ax-{component}--{modifier}.
  * Body base: 14px (text-sm) for clinical density.
+ *
+ * Design conventions adopted from Untitled UI (react ref):
+ *   - Ring-based borders (box-shadow inset 0 0 0 1px) for sub-pixel crispness
+ *   - Badge micro-shadow (shadow-xs + ring)
+ *   - Tooltip fade+scale animation
+ *   - Focus: box-shadow ring + outline fallback
+ *   - Opacity overlays for hover/disabled depth
+ *   - data-* attribute conditional styling
+ *   - Progress bar uses transform (not width) for GPU compositing
  */
 
 /* ────────────────────────────────────────────────────────────
@@ -20,33 +29,41 @@
   font-size: var(--ax-text-sm-size);
   line-height: 1;
   font-weight: var(--ax-font-weight-medium);
-  border: var(--ax-border-width-thin) solid transparent;
+  border: none;
   border-radius: var(--ax-radius-sm);
-  padding: 0 var(--ax-spacing-lg);
+  padding: 10px var(--ax-spacing-lg);
   height: 40px;
   cursor: pointer;
   text-decoration: none;
   transition:
     background-color var(--ax-duration-fast) var(--ax-easing-easeOut),
-    border-color var(--ax-duration-fast) var(--ax-easing-easeOut),
-    color var(--ax-duration-fast) var(--ax-easing-easeOut),
-    box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+    box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut),
+    color var(--ax-duration-fast) var(--ax-easing-easeOut);
   user-select: none;
   white-space: nowrap;
+  position: relative;
 }
 .ax-button:focus-visible {
-  outline: none;
+  outline: 2px solid var(--ax-primary);
+  outline-offset: var(--ax-focus-ring-offset);
   box-shadow: var(--ax-focus-ring);
 }
 .ax-button:disabled,
-.ax-button[aria-disabled="true"] {
+.ax-button[aria-disabled="true"],
+.ax-button[data-loading] {
   cursor: not-allowed;
   opacity: 0.5;
   pointer-events: none;
 }
 
-.ax-button--sm { height: 32px; padding: 0 var(--ax-spacing-md); font-size: var(--ax-text-xs-size); }
-.ax-button--lg { height: 48px; padding: 0 var(--ax-spacing-xl); font-size: var(--ax-text-md-size); }
+/* 5 sizes (Untitled UI pattern) */
+.ax-button--xs { height: 28px; padding: 6px 10px; font-size: var(--ax-text-xs-size); gap: 4px; }
+.ax-button--sm { height: 32px; padding: 8px var(--ax-spacing-md); font-size: var(--ax-text-xs-size); }
+.ax-button--lg { height: 44px; padding: 10px var(--ax-spacing-xl); font-size: var(--ax-text-md-size); }
+.ax-button--xl { height: 48px; padding: 12px var(--ax-spacing-xl); font-size: var(--ax-text-md-size); }
+
+/* Icon-only via data attribute (Untitled pattern) */
+.ax-button[data-icon-only] { padding: 0; aspect-ratio: 1; width: auto; }
 
 /* variants */
 .ax-button--primary {
@@ -58,11 +75,11 @@
 .ax-button--secondary {
   background: var(--ax-button-secondary-bg);
   color: var(--ax-button-secondary-text);
-  border-color: var(--ax-button-secondary-border);
+  box-shadow: inset 0 0 0 1px var(--ax-button-secondary-border);
 }
 .ax-button--secondary:hover {
   background: var(--ax-button-secondary-bg-hover);
-  border-color: var(--ax-border-emphasis);
+  box-shadow: inset 0 0 0 1px var(--ax-border-emphasis);
 }
 
 .ax-button--ghost {
@@ -80,7 +97,7 @@
 .ax-button--outline {
   background: transparent;
   color: var(--ax-primary);
-  border-color: var(--ax-primary);
+  box-shadow: inset 0 0 0 1px var(--ax-primary);
 }
 .ax-button--outline:hover { background: var(--ax-brand-faint); }
 
@@ -114,12 +131,12 @@
   line-height: var(--ax-text-sm-line);
   color: var(--ax-input-text);
   background: var(--ax-input-bg);
-  border: var(--ax-border-width-thin) solid var(--ax-input-border);
+  border: none;
   border-radius: var(--ax-radius-sm);
   padding: 0 var(--ax-spacing-md);
   height: 40px;
+  box-shadow: inset 0 0 0 1px var(--ax-input-border);
   transition:
-    border-color var(--ax-duration-fast) var(--ax-easing-easeOut),
     box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
 .ax-textarea { height: auto; padding: var(--ax-spacing-md); min-height: 96px; resize: vertical; }
@@ -128,25 +145,36 @@
 .ax-textarea::placeholder { color: var(--ax-input-placeholder); }
 
 .ax-input:hover,
-.ax-textarea:hover { border-color: var(--ax-input-border-hover); }
+.ax-textarea:hover { box-shadow: inset 0 0 0 1px var(--ax-input-border-hover); }
 
 .ax-input:focus,
 .ax-textarea:focus {
-  outline: none;
-  border-color: var(--ax-input-border-focus);
+  outline: 2px solid var(--ax-input-border-focus);
+  outline-offset: -1px;
   box-shadow: var(--ax-input-ring-focus);
 }
 
 .ax-input--error,
-.ax-textarea--error { border-color: var(--ax-input-border-error); }
+.ax-textarea--error { box-shadow: inset 0 0 0 1px var(--ax-input-border-error); }
 .ax-input--error:focus,
-.ax-textarea--error:focus { box-shadow: var(--ax-input-ring-error); }
+.ax-textarea--error:focus {
+  outline-color: var(--ax-input-border-error);
+  box-shadow: var(--ax-input-ring-error);
+}
 
 .ax-input:disabled,
 .ax-textarea:disabled {
   background: var(--ax-input-bg-disabled);
   color: var(--ax-text-secondary);
   cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Autofill styling (Untitled UI pattern) */
+.ax-input:-webkit-autofill {
+  border-radius: var(--ax-radius-sm);
+  -webkit-text-fill-color: var(--ax-input-text);
+  box-shadow: inset 0 0 0 1px var(--ax-input-border), inset 0 0 0 100px var(--ax-input-bg);
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -154,13 +182,16 @@
  * ──────────────────────────────────────────────────────────── */
 .ax-card {
   background: var(--ax-background-default);
-  border: var(--ax-border-width-thin) solid var(--ax-border-default);
+  box-shadow: inset 0 0 0 1px var(--ax-border-default);
   border-radius: var(--ax-radius-lg);
+  border: none;
   overflow: hidden;
+  transition: box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
 .ax-card--flat {}
-.ax-card--elevated { box-shadow: var(--ax-elevation-1); }
-.ax-card--floating { box-shadow: var(--ax-elevation-3); border-color: transparent; }
+.ax-card--elevated { box-shadow: inset 0 0 0 1px var(--ax-border-default), var(--ax-elevation-1); }
+.ax-card--floating { box-shadow: var(--ax-elevation-3); }
+.ax-card--interactive:hover { box-shadow: inset 0 0 0 1px var(--ax-border-emphasis), var(--ax-shadow-sm); }
 
 .ax-card__header,
 .ax-card__footer {
@@ -243,8 +274,9 @@
   font-size: var(--ax-text-xs-size);
   line-height: var(--ax-text-xs-line);
   font-weight: var(--ax-font-weight-medium);
-  border: var(--ax-border-width-thin) solid transparent;
+  border: none;
   white-space: nowrap;
+  box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.08), var(--ax-shadow-xs);
 }
 .ax-badge--solid-success { background: var(--ax-success-default); color: var(--ax-success-inverted); }
 .ax-badge--solid-warning { background: var(--ax-warning-default); color: var(--ax-warning-inverted); }
@@ -534,9 +566,19 @@
 }
 .ax-progress__bar {
   height: 100%;
+  width: 100%;
   background: var(--ax-primary);
   border-radius: var(--ax-radius-full);
-  transition: width var(--ax-duration-normal) var(--ax-easing-easeOut);
+  transform-origin: left;
+  transition: transform var(--ax-duration-normal) var(--ax-easing-easeOut);
+  will-change: transform;
+}
+/* Use transform: scaleX() for GPU compositing.
+   Set via inline style="--ax-progress: 0.72" + CSS below,
+   or use style="width: 72%" as fallback (both work). */
+.ax-progress__bar[style*="--ax-progress"] {
+  width: 100%;
+  transform: scaleX(var(--ax-progress, 1));
 }
 .ax-progress--success .ax-progress__bar { background: var(--ax-success-default); }
 .ax-progress--warning .ax-progress__bar { background: var(--ax-warning-default); }
@@ -712,10 +754,12 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--ax-duration-fast) var(--ax-easing-easeOut);
+  transform: translateX(-50%) scale(0.95);
+  transition: opacity var(--ax-duration-fast) var(--ax-easing-easeOut),
+              transform var(--ax-duration-fast) var(--ax-easing-easeOut);
   z-index: var(--ax-z-popover);
 }
-[data-tooltip]:hover::after { opacity: 1; }
+[data-tooltip]:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
 
 /* ────────────────────────────────────────────────────────────
  * DROPDOWN MENU
@@ -1577,3 +1621,148 @@
 .ax-navbar-user__name { font-size: var(--ax-text-sm-size); font-weight: var(--ax-font-weight-medium); color: var(--ax-text-heading); }
 .ax-navbar-user__role { font-size: var(--ax-text-xs-size); color: var(--ax-text-secondary); }
 .ax-navbar-user__chevron { color: var(--ax-text-subtle); font-size: 12px; }
+
+/* ════════════════════════════════════════════════════════════════
+ * Components adopted from Untitled UI React reference
+ * ════════════════════════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────────────────────────
+ * BUTTON GROUP · joined buttons sharing borders
+ * ──────────────────────────────────────────────────────────── */
+.ax-button-group {
+  display: inline-flex;
+}
+.ax-button-group > .ax-button {
+  border-radius: 0;
+  box-shadow: inset 0 0 0 1px var(--ax-border-default);
+  margin-left: -1px;
+}
+.ax-button-group > .ax-button:first-child {
+  border-radius: var(--ax-radius-sm) 0 0 var(--ax-radius-sm);
+  margin-left: 0;
+}
+.ax-button-group > .ax-button:last-child {
+  border-radius: 0 var(--ax-radius-sm) var(--ax-radius-sm) 0;
+}
+.ax-button-group > .ax-button:hover { z-index: 1; }
+.ax-button-group > .ax-button:focus-visible { z-index: 2; }
+.ax-button-group > .ax-button.active {
+  background: var(--ax-background-subtle);
+  color: var(--ax-text-heading);
+  z-index: 1;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * SLIDER · styled range input
+ * ──────────────────────────────────────────────────────────── */
+.ax-slider {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  background: var(--ax-background-subtle);
+  border-radius: var(--ax-radius-full);
+  outline: none;
+  cursor: pointer;
+}
+.ax-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px; height: 20px;
+  border-radius: var(--ax-radius-full);
+  background: var(--ax-background-default);
+  box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-shadow-sm);
+  cursor: grab;
+  transition: box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-slider::-webkit-slider-thumb:hover {
+  box-shadow: inset 0 0 0 2px var(--ax-primary-dark), var(--ax-shadow-md);
+}
+.ax-slider::-webkit-slider-thumb:active { cursor: grabbing; }
+.ax-slider::-moz-range-thumb {
+  width: 20px; height: 20px; border: none;
+  border-radius: var(--ax-radius-full);
+  background: var(--ax-background-default);
+  box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-shadow-sm);
+  cursor: grab;
+}
+.ax-slider:focus-visible::-webkit-slider-thumb { box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-focus-ring); }
+.ax-slider:focus-visible::-moz-range-thumb { box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-focus-ring); }
+.ax-slider:disabled { opacity: 0.5; cursor: not-allowed; }
+.ax-slider:disabled::-webkit-slider-thumb { cursor: not-allowed; }
+
+/* ────────────────────────────────────────────────────────────
+ * TAG INPUT · removable tags with inline input
+ * ──────────────────────────────────────────────────────────── */
+.ax-tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ax-spacing-xs);
+  padding: var(--ax-spacing-xs) var(--ax-spacing-sm);
+  background: var(--ax-input-bg);
+  box-shadow: inset 0 0 0 1px var(--ax-input-border);
+  border-radius: var(--ax-radius-sm);
+  min-height: 40px;
+  align-items: center;
+  cursor: text;
+  transition: box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-tag-input:focus-within {
+  box-shadow: inset 0 0 0 1px var(--ax-input-border-focus), var(--ax-input-ring-focus);
+}
+.ax-tag-input__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px 2px 8px;
+  background: var(--ax-background-subtle);
+  border-radius: var(--ax-radius-xs);
+  font-size: var(--ax-text-xs-size);
+  color: var(--ax-text-heading);
+  font-weight: var(--ax-font-weight-medium);
+  box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.08);
+}
+.ax-tag-input__remove {
+  all: unset; cursor: pointer;
+  width: 16px; height: 16px;
+  border-radius: var(--ax-radius-full);
+  display: grid; place-items: center;
+  color: var(--ax-text-secondary);
+  font-size: 11px;
+}
+.ax-tag-input__remove:hover { background: rgb(0 0 0 / 0.08); color: var(--ax-text-heading); }
+.ax-tag-input input {
+  flex: 1; min-width: 80px;
+  border: none; outline: none;
+  background: transparent;
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  color: var(--ax-input-text);
+  padding: 4px;
+}
+.ax-tag-input input::placeholder { color: var(--ax-input-placeholder); }
+
+/* ────────────────────────────────────────────────────────────
+ * FEATURED ICON · larger reusable icon circle (Untitled pattern)
+ * ──────────────────────────────────────────────────────────── */
+.ax-featured-icon {
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--ax-radius-full);
+  flex-shrink: 0;
+}
+.ax-featured-icon--sm { width: 32px; height: 32px; font-size: 16px; }
+.ax-featured-icon--md { width: 40px; height: 40px; font-size: 20px; }
+.ax-featured-icon--lg { width: 48px; height: 48px; font-size: 24px; }
+.ax-featured-icon--xl { width: 56px; height: 56px; font-size: 28px; }
+.ax-featured-icon--brand   { background: var(--ax-brand-faint);   color: var(--ax-brand-emphasis); }
+.ax-featured-icon--success { background: var(--ax-success-faint); color: var(--ax-success-emphasis); }
+.ax-featured-icon--warning { background: var(--ax-warning-faint); color: var(--ax-warning-emphasis); }
+.ax-featured-icon--error   { background: var(--ax-error-faint);   color: var(--ax-error-emphasis); }
+.ax-featured-icon--info    { background: var(--ax-info-faint);    color: var(--ax-info-emphasis); }
+.ax-featured-icon--neutral { background: var(--ax-background-subtle); color: var(--ax-text-secondary); }
+/* Outlined variant (circle ring) */
+.ax-featured-icon--outlined {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px currentColor, 0 0 0 4px currentColor;
+  opacity: 0.15;
+}
+.ax-featured-icon--outlined > * { opacity: 1; }

@@ -86,7 +86,7 @@
   <p>Reusable component primitives built on top of <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">--ax-*</code> tokens. Copy <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">tokens/css/components.css</code> into your app alongside <code style="background:rgba(255,255,255,.1);color:#e4e4e7;">tokens.css</code>.</p>
   <div class="row">
     <span class="badge">v0.1 · preview</span>
-    <span class="badge">60 components</span>
+    <span class="badge">64 components</span>
     <span class="badge">token-driven</span>
     <span class="spacer"></span>
     <div class="toggle" role="tablist" aria-label="Theme">
@@ -997,6 +997,68 @@ const { style } = getIconStyle('pharmacy', 'md');</div>
         <span class="ax-spinner"></span>
         <span style="font-size:var(--ax-text-sm-size);color:var(--ax-text-secondary);">กำลังโหลด...</span>
       </div>
+    </div>
+  </section>
+
+  <section class="block" id="button-group">
+    <h2>Button group</h2>
+    <p class="muted">Joined buttons sharing borders. Untitled UI pattern.</p>
+    <div class="demo">
+      <div class="ax-button-group">
+        <button class="ax-button ax-button--secondary active">Day</button>
+        <button class="ax-button ax-button--secondary">Week</button>
+        <button class="ax-button ax-button--secondary">Month</button>
+        <button class="ax-button ax-button--secondary">Year</button>
+      </div>
+    </div>
+    <h3>With icons (data-icon-only)</h3>
+    <div class="demo">
+      <div class="ax-button-group">
+        <button class="ax-button ax-button--secondary ax-button--sm" data-icon-only>☰</button>
+        <button class="ax-button ax-button--secondary ax-button--sm" data-icon-only>▦</button>
+        <button class="ax-button ax-button--secondary ax-button--sm active" data-icon-only>▤</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="slider">
+    <h2>Slider</h2>
+    <p class="muted">Styled range input. Untitled UI thumb pattern.</p>
+    <div class="demo stack" style="gap:var(--ax-spacing-lg);max-width:400px;">
+      <div style="display:flex;align-items:center;gap:var(--ax-spacing-md)"><input class="ax-slider" type="range" min="0" max="100" value="65"><span style="font-family:var(--ax-font-mono);font-size:var(--ax-text-xs-size);color:var(--ax-text-secondary);min-width:32px;">65%</span></div>
+      <div style="display:flex;align-items:center;gap:var(--ax-spacing-md)"><input class="ax-slider" type="range" min="0" max="100" value="30" disabled><span style="font-family:var(--ax-font-mono);font-size:var(--ax-text-xs-size);color:var(--ax-text-disabled);min-width:32px;">30%</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="tag-input">
+    <h2>Tag input</h2>
+    <p class="muted">Inline tags with remove button + text input. Use for multi-select, tagging.</p>
+    <div class="demo" style="max-width:480px;display:block;">
+      <div class="ax-tag-input">
+        <span class="ax-tag-input__tag">Cardiology <button class="ax-tag-input__remove">×</button></span>
+        <span class="ax-tag-input__tag">DM type 2 <button class="ax-tag-input__remove">×</button></span>
+        <span class="ax-tag-input__tag">Hypertension <button class="ax-tag-input__remove">×</button></span>
+        <input placeholder="Add diagnosis…">
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="featured-icon">
+    <h2>Featured icon</h2>
+    <p class="muted">Reusable large icon circle (Untitled UI pattern). Use in empty states, headers, cards.</p>
+    <div class="demo">
+      <span class="ax-featured-icon ax-featured-icon--sm ax-featured-icon--brand">⚕</span>
+      <span class="ax-featured-icon ax-featured-icon--md ax-featured-icon--success">✓</span>
+      <span class="ax-featured-icon ax-featured-icon--lg ax-featured-icon--error">!</span>
+      <span class="ax-featured-icon ax-featured-icon--xl ax-featured-icon--info">?</span>
+      <span class="ax-featured-icon ax-featured-icon--lg ax-featured-icon--neutral">⌕</span>
+    </div>
+    <h3>Sizes (sm → xl)</h3>
+    <div class="demo">
+      <span class="ax-featured-icon ax-featured-icon--sm ax-featured-icon--warning">↑</span>
+      <span class="ax-featured-icon ax-featured-icon--md ax-featured-icon--warning">↑</span>
+      <span class="ax-featured-icon ax-featured-icon--lg ax-featured-icon--warning">↑</span>
+      <span class="ax-featured-icon ax-featured-icon--xl ax-featured-icon--warning">↑</span>
     </div>
   </section>
 
