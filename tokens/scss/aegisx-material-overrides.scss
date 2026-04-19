@@ -677,41 +677,66 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * FAB — 56px circular brand surface + extended variant
+ * FAB — filled indigo (overrides M3 spec's primary-container pale shade)
+ * v20 uses --mat-fab-* prefix; keep --mdc-fab-* as fallback.
  * ──────────────────────────────────────────────────────────── */
+:root,
+:root .mat-mdc-fab,
+:root .mat-mdc-fab.mat-primary,
+:root .mat-mdc-fab.mat-accent,
+:root .mat-mdc-fab.mat-warn,
+:root .mat-mdc-mini-fab,
+:root .mat-mdc-mini-fab.mat-primary,
+:root .mat-mdc-mini-fab.mat-accent,
+:root .mat-mdc-mini-fab.mat-warn {
+  --mat-fab-container-color:            var(--ax-primary);
+  --mat-fab-foreground-color:           var(--ax-brand-inverted);
+  --mat-fab-ripple-color:               color-mix(in srgb, var(--ax-brand-inverted) 12%, transparent);
+  --mat-fab-container-elevation-shadow: var(--ax-shadow-md);
+  --mat-fab-hover-container-elevation-shadow:   var(--ax-shadow-lg);
+  --mat-fab-focus-container-elevation-shadow:   var(--ax-shadow-lg);
+  --mat-fab-pressed-container-elevation-shadow: var(--ax-shadow-md);
+  --mat-fab-container-shape:            var(--ax-radius-full);
+  --mat-fab-disabled-state-container-color:   var(--ax-background-muted);
+  --mat-fab-disabled-state-foreground-color:  var(--ax-text-disabled);
+  /* Mini FAB */
+  --mat-fab-small-container-color:      var(--ax-primary);
+  --mat-fab-small-foreground-color:     var(--ax-brand-inverted);
+  --mat-fab-small-ripple-color:         color-mix(in srgb, var(--ax-brand-inverted) 12%, transparent);
+  --mat-fab-small-container-shape:      var(--ax-radius-full);
+  --mat-fab-small-container-elevation-shadow:       var(--ax-shadow-sm);
+  --mat-fab-small-hover-container-elevation-shadow: var(--ax-shadow-md);
+  --mat-fab-small-focus-container-elevation-shadow: var(--ax-shadow-md);
+  --mat-fab-small-pressed-container-elevation-shadow: var(--ax-shadow-sm);
+  --mat-fab-small-disabled-state-container-color:  var(--ax-background-muted);
+  --mat-fab-small-disabled-state-foreground-color: var(--ax-text-disabled);
+}
 .mat-mdc-fab,
 .mat-mdc-mini-fab {
-  --mdc-fab-container-color:             var(--ax-primary);
-  --mdc-fab-container-elevation-shadow:  var(--ax-shadow-md);
-  --mdc-fab-hover-container-elevation-shadow: var(--ax-shadow-lg);
-  --mdc-fab-pressed-container-elevation-shadow: var(--ax-shadow-md);
-  --mdc-fab-focus-container-elevation-shadow: var(--ax-shadow-md);
-  --mdc-fab-container-shape:             var(--ax-radius-full);
-  --mdc-fab-icon-color:                  var(--ax-brand-inverted);
-  --mat-fab-foreground-color:            var(--ax-brand-inverted);
-  --mat-fab-state-layer-color:           var(--ax-brand-inverted);
-  --mat-fab-hover-state-layer-opacity:   var(--ax-state-hover-opacity);
-  --mat-fab-focus-state-layer-opacity:   var(--ax-state-focus-opacity);
-  --mat-fab-pressed-state-layer-opacity: var(--ax-state-pressed-opacity);
-  --mat-fab-disabled-state-container-color: var(--ax-background-muted);
-  --mat-fab-disabled-state-foreground-color: var(--ax-text-disabled);
+  /* Legacy MDC fallback */
+  --mdc-fab-container-color:            var(--ax-primary);
+  --mdc-fab-container-elevation-shadow: var(--ax-shadow-md);
+  --mdc-fab-container-shape:            var(--ax-radius-full);
+  --mdc-fab-icon-color:                 var(--ax-brand-inverted);
+  --mdc-fab-small-container-color:      var(--ax-primary);
+  --mdc-fab-small-icon-color:           var(--ax-brand-inverted);
+  --mdc-fab-small-container-shape:      var(--ax-radius-full);
 }
 .mat-mdc-fab { --mdc-fab-icon-size: 24px; }
-.mat-mdc-mini-fab {
-  --mdc-fab-small-container-color:           var(--ax-primary);
-  --mdc-fab-small-container-shape:           var(--ax-radius-full);
-  --mdc-fab-small-icon-color:                var(--ax-brand-inverted);
-  --mdc-fab-small-container-elevation-shadow: var(--ax-shadow-sm);
-  --mdc-fab-small-hover-container-elevation-shadow: var(--ax-shadow-md);
-}
 
 /* Extended FAB — pill with text */
 .mat-mdc-extended-fab {
-  --mdc-extended-fab-container-height: 48px;
-  --mdc-extended-fab-container-shape:  var(--ax-radius-full);
-  --mdc-extended-fab-label-text-font:   var(--ax-font-sans);
-  --mdc-extended-fab-label-text-size:   var(--ax-text-sm-size);
-  --mdc-extended-fab-label-text-weight: var(--ax-font-weight-medium);
+  --mat-fab-extended-container-height:   48px;
+  --mat-fab-extended-container-shape:    var(--ax-radius-full);
+  --mat-fab-extended-label-text-font:    var(--ax-font-sans);
+  --mat-fab-extended-label-text-size:    var(--ax-text-sm-size);
+  --mat-fab-extended-label-text-weight:  var(--ax-font-weight-medium);
+  --mat-fab-extended-label-text-tracking: 0;
+  --mdc-extended-fab-container-height:   48px;
+  --mdc-extended-fab-container-shape:    var(--ax-radius-full);
+  --mdc-extended-fab-label-text-font:    var(--ax-font-sans);
+  --mdc-extended-fab-label-text-size:    var(--ax-text-sm-size);
+  --mdc-extended-fab-label-text-weight:  var(--ax-font-weight-medium);
   --mdc-extended-fab-label-text-tracking: 0;
 }
 
