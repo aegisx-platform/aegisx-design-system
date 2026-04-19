@@ -3,17 +3,25 @@
  *
  * Maps AegisX semantic tokens (--ax-*) onto Angular Material v3's system
  * tokens (--mat-sys-*). This is what makes native Material components
- * (mat-button, mat-form-field, mat-card, etc.) actually *use* AegisX colors
+ * (mat-button, mat-form-field, mat-card, etc.) actually use AegisX colors
  * instead of the violet palette the M3 API was seeded with.
  *
- * Single source of truth: --ax-* in tokens.css.
- * Material tokens only alias to --ax-*; never define raw colors here.
+ * Rules:
+ *   1. Single source of truth = --ax-* in tokens.css.
+ *   2. Material tokens only alias to --ax-*; never define raw colors here.
+ *   3. Every --mat-sys-* token must resolve under both light and dark.
+ *   4. Every Tweaks panel change (brand / density / radius / font-family)
+ *      propagates because --mat-sys-* follow --ax-* which _tweaks.js overrides.
  *
  * Depends on: ../css/tokens.css and aegisx-material-theme.scss
  */
 
 :root {
-  /* ── Primary / brand ───────────────────────────────────────── */
+  /* ══════════════════════════════════════════════════════════════
+   * COLOR ROLES
+   * ══════════════════════════════════════════════════════════════ */
+
+  /* Primary (brand) */
   --mat-sys-primary:                     var(--ax-primary);
   --mat-sys-on-primary:                  var(--ax-brand-inverted);
   --mat-sys-primary-container:           var(--ax-brand-faint);
@@ -23,35 +31,36 @@
   --mat-sys-on-primary-fixed:            var(--ax-brand-emphasis);
   --mat-sys-on-primary-fixed-variant:    var(--ax-primary-dark);
 
-  /* ── Secondary (we use brand variants) ─────────────────────── */
+  /* Secondary — neutral zinc for subdued UI (menus, chips, filters) */
   --mat-sys-secondary:                   var(--ax-color-zinc-700);
   --mat-sys-on-secondary:                #ffffff;
   --mat-sys-secondary-container:         var(--ax-background-subtle);
   --mat-sys-on-secondary-container:      var(--ax-text-default);
+  --mat-sys-secondary-fixed:             var(--ax-background-muted);
+  --mat-sys-secondary-fixed-dim:         var(--ax-color-zinc-200);
+  --mat-sys-on-secondary-fixed:          var(--ax-text-heading);
+  --mat-sys-on-secondary-fixed-variant:  var(--ax-text-secondary);
 
-  /* ── Tertiary (success / positive) ─────────────────────────── */
+  /* Tertiary — success / positive */
   --mat-sys-tertiary:                    var(--ax-success-default);
   --mat-sys-on-tertiary:                 var(--ax-success-inverted);
   --mat-sys-tertiary-container:          var(--ax-success-faint);
   --mat-sys-on-tertiary-container:       var(--ax-success-emphasis);
+  --mat-sys-tertiary-fixed:              var(--ax-success-muted);
+  --mat-sys-tertiary-fixed-dim:          var(--ax-success-subtle);
+  --mat-sys-on-tertiary-fixed:           var(--ax-success-emphasis);
+  --mat-sys-on-tertiary-fixed-variant:   var(--ax-success-emphasis);
 
-  /* ── Error ─────────────────────────────────────────────────── */
+  /* Error */
   --mat-sys-error:                       var(--ax-error-default);
   --mat-sys-on-error:                    var(--ax-error-inverted);
   --mat-sys-error-container:             var(--ax-error-faint);
   --mat-sys-on-error-container:          var(--ax-error-emphasis);
 
-  /* ── Surface ────────────────────────────────────────────────
-   * M3 surface hierarchy maps roughly to our background layers:
-   *   surface-dim       ≈ --ax-background-page
-   *   surface           ≈ --ax-background-default
-   *   surface-bright    ≈ #ffffff
-   *   surface-container-lowest ≈ #ffffff
-   *   surface-container-low    ≈ --ax-background-muted
-   *   surface-container        ≈ --ax-background-subtle
-   *   surface-container-high   ≈ --ax-background-subtle
-   *   surface-container-highest≈ --ax-border-subtle
-   */
+  /* ══════════════════════════════════════════════════════════════
+   * SURFACES — M3 hierarchy mapped to AegisX backgrounds
+   * surface-dim < surface < surface-bright; container-low to container-highest
+   * ══════════════════════════════════════════════════════════════ */
   --mat-sys-surface:                        var(--ax-background-default);
   --mat-sys-surface-dim:                    var(--ax-background-page);
   --mat-sys-surface-bright:                 #ffffff;
@@ -68,15 +77,17 @@
   --mat-sys-inverse-on-surface:             #ffffff;
   --mat-sys-inverse-primary:                var(--ax-primary-light);
 
-  /* ── Outline / border ──────────────────────────────────────── */
+  /* Outline / border */
   --mat-sys-outline:                     var(--ax-border-default);
   --mat-sys-outline-variant:             var(--ax-border-subtle);
 
-  /* ── Shadow & scrim ────────────────────────────────────────── */
+  /* Shadow & scrim */
   --mat-sys-shadow:                      rgba(16, 24, 40, 0.1);
   --mat-sys-scrim:                       rgba(16, 24, 40, 0.55);
 
-  /* ── Elevation shadows (suppress M3 heavy defaults) ────────── */
+  /* ══════════════════════════════════════════════════════════════
+   * ELEVATION — suppress M3 heavy defaults
+   * ══════════════════════════════════════════════════════════════ */
   --mat-sys-level0:  none;
   --mat-sys-level1:  var(--ax-shadow-sm);
   --mat-sys-level2:  var(--ax-shadow-sm);
@@ -84,7 +95,42 @@
   --mat-sys-level4:  var(--ax-shadow-lg);
   --mat-sys-level5:  var(--ax-shadow-xl);
 
-  /* ── Typography — Untitled UI scale ────────────────────────── */
+  /* ══════════════════════════════════════════════════════════════
+   * STATE LAYER OPACITIES — hover / focus / pressed / dragged
+   * Material applies these as a tinted overlay on the role color.
+   * ══════════════════════════════════════════════════════════════ */
+  --mat-sys-hover-state-layer-opacity:   var(--ax-state-hover-opacity);
+  --mat-sys-focus-state-layer-opacity:   var(--ax-state-focus-opacity);
+  --mat-sys-pressed-state-layer-opacity: var(--ax-state-pressed-opacity);
+  --mat-sys-dragged-state-layer-opacity: var(--ax-state-dragged-opacity);
+
+  /* Disabled opacity (Material 3 spec: 0.38 on state, 0.12 on container) */
+  --mat-sys-disabled-opacity:            var(--ax-opacity-disabled);
+
+  /* ══════════════════════════════════════════════════════════════
+   * SHAPE (corner radii) — map to AegisX radius scale
+   * Material M3 corner tokens:
+   *   extra-small ≈ 4px  → --ax-radius-sm
+   *   small       ≈ 8px  → --ax-radius-lg
+   *   medium      ≈ 12px → --ax-radius-xl
+   *   large       ≈ 16px → --ax-radius-2xl
+   *   extra-large ≈ 28px (we use 2xl)
+   *   full        = 9999px → --ax-radius-full
+   * AegisX production uses tighter corners (md=6px) for clinical density.
+   * ══════════════════════════════════════════════════════════════ */
+  --mat-sys-corner-extra-small:     var(--ax-radius-sm);
+  --mat-sys-corner-small:           var(--ax-radius-md);
+  --mat-sys-corner-medium:          var(--ax-radius-lg);
+  --mat-sys-corner-large:           var(--ax-radius-xl);
+  --mat-sys-corner-extra-large:     var(--ax-radius-2xl);
+  --mat-sys-corner-full:            var(--ax-radius-full);
+  /* Top-only / left-only variants (pills, sheets, cards) — default same as full rounding */
+  --mat-sys-corner-extra-large-top: var(--ax-radius-2xl) var(--ax-radius-2xl) 0 0;
+  --mat-sys-corner-large-top:       var(--ax-radius-xl)  var(--ax-radius-xl)  0 0;
+
+  /* ══════════════════════════════════════════════════════════════
+   * TYPOGRAPHY — Untitled UI scale
+   * ══════════════════════════════════════════════════════════════ */
   --mat-sys-body-small:     400 var(--ax-text-xs-size)/var(--ax-text-xs-line) var(--ax-font-sans);
   --mat-sys-body-medium:    400 var(--ax-text-sm-size)/var(--ax-text-sm-line) var(--ax-font-sans);
   --mat-sys-body-large:     400 var(--ax-text-md-size)/var(--ax-text-md-line) var(--ax-font-sans);
@@ -100,14 +146,21 @@
   --mat-sys-display-small:  600 var(--ax-display-sm-size)/var(--ax-display-sm-line) var(--ax-font-sans);
   --mat-sys-display-medium: 600 var(--ax-display-md-size)/var(--ax-display-md-line) var(--ax-font-sans);
   --mat-sys-display-large:  700 var(--ax-display-lg-size)/var(--ax-display-lg-line) var(--ax-font-sans);
+
+  /* Plain family fallback (for components that ask for just a font-family token) */
+  --mat-sys-plain-font-family: var(--ax-font-sans);
+  --mat-sys-brand-font-family: var(--ax-font-sans);
+  --mat-sys-regular-weight:    400;
+  --mat-sys-medium-weight:     500;
+  --mat-sys-bold-weight:       600;
 }
 
-/* ── Dark theme ────────────────────────────────────────────────
- * [data-theme="dark"] toggles AegisX tokens; because --mat-sys-*
- * reference --ax-* directly, the Material tokens also flip
- * automatically. Re-declare here only for vars that need a
- * dark-specific value.
- * ────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════
+ * DARK THEME — re-declare values that diverge from their light form.
+ * --mat-sys-* that reference --ax-* auto-flip because --ax-* re-declare
+ * under [data-theme="dark"]; only override tokens that need a different
+ * --ax-* reference in dark, or raw values like shadow / scrim.
+ * ══════════════════════════════════════════════════════════════ */
 [data-theme="dark"] {
   --mat-sys-surface-bright:            var(--ax-color-zinc-700);
   --mat-sys-surface-container-lowest:  var(--ax-color-zinc-950);
@@ -117,5 +170,13 @@
   --mat-sys-surface-container-highest: var(--ax-color-zinc-500);
   --mat-sys-inverse-surface:           var(--ax-color-zinc-100);
   --mat-sys-inverse-on-surface:        var(--ax-color-zinc-900);
+
+  /* Shadows + scrim are darker + more opaque under dark theme */
   --mat-sys-shadow:                    rgba(0, 0, 0, 0.6);
+  --mat-sys-scrim:                     rgba(0, 0, 0, 0.70);
+
+  /* Stronger state layers on dark surfaces (M3 recommendation +0.02) */
+  --mat-sys-hover-state-layer-opacity:   calc(var(--ax-state-hover-opacity) + 0.02);
+  --mat-sys-focus-state-layer-opacity:   calc(var(--ax-state-focus-opacity) + 0.02);
+  --mat-sys-pressed-state-layer-opacity: calc(var(--ax-state-pressed-opacity) + 0.02);
 }
