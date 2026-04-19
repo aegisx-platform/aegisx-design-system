@@ -136,10 +136,13 @@ html, body { overflow-x: hidden; }
   padding: 40px 32px 120px;
   max-width: 1400px;
   width: 100%;
+  min-width: 0;
   margin: 0 auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-.block { padding: 32px 0; border-bottom: 1px solid var(--ax-border-subtle); }
+.block { padding: 32px 0; border-bottom: 1px solid var(--ax-border-subtle); max-width: 100%; min-width: 0; overflow-x: hidden; }
 .block:last-of-type { border-bottom: 0; }
 
 .block__head { max-width: 780px; margin-bottom: 28px; }
@@ -167,22 +170,33 @@ html, body { overflow-x: hidden; }
 
 /* ────────────────────────────────────────────────────────────
  * Parity table — 2-column comparison
+ * Layout: each row becomes "label row on top" + "mat | ax" below
+ * Achieved via display:grid on <tr>, keeping table HTML intact.
  * ──────────────────────────────────────────────────────────── */
 .parity {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
   background: var(--ax-background-default);
-  border: 1px solid var(--ax-border-subtle);
+  border: 1px solid var(--ax-border-default);
   border-radius: var(--ax-radius-lg);
   overflow: hidden;
-  table-layout: fixed;
+  display: block;
+  box-shadow: var(--ax-shadow-xs, 0 1px 2px 0 rgb(0 0 0 / 0.04));
 }
-.parity .col-label { width: 240px; }
-.parity .col-cell { width: auto; }
-.parity thead th {
+.parity > colgroup { display: none; }
+.parity > thead,
+.parity > tbody { display: block; }
+
+/* Header row — 2 cols (hide the "Component" header cell) */
+.parity > thead > tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  padding: 0;
   background: var(--ax-background-muted);
-  padding: 10px 16px;
+  border-bottom: 1px solid var(--ax-border-default);
+}
+.parity > thead > tr > th {
+  padding: 12px 24px;
   text-align: left;
   font-family: var(--ax-font-mono);
   font-size: 10px;
@@ -190,15 +204,54 @@ html, body { overflow-x: hidden; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ax-text-subtle);
-  border-bottom: 1px solid var(--ax-border-subtle);
 }
-.parity tbody td {
+.parity > thead > tr > th:first-child { display: none; }
+.parity > thead > tr > th:last-child { border-inline-start: 1px solid var(--ax-border-default); }
+
+/* Body row — grid areas: label on top spanning full width, mat+ax below */
+.parity > tbody > tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "label label"
+    "mat ax";
+  gap: 0;
+  border-top: 1px solid var(--ax-border-default);
+}
+.parity > tbody > tr:first-child { border-top: 0; }
+.parity > tbody > tr > td {
+  padding: 20px 24px;
+  border: 0;
   vertical-align: top;
-  padding: 20px 16px;
-  border-top: 1px solid var(--ax-border-subtle);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
-.parity tbody tr:first-child td { border-top: 0; }
-.parity__label { display: flex; flex-direction: column; gap: 4px; }
+.parity > tbody > tr > td > * {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.parity > tbody > tr > td:nth-child(1) {
+  grid-area: label;
+  padding: 14px 24px;
+  background: var(--ax-background-subtle);
+  border-bottom: 1px solid var(--ax-border-default);
+}
+.parity > tbody > tr > td:nth-child(2) { grid-area: mat; }
+.parity > tbody > tr > td:nth-child(3) {
+  grid-area: ax;
+  border-inline-start: 1px solid var(--ax-border-default);
+}
+
+/* Label block — inline, compact */
+.parity__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
 .parity__label strong { font-size: 14px; color: var(--ax-text-heading); }
 .parity__label code {
   font-family: var(--ax-font-mono);
@@ -208,12 +261,9 @@ html, body { overflow-x: hidden; }
   padding: 0;
 }
 
-/* Keep all cells from bleeding past allocated column width */
-.parity tbody td { overflow: hidden; }
-.parity tbody td > * { max-width: 100%; }
 
 /* Card variants — stack of three cards in parity row */
-.card-variants { display: flex; flex-direction: column; gap: 14px; max-width: 340px; }
+.card-variants { display: flex; flex-direction: column; gap: 14px; max-width: 100%; }
 .card-variants .variant-label {
   font-family: var(--ax-font-mono);
   font-size: 10px;
@@ -255,7 +305,7 @@ html, body { overflow-x: hidden; }
  * ──────────────────────────────────────────────────────────── */
 .ax-only-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
 }
 .ax-only-grid .preview:nth-child(1),
@@ -291,9 +341,13 @@ html, body { overflow-x: hidden; }
   .toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
 }
 @media (max-width: 768px) {
-  .parity { table-layout: auto; }
-  .parity .col-label { width: 140px; }
-  .parity tbody td { padding: 14px 12px; }
+  .parity > tbody > tr {
+    grid-template-columns: 1fr;
+    grid-template-areas: "label" "mat" "ax";
+    padding: 14px 12px;
+  }
+  .parity > thead > tr { grid-template-columns: 1fr; padding: 10px 12px; }
+  .parity > thead > tr > th:last-child { display: none; }
   .ax-only-grid { grid-template-columns: 1fr; }
   .ax-only-grid .preview:nth-child(1),
   .ax-only-grid .preview:nth-child(6) { grid-column: auto; }

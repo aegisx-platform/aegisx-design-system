@@ -21,8 +21,6 @@
       <a href="#feedback">Feedback</a>
       <a href="#data">Data</a>
 
-      <div class="toc__group">ax-only</div>
-      <a href="#ax-only">Navbar / OTP / Toast …</a>
     </div>
 
     <div class="shell__note">
@@ -904,104 +902,6 @@
         </table>
       </section>
 
-      <!-- ═══════ AX-ONLY ═══════ -->
-      <section class="block" id="ax-only">
-        <header class="block__head">
-          <span class="block__num">08</span>
-          <h2 class="block__title">ax-only components</h2>
-          <p class="block__desc">No Material equivalent. Pure <code>.ax-*</code> CSS shipped in <code>components.css</code>.</p>
-        </header>
-
-        <div class="ax-only-grid">
-
-          <div class="preview">
-            <div class="preview__label">Navbar</div>
-            <div class="ax-navbar ax-navbar--bordered">
-              <div class="ax-navbar__container">
-                <div class="ax-navbar__start">
-                  <div class="ax-navbar__brand">AegisX HIS</div>
-                </div>
-                <nav class="ax-navbar__center ax-navbar__center--start">
-                  <a class="ax-navbar__link active" href="javascript:void(0)">Dashboard</a>
-                  <a class="ax-navbar__link" href="javascript:void(0)">Patients</a>
-                  <a class="ax-navbar__link" href="javascript:void(0)">Reports</a>
-                </nav>
-                <div class="ax-navbar__end">
-                  <button class="ax-navbar__icon-btn" aria-label="Notifications"><i class="material-icons">notifications</i></button>
-                  <div class="ax-navbar-user">
-                    <span class="ax-avatar ax-avatar--sm">Dr</span>
-                    <div><div class="ax-navbar-user__name">Dr. Chai</div><div class="ax-navbar-user__role">Admin</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="preview">
-            <div class="preview__label">OTP</div>
-            <div class="ax-otp">
-              <input class="ax-otp__digit" maxlength="1" value="3">
-              <input class="ax-otp__digit" maxlength="1" value="8">
-              <input class="ax-otp__digit" maxlength="1" value="2">
-              <span class="ax-otp__separator">·</span>
-              <input class="ax-otp__digit" maxlength="1" value="1">
-              <input class="ax-otp__digit" maxlength="1">
-              <input class="ax-otp__digit" maxlength="1">
-            </div>
-          </div>
-
-          <div class="preview">
-            <div class="preview__label">File upload dropzone</div>
-            <div class="ax-upload">
-              <div class="ax-upload__icon"><i class="material-icons" style="font-size:32px">cloud_upload</i></div>
-              <div class="ax-upload__title">Drop file or <span class="ax-link">browse</span></div>
-              <div class="ax-upload__hint">PDF / JPG / PNG · up to 10 MB</div>
-            </div>
-          </div>
-
-          <div class="preview">
-            <div class="preview__label">Timeline</div>
-            <div class="ax-timeline">
-              <div class="ax-timeline__item done">
-                <div class="ax-timeline__dot"></div>
-                <div class="ax-timeline__time">08:12</div>
-                <div class="ax-timeline__title">Admitted to ER</div>
-                <div class="ax-timeline__desc">Triage by Dr. Sunisa</div>
-              </div>
-              <div class="ax-timeline__item active">
-                <div class="ax-timeline__dot"></div>
-                <div class="ax-timeline__time">09:45</div>
-                <div class="ax-timeline__title">CBC ordered</div>
-              </div>
-              <div class="ax-timeline__item">
-                <div class="ax-timeline__dot"></div>
-                <div class="ax-timeline__time">—</div>
-                <div class="ax-timeline__title">Transfer to ward</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="preview">
-            <div class="preview__label">Alerts</div>
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <div class="ax-alert ax-alert--success"><i class="material-icons">check_circle</i><span>Discharge completed successfully.</span></div>
-              <div class="ax-alert ax-alert--warning"><i class="material-icons">warning</i><span>Stock of IV saline is below threshold.</span></div>
-              <div class="ax-alert ax-alert--error"><i class="material-icons">error</i><span>Failed to sync records with HIS.</span></div>
-              <div class="ax-alert ax-alert--info"><i class="material-icons">info</i><span>Scheduled maintenance at 02:00.</span></div>
-            </div>
-          </div>
-
-          <div class="preview">
-            <div class="preview__label">Stats</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-              <div class="ax-stat"><div class="ax-stat__label">Patients</div><div class="ax-stat__value">148</div><div class="ax-stat__delta ax-stat__delta--up">↑ 8</div></div>
-              <div class="ax-stat"><div class="ax-stat__label">Admissions</div><div class="ax-stat__value">24</div><div class="ax-stat__delta">—</div></div>
-              <div class="ax-stat"><div class="ax-stat__label">Critical</div><div class="ax-stat__value">3</div><div class="ax-stat__delta ax-stat__delta--down">↓ 1</div></div>
-            </div>
-          </div>
-
-        </div>
-      </section>
     </main>
   </div>
 </div>

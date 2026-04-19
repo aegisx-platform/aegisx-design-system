@@ -1119,8 +1119,8 @@
   --mat-stepper-header-icon-foreground-color:       var(--ax-text-inverted);
   --mat-stepper-header-selected-state-icon-background-color: var(--ax-primary);
   --mat-stepper-header-selected-state-icon-foreground-color: var(--ax-brand-inverted);
-  --mat-stepper-header-done-state-icon-background-color:     var(--ax-success-default);
-  --mat-stepper-header-done-state-icon-foreground-color:     var(--ax-success-inverted);
+  --mat-stepper-header-done-state-icon-background-color:     var(--ax-primary);
+  --mat-stepper-header-done-state-icon-foreground-color:     var(--ax-brand-inverted);
   --mat-stepper-header-edit-state-icon-background-color:     var(--ax-primary);
   --mat-stepper-header-edit-state-icon-foreground-color:     var(--ax-brand-inverted);
   --mat-stepper-header-error-state-icon-background-color:    var(--ax-error-default);
@@ -1190,6 +1190,20 @@
   --mat-toolbar-container-background-color: var(--ax-error-default);
   --mat-toolbar-container-text-color:        var(--ax-error-inverted);
   border-bottom: none;
+}
+
+/* Icon buttons inside colored toolbars — inherit toolbar color instead of default secondary */
+.mat-toolbar.mat-primary .mat-mdc-icon-button,
+.mat-toolbar.mat-accent .mat-mdc-icon-button,
+.mat-toolbar.mat-warn .mat-mdc-icon-button {
+  --mdc-icon-button-icon-color: currentColor;
+  color: currentColor;
+}
+.mat-toolbar.mat-primary .mat-mdc-icon-button:hover,
+.mat-toolbar.mat-accent .mat-mdc-icon-button:hover,
+.mat-toolbar.mat-warn .mat-mdc-icon-button:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent) !important;
+  color: currentColor !important;
 }
 
 /* ────────────────────────────────────────────────────────────

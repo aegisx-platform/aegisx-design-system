@@ -6,6 +6,38 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.5.3] — 2026-04-19
+
+### Changed — Stepper "done" state follows theme
+- **`.ax-stepper__step.done`** and **`.mat-stepper-horizontal/.mat-stepper-vertical`** — done state icon + connector now use `--ax-primary` / `--ax-brand-inverted` (was `--ax-success-default` / `--ax-success-inverted`), so completed steps match the active brand color instead of introducing a second hue. Success green is now reserved for explicit success/validation semantics.
+
+### Fixed — `.ax-stepper` horizontal layout
+- Container: added `min-width: 0; max-width: 100%; width: 100%; overflow: hidden` so step content is clipped at the cell boundary instead of pushing the parent wider.
+- Step circle: `28px → 24px`, border `thick → thin` to align with compact `mat-step-icon`.
+- Connector line: `flex: 1 1 0` (fills cell) replaced with `flex: 0 1 64px; width: 64px; min-width: 24px` — fixed 64px visual length keeps both steppers visually equal inside parity cells.
+- Step gap `sm → xs`, step `align-items: center`, label `display: block; overflow: hidden; text-overflow: ellipsis` so labels truncate gracefully on narrow viewports instead of forcing horizontal overflow.
+
+### Fixed — `.ax-paginator` density + icon button size
+- Row `min-height: 3.5rem` to match `mat-paginator`.
+- `.ax-paginator__size .ax-select select` overridden to `height: 2rem`, compact padding, `font-size: xs` — was inheriting the 48px default form-control height.
+- `.ax-paginator__nav .ax-button--icon` overridden to `2rem × 2rem` with `1.125rem` icon.
+- `.ax-paginator__size` adds `white-space: nowrap` so "Items per page:" stays on one line.
+
+### Fixed — Toolbar icon button color follows toolbar theme
+- **`.ax-toolbar .ax-button`** — forces `background: transparent; color: inherit; box-shadow: none` so icon buttons inside a colored toolbar (`--primary` / `--dark` / `--warn`) inherit the toolbar's text color; hover/active use `color-mix(currentColor, transparent)` overlays.
+- **`.mat-toolbar.mat-primary/.mat-accent/.mat-warn .mat-mdc-icon-button`** — sets `--mdc-icon-button-icon-color: currentColor` so the Material icon-button inside a primary/accent/warn toolbar uses the toolbar's foreground color instead of the default `--ax-text-secondary`.
+
+### Changed — Angular override-tests demo layout
+- Parity comparison restructured from 3-column table (`component | mat | ax`) to **2-column grid with the component label as a full-width header row above `mat | ax`**. Achieved via CSS only (`<table>` HTML unchanged): `.parity` becomes a `display: block` with `<tr>` laid out as `display: grid` using `grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)` and `grid-template-areas: "label label" / "mat ax"`.
+- `minmax(0, 1fr)` instead of `1fr` — prevents nested content from pushing columns wider than their share.
+- All layout rules use `>` child combinators (`.parity > thead > tr`, `.parity > tbody > tr > td`) so nested `<mat-table>` / `<table class="ax-table">` inside a parity cell render with normal table layout.
+- Label row now has `background: var(--ax-background-subtle)` + bottom border, vertical divider between mat/ax cells uses `--ax-border-default`, outer border promoted from `--ax-border-subtle` → `--ax-border-default` + shadow-xs for stronger visual separation.
+- Mobile (≤768px): collapses to 1-column stack (`label / mat / ax`).
+- `.card-variants max-width: 340px → 100%` so card previews fill the new wider cell.
+
+### Removed — ax-only section from Angular demo
+- Dropped the `#ax-only` section (Navbar / OTP / Upload / Timeline / Alerts / Stats preview grid, 100 lines of markup) and its TOC entry from `apps/demo/src/app/app.component.html`. These components are already showcased in `pages/components.html` and were duplicating the coverage.
+
 ## [0.5.2] — 2026-04-19
 
 ### Fixed — Standards-based Material elevation chain
