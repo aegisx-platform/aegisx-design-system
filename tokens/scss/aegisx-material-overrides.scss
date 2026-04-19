@@ -297,15 +297,10 @@
   display: none;
 }
 
-/* Focus ring replaces the M3 2px outline so focus looks consistent with ax-button */
-.mat-mdc-form-field.mat-focused .mdc-notched-outline {
-  border-width: 1px;
-}
-.mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
-  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus, var(--ax-input-border-focus));
-  outline-offset: var(--ax-focus-ring-offset);
-  border-radius: var(--mdc-outlined-text-field-container-shape);
-}
+/* Focus — rely on Material's built-in notched outline thickening from 1px
+   to 2px with --mdc-outlined-text-field-focus-outline-color, which we
+   already map to var(--ax-input-border-focus) above. No extra outline
+   layer — that caused a double-ring. */
 
 /* Input element — remove number-spinner arrows in Webkit, clean autofill */
 .mat-mdc-input-element::-webkit-outer-spin-button,
