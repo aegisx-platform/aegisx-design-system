@@ -1027,13 +1027,17 @@
  * TAB BAR
  * ──────────────────────────────────────────────────────────── */
 .ax-tabs {
+  display: block;
+}
+.ax-tabs__list {
   display: flex;
   gap: var(--ax-spacing-xl);
   border-bottom: var(--ax-border-width-thin) solid var(--ax-border-default);
   padding: 0;
   overflow-x: auto;
 }
-.ax-tabs__item {
+.ax-tabs__item,
+.ax-tabs__tab {
   all: unset;
   cursor: pointer;
   padding: var(--ax-spacing-md) 0;
@@ -1042,17 +1046,37 @@
   font-weight: var(--ax-font-weight-medium);
   color: var(--ax-text-secondary);
   border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
   white-space: nowrap;
   transition: color var(--ax-duration-fast) var(--ax-easing-easeOut),
               border-color var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
-.ax-tabs__item:hover { color: var(--ax-text-heading); }
+.ax-tabs__item:hover,
+.ax-tabs__tab:hover { color: var(--ax-text-heading); }
 .ax-tabs__item[aria-selected="true"],
-.ax-tabs__item.active {
+.ax-tabs__item.active,
+.ax-tabs__tab[aria-selected="true"],
+.ax-tabs__tab--active {
   color: var(--ax-primary);
   border-bottom-color: var(--ax-primary);
 }
-.ax-tabs__item:focus-visible { outline: none; box-shadow: var(--ax-focus-ring); }
+.ax-tabs__tab:disabled,
+.ax-tabs__tab[aria-disabled="true"] {
+  opacity: var(--ax-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ax-tabs__item:focus-visible,
+.ax-tabs__tab:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+}
+.ax-tabs__panel {
+  padding: var(--ax-spacing-md) 0;
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  color: var(--ax-text-default);
+}
 
 /* ────────────────────────────────────────────────────────────
  * BREADCRUMB
@@ -1842,14 +1866,23 @@
   overflow: hidden;
 }
 .ax-accordion__item + .ax-accordion__item { border-top: var(--ax-border-width-thin) solid var(--ax-border-default); }
-.ax-accordion__trigger {
+/* Hide native <details>/<summary> marker — we provide our own chevron */
+.ax-accordion__item summary::-webkit-details-marker { display: none; }
+.ax-accordion__item summary::marker { content: ''; }
+.ax-accordion__item summary { list-style: none; }
+
+.ax-accordion__trigger,
+.ax-accordion__header {
   all: unset;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--ax-spacing-md);
   width: 100%;
-  padding: var(--ax-spacing-lg) var(--ax-spacing-xl);
+  box-sizing: border-box;
+  padding: var(--ax-spacing-md) var(--ax-spacing-lg);
+  min-height: var(--ax-control-h);
   font-family: var(--ax-font-sans);
   font-size: var(--ax-text-sm-size);
   font-weight: var(--ax-font-weight-medium);
@@ -1857,21 +1890,39 @@
   background: var(--ax-background-default);
   transition: background var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
-.ax-accordion__trigger:hover { background: var(--ax-background-muted); }
-.ax-accordion__trigger:focus-visible { box-shadow: inset var(--ax-focus-ring); }
-.ax-accordion__trigger::after {
-  content: '+';
-  font-size: 18px;
-  color: var(--ax-text-secondary);
-  transition: transform var(--ax-duration-fast) var(--ax-easing-easeOut);
+.ax-accordion__trigger:hover,
+.ax-accordion__header:hover { background: var(--ax-background-subtle); }
+.ax-accordion__trigger:focus-visible,
+.ax-accordion__header:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: calc(var(--ax-focus-ring-offset) * -1);
 }
-.ax-accordion__item[open] .ax-accordion__trigger::after { content: '−'; }
+/* Chevron on the right, rotates when open */
+.ax-accordion__trigger::after,
+.ax-accordion__header::after {
+  content: '';
+  width: 10px; height: 10px;
+  flex-shrink: 0;
+  border-right: 2px solid var(--ax-text-secondary);
+  border-bottom: 2px solid var(--ax-text-secondary);
+  transform: rotate(45deg);
+  transition: transform var(--ax-duration-fast) var(--ax-easing-easeOut);
+  margin-bottom: 4px;
+}
+.ax-accordion__item[open] .ax-accordion__trigger::after,
+.ax-accordion__item[open] .ax-accordion__header::after {
+  transform: rotate(-135deg);
+  margin-bottom: -4px;
+}
 .ax-accordion__body {
-  padding: 0 var(--ax-spacing-xl) var(--ax-spacing-lg);
+  padding: var(--ax-spacing-md) var(--ax-spacing-lg) var(--ax-spacing-lg);
   color: var(--ax-text-default);
   font-size: var(--ax-text-sm-size);
   line-height: var(--ax-text-sm-line);
+  background: var(--ax-background-default);
 }
+.ax-accordion__body > *:first-child { margin-top: 0; }
+.ax-accordion__body > *:last-child { margin-bottom: 0; }
 
 /* ────────────────────────────────────────────────────────────
  * SKELETON · loading placeholder (no shimmer per principles)
@@ -1940,12 +1991,18 @@
   align-items: center;
   gap: 0;
   font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
 }
 .ax-stepper__step {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--ax-spacing-sm);
+  min-height: 28px;
+  color: var(--ax-text-secondary);
 }
+.ax-stepper__step .ax-stepper__num,
+.ax-stepper__step .ax-stepper__label { display: inline-flex; align-items: center; }
 .ax-stepper__num {
   width: 28px; height: 28px;
   border-radius: var(--ax-radius-full);
@@ -2981,12 +3038,15 @@
 }
 .ax-list__item {
   display: flex; align-items: center; gap: var(--ax-spacing-md);
-  padding: var(--ax-spacing-md) var(--ax-spacing-lg);
-  border-bottom: var(--ax-border-width-thin) solid var(--ax-border-subtle);
+  padding: var(--ax-spacing-sm) var(--ax-spacing-md);
+  min-height: calc(var(--ax-control-h) + 8px);
   color: var(--ax-text-default);
+  /* No outer / row border by default — matches <mat-list> which uses
+     explicit <mat-divider> between items. Opt into dividers via
+     .ax-list--dividers modifier. */
 }
-.ax-list__item:last-child { border-bottom: 0; }
-.ax-list__item:hover { background: var(--ax-background-muted); }
+.ax-list__item:hover { background: var(--ax-background-subtle); }
+.ax-list--dividers .ax-list__item + .ax-list__item { border-top: var(--ax-border-width-thin) solid var(--ax-border-subtle); }
 .ax-list--bordered { border: var(--ax-border-width-thin) solid var(--ax-border-default); border-radius: var(--ax-radius-lg); overflow: hidden; }
 .ax-list__item .ax-dot { margin-left: auto; }
 
