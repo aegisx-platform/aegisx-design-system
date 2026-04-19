@@ -30,7 +30,7 @@ Tweaks-driven means **all four** controls (brand · density · radius · font fa
 | 0.1 | Audit `--mat-sys-*` bridge — every M3 system token (primary, secondary, tertiary, error, surface, surface-container, on-surface, outline, outline-variant, shadow, scrim) aliases to `--ax-*` in both light and dark. Also audit on-state roles (on-primary, on-error, on-surface-variant). | `tokens/scss/aegisx-material-bridge.scss` |
 | 0.2 | **Theme export** — "Export theme" button in the Tweaks panel downloads `aegisx-custom-theme-{YYMMDD}.zip` with 5 files ready to drop into `src/styles/`. Contract is specified below. | `pages/_tweaks.js` + new `pages/_export-theme.js` |
 | 0.3 | **Component-consuming tokens** — replace hack overrides in `_tweaks.css` with real tokens (`--ax-control-h`, `--ax-control-pad-x`, `--ax-control-pad-y`, `--ax-focus-ring-width`, `--ax-focus-ring-offset`, `--ax-focus-ring-color`) referenced from every form-control class in `components.css`. `_tweaks.css` then only needs to set these variables — no `[data-density] .ax-button { height }` wildcard rules. | `tokens/css/tokens.css` + `components.css` |
-| 0.4 | **Override test page** — `pages/override-tests.html` renders every control in **three columns**: plain Material (baseline) / `.ax-field`-skinned Material (override path) / `ax-custom` (custom path). Proves visual parity at every Tweaks state. | `pages/override-tests.html` (new) |
+| 0.4 | **Override test page** — ⏸ **deferred**. Requires an Angular runtime in the docs site to render `<mat-*>` components live, which the static Pages build doesn't have. Blocked on a separate Angular demo app; until then, visual verification happens per-component in `pages/components.html`. | `pages/override-tests.html` (future) |
 
 ---
 
