@@ -1,208 +1,943 @@
-<div class="page">
-  <header class="page__head">
-    <div class="page__brand">
-      <div class="page__mark">AX</div>
+<div class="shell">
+
+  <!-- ═══════ LEFT NAV ═══════ -->
+  <aside class="shell__nav">
+    <a class="shell__back" href="../tokens.html">← Back to docs</a>
+    <div class="shell__brand">
+      <div class="shell__mark">AX</div>
       <div>
-        <h1 class="page__title">Override tests</h1>
-        <p class="page__sub">Plain Material (baseline) · AegisX-skinned Material · `.ax-*` custom</p>
-      </div>
-    </div>
-    <div class="page__actions">
-      <div class="page__seg">
-        <button [class.is-active]="density() === 'compact'" (click)="setDensity('compact')">Compact</button>
-        <button [class.is-active]="density() === 'comfortable'" (click)="setDensity('comfortable')">Default</button>
-        <button [class.is-active]="density() === 'spacious'" (click)="setDensity('spacious')">Spacious</button>
-      </div>
-      <button class="page__theme" type="button" (click)="toggleTheme()">
-        {{ theme() === 'light' ? 'Dark' : 'Light' }}
-      </button>
-    </div>
-  </header>
-
-  <main class="page__grid">
-    <div class="col-head">Component</div>
-    <div class="col-head">Plain Material</div>
-    <div class="col-head">Skinned Material (via overrides)</div>
-    <div class="col-head">ax-* custom</div>
-
-    <!-- Button -->
-    <div class="row-label"><strong>Button</strong><span>mat-flat-button · .ax-button--primary</span></div>
-    <div class="cell cell--plain">
-      <button mat-flat-button>Save</button>
-    </div>
-    <div class="cell">
-      <button mat-flat-button color="primary">Save</button>
-    </div>
-    <div class="cell">
-      <button class="ax-button ax-button--primary">Save</button>
-    </div>
-
-    <!-- Outlined button -->
-    <div class="row-label"><strong>Outlined</strong><span>mat-stroked-button · .ax-button--outline</span></div>
-    <div class="cell cell--plain">
-      <button mat-stroked-button>Cancel</button>
-    </div>
-    <div class="cell">
-      <button mat-stroked-button>Cancel</button>
-    </div>
-    <div class="cell">
-      <button class="ax-button ax-button--outline">Cancel</button>
-    </div>
-
-    <!-- Input -->
-    <div class="row-label"><strong>Input</strong><span>mat-form-field · .ax-input</span></div>
-    <div class="cell cell--plain">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="you@aegisx.health">
-      </mat-form-field>
-    </div>
-    <div class="cell">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="you@aegisx.health">
-      </mat-form-field>
-    </div>
-    <div class="cell">
-      <label class="ax-field">
-        <span class="ax-field__label">Email</span>
-        <input class="ax-input" placeholder="you@aegisx.health">
-      </label>
-    </div>
-
-    <!-- Select -->
-    <div class="row-label"><strong>Select</strong><span>mat-select · .ax-select</span></div>
-    <div class="cell cell--plain">
-      <mat-form-field appearance="outline">
-        <mat-label>Department</mat-label>
-        <mat-select>
-          <mat-option value="card">Cardiology</mat-option>
-          <mat-option value="ortho">Orthopedics</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="cell">
-      <mat-form-field appearance="outline">
-        <mat-label>Department</mat-label>
-        <mat-select>
-          <mat-option value="card">Cardiology</mat-option>
-          <mat-option value="ortho">Orthopedics</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="cell">
-      <div class="ax-select">
-        <select>
-          <option>Cardiology</option>
-          <option>Orthopedics</option>
-        </select>
+        <h1 class="shell__title">Override tests</h1>
+        <p class="shell__sub">Angular Material · ax-custom parity</p>
       </div>
     </div>
 
-    <!-- Checkbox -->
-    <div class="row-label"><strong>Checkbox</strong><span>mat-checkbox · .ax-checkbox</span></div>
-    <div class="cell cell--plain"><mat-checkbox checked>Accept</mat-checkbox></div>
-    <div class="cell"><mat-checkbox checked>Accept</mat-checkbox></div>
-    <div class="cell">
-      <label class="ax-checkbox">
-        <input type="checkbox" checked>
-        <span class="ax-checkbox__box"></span>
-        <span>Accept</span>
-      </label>
+    <div class="toc">
+      <div class="toc__group">Material</div>
+      <a href="#form-controls">Form controls</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#indicators">Indicators</a>
+      <a href="#navigation">Navigation</a>
+      <a href="#layout">Layout</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#data">Data</a>
+
+      <div class="toc__group">ax-only</div>
+      <a href="#ax-only">Navbar / OTP / Toast …</a>
     </div>
 
-    <!-- Radio -->
-    <div class="row-label"><strong>Radio</strong><span>mat-radio-group · .ax-radio</span></div>
-    <div class="cell cell--plain">
-      <mat-radio-group value="a">
-        <mat-radio-button value="a">One</mat-radio-button>
-        <mat-radio-button value="b">Two</mat-radio-button>
-      </mat-radio-group>
+    <div class="shell__note">
+      Each row shows the <strong>same component</strong> on two paths:
+      <br>
+      1 · <code>&lt;mat-*&gt;</code> skinned via <code>aegisx-material-overrides.scss</code>
+      <br>
+      2 · <code>.ax-*</code> — pure CSS standalone
     </div>
-    <div class="cell">
-      <mat-radio-group value="a">
-        <mat-radio-button value="a">One</mat-radio-button>
-        <mat-radio-button value="b">Two</mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div class="cell">
-      <div class="ax-radio-group ax-radio-group--horizontal">
-        <label class="ax-radio">
-          <input type="radio" name="d" checked>
-          <span class="ax-radio__dot"></span><span>One</span>
-        </label>
-        <label class="ax-radio">
-          <input type="radio" name="d">
-          <span class="ax-radio__dot"></span><span>Two</span>
-        </label>
+  </aside>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="shell__main">
+
+    <!-- Sticky controls -->
+    <header class="shell__top">
+      <div class="shell__top-inner">
+        <div class="shell__crumbs">
+          <span>AegisX</span>
+          <span>›</span>
+          <strong>Override tests</strong>
+        </div>
+        <div class="shell__controls">
+          <div class="seg">
+            <button [class.is-active]="theme() === 'light'" (click)="theme() === 'dark' && toggleTheme()">☀ Light</button>
+            <button [class.is-active]="theme() === 'dark'"  (click)="theme() === 'light' && toggleTheme()">☾ Dark</button>
+          </div>
+          <div class="seg">
+            <button [class.is-active]="density() === 'compact'"     (click)="setDensity('compact')">Compact</button>
+            <button [class.is-active]="density() === 'comfortable'" (click)="setDensity('comfortable')">Default</button>
+            <button [class.is-active]="density() === 'spacious'"    (click)="setDensity('spacious')">Spacious</button>
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <!-- Toggle -->
-    <div class="row-label"><strong>Toggle</strong><span>mat-slide-toggle · .ax-toggle</span></div>
-    <div class="cell cell--plain"><mat-slide-toggle checked>On</mat-slide-toggle></div>
-    <div class="cell"><mat-slide-toggle checked>On</mat-slide-toggle></div>
-    <div class="cell">
-      <label class="ax-toggle" style="display:inline-flex;gap:8px;align-items:center">
-        <span style="position:relative;display:inline-flex;width:36px;height:20px">
-          <input type="checkbox" checked style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);margin:-1px">
-          <span class="ax-toggle__track"></span>
-          <span class="ax-toggle__thumb"></span>
-        </span>
-        <span>On</span>
-      </label>
-    </div>
+    <main class="shell__content">
 
-    <!-- Slider -->
-    <div class="row-label"><strong>Slider</strong><span>mat-slider · .ax-slider</span></div>
-    <div class="cell cell--plain">
-      <mat-slider min="0" max="100" discrete><input matSliderThumb [value]="40"></mat-slider>
-    </div>
-    <div class="cell">
-      <mat-slider min="0" max="100" discrete><input matSliderThumb [value]="40"></mat-slider>
-    </div>
-    <div class="cell">
-      <input class="ax-slider" type="range" min="0" max="100" value="40" style="max-width:200px">
-    </div>
+      <!-- ═══════ FORM CONTROLS ═══════ -->
+      <section class="block" id="form-controls">
+        <header class="block__head">
+          <span class="block__num">01</span>
+          <h2 class="block__title">Form controls</h2>
+          <p class="block__desc">Outlined form-field is the default appearance. Density flows through <code>--ax-control-h</code>.</p>
+        </header>
 
-    <!-- Chip -->
-    <div class="row-label"><strong>Chip</strong><span>mat-chip · .ax-chip</span></div>
-    <div class="cell cell--plain">
-      <mat-chip-set><mat-chip>HN-01234</mat-chip><mat-chip highlighted>Active</mat-chip></mat-chip-set>
-    </div>
-    <div class="cell">
-      <mat-chip-set><mat-chip>HN-01234</mat-chip><mat-chip highlighted>Active</mat-chip></mat-chip-set>
-    </div>
-    <div class="cell">
-      <span class="ax-chip">HN-01234</span>
-      <span class="ax-chip ax-chip--selected" style="margin-left:8px">Active</span>
-    </div>
+        <table class="parity">
+          <colgroup>
+            <col class="col-label">
+            <col class="col-cell">
+            <col class="col-cell">
+          </colgroup>
+          <thead>
+            <tr><th>Component</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="parity__label">
+                <strong>Input — default</strong>
+                <code>mat-form-field + mat-input</code>
+                <code>.ax-field + .ax-input</code>
+              </td>
+              <td>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="you@aegisx.health">
+                  <mat-hint>Case-sensitive</mat-hint>
+                </mat-form-field>
+              </td>
+              <td>
+                <label class="ax-field">
+                  <span class="ax-field__label">Email</span>
+                  <input class="ax-input" placeholder="you@aegisx.health">
+                  <span class="ax-field__hint">Case-sensitive</span>
+                </label>
+              </td>
+            </tr>
 
-    <!-- Progress -->
-    <div class="row-label"><strong>Progress bar</strong><span>mat-progress-bar · .ax-progress</span></div>
-    <div class="cell cell--plain"><mat-progress-bar mode="determinate" value="60"></mat-progress-bar></div>
-    <div class="cell"><mat-progress-bar mode="determinate" value="60"></mat-progress-bar></div>
-    <div class="cell">
-      <div class="ax-progress" style="width:100%">
-        <div class="ax-progress__bar" style="width:60%"></div>
-      </div>
-    </div>
+            <tr>
+              <td class="parity__label">
+                <strong>Input — disabled + error</strong>
+                <code>[disabled] / [error]</code>
+              </td>
+              <td>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <mat-label>Disabled</mat-label>
+                    <input matInput disabled value="HN-99999">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="mat-form-field-invalid">
+                    <mat-label>Error</mat-label>
+                    <input matInput value="invalid@">
+                    <mat-error>Must be a valid address</mat-error>
+                  </mat-form-field>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                  <label class="ax-field">
+                    <span class="ax-field__label">Disabled</span>
+                    <input class="ax-input" disabled value="HN-99999">
+                  </label>
+                  <label class="ax-field">
+                    <span class="ax-field__label">Error</span>
+                    <input class="ax-input ax-input--error" value="invalid@">
+                    <span class="ax-field__hint ax-field__hint--error">Must be a valid address</span>
+                  </label>
+                </div>
+              </td>
+            </tr>
 
-    <!-- Card -->
-    <div class="row-label"><strong>Card</strong><span>mat-card · .ax-card</span></div>
-    <div class="cell cell--plain">
-      <mat-card><mat-card-header><mat-card-title>Patient</mat-card-title></mat-card-header><mat-card-content>Ward 5A</mat-card-content></mat-card>
-    </div>
-    <div class="cell">
-      <mat-card><mat-card-header><mat-card-title>Patient</mat-card-title></mat-card-header><mat-card-content>Ward 5A</mat-card-content></mat-card>
-    </div>
-    <div class="cell">
-      <div class="ax-card"><div class="ax-card__header"><div class="ax-card__title">Patient</div></div><div class="ax-card__body">Ward 5A</div></div>
-    </div>
-  </main>
+            <tr>
+              <td class="parity__label">
+                <strong>Textarea</strong>
+                <code>textarea matInput</code>
+                <code>.ax-textarea</code>
+              </td>
+              <td>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic" style="width:100%">
+                  <mat-label>Clinical note</mat-label>
+                  <textarea matInput rows="3" placeholder="Enter observation…"></textarea>
+                </mat-form-field>
+              </td>
+              <td>
+                <label class="ax-field" style="width:100%">
+                  <span class="ax-field__label">Clinical note</span>
+                  <textarea class="ax-textarea" rows="3" placeholder="Enter observation…"></textarea>
+                </label>
+              </td>
+            </tr>
 
-  <footer class="page__foot">
-    <a href="../tokens.html">← back to docs</a>
-    <span>Theme &amp; density are applied to the document root — affects every column above.</span>
-  </footer>
+            <tr>
+              <td class="parity__label">
+                <strong>Select</strong>
+                <code>mat-select</code>
+                <code>.ax-select</code>
+              </td>
+              <td>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <mat-label>Department</mat-label>
+                  <mat-select>
+                    @for (opt of departmentOptions; track opt) {
+                      <mat-option [value]="opt">{{ opt }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <div class="ax-select">
+                  <select>
+                    @for (opt of departmentOptions; track opt) {
+                      <option>{{ opt }}</option>
+                    }
+                  </select>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="parity__label">
+                <strong>Autocomplete</strong>
+                <code>mat-autocomplete</code>
+                <code>.ax-autocomplete</code>
+              </td>
+              <td>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <mat-label>Search dept</mat-label>
+                  <input matInput [matAutocomplete]="auto" (input)="filterAutocomplete(($any($event.target)).value)">
+                  <mat-autocomplete #auto>
+                    @for (opt of autocompleteFiltered(); track opt) {
+                      <mat-option [value]="opt">{{ opt }}</mat-option>
+                    }
+                  </mat-autocomplete>
+                </mat-form-field>
+              </td>
+              <td>
+                <div class="ax-autocomplete">
+                  <input class="ax-input" placeholder="Search dept…">
+                  <div class="ax-autocomplete__panel" style="position:relative;top:4px">
+                    <div class="ax-option"><mark>Card</mark>iology</div>
+                    <div class="ax-option">Orthopedics</div>
+                    <div class="ax-option">Pharmacy</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="parity__label">
+                <strong>Checkbox</strong>
+                <code>mat-checkbox</code>
+                <code>.ax-checkbox</code>
+              </td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <mat-checkbox checked>Checked</mat-checkbox>
+                  <mat-checkbox [indeterminate]="true">Indeterminate</mat-checkbox>
+                  <mat-checkbox>Unchecked</mat-checkbox>
+                  <mat-checkbox disabled checked>Disabled</mat-checkbox>
+                </div>
+              </td>
+              <td>
+                <div class="ax-checkbox-group">
+                  <label class="ax-checkbox"><input type="checkbox" checked><span class="ax-checkbox__box"></span><span>Checked</span></label>
+                  <label class="ax-checkbox" data-indeterminate="true"><input type="checkbox"><span class="ax-checkbox__box"></span><span>Indeterminate</span></label>
+                  <label class="ax-checkbox"><input type="checkbox"><span class="ax-checkbox__box"></span><span>Unchecked</span></label>
+                  <label class="ax-checkbox"><input type="checkbox" checked disabled><span class="ax-checkbox__box"></span><span>Disabled</span></label>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="parity__label">
+                <strong>Radio</strong>
+                <code>mat-radio-group</code>
+                <code>.ax-radio-group</code>
+              </td>
+              <td>
+                <mat-radio-group value="b" style="display:flex;gap:16px">
+                  <mat-radio-button value="a">Male</mat-radio-button>
+                  <mat-radio-button value="b">Female</mat-radio-button>
+                  <mat-radio-button value="c" disabled>N/A</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <div class="ax-radio-group ax-radio-group--horizontal">
+                  <label class="ax-radio"><input type="radio" name="sex"><span class="ax-radio__dot"></span><span>Male</span></label>
+                  <label class="ax-radio"><input type="radio" name="sex" checked><span class="ax-radio__dot"></span><span>Female</span></label>
+                  <label class="ax-radio"><input type="radio" name="sex" disabled><span class="ax-radio__dot"></span><span>N/A</span></label>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="parity__label">
+                <strong>Slide toggle</strong>
+                <code>mat-slide-toggle</code>
+                <code>.ax-toggle</code>
+              </td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <mat-slide-toggle checked>Active</mat-slide-toggle>
+                  <mat-slide-toggle>Inactive</mat-slide-toggle>
+                  <mat-slide-toggle disabled checked>Disabled</mat-slide-toggle>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <label style="display:inline-flex;gap:8px;align-items:center"><span class="ax-toggle"><input type="checkbox" checked><span class="ax-toggle__track"></span><span class="ax-toggle__thumb"></span></span><span>Active</span></label>
+                  <label style="display:inline-flex;gap:8px;align-items:center"><span class="ax-toggle"><input type="checkbox"><span class="ax-toggle__track"></span><span class="ax-toggle__thumb"></span></span><span>Inactive</span></label>
+                  <label style="display:inline-flex;gap:8px;align-items:center;opacity:0.5"><span class="ax-toggle"><input type="checkbox" checked disabled><span class="ax-toggle__track"></span><span class="ax-toggle__thumb"></span></span><span>Disabled</span></label>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="parity__label">
+                <strong>Slider</strong>
+                <code>mat-slider</code>
+                <code>.ax-slider</code>
+              </td>
+              <td>
+                <mat-slider min="0" max="100" step="10" discrete showTickMarks style="width:220px">
+                  <input matSliderThumb [value]="sliderValue()">
+                </mat-slider>
+              </td>
+              <td>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <input class="ax-slider" type="range" min="0" max="100" step="10" [value]="sliderValue()" style="width:200px">
+                  <span class="ax-slider-label">{{ sliderValue() }}</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="parity__label">
+                <strong>Datepicker</strong>
+                <code>mat-datepicker</code>
+                <code>.ax-datepicker</code>
+              </td>
+              <td>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <mat-label>Admission date</mat-label>
+                  <input matInput [matDatepicker]="picker" placeholder="mm/dd/yyyy">
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <div class="ax-datepicker-input">
+                  <input class="ax-input" placeholder="mm/dd/yyyy" value="04/19/2026">
+                  <button class="ax-datepicker-input__toggle" type="button" aria-label="Open calendar">📅</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ BUTTONS ═══════ -->
+      <section class="block" id="buttons">
+        <header class="block__head">
+          <span class="block__num">02</span>
+          <h2 class="block__title">Buttons</h2>
+          <p class="block__desc">Height follows <code>--ax-control-h</code>. Focus ring via <code>box-shadow</code>.</p>
+        </header>
+
+        <table class="parity">
+          <colgroup><col class="col-label"><col class="col-cell"><col class="col-cell"></colgroup>
+          <thead><tr><th>Variant</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="parity__label"><strong>Filled (primary)</strong><code>mat-flat-button</code><code>.ax-button--primary</code></td>
+              <td><button mat-flat-button color="primary">Save</button></td>
+              <td><button class="ax-button ax-button--primary">Save</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Raised (elevation)</strong><code>mat-raised-button</code><code>.ax-button--elevated</code></td>
+              <td><button mat-raised-button color="primary">Publish</button></td>
+              <td><button class="ax-button ax-button--primary ax-button--elevated">Publish</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Outlined</strong><code>mat-stroked-button</code><code>.ax-button--outline</code></td>
+              <td><button mat-stroked-button>Cancel</button></td>
+              <td><button class="ax-button ax-button--outline">Cancel</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Text (ghost)</strong><code>mat-button</code><code>.ax-button--ghost</code></td>
+              <td><button mat-button>Learn more</button></td>
+              <td><button class="ax-button ax-button--ghost">Learn more</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Danger</strong><code>color="warn"</code><code>.ax-button--danger</code></td>
+              <td><button mat-flat-button color="warn">Delete</button></td>
+              <td><button class="ax-button ax-button--danger">Delete</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Disabled</strong><code>[disabled]</code></td>
+              <td>
+                <span style="display:inline-flex;gap:8px">
+                  <button mat-flat-button color="primary" disabled>Save</button>
+                  <button mat-stroked-button disabled>Cancel</button>
+                </span>
+              </td>
+              <td>
+                <span style="display:inline-flex;gap:8px">
+                  <button class="ax-button ax-button--primary" disabled>Save</button>
+                  <button class="ax-button ax-button--outline" disabled>Cancel</button>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Icon button</strong><code>mat-icon-button</code><code>.ax-button--icon</code></td>
+              <td>
+                <span style="display:inline-flex;gap:4px">
+                  <button mat-icon-button aria-label="Edit"><mat-icon>edit</mat-icon></button>
+                  <button mat-icon-button aria-label="Delete"><mat-icon>delete</mat-icon></button>
+                </span>
+              </td>
+              <td>
+                <span style="display:inline-flex;gap:4px">
+                  <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Edit">✎</button>
+                  <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Delete">🗑</button>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>FAB</strong><code>mat-fab</code><code>.ax-fab</code></td>
+              <td><button mat-fab color="primary" aria-label="Add"><mat-icon>add</mat-icon></button></td>
+              <td><button class="ax-fab" aria-label="Add">+</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Mini FAB + Extended</strong><code>mat-mini-fab / mat-fab extended</code><code>.ax-fab--mini / --extended</code></td>
+              <td>
+                <span style="display:inline-flex;gap:8px;align-items:center">
+                  <button mat-mini-fab color="primary"><mat-icon>search</mat-icon></button>
+                  <button mat-fab extended color="primary"><mat-icon>add</mat-icon>New record</button>
+                </span>
+              </td>
+              <td>
+                <span style="display:inline-flex;gap:8px;align-items:center">
+                  <button class="ax-fab ax-fab--mini">🔍</button>
+                  <button class="ax-fab ax-fab--extended">＋ New record</button>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ INDICATORS ═══════ -->
+      <section class="block" id="indicators">
+        <header class="block__head">
+          <span class="block__num">03</span>
+          <h2 class="block__title">Indicators</h2>
+          <p class="block__desc">Progress, spinner, badge, chip.</p>
+        </header>
+
+        <table class="parity">
+          <colgroup><col class="col-label"><col class="col-cell"><col class="col-cell"></colgroup>
+          <thead><tr><th>Component</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="parity__label"><strong>Progress bar</strong><code>mat-progress-bar</code><code>.ax-progress</code></td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:10px;min-width:240px">
+                  <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:10px;min-width:240px">
+                  <div class="ax-progress"><div class="ax-progress__bar" style="width:40%"></div></div>
+                  <div class="ax-progress ax-progress--indeterminate"><div class="ax-progress__bar"></div></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Spinner</strong><code>mat-progress-spinner</code><code>.ax-spinner</code></td>
+              <td>
+                <span style="display:inline-flex;gap:12px;align-items:center">
+                  <mat-spinner diameter="24"></mat-spinner>
+                  <mat-spinner diameter="32" mode="determinate" value="60"></mat-spinner>
+                </span>
+              </td>
+              <td>
+                <span style="display:inline-flex;gap:12px;align-items:center">
+                  <span class="ax-spinner" style="width:24px;height:24px"></span>
+                  <span class="ax-spinner" style="width:32px;height:32px"></span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Badge</strong><code>matBadge</code><code>.ax-badge</code></td>
+              <td>
+                <span style="display:inline-flex;gap:20px;align-items:center">
+                  <button mat-icon-button matBadge="8" matBadgeColor="warn"><mat-icon>notifications</mat-icon></button>
+                  <button mat-icon-button matBadge="99+" matBadgeColor="accent"><mat-icon>mail</mat-icon></button>
+                </span>
+              </td>
+              <td>
+                <span style="display:inline-flex;gap:20px;align-items:center">
+                  <span class="ax-counter-wrap"><button class="ax-button ax-button--ghost ax-button--icon">🔔</button><span class="ax-counter">8</span></span>
+                  <span class="ax-counter-wrap"><button class="ax-button ax-button--ghost ax-button--icon">✉</button><span class="ax-counter">99+</span></span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Chip — role variants</strong><code>mat-chip</code><code>.ax-chip</code></td>
+              <td>
+                <mat-chip-set>
+                  <mat-chip>Default</mat-chip>
+                  <mat-chip highlighted>Selected</mat-chip>
+                  <mat-chip disabled>Disabled</mat-chip>
+                </mat-chip-set>
+              </td>
+              <td>
+                <span style="display:inline-flex;gap:6px;flex-wrap:wrap">
+                  <span class="ax-chip">Default</span>
+                  <span class="ax-chip ax-chip--selected">Selected</span>
+                  <span class="ax-chip ax-chip--success">Success</span>
+                  <span class="ax-chip ax-chip--warning">Warning</span>
+                  <span class="ax-chip ax-chip--danger">Danger</span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ NAVIGATION ═══════ -->
+      <section class="block" id="navigation">
+        <header class="block__head">
+          <span class="block__num">04</span>
+          <h2 class="block__title">Navigation</h2>
+          <p class="block__desc">Menu, tabs, stepper, toolbar, breadcrumb, pagination.</p>
+        </header>
+
+        <table class="parity">
+          <colgroup><col class="col-label"><col class="col-cell"><col class="col-cell"></colgroup>
+          <thead><tr><th>Component</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="parity__label"><strong>Menu</strong><code>mat-menu</code><code>.ax-menu</code></td>
+              <td>
+                <button mat-stroked-button [matMenuTriggerFor]="menu">Open menu ▾</button>
+                <mat-menu #menu>
+                  <button mat-menu-item><mat-icon>edit</mat-icon>Edit</button>
+                  <button mat-menu-item><mat-icon>content_copy</mat-icon>Duplicate</button>
+                  <mat-divider></mat-divider>
+                  <button mat-menu-item class="ax-menu-item--danger"><mat-icon>delete</mat-icon>Delete</button>
+                </mat-menu>
+              </td>
+              <td>
+                <div style="position:relative;display:inline-block">
+                  <button class="ax-button ax-button--outline">Open menu ▾</button>
+                  <div class="ax-menu" style="position:absolute;top:calc(100% + 4px);left:0;display:block">
+                    <div class="ax-menu__item">✎ Edit</div>
+                    <div class="ax-menu__item">⧉ Duplicate</div>
+                    <div class="ax-menu__divider"></div>
+                    <div class="ax-menu__item ax-menu__item--danger">🗑 Delete</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Tabs</strong><code>mat-tab-group</code><code>.ax-tabs</code></td>
+              <td>
+                <mat-tab-group>
+                  <mat-tab label="Overview"><div style="padding:12px 0">Overview content</div></mat-tab>
+                  <mat-tab label="Orders"><div style="padding:12px 0">Orders content</div></mat-tab>
+                  <mat-tab label="History" disabled></mat-tab>
+                </mat-tab-group>
+              </td>
+              <td>
+                <div class="ax-tabs">
+                  <div class="ax-tabs__list">
+                    <button class="ax-tabs__tab ax-tabs__tab--active">Overview</button>
+                    <button class="ax-tabs__tab">Orders</button>
+                    <button class="ax-tabs__tab" disabled>History</button>
+                  </div>
+                  <div class="ax-tabs__panel">Overview content</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Stepper</strong><code>mat-stepper</code><code>.ax-stepper</code></td>
+              <td>
+                <mat-stepper [linear]="false">
+                  <mat-step completed><ng-template matStepLabel>Patient</ng-template></mat-step>
+                  <mat-step><ng-template matStepLabel>Symptoms</ng-template></mat-step>
+                  <mat-step><ng-template matStepLabel>Confirm</ng-template></mat-step>
+                </mat-stepper>
+              </td>
+              <td>
+                <div class="ax-stepper">
+                  <div class="ax-stepper__step done"><span class="ax-stepper__num">✓</span><span class="ax-stepper__label">Patient</span></div>
+                  <div class="ax-stepper__line"></div>
+                  <div class="ax-stepper__step active"><span class="ax-stepper__num">2</span><span class="ax-stepper__label">Symptoms</span></div>
+                  <div class="ax-stepper__line"></div>
+                  <div class="ax-stepper__step"><span class="ax-stepper__num">3</span><span class="ax-stepper__label">Confirm</span></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Toolbar</strong><code>mat-toolbar</code><code>.ax-toolbar</code></td>
+              <td>
+                <mat-toolbar color="primary">
+                  <span>AegisX HIS</span>
+                  <span style="flex:1"></span>
+                  <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+                </mat-toolbar>
+              </td>
+              <td>
+                <header class="ax-toolbar ax-toolbar--primary">
+                  <span class="ax-toolbar__title">AegisX HIS</span>
+                  <span class="ax-toolbar__spacer"></span>
+                  <button class="ax-button ax-button--icon" style="color:inherit">🔔</button>
+                </header>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Paginator</strong><code>mat-paginator</code><code>.ax-paginator</code></td>
+              <td>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
+              </td>
+              <td>
+                <div class="ax-paginator">
+                  <label class="ax-paginator__size">Items per page:
+                    <div class="ax-select" style="width:auto"><select><option>10</option><option>25</option><option>50</option></select></div>
+                  </label>
+                  <span class="ax-paginator__range">1–10 of 100</span>
+                  <div class="ax-paginator__nav">
+                    <button class="ax-button ax-button--ghost ax-button--icon" disabled>⟪</button>
+                    <button class="ax-button ax-button--ghost ax-button--icon" disabled>‹</button>
+                    <button class="ax-button ax-button--ghost ax-button--icon">›</button>
+                    <button class="ax-button ax-button--ghost ax-button--icon">⟫</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ LAYOUT ═══════ -->
+      <section class="block" id="layout">
+        <header class="block__head">
+          <span class="block__num">05</span>
+          <h2 class="block__title">Layout</h2>
+          <p class="block__desc">Card, divider, expansion panel.</p>
+        </header>
+
+        <table class="parity">
+          <colgroup><col class="col-label"><col class="col-cell"><col class="col-cell"></colgroup>
+          <thead><tr><th>Component</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="parity__label"><strong>Card</strong><code>mat-card</code><code>.ax-card</code></td>
+              <td>
+                <mat-card appearance="outlined">
+                  <mat-card-header>
+                    <mat-card-title>Patient summary</mat-card-title>
+                    <mat-card-subtitle>HN-01234 · Ward 5A</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>Admitted 19 Apr · Male · 42 yrs</mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button>Dismiss</button>
+                    <button mat-flat-button color="primary">View</button>
+                  </mat-card-actions>
+                </mat-card>
+              </td>
+              <td>
+                <div class="ax-card" style="max-width:360px">
+                  <div class="ax-card__header">
+                    <div class="ax-card__title">Patient summary</div>
+                    <div style="font-size:13px;color:var(--ax-text-secondary)">HN-01234 · Ward 5A</div>
+                  </div>
+                  <div class="ax-card__body">Admitted 19 Apr · Male · 42 yrs</div>
+                  <div class="ax-card__footer">
+                    <button class="ax-button ax-button--ghost">Dismiss</button>
+                    <button class="ax-button ax-button--primary">View</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Expansion panel</strong><code>mat-expansion-panel</code><code>.ax-accordion</code></td>
+              <td>
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Allergies</mat-panel-title>
+                      <mat-panel-description>2 known</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>Penicillin — hive reaction</p>
+                    <p>Shellfish — anaphylaxis</p>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Medications</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>Metformin 500mg · 2×/day</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </td>
+              <td>
+                <div class="ax-accordion">
+                  <details class="ax-accordion__item" open>
+                    <summary class="ax-accordion__header">Allergies <span style="margin-left:auto;font-size:12px;color:var(--ax-text-subtle)">2 known</span></summary>
+                    <div class="ax-accordion__body">
+                      <p>Penicillin — hive reaction</p>
+                      <p>Shellfish — anaphylaxis</p>
+                    </div>
+                  </details>
+                  <details class="ax-accordion__item">
+                    <summary class="ax-accordion__header">Medications</summary>
+                    <div class="ax-accordion__body">Metformin 500mg · 2×/day</div>
+                  </details>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ FEEDBACK ═══════ -->
+      <section class="block" id="feedback">
+        <header class="block__head">
+          <span class="block__num">06</span>
+          <h2 class="block__title">Feedback</h2>
+          <p class="block__desc">Dialog, snack-bar, tooltip, bottom-sheet.</p>
+        </header>
+
+        <table class="parity">
+          <colgroup><col class="col-label"><col class="col-cell"><col class="col-cell"></colgroup>
+          <thead><tr><th>Component</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="parity__label"><strong>Dialog</strong><code>mat-dialog</code><code>.ax-dialog</code></td>
+              <td><button mat-flat-button color="primary" (click)="openDialog()">Open dialog</button></td>
+              <td>
+                <div class="ax-dialog" style="max-width:400px">
+                  <div class="ax-dialog__header"><h3 class="ax-dialog__title">Confirm</h3></div>
+                  <div class="ax-dialog__body">Sample static preview — click Material side to trigger overlay.</div>
+                  <div class="ax-dialog__footer">
+                    <button class="ax-button ax-button--ghost">Cancel</button>
+                    <button class="ax-button ax-button--primary">Confirm</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Snack-bar / Toast</strong><code>mat-snack-bar</code><code>.ax-toast</code></td>
+              <td>
+                <span style="display:inline-flex;gap:6px;flex-wrap:wrap">
+                  <button mat-stroked-button (click)="openSnackBar('success')">Success</button>
+                  <button mat-stroked-button (click)="openSnackBar('warning')">Warning</button>
+                  <button mat-stroked-button (click)="openSnackBar('error')">Error</button>
+                  <button mat-stroked-button (click)="openSnackBar('info')">Info</button>
+                </span>
+              </td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <div class="ax-toast ax-toast--success">✓ Record saved successfully</div>
+                  <div class="ax-toast ax-toast--warning">⚠ Stock running low</div>
+                  <div class="ax-toast ax-toast--error">✗ Upload failed</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Tooltip</strong><code>matTooltip</code><code>[data-tooltip]</code></td>
+              <td><button mat-stroked-button matTooltip="Shortcut: ⌘S">Hover me</button></td>
+              <td><button class="ax-button ax-button--outline" data-tooltip="Shortcut: ⌘S">Hover me</button></td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Bottom sheet</strong><code>mat-bottom-sheet</code><code>.ax-bottom-sheet</code></td>
+              <td><button mat-flat-button color="primary" (click)="openBottomSheet()">Open sheet</button></td>
+              <td>
+                <div class="ax-bottom-sheet" style="position:static;transform:none;max-width:420px;box-shadow:var(--ax-shadow-md);animation:none">
+                  <div class="ax-bottom-sheet__handle"></div>
+                  <header class="ax-bottom-sheet__header"><h3 class="ax-bottom-sheet__title">Actions</h3></header>
+                  <div class="ax-bottom-sheet__body" style="overflow:visible">
+                    <div class="ax-list__item" style="padding:10px 0">Mark as read</div>
+                    <div class="ax-list__item" style="padding:10px 0">Archive</div>
+                    <div class="ax-list__item" style="padding:10px 0">Delete</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ DATA ═══════ -->
+      <section class="block" id="data">
+        <header class="block__head">
+          <span class="block__num">07</span>
+          <h2 class="block__title">Data</h2>
+          <p class="block__desc">Table, list, tree.</p>
+        </header>
+
+        <table class="parity">
+          <colgroup><col class="col-label"><col class="col-cell"><col class="col-cell"></colgroup>
+          <thead><tr><th>Component</th><th>Angular Material</th><th><code>.ax-*</code> custom</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="parity__label"><strong>Table</strong><code>mat-table</code><code>.ax-table</code></td>
+              <td>
+                <table mat-table [dataSource]="patients()" class="mat-elevation-z0">
+                  <ng-container matColumnDef="hn"><th mat-header-cell *matHeaderCellDef>HN</th><td mat-cell *matCellDef="let row">{{ row.hn }}</td></ng-container>
+                  <ng-container matColumnDef="name"><th mat-header-cell *matHeaderCellDef>Name</th><td mat-cell *matCellDef="let row">{{ row.name }}</td></ng-container>
+                  <ng-container matColumnDef="ward"><th mat-header-cell *matHeaderCellDef>Ward</th><td mat-cell *matCellDef="let row">{{ row.ward }}</td></ng-container>
+                  <ng-container matColumnDef="status"><th mat-header-cell *matHeaderCellDef>Status</th><td mat-cell *matCellDef="let row">{{ row.status }}</td></ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </td>
+              <td>
+                <div class="ax-table-wrap">
+                  <table class="ax-table">
+                    <thead><tr><th class="ax-table__sort" aria-sort="ascending">HN</th><th>Name</th><th>Ward</th><th>Status</th></tr></thead>
+                    <tbody>
+                      @for (r of patients(); track r.hn) {
+                        <tr><td>{{ r.hn }}</td><td>{{ r.name }}</td><td>{{ r.ward }}</td><td>{{ r.status }}</td></tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>List</strong><code>mat-list</code><code>.ax-list</code></td>
+              <td>
+                <mat-list>
+                  <mat-list-item><span matListItemTitle>Ward 5A</span><span matListItemLine>24 patients</span></mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><span matListItemTitle>Ward 3B</span><span matListItemLine>18 patients</span></mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><span matListItemTitle>ICU</span><span matListItemLine>6 patients</span></mat-list-item>
+                </mat-list>
+              </td>
+              <td>
+                <ul class="ax-list ax-list--bordered">
+                  <li class="ax-list__item"><div><div>Ward 5A</div><div style="font-size:12px;color:var(--ax-text-secondary)">24 patients</div></div></li>
+                  <li class="ax-list__item"><div><div>Ward 3B</div><div style="font-size:12px;color:var(--ax-text-secondary)">18 patients</div></div></li>
+                  <li class="ax-list__item"><div><div>ICU</div><div style="font-size:12px;color:var(--ax-text-secondary)">6 patients</div></div></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="parity__label"><strong>Tree</strong><code>mat-tree</code><code>.ax-tree</code></td>
+              <td colspan="2">
+                <ul class="ax-tree">
+                  <li class="ax-tree__node" aria-expanded="true">
+                    <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon">🏥</span><span class="ax-tree__label">Hospital</span><span class="ax-tree__meta">148</span></button>
+                    <ul class="ax-tree__children">
+                      <li class="ax-tree__node" aria-expanded="true">
+                        <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon">📁</span><span class="ax-tree__label">Inpatient</span><span class="ax-tree__meta">48</span></button>
+                        <ul class="ax-tree__children">
+                          <li class="ax-tree__node"><button class="ax-tree__trigger"><span class="ax-tree__chevron ax-tree__chevron--leaf"></span><span class="ax-tree__label">Ward 5A</span><span class="ax-tree__meta">24</span></button></li>
+                          <li class="ax-tree__node" aria-selected="true"><button class="ax-tree__trigger"><span class="ax-tree__chevron ax-tree__chevron--leaf"></span><span class="ax-tree__label">Ward 3B</span><span class="ax-tree__meta">18</span></button></li>
+                          <li class="ax-tree__node"><button class="ax-tree__trigger"><span class="ax-tree__chevron ax-tree__chevron--leaf"></span><span class="ax-tree__label">ICU</span><span class="ax-tree__meta">6</span></button></li>
+                        </ul>
+                      </li>
+                      <li class="ax-tree__node">
+                        <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon">📁</span><span class="ax-tree__label">OPD</span><span class="ax-tree__meta">100</span></button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ═══════ AX-ONLY ═══════ -->
+      <section class="block" id="ax-only">
+        <header class="block__head">
+          <span class="block__num">08</span>
+          <h2 class="block__title">ax-only components</h2>
+          <p class="block__desc">No Material equivalent. Pure <code>.ax-*</code> CSS shipped in <code>components.css</code>.</p>
+        </header>
+
+        <div class="ax-only-grid">
+
+          <div class="preview">
+            <div class="preview__label">Navbar</div>
+            <div class="ax-navbar ax-navbar--bordered">
+              <div class="ax-navbar__container">
+                <div class="ax-navbar__start">
+                  <div class="ax-navbar__brand">AegisX HIS</div>
+                </div>
+                <nav class="ax-navbar__center ax-navbar__center--start">
+                  <a class="ax-navbar__link active" href="javascript:void(0)">Dashboard</a>
+                  <a class="ax-navbar__link" href="javascript:void(0)">Patients</a>
+                  <a class="ax-navbar__link" href="javascript:void(0)">Reports</a>
+                </nav>
+                <div class="ax-navbar__end">
+                  <button class="ax-navbar__icon-btn">🔔</button>
+                  <div class="ax-navbar-user">
+                    <span class="ax-avatar ax-avatar--sm">Dr</span>
+                    <div><div class="ax-navbar-user__name">Dr. Chai</div><div class="ax-navbar-user__role">Admin</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview">
+            <div class="preview__label">OTP</div>
+            <div class="ax-otp">
+              <input class="ax-otp__digit" maxlength="1" value="3">
+              <input class="ax-otp__digit" maxlength="1" value="8">
+              <input class="ax-otp__digit" maxlength="1" value="2">
+              <span class="ax-otp__separator">·</span>
+              <input class="ax-otp__digit" maxlength="1" value="1">
+              <input class="ax-otp__digit" maxlength="1">
+              <input class="ax-otp__digit" maxlength="1">
+            </div>
+          </div>
+
+          <div class="preview">
+            <div class="preview__label">File upload dropzone</div>
+            <div class="ax-upload">
+              <div class="ax-upload__icon">⇪</div>
+              <div class="ax-upload__title">Drop file or <span class="ax-link">browse</span></div>
+              <div class="ax-upload__hint">PDF / JPG / PNG · up to 10 MB</div>
+            </div>
+          </div>
+
+          <div class="preview">
+            <div class="preview__label">Timeline</div>
+            <div class="ax-timeline">
+              <div class="ax-timeline__item done">
+                <div class="ax-timeline__dot"></div>
+                <div class="ax-timeline__time">08:12</div>
+                <div class="ax-timeline__title">Admitted to ER</div>
+                <div class="ax-timeline__desc">Triage by Dr. Sunisa</div>
+              </div>
+              <div class="ax-timeline__item active">
+                <div class="ax-timeline__dot"></div>
+                <div class="ax-timeline__time">09:45</div>
+                <div class="ax-timeline__title">CBC ordered</div>
+              </div>
+              <div class="ax-timeline__item">
+                <div class="ax-timeline__dot"></div>
+                <div class="ax-timeline__time">—</div>
+                <div class="ax-timeline__title">Transfer to ward</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview">
+            <div class="preview__label">Alerts</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="ax-alert ax-alert--success"><span>Discharge completed successfully.</span></div>
+              <div class="ax-alert ax-alert--warning"><span>Stock of IV saline is below threshold.</span></div>
+              <div class="ax-alert ax-alert--error"><span>Failed to sync records with HIS.</span></div>
+              <div class="ax-alert ax-alert--info"><span>Scheduled maintenance at 02:00.</span></div>
+            </div>
+          </div>
+
+          <div class="preview">
+            <div class="preview__label">Stats</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+              <div class="ax-stat"><div class="ax-stat__label">Patients</div><div class="ax-stat__value">148</div><div class="ax-stat__delta ax-stat__delta--up">↑ 8</div></div>
+              <div class="ax-stat"><div class="ax-stat__label">Admissions</div><div class="ax-stat__value">24</div><div class="ax-stat__delta">—</div></div>
+              <div class="ax-stat"><div class="ax-stat__label">Critical</div><div class="ax-stat__value">3</div><div class="ax-stat__delta ax-stat__delta--down">↓ 1</div></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
 </div>
