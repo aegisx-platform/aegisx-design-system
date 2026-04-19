@@ -6,6 +6,31 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-04-19
+
+### Added
+- **Unified docs shell** (`pages/_shared.css`) — 240px content sidebar + topbar + hero + numbered sections, applied to `tokens.html`, `components.html`, `navigation.html`, `a11y.html`. Replaces the legacy `ax-nav` rail chrome (the rail is a documented component, not site chrome).
+- **Live Tweaks panel** (`pages/_tweaks.{css,js}`) — floating editor to preview theme · 8 brand presets (indigo = production) · density · radius · base font size · font family (Plex / Noto / Inter / Sarabun, lazy-loaded) · elevation · focus ring. Writes CSS custom-property overrides at `:root`, persisted to `localStorage[aegisx-ds-tweaks]`. FAB bottom-right + keyboard `T` toggle. Does not modify `tokens.css`.
+- **Token showcase primitives** in `_shared.css` — `.swatch` with step+hex overlay (click-to-copy), compact `.semantic-grid`, `.type-row`, `.spacing-row`, `.radius-cell`, `.shadow-cell`.
+- **Scroll-spy sidebar navigation** — each page highlights its current section as the user scrolls.
+- **Build-time version injection** — `{{DS_VERSION}}` placeholder in pages is substituted with `package.json` `version` during `pnpm site:build`.
+
+### Changed
+- `scripts/build-site.mjs` — also copies `.js` files from `pages/` (for `_tweaks.js`).
+- All four docs pages re-wired to the new shell; in-page anchor navigation moved into the outer sidebar's "on this page" group.
+- `pages/components.html` — re-grouped 60+ component anchors into 7 clean categories (Form / Data / Progress / Feedback / Navigation / Layout / Composition).
+
+### Fixed
+- `scripts/build-platforms.mjs` — CI had been failing since tokens realigned to production:
+  - `ROLES.success` referenced a non-existent `green` palette; corrected to `emerald` (matches production DTCG + `tokens.css`).
+  - All `Object.entries(color.palette[hue])` loops now skip non-token metadata (`$description` etc.) lacking a `$value`.
+- `_tweaks.js`:
+  - Validates every state field loaded from `localStorage` against a hard-coded whitelist (`theme`/`brand`/`density`/`fontFamily`/`elevation`/`focusRing` enum; `radius` 0–16; `fontSize` 12–17) before applying — prevents CSS-selector injection and invalid `setAttribute` values via tampered LS.
+  - No longer sets `root.style.fontSize` unconditionally; CSS variables are only overridden when the user's value differs from default, so `tokens.css` wins after reset.
+
+### Removed
+- Legacy `.page-sidebar` / `.page-layout` / `.page-head` / `nav.tabs` rail chrome from all docs pages. `navigation.html` still demonstrates `ax-nav` as inline content.
+
 ## [0.3.2] — 2026-04-16
 
 ### Added

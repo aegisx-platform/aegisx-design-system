@@ -1,6 +1,6 @@
 # TODO — `aegisx-design-system`
 
-> Resume here. Last shipped: **v0.3.2** (2026-04-16) — tokens realigned to production `_aegisx-tokens.scss`, navigation demo page, pages/ restructure.
+> Resume here. Last shipped: **v0.4.0** (2026-04-19) — unified docs shell across all pages, live Tweaks panel, scroll-spy sidebar. CI build fix (`ROLES.success: green → emerald`; skip non-`$value` metadata in palette loops).
 
 This file is the **single source of truth for what to do next**. Update it as items move between sections. Do not let it rot.
 
@@ -18,9 +18,9 @@ This file is the **single source of truth for what to do next**. Update it as it
 - **What:** sidenav (already has dark navy from ax-nav-rail), navbar, tabs, breadcrumb, pagination, shell, page-header, accordion, command palette, tab-pills
 - **Source files:** `ax-nav-rail.component.ts`, `ax-nav-topbar.component.ts`, `ax-nav-expanded-panel.component.ts`, `navbar.component.scss`, `_material-overrides.scss` (tabs, expansion panel, toolbar)
 
-### Bump to v0.4.0
-- **What:** Update package.json version, CHANGELOG.md, PRODUCTION-VALUES-SPEC.md (mark resolved items), TODO.md
-- **Breaking changes:** token values changed (brand #3f51b5, spacing md=16px, radius shifted, z-index 1000-scale, dark mode Tremor/Gray, success=Emerald), pages moved to `pages/`, focus ring approach changed
+### Bump to v0.5.0 (queued)
+- **What:** Ship when components.css batch 2+3 rewrites land. Update `package.json`, `CHANGELOG.md`, `PRODUCTION-VALUES-SPEC.md` (mark resolved), this file.
+- **Trigger:** batch 2 (data display + feedback) + batch 3 (navigation + layout) both merged.
 
 ---
 

@@ -10,63 +10,63 @@
           "$type": "color"
         },
         "default": {
-          "$value": "{color.palette.zinc.900}",
+          "$value": "{color.palette.gray.900}",
           "$type": "color"
         },
         "subtle": {
-          "$value": "{color.palette.zinc.800}",
+          "$value": "{color.palette.gray.800}",
           "$type": "color"
         },
         "muted": {
-          "$value": "{color.palette.zinc.700}",
+          "$value": "#131a2b",
           "$type": "color"
         },
         "emphasis": {
-          "$value": "{color.palette.zinc.600}",
+          "$value": "{color.palette.gray.300}",
           "$type": "color"
         }
       },
       "text": {
         "disabled": {
-          "$value": "{color.palette.zinc.600}",
+          "$value": "{color.palette.gray.600}",
           "$type": "color"
         },
         "subtle": {
-          "$value": "{color.palette.zinc.500}",
+          "$value": "{color.palette.gray.500}",
           "$type": "color"
         },
         "secondary": {
-          "$value": "{color.palette.zinc.400}",
+          "$value": "{color.palette.gray.400}",
           "$type": "color"
         },
         "default": {
-          "$value": "#e5e5e5",
+          "$value": "{color.palette.gray.300}",
           "$type": "color"
         },
         "strong": {
-          "$value": "{color.palette.zinc.100}",
+          "$value": "{color.palette.gray.200}",
           "$type": "color"
         },
         "heading": {
-          "$value": "{color.palette.zinc.50}",
+          "$value": "{color.palette.gray.100}",
           "$type": "color"
         },
         "inverted": {
-          "$value": "{color.palette.zinc.950}",
+          "$value": "{color.palette.gray.900}",
           "$type": "color"
         }
       },
       "border": {
         "subtle": {
-          "$value": "{color.palette.zinc.800}",
+          "$value": "{color.palette.gray.800}",
           "$type": "color"
         },
         "default": {
-          "$value": "{color.palette.zinc.700}",
+          "$value": "{color.palette.gray.700}",
           "$type": "color"
         },
         "emphasis": {
-          "$value": "{color.palette.zinc.600}",
+          "$value": "{color.palette.gray.600}",
           "$type": "color"
         }
       },

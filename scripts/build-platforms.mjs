@@ -29,7 +29,7 @@ const spacing = read('spacing.json').spacing;
 const radius  = read('radius.json').radius;
 const font    = read('typography.json').typography;
 
-const ROLES = { brand: 'indigo', success: 'green', warning: 'amber', error: 'red', info: 'blue' };
+const ROLES = { brand: 'indigo', success: 'emerald', warning: 'amber', error: 'red', info: 'blue' };
 const VARIANTS = { faint: 50, muted: 100, subtle: 200, default: 500, emphasis: 700 };
 
 const hex = (hue, step) => color.palette[hue][step].$value;
@@ -45,6 +45,7 @@ const tailwindColors = (() => {
   for (const hue of Object.keys(color.palette)) {
     c[hue] = {};
     for (const [step, entry] of Object.entries(color.palette[hue])) {
+      if (!entry || typeof entry !== 'object' || !entry.$value) continue;
       c[hue][step] = entry.$value;
     }
   }
@@ -106,6 +107,7 @@ public enum AegisXColor {
 `;
 for (const hue of Object.keys(color.palette)) {
   for (const [step, entry] of Object.entries(color.palette[hue])) {
+    if (!entry || typeof entry !== 'object' || !entry.$value) continue; // skip $description etc.
     const camel = `${hue}${step}`;
     swift += `  public static let ${camel} = ${swiftColor(entry.$value)}\n`;
   }
@@ -148,6 +150,7 @@ let colorsXml = `<?xml version="1.0" encoding="utf-8"?>
 `;
 for (const hue of Object.keys(color.palette)) {
   for (const [step, entry] of Object.entries(color.palette[hue])) {
+    if (!entry || typeof entry !== 'object' || !entry.$value) continue;
     colorsXml += `    <color name="ax_${hue}_${step}">${entry.$value}</color>\n`;
   }
 }
@@ -192,6 +195,7 @@ class AegisXColor {
 `;
 for (const hue of Object.keys(color.palette)) {
   for (const [step, entry] of Object.entries(color.palette[hue])) {
+    if (!entry || typeof entry !== 'object' || !entry.$value) continue;
     dart += `  static const ${hue}${step} = ${dartColor(entry.$value)};\n`;
   }
 }
