@@ -325,7 +325,7 @@
               <td>
                 <div class="ax-datepicker-input">
                   <input class="ax-input" placeholder="mm/dd/yyyy" value="04/19/2026">
-                  <button class="ax-datepicker-input__toggle" type="button" aria-label="Open calendar">📅</button>
+                  <button class="ax-datepicker-input__toggle" type="button" aria-label="Open calendar"><i class="material-icons">event</i></button>
                 </div>
               </td>
             </tr>
@@ -395,15 +395,15 @@
               </td>
               <td>
                 <span style="display:inline-flex;gap:4px">
-                  <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Edit">✎</button>
-                  <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Delete">🗑</button>
+                  <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Edit"><i class="material-icons">edit</i></button>
+                  <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Delete"><i class="material-icons">delete</i></button>
                 </span>
               </td>
             </tr>
             <tr>
               <td class="parity__label"><strong>FAB</strong><code>mat-fab</code><code>.ax-fab</code></td>
               <td><button mat-fab color="primary" aria-label="Add"><mat-icon>add</mat-icon></button></td>
-              <td><button class="ax-fab" aria-label="Add">+</button></td>
+              <td><button class="ax-fab" aria-label="Add"><i class="material-icons">add</i></button></td>
             </tr>
             <tr>
               <td class="parity__label"><strong>Mini FAB + Extended</strong><code>mat-mini-fab / mat-fab extended</code><code>.ax-fab--mini / --extended</code></td>
@@ -415,8 +415,8 @@
               </td>
               <td>
                 <span style="display:inline-flex;gap:8px;align-items:center">
-                  <button class="ax-fab ax-fab--mini">🔍</button>
-                  <button class="ax-fab ax-fab--extended">＋ New record</button>
+                  <button class="ax-fab ax-fab--mini" aria-label="Search"><i class="material-icons">search</i></button>
+                  <button class="ax-fab ax-fab--extended"><i class="material-icons">add</i> New record</button>
                 </span>
               </td>
             </tr>
@@ -476,8 +476,8 @@
               </td>
               <td>
                 <span style="display:inline-flex;gap:20px;align-items:center">
-                  <span class="ax-counter-wrap"><button class="ax-button ax-button--ghost ax-button--icon">🔔</button><span class="ax-counter">8</span></span>
-                  <span class="ax-counter-wrap"><button class="ax-button ax-button--ghost ax-button--icon">✉</button><span class="ax-counter">99+</span></span>
+                  <span class="ax-counter-wrap"><button class="ax-button ax-button--ghost ax-button--icon" aria-label="Notifications"><i class="material-icons">notifications</i></button><span class="ax-counter">8</span></span>
+                  <span class="ax-counter-wrap"><button class="ax-button ax-button--ghost ax-button--icon" aria-label="Mail"><i class="material-icons">mail</i></button><span class="ax-counter">99+</span></span>
                 </span>
               </td>
             </tr>
@@ -529,12 +529,12 @@
               </td>
               <td>
                 <div style="position:relative;display:inline-block">
-                  <button class="ax-button ax-button--outline">Open menu ▾</button>
+                  <button class="ax-button ax-button--outline">Open menu <i class="material-icons">expand_more</i></button>
                   <div class="ax-menu" style="position:absolute;top:calc(100% + 4px);left:0;display:block">
-                    <div class="ax-menu__item">✎ Edit</div>
-                    <div class="ax-menu__item">⧉ Duplicate</div>
+                    <div class="ax-menu__item"><i class="material-icons">edit</i> Edit</div>
+                    <div class="ax-menu__item"><i class="material-icons">content_copy</i> Duplicate</div>
                     <div class="ax-menu__divider"></div>
-                    <div class="ax-menu__item ax-menu__item--danger">🗑 Delete</div>
+                    <div class="ax-menu__item ax-menu__item--danger"><i class="material-icons">delete</i> Delete</div>
                   </div>
                 </div>
               </td>
@@ -591,7 +591,7 @@
                 <header class="ax-toolbar ax-toolbar--primary">
                   <span class="ax-toolbar__title">AegisX HIS</span>
                   <span class="ax-toolbar__spacer"></span>
-                  <button class="ax-button ax-button--icon" style="color:inherit">🔔</button>
+                  <button class="ax-button ax-button--icon" style="color:inherit" aria-label="Notifications"><i class="material-icons">notifications</i></button>
                 </header>
               </td>
             </tr>
@@ -607,10 +607,10 @@
                   </label>
                   <span class="ax-paginator__range">1–10 of 100</span>
                   <div class="ax-paginator__nav">
-                    <button class="ax-button ax-button--ghost ax-button--icon" disabled>⟪</button>
-                    <button class="ax-button ax-button--ghost ax-button--icon" disabled>‹</button>
-                    <button class="ax-button ax-button--ghost ax-button--icon">›</button>
-                    <button class="ax-button ax-button--ghost ax-button--icon">⟫</button>
+                    <button class="ax-button ax-button--ghost ax-button--icon" disabled aria-label="First page"><i class="material-icons">first_page</i></button>
+                    <button class="ax-button ax-button--ghost ax-button--icon" disabled aria-label="Previous page"><i class="material-icons">chevron_left</i></button>
+                    <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Next page"><i class="material-icons">chevron_right</i></button>
+                    <button class="ax-button ax-button--ghost ax-button--icon" aria-label="Last page"><i class="material-icons">last_page</i></button>
                   </div>
                 </div>
               </td>
@@ -738,9 +738,9 @@
               </td>
               <td>
                 <div style="display:flex;flex-direction:column;gap:8px">
-                  <div class="ax-toast ax-toast--success">✓ Record saved successfully</div>
-                  <div class="ax-toast ax-toast--warning">⚠ Stock running low</div>
-                  <div class="ax-toast ax-toast--error">✗ Upload failed</div>
+                  <div class="ax-toast ax-toast--success"><i class="material-icons">check_circle</i> Record saved successfully</div>
+                  <div class="ax-toast ax-toast--warning"><i class="material-icons">warning</i> Stock running low</div>
+                  <div class="ax-toast ax-toast--error"><i class="material-icons">error</i> Upload failed</div>
                 </div>
               </td>
             </tr>
@@ -829,10 +829,10 @@
               <td colspan="2">
                 <ul class="ax-tree">
                   <li class="ax-tree__node" aria-expanded="true">
-                    <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon">🏥</span><span class="ax-tree__label">Hospital</span><span class="ax-tree__meta">148</span></button>
+                    <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon"><i class="material-icons">local_hospital</i></span><span class="ax-tree__label">Hospital</span><span class="ax-tree__meta">148</span></button>
                     <ul class="ax-tree__children">
                       <li class="ax-tree__node" aria-expanded="true">
-                        <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon">📁</span><span class="ax-tree__label">Inpatient</span><span class="ax-tree__meta">48</span></button>
+                        <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon"><i class="material-icons">folder</i></span><span class="ax-tree__label">Inpatient</span><span class="ax-tree__meta">48</span></button>
                         <ul class="ax-tree__children">
                           <li class="ax-tree__node"><button class="ax-tree__trigger"><span class="ax-tree__chevron ax-tree__chevron--leaf"></span><span class="ax-tree__label">Ward 5A</span><span class="ax-tree__meta">24</span></button></li>
                           <li class="ax-tree__node" aria-selected="true"><button class="ax-tree__trigger"><span class="ax-tree__chevron ax-tree__chevron--leaf"></span><span class="ax-tree__label">Ward 3B</span><span class="ax-tree__meta">18</span></button></li>
@@ -840,7 +840,7 @@
                         </ul>
                       </li>
                       <li class="ax-tree__node">
-                        <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon">📁</span><span class="ax-tree__label">OPD</span><span class="ax-tree__meta">100</span></button>
+                        <button class="ax-tree__trigger"><span class="ax-tree__chevron"></span><span class="ax-tree__icon"><i class="material-icons">folder</i></span><span class="ax-tree__label">OPD</span><span class="ax-tree__meta">100</span></button>
                       </li>
                     </ul>
                   </li>
@@ -874,7 +874,7 @@
                   <a class="ax-navbar__link" href="javascript:void(0)">Reports</a>
                 </nav>
                 <div class="ax-navbar__end">
-                  <button class="ax-navbar__icon-btn">🔔</button>
+                  <button class="ax-navbar__icon-btn" aria-label="Notifications"><i class="material-icons">notifications</i></button>
                   <div class="ax-navbar-user">
                     <span class="ax-avatar ax-avatar--sm">Dr</span>
                     <div><div class="ax-navbar-user__name">Dr. Chai</div><div class="ax-navbar-user__role">Admin</div></div>
@@ -900,7 +900,7 @@
           <div class="preview">
             <div class="preview__label">File upload dropzone</div>
             <div class="ax-upload">
-              <div class="ax-upload__icon">⇪</div>
+              <div class="ax-upload__icon"><i class="material-icons" style="font-size:32px">cloud_upload</i></div>
               <div class="ax-upload__title">Drop file or <span class="ax-link">browse</span></div>
               <div class="ax-upload__hint">PDF / JPG / PNG · up to 10 MB</div>
             </div>
@@ -931,10 +931,10 @@
           <div class="preview">
             <div class="preview__label">Alerts</div>
             <div style="display:flex;flex-direction:column;gap:8px">
-              <div class="ax-alert ax-alert--success"><span>Discharge completed successfully.</span></div>
-              <div class="ax-alert ax-alert--warning"><span>Stock of IV saline is below threshold.</span></div>
-              <div class="ax-alert ax-alert--error"><span>Failed to sync records with HIS.</span></div>
-              <div class="ax-alert ax-alert--info"><span>Scheduled maintenance at 02:00.</span></div>
+              <div class="ax-alert ax-alert--success"><i class="material-icons">check_circle</i><span>Discharge completed successfully.</span></div>
+              <div class="ax-alert ax-alert--warning"><i class="material-icons">warning</i><span>Stock of IV saline is below threshold.</span></div>
+              <div class="ax-alert ax-alert--error"><i class="material-icons">error</i><span>Failed to sync records with HIS.</span></div>
+              <div class="ax-alert ax-alert--info"><i class="material-icons">info</i><span>Scheduled maintenance at 02:00.</span></div>
             </div>
           </div>
 

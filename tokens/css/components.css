@@ -506,6 +506,70 @@
 .ax-input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .ax-input[type='number'] { -moz-appearance: textfield; }
 
+/* ────────────────────────────────────────────────────────────
+ * ICON FONT SUPPORT
+ * Since AegisX UI targets Angular Material apps as the primary consumer,
+ * ax-* components accept Google's Material Icons ligature font out of
+ * the box. Consumer includes the font stylesheet once in index.html, then
+ * renders icons via:
+ *   <i class="material-icons">edit</i>
+ *   <i class="material-symbols-outlined">edit</i>   ← M3 variant
+ *   <mat-icon svgIcon="custom-ax-icon">…</mat-icon> ← our own SVG set
+ * When placed inside an ax-* control, the icon is sized from --ax-control-icon
+ * so density stays consistent with the surrounding text.
+ * ──────────────────────────────────────────────────────────── */
+.ax-button .material-icons,
+.ax-button .material-symbols-outlined,
+.ax-button > mat-icon,
+.ax-fab .material-icons,
+.ax-fab .material-symbols-outlined,
+.ax-fab > mat-icon,
+.ax-navbar__icon-btn .material-icons,
+.ax-navbar__icon-btn .material-symbols-outlined,
+.ax-navbar__icon-btn > mat-icon,
+.ax-toolbar .material-icons,
+.ax-toolbar .material-symbols-outlined,
+.ax-toolbar > mat-icon,
+.ax-menu__item .material-icons,
+.ax-menu__item .material-symbols-outlined,
+.ax-menu__item > mat-icon,
+.ax-list__item .material-icons,
+.ax-list__item .material-symbols-outlined,
+.ax-list__item > mat-icon,
+.ax-tree__icon .material-icons,
+.ax-tree__icon .material-symbols-outlined,
+.ax-tree__icon > mat-icon,
+.ax-field__icon .material-icons,
+.ax-field__icon .material-symbols-outlined,
+.ax-field__icon > mat-icon {
+  font-size: var(--ax-control-icon);
+  width: var(--ax-control-icon);
+  height: var(--ax-control-icon);
+  line-height: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* FAB defaults — larger icon (24px) */
+.ax-fab > .material-icons,
+.ax-fab > .material-symbols-outlined,
+.ax-fab > mat-icon {
+  font-size: 24px;
+  width: 24px; height: 24px;
+}
+.ax-fab--mini > .material-icons,
+.ax-fab--mini > .material-symbols-outlined,
+.ax-fab--mini > mat-icon {
+  font-size: 20px;
+  width: 20px; height: 20px;
+}
+.ax-fab--extended > .material-icons,
+.ax-fab--extended > .material-symbols-outlined,
+.ax-fab--extended > mat-icon {
+  font-size: 20px;
+  width: 20px; height: 20px;
+}
+
 /* Autofill styling */
 .ax-input:-webkit-autofill,
 .ax-input:-webkit-autofill:hover,
