@@ -62,11 +62,13 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * FORM FIELD — 40px height, flat border, focus ring
+ * FORM FIELD (input / textarea / select / datepicker / autocomplete)
+ * Reads --ax-control-h / --ax-control-pad-x from tokens, so
+ * [data-density] flips size automatically.
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-form-field {
-  --mdc-outlined-text-field-container-shape:       var(--ax-radius-sm);
-  --mdc-filled-text-field-container-shape:         var(--ax-radius-sm);
+  --mdc-outlined-text-field-container-shape:       var(--ax-radius-md);
+  --mdc-filled-text-field-container-shape:         var(--ax-radius-md);
   --mdc-outlined-text-field-outline-color:         var(--ax-input-border);
   --mdc-outlined-text-field-hover-outline-color:   var(--ax-input-border-hover);
   --mdc-outlined-text-field-focus-outline-color:   var(--ax-input-border-focus);
@@ -74,12 +76,150 @@
   --mdc-outlined-text-field-label-text-color:      var(--ax-text-secondary);
   --mdc-outlined-text-field-input-text-color:      var(--ax-text-heading);
   --mdc-outlined-text-field-input-text-placeholder-color: var(--ax-input-placeholder);
+  --mdc-outlined-text-field-disabled-outline-color: var(--ax-border-subtle);
+  --mdc-outlined-text-field-disabled-label-text-color: var(--ax-text-disabled);
+  --mdc-outlined-text-field-disabled-input-text-color: var(--ax-text-disabled);
+  --mat-form-field-container-text-font: var(--ax-font-sans);
+  --mat-form-field-container-text-size: var(--ax-text-sm-size);
+  --mat-form-field-container-text-line-height: var(--ax-text-sm-line);
+  --mat-form-field-container-text-weight: var(--ax-font-weight-regular);
+  --mat-form-field-subscript-text-font: var(--ax-font-sans);
+  --mat-form-field-subscript-text-size: var(--ax-text-xs-size);
+  --mat-form-field-subscript-text-line-height: var(--ax-text-xs-line);
+  --mat-form-field-outlined-label-text-populated-size: var(--ax-text-xs-size);
   font-family: var(--ax-font-sans);
+}
+
+/* Height — use --ax-control-h for density awareness */
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  height: var(--ax-control-h);
+  padding: 0 var(--ax-control-pad-x);
+}
+.mat-mdc-form-field .mat-mdc-form-field-flex {
+  min-height: var(--ax-control-h);
+  align-items: center;
+}
+.mat-mdc-form-field .mat-mdc-form-field-infix {
+  min-height: var(--ax-control-h);
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Textarea should grow — not fixed height */
+.mat-mdc-form-field:has(textarea) .mat-mdc-text-field-wrapper,
+.mat-mdc-form-field:has(textarea) .mat-mdc-form-field-flex,
+.mat-mdc-form-field:has(textarea) .mat-mdc-form-field-infix {
+  height: auto;
+  min-height: calc(var(--ax-control-h) * 2.4);
+}
+.mat-mdc-form-field textarea.mat-mdc-input-element {
+  padding: var(--ax-control-pad-y) 0;
+}
+
+/* Prefix / suffix icons align to --ax-control-icon */
+.mat-mdc-form-field .mat-mdc-form-field-icon-prefix,
+.mat-mdc-form-field .mat-mdc-form-field-icon-suffix {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ax-text-secondary);
+}
+.mat-mdc-form-field .mat-mdc-form-field-icon-prefix > .mat-icon,
+.mat-mdc-form-field .mat-mdc-form-field-icon-suffix > .mat-icon {
+  width: var(--ax-control-icon);
+  height: var(--ax-control-icon);
+  font-size: var(--ax-control-icon);
+  padding: 0;
+}
+
+/* Label typography — rest + floating */
+.mat-mdc-form-field .mdc-floating-label {
+  font-family: var(--ax-font-sans);
+  font-weight: var(--ax-font-weight-regular);
+}
+.mat-mdc-form-field .mdc-floating-label--float-above {
+  font-size: var(--ax-text-xs-size);
+  font-weight: var(--ax-font-weight-medium);
 }
 
 /* Remove Material's filled form-field underline for a flatter look */
 .mat-mdc-form-field-appearance-fill .mdc-line-ripple {
   display: none;
+}
+
+/* Focus ring replaces the M3 2px outline so focus looks consistent with ax-button */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline {
+  border-width: 1px;
+}
+.mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus, var(--ax-input-border-focus));
+  outline-offset: var(--ax-focus-ring-offset);
+  border-radius: var(--mdc-outlined-text-field-container-shape);
+}
+
+/* Input element — remove number-spinner arrows in Webkit, clean autofill */
+.mat-mdc-input-element::-webkit-outer-spin-button,
+.mat-mdc-input-element::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.mat-mdc-input-element[type='number'] { -moz-appearance: textfield; }
+.mat-mdc-input-element:-webkit-autofill,
+.mat-mdc-input-element:-webkit-autofill:hover,
+.mat-mdc-input-element:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px var(--ax-input-bg) inset !important;
+  -webkit-text-fill-color: var(--ax-input-text) !important;
+  caret-color: var(--ax-input-text);
+  transition: background-color 9999s ease-in-out 0s;
+}
+.mat-mdc-input-element[readonly] {
+  background: var(--ax-background-subtle);
+  color: var(--ax-text-secondary);
+  cursor: default;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * SELECT PANEL — option states + group header
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-select-panel {
+  --mat-select-panel-background-color: var(--ax-background-default);
+  padding: var(--ax-spacing-xs) 0;
+  max-height: 320px;
+}
+.mat-mdc-select-panel .mat-mdc-option {
+  --mat-option-label-text-color: var(--ax-text-default);
+  --mat-option-selected-state-label-text-color: var(--ax-brand-emphasis);
+  --mat-option-selected-state-layer-color: var(--ax-brand-faint);
+  --mat-option-focus-state-layer-color: var(--ax-background-subtle);
+  --mat-option-hover-state-layer-color: var(--ax-background-subtle);
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  line-height: var(--ax-text-sm-line);
+  min-height: var(--ax-control-h-sm);
+  padding: 0 var(--ax-control-pad-x);
+}
+.mat-mdc-select-panel .mat-mdc-option.mdc-list-item--disabled {
+  opacity: var(--ax-opacity-disabled);
+  pointer-events: none;
+}
+.mat-mdc-select-panel .mat-mdc-optgroup-label {
+  font-size: var(--ax-text-xs-size);
+  color: var(--ax-text-subtle);
+  font-weight: var(--ax-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-wide);
+  padding: var(--ax-spacing-sm) var(--ax-control-pad-x) var(--ax-spacing-xs);
+}
+
+/* Select trigger — match our outlined field look */
+.mat-mdc-select-trigger {
+  height: var(--ax-control-h);
+  display: inline-flex;
+  align-items: center;
+}
+.mat-mdc-select-arrow svg {
+  color: var(--ax-text-secondary);
 }
 
 /* ────────────────────────────────────────────────────────────
