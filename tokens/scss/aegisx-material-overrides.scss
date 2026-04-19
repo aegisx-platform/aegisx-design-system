@@ -16,18 +16,77 @@
  */
 
 /* ────────────────────────────────────────────────────────────
- * CARD — subtle border + shadow-sm, no heavy Material elevation
+ * CARD — subtle border + shadow-sm, typography polish
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-card {
+  --mdc-elevated-card-container-color:     var(--ax-background-default);
+  --mdc-elevated-card-container-elevation: none;
+  --mdc-elevated-card-container-shape:     var(--ax-radius-lg);
+  --mdc-outlined-card-container-color:     var(--ax-background-default);
+  --mdc-outlined-card-outline-color:       var(--ax-border-default);
+  --mdc-outlined-card-container-shape:     var(--ax-radius-lg);
+  --mat-card-title-text-font:              var(--ax-font-sans);
+  --mat-card-title-text-size:              var(--ax-text-lg-size);
+  --mat-card-title-text-weight:            var(--ax-font-weight-semibold);
+  --mat-card-subtitle-text-font:           var(--ax-font-sans);
+  --mat-card-subtitle-text-size:           var(--ax-text-sm-size);
+  --mat-card-subtitle-text-color:          var(--ax-text-secondary);
   box-shadow: var(--ax-elevation-1) !important;
   border: var(--ax-border-width-thin) solid var(--ax-border-default);
   border-radius: var(--ax-radius-lg);
-  --mdc-elevated-card-container-elevation: none;
+  font-family: var(--ax-font-sans);
 }
 .mat-mdc-card-outlined {
   box-shadow: none !important;
   border-color: var(--ax-border-default);
 }
+.mat-mdc-card-header { padding: var(--ax-spacing-md) var(--ax-spacing-lg); border-bottom: 1px solid var(--ax-border-subtle); }
+.mat-mdc-card-content { padding: var(--ax-spacing-md) var(--ax-spacing-lg); color: var(--ax-text-default); }
+.mat-mdc-card-actions {
+  padding: var(--ax-spacing-sm) var(--ax-spacing-md) !important;
+  border-top: 1px solid var(--ax-border-subtle);
+  background: var(--ax-background-muted);
+}
+.mat-mdc-card-image { width: 100%; object-fit: cover; }
+
+/* ────────────────────────────────────────────────────────────
+ * DIVIDER — border color + inset variants
+ * ──────────────────────────────────────────────────────────── */
+.mat-divider {
+  --mat-divider-color: var(--ax-border-default);
+  --mat-divider-width: 1px;
+  border-top-color: var(--ax-border-default) !important;
+  border-right-color: var(--ax-border-default) !important;
+}
+.mat-divider.mat-divider-inset { margin-inline-start: var(--ax-spacing-lg); }
+
+/* ────────────────────────────────────────────────────────────
+ * EXPANSION PANEL — header hover, expand icon color, body padding
+ * ──────────────────────────────────────────────────────────── */
+.mat-expansion-panel {
+  --mat-expansion-container-background-color: var(--ax-background-default);
+  --mat-expansion-container-text-color:        var(--ax-text-default);
+  --mat-expansion-container-shape:             var(--ax-radius-lg);
+  --mat-expansion-actions-divider-color:       var(--ax-border-subtle);
+  --mat-expansion-header-text-font:            var(--ax-font-sans);
+  --mat-expansion-header-text-size:            var(--ax-text-sm-size);
+  --mat-expansion-header-text-weight:          var(--ax-font-weight-medium);
+  --mat-expansion-header-indicator-color:      var(--ax-text-secondary);
+  --mat-expansion-header-hover-state-layer-color:  var(--ax-background-subtle);
+  --mat-expansion-header-focus-state-layer-color:  var(--ax-background-subtle);
+  border: 1px solid var(--ax-border-default);
+  font-family: var(--ax-font-sans);
+  box-shadow: none !important;
+}
+.mat-expansion-panel + .mat-expansion-panel {
+  margin-top: -1px;
+  border-radius: 0;
+}
+.mat-expansion-panel:first-of-type { border-radius: var(--ax-radius-lg) var(--ax-radius-lg) 0 0; }
+.mat-expansion-panel:last-of-type  { border-radius: 0 0 var(--ax-radius-lg) var(--ax-radius-lg); }
+.mat-expansion-panel:only-of-type  { border-radius: var(--ax-radius-lg); }
+.mat-expansion-panel-header { padding: 0 var(--ax-spacing-lg) !important; height: var(--ax-control-h) !important; }
+.mat-expansion-panel-body    { padding: var(--ax-spacing-md) var(--ax-spacing-lg) !important; color: var(--ax-text-default); }
 
 /* ────────────────────────────────────────────────────────────
  * BUTTON — shared (text / outlined / flat / raised)
@@ -431,12 +490,39 @@
 .mat-mdc-paginator .mat-mdc-paginator-page-size-label { color: var(--ax-text-secondary); }
 
 /* ────────────────────────────────────────────────────────────
- * DIALOG — 12px radius, scrim per bridge
+ * DIALOG — size presets (sm / md / lg / full), padded sections,
+ * subtle divider between content and actions.
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-dialog-surface {
   --mdc-dialog-container-shape: var(--ax-radius-lg);
+  --mdc-dialog-container-color: var(--ax-background-default);
+  --mdc-dialog-subhead-color:   var(--ax-text-heading);
+  --mdc-dialog-supporting-text-color: var(--ax-text-default);
+  --mdc-dialog-subhead-font:    var(--ax-font-sans);
+  --mdc-dialog-subhead-size:    var(--ax-text-lg-size);
+  --mdc-dialog-subhead-weight:  var(--ax-font-weight-semibold);
+  --mdc-dialog-supporting-text-font: var(--ax-font-sans);
+  --mdc-dialog-supporting-text-size: var(--ax-text-sm-size);
+  --mdc-dialog-supporting-text-line-height: var(--ax-text-sm-line);
   box-shadow: var(--ax-elevation-3) !important;
 }
+.mat-mdc-dialog-container .mat-mdc-dialog-title {
+  padding: var(--ax-spacing-lg) var(--ax-spacing-lg) var(--ax-spacing-sm) !important;
+}
+.mat-mdc-dialog-container .mat-mdc-dialog-content {
+  padding: var(--ax-spacing-sm) var(--ax-spacing-lg) var(--ax-spacing-lg) !important;
+  color: var(--ax-text-default);
+}
+.mat-mdc-dialog-container .mat-mdc-dialog-actions {
+  padding: var(--ax-spacing-sm) var(--ax-spacing-lg) !important;
+  border-top: 1px solid var(--ax-border-subtle);
+  gap: var(--ax-spacing-sm);
+}
+/* Width presets — apply on MatDialogConfig.panelClass */
+.ax-dialog--sm .mat-mdc-dialog-surface { width: 400px; max-width: 95vw; }
+.ax-dialog--md .mat-mdc-dialog-surface { width: 560px; max-width: 95vw; }
+.ax-dialog--lg .mat-mdc-dialog-surface { width: 800px; max-width: 95vw; }
+.ax-dialog--full .mat-mdc-dialog-surface { width: 100vw; height: 100vh; max-width: none; border-radius: 0; }
 
 /* ────────────────────────────────────────────────────────────
  * MENU / AUTOCOMPLETE / SELECT — 8px radius, shadow-md
@@ -477,12 +563,86 @@
 .mat-mdc-menu-panel .mat-divider { border-top-color: var(--ax-border-subtle); margin: var(--ax-spacing-xs) 0; }
 
 /* ────────────────────────────────────────────────────────────
- * CHIP — pill style matching .ax-badge
+ * CHIP — pill style + selected / disabled / removable / avatar slot
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-chip {
   --mdc-chip-container-shape: var(--ax-radius-full);
-  --mdc-chip-label-text-font: var(--ax-font-sans);
+  --mdc-chip-label-text-font:    var(--ax-font-sans);
+  --mdc-chip-label-text-size:    var(--ax-text-xs-size);
+  --mdc-chip-label-text-weight:  var(--ax-font-weight-medium);
+  --mdc-chip-label-text-color:   var(--ax-text-default);
+  --mdc-chip-container-height:   var(--ax-control-h-sm);
+  --mdc-chip-outline-color:      var(--ax-border-default);
+  --mdc-chip-outline-width:      1px;
+  --mdc-chip-disabled-label-text-color: var(--ax-text-disabled);
+  --mdc-chip-disabled-outline-color:    var(--ax-border-subtle);
+  --mat-chip-trailing-action-state-layer-color: var(--ax-text-secondary);
+  --mat-chip-trailing-action-hover-state-layer-opacity: var(--ax-state-hover-opacity);
+  --mdc-chip-elevated-container-color:       var(--ax-background-subtle);
+  --mdc-chip-elevated-selected-container-color: var(--ax-brand-faint);
+  --mdc-chip-flat-selected-outline-width:     1px;
 }
+.mat-mdc-chip.mdc-evolution-chip--selected {
+  --mdc-chip-label-text-color: var(--ax-brand-emphasis);
+  --mdc-chip-outline-color: var(--ax-brand-default);
+}
+.mat-mdc-chip-avatar {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: var(--ax-radius-full);
+}
+.mat-mdc-chip .mat-mdc-chip-remove {
+  color: var(--ax-text-secondary) !important;
+  opacity: 0.7;
+}
+.mat-mdc-chip .mat-mdc-chip-remove:hover { opacity: 1; color: var(--ax-error-default) !important; }
+
+/* ────────────────────────────────────────────────────────────
+ * LIST / NAV-LIST — leading icon, trailing meta, 1/2/3-line variants
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-list,
+.mat-mdc-nav-list {
+  --mdc-list-list-item-container-color:     transparent;
+  --mdc-list-list-item-label-text-color:    var(--ax-text-default);
+  --mdc-list-list-item-label-text-font:     var(--ax-font-sans);
+  --mdc-list-list-item-label-text-size:     var(--ax-text-sm-size);
+  --mdc-list-list-item-label-text-weight:   var(--ax-font-weight-regular);
+  --mdc-list-list-item-supporting-text-color: var(--ax-text-secondary);
+  --mdc-list-list-item-supporting-text-font: var(--ax-font-sans);
+  --mdc-list-list-item-supporting-text-size: var(--ax-text-xs-size);
+  --mdc-list-list-item-leading-icon-color:  var(--ax-text-secondary);
+  --mdc-list-list-item-trailing-supporting-text-color: var(--ax-text-subtle);
+  --mdc-list-list-item-hover-state-layer-color: var(--ax-background-subtle);
+  --mdc-list-list-item-focus-state-layer-color: var(--ax-background-subtle);
+  --mdc-list-list-item-selected-container-color: var(--ax-brand-faint);
+  --mdc-list-list-item-one-line-container-height: var(--ax-control-h);
+  --mdc-list-list-item-two-line-container-height: calc(var(--ax-control-h) + 16px);
+  --mdc-list-list-item-three-line-container-height: calc(var(--ax-control-h) + 40px);
+  font-family: var(--ax-font-sans);
+}
+.mat-mdc-list-item.mdc-list-item--activated {
+  color: var(--ax-brand-emphasis);
+}
+.mat-mdc-list-item.mdc-list-item--activated .mdc-list-item__primary-text {
+  color: var(--ax-brand-emphasis);
+  font-weight: var(--ax-font-weight-medium);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * TREE — ax-tree custom (Material tree is minimal); skin mat-tree
+ * for consumers who use it, then enrich our .ax-tree below.
+ * ──────────────────────────────────────────────────────────── */
+.mat-tree {
+  --mat-tree-container-background-color: var(--ax-background-default);
+  --mat-tree-node-text-color:             var(--ax-text-default);
+  --mat-tree-node-text-font:              var(--ax-font-sans);
+  --mat-tree-node-text-size:              var(--ax-text-sm-size);
+  --mat-tree-node-text-weight:            var(--ax-font-weight-regular);
+  --mat-tree-node-min-height:             var(--ax-control-h-sm);
+  font-family: var(--ax-font-sans);
+}
+.mat-tree-node:hover,
+.mat-nested-tree-node:hover > .mat-tree-node { background: var(--ax-background-subtle); }
 
 /* ────────────────────────────────────────────────────────────
  * TOOLTIP — flat zinc-900 bg, 6px radius
@@ -495,15 +655,52 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * SNACKBAR (toast) — brand-colored left border per .ax-toast
+ * SNACKBAR (toast) — brand-colored left border + role variants
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-snack-bar-container {
   --mdc-snackbar-container-shape: var(--ax-radius-md);
   --mdc-snackbar-container-color: var(--ax-background-default);
   --mdc-snackbar-supporting-text-color: var(--ax-text-default);
+  --mdc-snackbar-supporting-text-font:  var(--ax-font-sans);
+  --mdc-snackbar-supporting-text-size:  var(--ax-text-sm-size);
+  --mdc-snackbar-supporting-text-line-height: var(--ax-text-sm-line);
+  --mat-snack-bar-button-color: var(--ax-primary);
 }
 .mat-mdc-snack-bar-container .mdc-snackbar__surface {
   border-left: 4px solid var(--ax-primary);
+  box-shadow: var(--ax-shadow-lg) !important;
+  border: 1px solid var(--ax-border-default);
+  border-left-width: 4px;
+}
+/* Role variants — apply via MatSnackBarConfig.panelClass */
+.ax-snack--success .mdc-snackbar__surface { border-left-color: var(--ax-success-default); }
+.ax-snack--warning .mdc-snackbar__surface { border-left-color: var(--ax-warning-default); }
+.ax-snack--error   .mdc-snackbar__surface { border-left-color: var(--ax-error-default); }
+.ax-snack--info    .mdc-snackbar__surface { border-left-color: var(--ax-info-default); }
+
+/* ────────────────────────────────────────────────────────────
+ * BOTTOM SHEET — sheet container with handle, safe-area aware
+ * ──────────────────────────────────────────────────────────── */
+.mat-bottom-sheet-container {
+  --mat-bottom-sheet-container-shape: var(--mat-sys-corner-large-top);
+  --mat-bottom-sheet-container-background-color: var(--ax-background-default);
+  --mat-bottom-sheet-container-text-color: var(--ax-text-default);
+  border-top-left-radius: var(--ax-radius-xl) !important;
+  border-top-right-radius: var(--ax-radius-xl) !important;
+  box-shadow: var(--ax-shadow-xl) !important;
+  padding: var(--ax-spacing-lg) !important;
+  padding-bottom: calc(var(--ax-spacing-lg) + env(safe-area-inset-bottom)) !important;
+  font-family: var(--ax-font-sans);
+  position: relative;
+}
+.mat-bottom-sheet-container::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 4px;
+  background: var(--ax-border-emphasis);
+  border-radius: var(--ax-radius-full);
 }
 
 /* ────────────────────────────────────────────────────────────

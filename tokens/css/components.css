@@ -256,6 +256,173 @@
 .ax-toolbar--mobile  { height: 56px; }
 
 /* ────────────────────────────────────────────────────────────
+ * BOTTOM SHEET  ·  mat-bottom-sheet · drag handle + safe area
+ * Markup:
+ *   <div class="ax-scrim"></div>
+ *   <div class="ax-bottom-sheet" role="dialog" aria-modal="true">
+ *     <div class="ax-bottom-sheet__handle"></div>
+ *     <header class="ax-bottom-sheet__header">
+ *       <h3 class="ax-bottom-sheet__title">Title</h3>
+ *     </header>
+ *     <div class="ax-bottom-sheet__body">…content…</div>
+ *     <footer class="ax-bottom-sheet__actions">…buttons…</footer>
+ *   </div>
+ * ──────────────────────────────────────────────────────────── */
+.ax-bottom-sheet {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  max-height: 90vh;
+  background: var(--ax-background-default);
+  color: var(--ax-text-default);
+  border-top-left-radius: var(--ax-radius-xl);
+  border-top-right-radius: var(--ax-radius-xl);
+  box-shadow: var(--ax-shadow-xl);
+  padding: var(--ax-spacing-lg);
+  padding-bottom: calc(var(--ax-spacing-lg) + env(safe-area-inset-bottom));
+  font-family: var(--ax-font-sans);
+  z-index: var(--ax-z-modal);
+  display: flex; flex-direction: column;
+  animation: ax-bottom-sheet-in var(--ax-duration-normal) var(--ax-easing-easeOut);
+}
+@keyframes ax-bottom-sheet-in {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+.ax-bottom-sheet__handle {
+  width: 40px; height: 4px;
+  background: var(--ax-border-emphasis);
+  border-radius: var(--ax-radius-full);
+  margin: 0 auto var(--ax-spacing-md);
+  cursor: grab;
+}
+.ax-bottom-sheet__handle:active { cursor: grabbing; }
+.ax-bottom-sheet__header {
+  margin-bottom: var(--ax-spacing-md);
+  padding-bottom: var(--ax-spacing-sm);
+  border-bottom: 1px solid var(--ax-border-subtle);
+}
+.ax-bottom-sheet__title {
+  margin: 0;
+  font-size: var(--ax-text-lg-size);
+  font-weight: var(--ax-font-weight-semibold);
+  color: var(--ax-text-heading);
+}
+.ax-bottom-sheet__body { flex: 1; overflow-y: auto; }
+.ax-bottom-sheet__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ax-spacing-sm);
+  margin-top: var(--ax-spacing-md);
+  padding-top: var(--ax-spacing-sm);
+  border-top: 1px solid var(--ax-border-subtle);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * TREE  ·  mat-tree · nested indent rails + chevron
+ * Markup:
+ *   <ul class="ax-tree" role="tree">
+ *     <li class="ax-tree__node" role="treeitem" aria-expanded="true">
+ *       <button class="ax-tree__trigger">
+ *         <span class="ax-tree__chevron"></span>
+ *         <span class="ax-tree__icon">📁</span>
+ *         <span class="ax-tree__label">Patients</span>
+ *         <span class="ax-tree__meta">24</span>
+ *       </button>
+ *       <ul class="ax-tree__children">
+ *         <li class="ax-tree__node ax-tree__node--leaf">
+ *           <button class="ax-tree__trigger">
+ *             <span class="ax-tree__chevron ax-tree__chevron--leaf"></span>
+ *             <span class="ax-tree__label">Ward 5A</span>
+ *           </button>
+ *         </li>
+ *       </ul>
+ *     </li>
+ *   </ul>
+ * ──────────────────────────────────────────────────────────── */
+.ax-tree {
+  list-style: none;
+  margin: 0; padding: 0;
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  color: var(--ax-text-default);
+}
+.ax-tree__node { list-style: none; position: relative; }
+.ax-tree__children {
+  list-style: none;
+  margin: 0;
+  padding-inline-start: var(--ax-spacing-lg);
+  position: relative;
+}
+.ax-tree__children::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 10px;
+  top: 0; bottom: 8px;
+  width: 1px;
+  background: var(--ax-border-subtle);
+}
+.ax-tree__trigger {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: var(--ax-control-gap);
+  width: 100%;
+  padding: var(--ax-spacing-xs) var(--ax-spacing-sm);
+  border-radius: var(--ax-radius-sm);
+  cursor: pointer;
+  transition: background-color var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-tree__trigger:hover { background: var(--ax-background-subtle); }
+.ax-tree__trigger:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+}
+.ax-tree__node[aria-selected='true'] > .ax-tree__trigger,
+.ax-tree__node--selected > .ax-tree__trigger {
+  background: var(--ax-brand-faint);
+  color: var(--ax-brand-emphasis);
+  font-weight: var(--ax-font-weight-medium);
+}
+.ax-tree__chevron {
+  width: 14px; height: 14px;
+  flex-shrink: 0;
+  display: inline-block;
+  position: relative;
+  color: var(--ax-text-secondary);
+  transition: transform var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-tree__chevron::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 4px; top: 3px;
+  width: 6px; height: 6px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+.ax-tree__node[aria-expanded='true'] > .ax-tree__trigger > .ax-tree__chevron { transform: rotate(90deg); }
+.ax-tree__chevron--leaf { visibility: hidden; }
+.ax-tree__icon {
+  width: var(--ax-control-icon);
+  height: var(--ax-control-icon);
+  flex-shrink: 0;
+  color: var(--ax-text-secondary);
+}
+.ax-tree__label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ax-tree__meta {
+  margin-inline-start: auto;
+  font-size: var(--ax-text-xs-size);
+  color: var(--ax-text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.ax-tree__node[aria-disabled='true'] > .ax-tree__trigger {
+  opacity: var(--ax-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────────────────
  * INPUT  ·  mat-form-field (appearance=outline)
  * radius-md (6px) · 1px border · focus 2px brand
  * Source: _material-overrides.scss + _component-tokens.scss
@@ -494,6 +661,36 @@
   font-size: 11px;
 }
 .ax-chip__close:hover { background: var(--ax-border-default); color: var(--ax-text-heading); }
+
+/* Chip variants */
+.ax-chip--selected {
+  background: var(--ax-brand-faint);
+  color: var(--ax-brand-emphasis);
+  border-color: var(--ax-brand-default);
+}
+.ax-chip--disabled,
+.ax-chip[aria-disabled='true'] {
+  opacity: var(--ax-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ax-chip__avatar {
+  width: 20px; height: 20px;
+  border-radius: var(--ax-radius-full);
+  object-fit: cover;
+  margin-inline-start: calc(var(--ax-spacing-xs) * -1);
+}
+.ax-chip--interactive { cursor: pointer; transition: background-color var(--ax-duration-fast) var(--ax-easing-easeOut); }
+.ax-chip--interactive:hover { background: var(--ax-background-subtle); }
+.ax-chip--interactive:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+}
+/* Role chips — filled variants */
+.ax-chip--success { background: var(--ax-success-faint); color: var(--ax-success-emphasis); border-color: transparent; }
+.ax-chip--warning { background: var(--ax-warning-faint); color: var(--ax-warning-emphasis); border-color: transparent; }
+.ax-chip--danger  { background: var(--ax-error-faint);   color: var(--ax-error-emphasis);   border-color: transparent; }
+.ax-chip--info    { background: var(--ax-info-faint);    color: var(--ax-info-emphasis);    border-color: transparent; }
 
 /* ────────────────────────────────────────────────────────────
  * DIALOG  ·  mat-dialog · radius-xl (12px) · shadow-lg
