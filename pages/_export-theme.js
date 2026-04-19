@@ -339,21 +339,16 @@ All Material components render with AegisX colors automatically because \`--mat-
   function mountButton() {
     const panel = document.getElementById('ax-tweaks');
     if (!panel) return;
-    const footer = panel.querySelector('.ax-tweaks__footer');
-    if (!footer || footer.querySelector('[data-ax-tw="export"]')) return;
+    const actions = panel.querySelector('.ax-tweaks__actions');
+    if (!actions || actions.querySelector('[data-ax-tw="export"]')) return;
 
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.dataset.axTw = 'export';
+    btn.className = 'ax-tweaks__btn ax-tweaks__btn--primary';
     btn.textContent = 'Export theme';
-    btn.style.cssText = 'all:unset;cursor:pointer;display:inline-block;padding:4px 12px;margin:6px 0 2px;' +
-      'background:var(--ax-brand-default);color:var(--ax-brand-inverted,#fff);' +
-      'border-radius:var(--ax-radius-md);font-family:var(--ax-font-mono);font-size:10px;' +
-      'font-weight:600;letter-spacing:0.04em;text-transform:uppercase;text-align:center;';
     btn.addEventListener('click', () => exportTheme(btn));
-
-    // Insert above the "Live preview · saved to localStorage · reset" line.
-    footer.parentNode.insertBefore(btn, footer);
+    actions.appendChild(btn);
   }
 
   if (document.readyState === 'loading') {

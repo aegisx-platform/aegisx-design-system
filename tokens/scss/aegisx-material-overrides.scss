@@ -17,28 +17,40 @@
 
 /* ────────────────────────────────────────────────────────────
  * CARD — subtle border + shadow-sm, typography polish
+ *
+ * Material v20 card reads elevation from these component tokens:
+ *   .mat-mdc-card          → --mat-card-elevated-container-elevation
+ *   .mat-mdc-card-outlined → --mat-card-outlined-container-elevation
+ *   .mat-mdc-card-filled   → --mat-card-filled-container-elevation
+ * We alias each to --ax-elevation-* / none. Because the values are
+ * var() references, any runtime change to --ax-shadow-* (Tweaks panel,
+ * dark theme, brand swap) re-resolves automatically. No !important.
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-card {
-  --mdc-elevated-card-container-color:     var(--ax-background-default);
-  --mdc-elevated-card-container-elevation: none;
-  --mdc-elevated-card-container-shape:     var(--ax-radius-lg);
-  --mdc-outlined-card-container-color:     var(--ax-background-default);
-  --mdc-outlined-card-outline-color:       var(--ax-border-default);
-  --mdc-outlined-card-container-shape:     var(--ax-radius-lg);
+  --mat-card-elevated-container-color:     var(--ax-background-default);
+  --mat-card-elevated-container-elevation: var(--ax-elevation-1);
+  --mat-card-elevated-container-shape:     var(--ax-radius-lg);
+  --mat-card-outlined-container-color:     var(--ax-background-default);
+  --mat-card-outlined-outline-color:       var(--ax-border-default);
+  --mat-card-outlined-outline-width:       var(--ax-border-width-thin);
+  --mat-card-outlined-container-shape:     var(--ax-radius-lg);
+  --mat-card-outlined-container-elevation: none;
+  --mat-card-filled-container-color:       var(--ax-background-subtle);
+  --mat-card-filled-container-elevation:   none;
   --mat-card-title-text-font:              var(--ax-font-sans);
   --mat-card-title-text-size:              var(--ax-text-lg-size);
   --mat-card-title-text-weight:            var(--ax-font-weight-semibold);
   --mat-card-subtitle-text-font:           var(--ax-font-sans);
   --mat-card-subtitle-text-size:           var(--ax-text-sm-size);
   --mat-card-subtitle-text-color:          var(--ax-text-secondary);
-  box-shadow: var(--ax-elevation-1) !important;
-  border: var(--ax-border-width-thin) solid var(--ax-border-default);
   border-radius: var(--ax-radius-lg);
   font-family: var(--ax-font-sans);
 }
-.mat-mdc-card-outlined {
-  box-shadow: none !important;
-  border-color: var(--ax-border-default);
+/* Raised (default) card — add a hairline border for high-contrast mode
+ * without interfering with Material's own elevation. Outlined variant
+ * already renders its own border from --mat-card-outlined-outline-color. */
+.mat-mdc-card:not(.mat-mdc-card-outlined):not(.mat-mdc-card-filled) {
+  border: var(--ax-border-width-thin) solid var(--ax-border-subtle);
 }
 .mat-mdc-card-header { padding: var(--ax-spacing-md) var(--ax-spacing-lg); }
 .mat-mdc-card-content { padding: var(--ax-spacing-md) var(--ax-spacing-lg); color: var(--ax-text-default); }
@@ -74,9 +86,11 @@
   --mat-expansion-header-indicator-color:      var(--ax-text-secondary);
   --mat-expansion-header-hover-state-layer-color:  var(--ax-background-subtle);
   --mat-expansion-header-focus-state-layer-color:  var(--ax-background-subtle);
+  /* Flatten Material's default panel shadow — we use a hairline border
+   * for separation instead. Aliased via the panel's own elevation token. */
+  --mat-expansion-container-elevation-shadow: none;
   border: 1px solid var(--ax-border-default);
   font-family: var(--ax-font-sans);
-  box-shadow: none !important;
 }
 .mat-expansion-panel + .mat-expansion-panel {
   margin-top: -1px;
@@ -162,15 +176,18 @@
   --mdc-protected-button-disabled-label-text-color: var(--ax-text-disabled);
 }
 
-/* Raised — default elevation shadow-xs, hover shadow-sm */
+/* Raised — default elevation shadow-xs, hover shadow-sm
+ * Material v20 reads these from --mat-button-protected-* tokens:
+ *   default | hover | focus | pressed | disabled
+ * Aliasing them keeps elevation reactive to --ax-shadow-* changes.
+ */
 .mat-mdc-raised-button {
-  --mdc-protected-button-container-elevation: var(--ax-shadow-xs);
-  --mdc-protected-button-hover-container-elevation: var(--ax-shadow-sm);
-  --mdc-protected-button-pressed-container-elevation: var(--ax-shadow-xs);
-  box-shadow: var(--ax-shadow-xs) !important;
+  --mat-button-protected-container-elevation-shadow:          var(--ax-shadow-xs);
+  --mat-button-protected-hover-container-elevation-shadow:    var(--ax-shadow-sm);
+  --mat-button-protected-focus-container-elevation-shadow:    var(--ax-shadow-xs);
+  --mat-button-protected-pressed-container-elevation-shadow:  var(--ax-shadow-xs);
+  --mat-button-protected-disabled-container-elevation-shadow: none;
 }
-.mat-mdc-raised-button:hover { box-shadow: var(--ax-shadow-sm) !important; }
-.mat-mdc-raised-button:disabled { box-shadow: none !important; }
 
 /* Outlined — border uses brand default, hover darken */
 .mat-mdc-outlined-button {
@@ -492,7 +509,10 @@
   --mdc-dialog-supporting-text-font: var(--ax-font-sans);
   --mdc-dialog-supporting-text-size: var(--ax-text-sm-size);
   --mdc-dialog-supporting-text-line-height: var(--ax-text-sm-line);
-  box-shadow: var(--ax-elevation-3) !important;
+  /* Material doesn't emit a dialog elevation token — set box-shadow
+   * directly (no !important; Material's own rule on .mat-mdc-dialog-surface
+   * has the same specificity and we're declared after it in the cascade). */
+  box-shadow: var(--ax-elevation-3);
 }
 .mat-mdc-dialog-container .mat-mdc-dialog-title {
   padding: var(--ax-spacing-lg) var(--ax-spacing-lg) var(--ax-spacing-sm) !important;
@@ -514,14 +534,21 @@
 
 /* ────────────────────────────────────────────────────────────
  * MENU / AUTOCOMPLETE / SELECT — 8px radius, shadow-md
+ *
+ * Material v20 emits per-component elevation tokens:
+ *   mat-menu          → --mat-menu-container-elevation-shadow
+ *   mat-autocomplete  → --mat-autocomplete-container-elevation-shadow
+ *   mat-select        → reuses mat-menu-container-elevation-shadow
+ * Aliasing them keeps the box-shadow runtime-reactive.
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-menu-panel,
 .mat-mdc-autocomplete-panel,
 .mat-mdc-select-panel {
-  --mat-menu-container-shape: var(--ax-radius-md);
-  --mat-menu-container-color: var(--ax-background-default);
-  border-radius: var(--ax-radius-md) !important;
-  box-shadow: var(--ax-elevation-2) !important;
+  --mat-menu-container-shape:              var(--ax-radius-md);
+  --mat-menu-container-color:              var(--ax-background-default);
+  --mat-menu-container-elevation-shadow:   var(--ax-elevation-2);
+  --mat-autocomplete-container-shape:      var(--ax-radius-md);
+  --mat-autocomplete-container-elevation-shadow: var(--ax-elevation-2);
   border: var(--ax-border-width-thin) solid var(--ax-border-default);
 }
 .mat-mdc-menu-panel {
@@ -656,7 +683,9 @@
 }
 .mat-mdc-snack-bar-container .mdc-snackbar__surface {
   border-left: 4px solid var(--ax-primary);
-  box-shadow: var(--ax-shadow-lg) !important;
+  /* Snackbar has no elevation token — set directly. No !important since
+   * our selector has higher specificity than Material's base rule. */
+  box-shadow: var(--ax-shadow-lg);
   border: 1px solid var(--ax-border-default);
   border-left-width: 4px;
 }
@@ -1121,7 +1150,7 @@
 }
 .mat-drawer,
 .mat-sidenav {
-  box-shadow: var(--ax-shadow-md) !important;
+  --mat-sidenav-container-elevation-shadow: var(--ax-shadow-md);
 }
 /* mode="over" scrim fade timing */
 .mat-drawer-backdrop.mat-drawer-shown {

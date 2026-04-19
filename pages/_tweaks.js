@@ -170,10 +170,17 @@
         { val: 'sarabun', text: 'Sarabun' }
       ])),
 
-      buildGroup('Elevation', 'elevation', buildSeg('elevation', [
-        { val: 'flat',   text: 'Flat'   },
-        { val: 'soft',   text: 'Soft'   },
-        { val: 'strong', text: 'Strong' }
+      buildGroup('Elevation', 'elevation', h('div', {}, [
+        buildSeg('elevation', [
+          { val: 'flat',   text: 'Flat'   },
+          { val: 'soft',   text: 'Soft'   },
+          { val: 'strong', text: 'Strong' }
+        ]),
+        h('div', { class: 'ax-tweaks__shadow-preview' }, [
+          h('div', { class: 'ax-tweaks__shadow-tile', dataset: { shadow: 'sm' }, text: 'sm' }),
+          h('div', { class: 'ax-tweaks__shadow-tile', dataset: { shadow: 'md' }, text: 'md' }),
+          h('div', { class: 'ax-tweaks__shadow-tile', dataset: { shadow: 'lg' }, text: 'lg' })
+        ])
       ])),
 
       buildGroup('Focus ring', 'focusRing', buildSwatchRow('focusRing', [
@@ -183,12 +190,16 @@
       ]))
     ]);
 
-    const resetLink = h('a', { dataset: { axTw: 'reset' }, text: 'reset' });
+    const resetBtn = h('button', {
+      type: 'button', class: 'ax-tweaks__btn ax-tweaks__btn--ghost',
+      dataset: { axTw: 'reset' }, text: 'Reset defaults'
+    });
+    const actions = h('div', { class: 'ax-tweaks__actions' }, [resetBtn]);
     const footer = h('div', { class: 'ax-tweaks__footer' }, [
-      'Live preview · saved to localStorage · ', resetLink
+      'Live preview · saved to localStorage'
     ]);
 
-    return h('aside', { id: 'ax-tweaks', class: 'ax-tweaks', hidden: true }, [header, body, footer]);
+    return h('aside', { id: 'ax-tweaks', class: 'ax-tweaks', hidden: true }, [header, body, actions, footer]);
   }
 
   function buildFab() {
@@ -285,6 +296,28 @@
       root.style.setProperty('--ax-focus-ring-color', focus);
     }
 
+    // Elevation — rewrite --ax-shadow-* so BOTH ax-card AND mat-card/menu/dialog respond
+    // (mat-sys-level* bridges to ax-shadow-* in aegisx-material-bridge.scss).
+    const SHADOWS = {
+      flat: {
+        xs: 'none', sm: 'none', md: 'none', lg: 'none', xl: 'none'
+      },
+      strong: {
+        xs: '0 1px 2px 0 rgb(0 0 0 / 0.12)',
+        sm: '0 2px 4px -1px rgb(0 0 0 / 0.14), 0 1px 3px -1px rgb(0 0 0 / 0.18)',
+        md: '0 8px 12px -2px rgb(0 0 0 / 0.18), 0 4px 6px -2px rgb(0 0 0 / 0.14)',
+        lg: '0 16px 24px -4px rgb(0 0 0 / 0.20), 0 6px 10px -4px rgb(0 0 0 / 0.16)',
+        xl: '0 28px 40px -8px rgb(0 0 0 / 0.28), 0 10px 16px -6px rgb(0 0 0 / 0.18)'
+      }
+    };
+    const shadowKeys = ['xs','sm','md','lg','xl'];
+    if (state.elevation === 'soft') {
+      shadowKeys.forEach(k => root.style.removeProperty('--ax-shadow-' + k));
+    } else {
+      const preset = SHADOWS[state.elevation] || SHADOWS.flat;
+      shadowKeys.forEach(k => root.style.setProperty('--ax-shadow-' + k, preset[k]));
+    }
+
     document.querySelectorAll('[data-ax-tw-seg]').forEach(seg => {
       const key = seg.getAttribute('data-ax-tw-seg');
       seg.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.val === String(state[key])));
@@ -325,7 +358,8 @@
      '--ax-primary','--ax-primary-light','--ax-primary-dark',
      '--ax-radius-sm','--ax-radius-md','--ax-radius-lg','--ax-radius-xl','--ax-radius-2xl',
      '--ax-text-sm-size','--ax-text-sm-line','--ax-font-sans',
-     '--ax-border-focus','--ax-focus-ring-color'
+     '--ax-border-focus','--ax-focus-ring-color',
+     '--ax-shadow-xs','--ax-shadow-sm','--ax-shadow-md','--ax-shadow-lg','--ax-shadow-xl'
     ].forEach(p => document.documentElement.style.removeProperty(p));
     apply();
   }

@@ -634,28 +634,79 @@
             <tr>
               <td class="parity__label"><strong>Card</strong><code>mat-card</code><code>.ax-card</code></td>
               <td>
-                <mat-card appearance="outlined">
-                  <mat-card-header>
-                    <mat-card-title>Patient summary</mat-card-title>
-                    <mat-card-subtitle>HN-01234 · Ward 5A</mat-card-subtitle>
-                  </mat-card-header>
-                  <mat-card-content>Admitted 19 Apr · Male · 42 yrs</mat-card-content>
-                  <mat-card-actions>
-                    <button mat-button>Dismiss</button>
-                    <button mat-flat-button color="primary">View</button>
-                  </mat-card-actions>
-                </mat-card>
+                <div class="card-variants">
+                  <div class="variant-label">outlined · border, no shadow</div>
+                  <mat-card appearance="outlined">
+                    <mat-card-header>
+                      <mat-card-title>Patient summary</mat-card-title>
+                      <mat-card-subtitle>HN-01234 · Ward 5A</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>Admitted 19 Apr · Male · 42 yrs</mat-card-content>
+                  </mat-card>
+
+                  <div class="variant-label">raised · default elevation</div>
+                  <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>Lab results</mat-card-title>
+                      <mat-card-subtitle>CBC · 18 Apr</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>Hb 13.2 · WBC 6.4 · Plt 245</mat-card-content>
+                  </mat-card>
+
+                  <div class="variant-label">raised + actions + media</div>
+                  <mat-card>
+                    <mat-card-header>
+                      <div mat-card-avatar class="avatar-placeholder">JD</div>
+                      <mat-card-title>John Doe</mat-card-title>
+                      <mat-card-subtitle>Admitted 19 Apr</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>Stable · Ward 5A · Rounding due 18:00</mat-card-content>
+                    <mat-card-actions align="end">
+                      <button mat-button>Dismiss</button>
+                      <button mat-flat-button color="primary">View chart</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
               </td>
               <td>
-                <div class="ax-card" style="max-width:360px">
-                  <div class="ax-card__header">
-                    <div class="ax-card__title">Patient summary</div>
-                    <div style="font-size:13px;color:var(--ax-text-secondary)">HN-01234 · Ward 5A</div>
+                <div class="card-variants">
+                  <div class="variant-label">.ax-card · default (shadow-xs)</div>
+                  <div class="ax-card">
+                    <div class="ax-card__header">
+                      <div class="ax-card__title">Patient summary</div>
+                      <div class="ax-card__subtitle">HN-01234 · Ward 5A</div>
+                    </div>
+                    <div class="ax-card__body">Admitted 19 Apr · Male · 42 yrs</div>
                   </div>
-                  <div class="ax-card__body">Admitted 19 Apr · Male · 42 yrs</div>
-                  <div class="ax-card__footer">
-                    <button class="ax-button ax-button--ghost">Dismiss</button>
-                    <button class="ax-button ax-button--primary">View</button>
+
+                  <div class="variant-label">.ax-card--elevated · shadow-sm</div>
+                  <div class="ax-card ax-card--elevated">
+                    <div class="ax-card__header">
+                      <div class="ax-card__title">Lab results</div>
+                      <div class="ax-card__subtitle">CBC · 18 Apr</div>
+                    </div>
+                    <div class="ax-card__body">Hb 13.2 · WBC 6.4 · Plt 245</div>
+                  </div>
+
+                  <div class="variant-label">.ax-card--floating · shadow-lg</div>
+                  <div class="ax-card ax-card--floating">
+                    <div class="ax-card__header">
+                      <div class="avatar-placeholder">JD</div>
+                      <div style="flex:1">
+                        <div class="ax-card__title">John Doe</div>
+                        <div class="ax-card__subtitle">Admitted 19 Apr</div>
+                      </div>
+                    </div>
+                    <div class="ax-card__body">Stable · Ward 5A · Rounding due 18:00</div>
+                    <div class="ax-card__footer">
+                      <button class="ax-button ax-button--ghost">Dismiss</button>
+                      <button class="ax-button ax-button--primary">View chart</button>
+                    </div>
+                  </div>
+
+                  <div class="variant-label">.ax-card--flat · no shadow, no border</div>
+                  <div class="ax-card ax-card--flat" style="border:none;background:var(--ax-background-subtle)">
+                    <div class="ax-card__body" style="padding:1rem 1.5rem">Quiet container · for nested layout</div>
                   </div>
                 </div>
               </td>

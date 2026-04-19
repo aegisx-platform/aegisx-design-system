@@ -212,6 +212,28 @@ html, body { overflow-x: hidden; }
 .parity tbody td { overflow: hidden; }
 .parity tbody td > * { max-width: 100%; }
 
+/* Card variants — stack of three cards in parity row */
+.card-variants { display: flex; flex-direction: column; gap: 14px; max-width: 340px; }
+.card-variants .variant-label {
+  font-family: var(--ax-font-mono);
+  font-size: 10px;
+  color: var(--ax-text-subtle);
+  letter-spacing: 0.02em;
+  margin: 4px 0 -4px;
+}
+.card-variants .mat-mdc-card,
+.card-variants .ax-card { margin: 0; }
+.avatar-placeholder {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--ax-brand-default);
+  color: #fff;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
 /* Parity widths for interactive form controls */
 .parity .mat-mdc-form-field { width: 100%; max-width: 280px; }
 .parity .mat-mdc-form-field:has(textarea) { max-width: none; }

@@ -6,6 +6,22 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.5.2] — 2026-04-19
+
+### Fixed — Standards-based Material elevation chain
+- **`aegisx-material-overrides.scss`** — replaced hardcoded `box-shadow: var(--ax-elevation-N) !important` on `mat-card`, `mat-menu`, `mat-autocomplete`, `mat-select-panel`, `mat-raised-button`, `mat-dialog`, `mat-snack-bar`, `mat-sidenav`, `mat-expansion-panel` with proper aliasing of Material v20's own component elevation tokens:
+  - `--mat-card-elevated-container-elevation` → `var(--ax-elevation-1)`
+  - `--mat-menu-container-elevation-shadow` → `var(--ax-elevation-2)`
+  - `--mat-autocomplete-container-elevation-shadow` → `var(--ax-elevation-2)`
+  - `--mat-button-protected-{default,hover,focus,pressed,disabled}-container-elevation-shadow` → `var(--ax-shadow-{xs,sm})`
+  - `--mat-expansion-container-elevation-shadow` → `none`
+  - `--mat-sidenav-container-elevation-shadow` → `var(--ax-shadow-md)`
+- Effect: shadow tokens now re-resolve at runtime through the full chain `--ax-shadow-* → --ax-elevation-* → --mat-*-container-elevation* → Material component`, so the Tweaks panel (or any consumer theme override of `--ax-shadow-*`) propagates to every Material surface without `!important`. Consumer Angular apps can override shadows from their own `:root` without fighting specificity.
+
+### Added — Tweaks panel & demo
+- Elevation segment now writes `--ax-shadow-xs/sm/md/lg/xl` inline on `<html>`, adds a live **shadow preview strip** (sm · md · lg tiles) under the control, and replaces the footer reset text-link with a prominent **Reset defaults** button alongside Export theme.
+- Card parity row now shows three raised variants (outlined, raised, raised + avatar + actions) on the Material side and four ax-card variants (default, `--elevated`, `--floating`, `--flat`) on the ax side, giving the Tweaks Elevation control visible targets.
+
 ## [0.5.1] — 2026-04-19
 
 ### Added — Phase 5 `ax-only` polish
