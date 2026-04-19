@@ -6,6 +6,35 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-04-19
+
+Group A complete — every Angular Material v3 component on material.angular.dev/components/categories now has **both** a fully-themed Material override (`--mat-sys-*` + `--mdc-*`) and a standalone `ax-*` custom twin, driven by the same `--ax-*` tokens. The live Tweaks panel propagates into both paths. See `docs/COMPONENT-OVERRIDE-PLAN.md` for the per-component matrix.
+
+### Added — Foundation (Phase 1)
+- **Control sizing tokens** (`tokens/dtcg/component.json` + generator): `--ax-control-h/-h-sm/-h-lg`, `--ax-control-pad-x/-y`, `--ax-control-gap`, `--ax-control-icon`, `--ax-focus-ring-width/-offset/-opacity`. `[data-density=compact|spacious]` rules in `tokens.css` swap these automatically — every form control reads them so density propagates without per-class overrides.
+- **Material bridge coverage** (`tokens/scss/aegisx-material-bridge.scss`): state-layer opacities (hover/focus/pressed/dragged), disabled opacity, full M3 corner-shape scale, secondary + tertiary fixed/dim/variant triplets, plain/brand font-family and weight roles, dark-theme stronger state layers + scrim.
+- **Theme export** (`pages/_export-theme.js`): "Export theme" button in the Tweaks panel footer downloads `aegisx-theme-{brand}-{density}-{date}.scss` with 6 paste-ready sections (`README.md`, `tokens.css`, `aegisx-material-theme.scss`, `aegisx-material-bridge.scss`, `aegisx-component-overrides.scss`, `tokens.json`).
+
+### Added — Group A (Phases 2 – 4, every Angular Material component)
+- **A1 Form Controls** — `mat-form-field` (density + prefix/suffix + label typography) · `mat-input` (readonly/autofill/number-spinner) · `mat-select` (options + optgroup + trigger height) · `mat-autocomplete` (panel + `<mark>` highlight) · `mat-checkbox` (indeterminate/error) · `mat-radio-group` (spacing/orientation) · `mat-slide-toggle` (off-track + focus ring) · `mat-slider` (full MDC palette + focus outline) · `mat-datepicker` (calendar + day-cell states).
+- **A2 Buttons & Indicators** — all button variants (text / filled / raised / outlined / icon) with hover + pressed + disabled + focus ring · `mat-fab` · `mat-mini-fab` · `mat-extended-fab` · `mat-progress-bar` (buffer + indicator height) · `mat-progress-spinner` (size attrs 20/24/32) · `mat-badge` (role variants).
+- **A3 Navigation** — `mat-sidenav` (scrim + animation) · `mat-toolbar` (primary/accent/warn + mobile height) · `mat-menu` (items + dividers + danger item) · `mat-tabs` (ink-bar + pager) · `mat-stepper` (step-icon states + horizontal + vertical variant).
+- **A4 Layout** — `mat-card` (header/content/actions padding + divider) · `mat-divider` (inset variant) · `mat-expansion-panel` (group radius + header hover).
+- **A5 Data Table** — `mat-table` sticky columns · `mat-sort` arrow states (brand on aria-sort) · `mat-paginator` (range label + page-size select + nav icon buttons).
+- **A6 Popups & Modals** — `mat-dialog` (width presets sm/md/lg/full + section dividers) · `mat-snack-bar` (role variants via panel-class) · `mat-tooltip` polish · `mat-bottom-sheet` (drag handle + safe-area inset).
+- **A7 Other** — `mat-chips` (selected / disabled / avatar / removable / role variants) · `mat-list` (1/2/3-line heights) · `mat-tree` (indent rails + chevron).
+
+### Added — `ax-*` custom twins
+- **New:** `.ax-autocomplete`, `.ax-select-panel` + `.ax-option`, `.ax-datepicker`, `.ax-datepicker-input`, `.ax-slider-range`, `.ax-slider-ticks`, `.ax-slider-label`, `.ax-fab` + `--mini` + `--extended`, `.ax-toolbar` + variants, `.ax-paginator`, `.ax-table__sort`, `.ax-bottom-sheet`, `.ax-tree`.
+- **Enriched:** `.ax-button` (pressed states + `.ax-button--elevated`/`--icon`/`--success`/`--link`), `.ax-checkbox` (indeterminate + error + group), `.ax-radio` (disabled + error + group), `.ax-toggle` (hover + size variants), `.ax-stepper` (success-green done + error + disabled + vertical), `.ax-chip` (selected + interactive + avatar + role variants), `.ax-pagination` focus.
+
+### Changed
+- `pages/_tweaks.css` — density overrides reduced to table rows + list item min-height; form-control sizing flows through `--ax-control-*` tokens instead of per-class rules.
+- `.ax-button` / `.ax-input` / `.ax-textarea` / `.ax-select` / `.ax-search` now reference `--ax-control-h` / `--ax-control-pad-x` for density awareness.
+
+### Deferred
+- **Override test page** (`pages/override-tests.html`) — requires bootstrapping Angular Material inside the static docs site. Blocked on a separate Angular demo app.
+
 ## [0.4.1] — 2026-04-19
 
 ### Fixed
