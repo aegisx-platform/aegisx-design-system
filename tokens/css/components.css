@@ -1950,7 +1950,8 @@
  * Variants: bordered, solid, transparent, blur, sm/lg, color-*
  * ──────────────────────────────────────────────────────────── */
 .ax-navbar {
-  --ax-navbar-height: 56px;
+  /* Height respects Tweaks density: compact 48 · default 56 · spacious 64 */
+  --ax-navbar-height: calc(var(--ax-control-h) + 16px);
   --ax-navbar-bg: var(--ax-background-default);
   --ax-navbar-text: var(--ax-text-default);
   --ax-navbar-text-muted: var(--ax-text-secondary);
@@ -2036,11 +2037,84 @@
 .ax-navbar__hamburger--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .ax-navbar__hamburger--open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 @media (max-width: 1023px) {
-  .ax-navbar__center { display: none; }
+  .ax-navbar__center:not(.ax-navbar__drawer) { display: none; }
   .ax-navbar__hamburger { display: flex; }
 }
 @media (min-width: 1024px) {
   .ax-navbar__hamburger { display: none !important; }
+  .ax-navbar__drawer { display: contents !important; position: static !important; background: transparent !important; box-shadow: none !important; }
+}
+
+/* Mobile drawer — slid-in panel toggled by the hamburger (consumer: aria-expanded + [data-open]) */
+.ax-navbar__drawer {
+  position: fixed;
+  inset-inline-start: 0;
+  top: var(--ax-navbar-height);
+  bottom: 0;
+  width: min(280px, 82vw);
+  background: var(--ax-navbar-bg);
+  border-inline-end: 1px solid var(--ax-border-subtle);
+  box-shadow: var(--ax-shadow-lg);
+  padding: var(--ax-spacing-md);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform var(--ax-duration-normal) var(--ax-easing-easeOut);
+  z-index: var(--ax-z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ax-spacing-xs);
+}
+.ax-navbar__drawer[data-open='true'],
+.ax-navbar__drawer.is-open { transform: translateX(0); }
+.ax-navbar__drawer .ax-navbar__link {
+  display: flex;
+  width: 100%;
+  padding: var(--ax-spacing-sm) var(--ax-spacing-md);
+  border-radius: var(--ax-radius-md);
+}
+/* Search slot — fixed width desktop, full-row mobile */
+.ax-navbar__search {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+  margin-inline: var(--ax-spacing-md);
+}
+.ax-navbar__search .ax-input {
+  height: var(--ax-control-h-sm);
+  padding-inline-start: calc(var(--ax-control-pad-x) + 20px);
+  font-size: var(--ax-text-xs-size);
+  background: var(--ax-navbar-hover-bg);
+  border-color: transparent;
+}
+.ax-navbar__search .ax-input:focus {
+  background: var(--ax-background-default);
+}
+.ax-navbar__search::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 10px; top: 50%;
+  transform: translateY(-50%);
+  width: 14px; height: 14px;
+  background: currentColor;
+  opacity: 0.6;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>") center / contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>") center / contain no-repeat;
+  pointer-events: none;
+}
+.ax-navbar__search kbd {
+  position: absolute;
+  inset-inline-end: 8px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--ax-font-mono);
+  font-size: 10px;
+  padding: 2px 5px;
+  background: var(--ax-background-muted);
+  border-radius: 3px;
+  color: var(--ax-text-subtle);
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .ax-navbar__search { display: none; }
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -2240,9 +2314,61 @@
   font-size: var(--ax-text-sm-size); color: var(--ax-text-default);
   cursor: pointer; transition: background var(--ax-duration-fast);
 }
-.ax-command__item:hover, .ax-command__item.highlighted { background: var(--ax-background-subtle); }
+.ax-command__item:hover,
+.ax-command__item:focus-visible,
+.ax-command__item.highlighted,
+.ax-command__item[aria-selected='true'] {
+  background: var(--ax-background-subtle);
+  outline: none;
+}
+.ax-command__item[aria-selected='true'] {
+  background: var(--ax-brand-faint);
+  color: var(--ax-brand-emphasis);
+}
 .ax-command__item .ax-kbd { margin-left: auto; }
-.ax-command__footer { padding: var(--ax-spacing-sm) var(--ax-spacing-xl); border-top: var(--ax-border-width-thin) solid var(--ax-border-subtle); font-size: var(--ax-text-xs-size); color: var(--ax-text-secondary); display: flex; gap: var(--ax-spacing-lg); }
+.ax-command__item-icon { width: var(--ax-control-icon); height: var(--ax-control-icon); color: var(--ax-text-secondary); flex-shrink: 0; }
+.ax-command__item-desc { margin-left: auto; font-size: var(--ax-text-xs-size); color: var(--ax-text-subtle); }
+.ax-command__item[aria-disabled='true'] { opacity: var(--ax-opacity-disabled); cursor: not-allowed; }
+
+/* Match highlight — wrap query hit in <mark> */
+.ax-command__item mark,
+.ax-command__item .ax-match {
+  background: var(--ax-warning-faint);
+  color: var(--ax-warning-emphasis);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: var(--ax-font-weight-semibold);
+}
+
+/* Section/group heading — paired with .ax-command__list grouping */
+.ax-command__group-title {
+  padding: var(--ax-spacing-sm) var(--ax-spacing-xl) var(--ax-spacing-xs);
+  font-size: var(--ax-text-xs-size);
+  font-weight: var(--ax-font-weight-semibold);
+  color: var(--ax-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-wide);
+  font-family: var(--ax-font-mono);
+}
+
+/* Empty state inside palette */
+.ax-command__empty {
+  padding: var(--ax-spacing-xl);
+  text-align: center;
+  color: var(--ax-text-subtle);
+  font-size: var(--ax-text-sm-size);
+}
+
+.ax-command__footer {
+  padding: var(--ax-spacing-sm) var(--ax-spacing-xl);
+  border-top: var(--ax-border-width-thin) solid var(--ax-border-subtle);
+  font-size: var(--ax-text-xs-size);
+  color: var(--ax-text-secondary);
+  display: flex;
+  gap: var(--ax-spacing-lg);
+  align-items: center;
+}
+.ax-command__footer-hint { display: inline-flex; align-items: center; gap: var(--ax-spacing-xs); }
 
 /* ────────────────────────────────────────────────────────────
  * LAUNCHER CARD · app module launcher (diamond icon compatible)
