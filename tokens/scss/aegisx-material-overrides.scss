@@ -334,12 +334,9 @@
   padding: var(--ax-spacing-sm) var(--ax-control-pad-x) var(--ax-spacing-xs);
 }
 
-/* Select trigger — match our outlined field look */
-.mat-mdc-select-trigger {
-  height: var(--ax-control-h);
-  display: inline-flex;
-  align-items: center;
-}
+/* Select arrow color only — DO NOT force trigger height. Material sizes
+   the trigger from the form-field density scale; forcing adds to the
+   form-field's already-computed infix height → stacked too tall. */
 .mat-mdc-select-arrow svg {
   color: var(--ax-text-secondary);
 }
