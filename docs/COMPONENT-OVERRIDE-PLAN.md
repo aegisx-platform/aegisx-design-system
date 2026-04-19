@@ -59,26 +59,26 @@ Columns:
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A2.1 | `mat-button` (text) | 🟡 | `.ax-button--ghost` | 🟢 | ✅ | Mat: hover tint via `color-mix`, density. |
-| A2.2 | `mat-flat-button` (filled) | 🟡 | `.ax-button--primary` | 🟢 | ✅ | Mat: hover darken, pressed, disabled bg. |
-| A2.3 | `mat-raised-button` | 🟡 | `.ax-button--primary` + `.ax-elevation-2` | 🟡 | ✅ | Mat: elevation on hover. Ax: add elevation modifier. |
-| A2.4 | `mat-stroked-button` | 🟡 | `.ax-button--outline` | 🟢 | ✅ | Mat: border hover + disabled. |
-| A2.5 | `mat-icon-button` | 🟡 | `.ax-button--icon` / `.ax-navbar__icon-btn` | 🟢 | ✅ | Mat: hover bg + focus ring + density variants. |
-| A2.6 | `mat-fab` | 🔴 | `.ax-fab` (**missing**) | 🔴 | ✅ | Build both. Circular 56px + extended variant (pill with label). |
-| A2.7 | `mat-mini-fab` | 🔴 | `.ax-fab--mini` (**missing**) | 🔴 | ✅ | 40px. |
-| A2.8 | `mat-progress-bar` | 🟡 | `.ax-progress` + `.ax-loading-bar` | 🟢 | ✅ | Mat: buffer bar, indeterminate timing. |
-| A2.9 | `mat-progress-spinner` | 🔴 | `.ax-spinner` / `.ax-circular` | 🟢 | ✅ | Mat: color + stroke-width. |
-| A2.10 | `mat-badge` | 🔴 | `.ax-badge` + `.ax-counter-wrap` | 🟢 | ✅ | Mat: overlap position (above/below × left/right), size variants. Ax: complete. |
+| A2.1 | `mat-button` (text) | 🟢 | `.ax-button--ghost` | 🟢 | ✅ | `f4038e3` |
+| A2.2 | `mat-flat-button` (filled) | 🟢 | `.ax-button--primary` | 🟢 | ✅ | `f4038e3` |
+| A2.3 | `mat-raised-button` | 🟢 | `.ax-button--elevated` | 🟢 | ✅ | `f4038e3` |
+| A2.4 | `mat-stroked-button` | 🟢 | `.ax-button--outline` | 🟢 | ✅ | `f4038e3` |
+| A2.5 | `mat-icon-button` | 🟢 | `.ax-button--icon` / `[data-icon-only]` | 🟢 | ✅ | `f4038e3` |
+| A2.6 | `mat-fab` | 🟢 | `.ax-fab` | 🟢 | ✅ | `f4038e3` |
+| A2.7 | `mat-mini-fab` | 🟢 | `.ax-fab--mini` | 🟢 | ✅ | `f4038e3` |
+| A2.8 | `mat-progress-bar` | 🟢 | `.ax-progress` + `.ax-loading-bar` | 🟢 | ✅ | `f4038e3` |
+| A2.9 | `mat-progress-spinner` | 🟢 | `.ax-spinner` / `.ax-circular` | 🟢 | ✅ | `f4038e3` |
+| A2.10 | `mat-badge` | 🟢 | `.ax-badge` + role variants | 🟢 | ✅ | `f4038e3` |
 
 ### A3 · Navigation
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A3.1 | `mat-sidenav` + container | 🟡 | `.ax-sidenav` + `.ax-shell` / `.ax-page-shell` | 🟢 | ✅ | Mat: scrim + content-shift animation for `mode="over"`. |
-| A3.2 | `mat-toolbar` | 🔴 | `.ax-toolbar` (**missing**) — separate from `.ax-navbar` | 🔴 | ✅ | `mat-toolbar` ≠ navbar (no brand/user/menu, just container). Build `.ax-toolbar` + `.ax-toolbar--primary` color variants. |
-| A3.3 | `mat-menu` | 🟡 | `.ax-menu` | 🟢 | ✅ | Mat: submenu arrow, icon alignment, keyboard. |
-| A3.4 | `mat-tabs` | 🟡 | `.ax-tabs` + `.ax-tab-pills` | 🟢 | ✅ | Mat: ink-bar curve, disabled tab, scrollable pager. |
-| A3.5 | `mat-stepper` (horiz + vert) | 🔴 | `.ax-stepper` | 🟡 | ✅ | Mat: skin step icons + connector. Ax: add vertical variant + done/active/disabled states. |
+| A3.1 | `mat-sidenav` + container | 🟢 | `.ax-sidenav` + `.ax-shell` / `.ax-page-shell` | 🟢 | ✅ | `135a8bc` |
+| A3.2 | `mat-toolbar` | 🟢 | `.ax-toolbar` (+ --primary/--dark/--warn/--dense/--mobile) | 🟢 | ✅ | `135a8bc` |
+| A3.3 | `mat-menu` | 🟢 | `.ax-menu` | 🟢 | ✅ | `135a8bc` |
+| A3.4 | `mat-tabs` | 🟢 | `.ax-tabs` + `.ax-tab-pills` | 🟢 | ✅ | `135a8bc` |
+| A3.5 | `mat-stepper` (horiz + vert) | 🟢 | `.ax-stepper` + `--vertical` | 🟢 | ✅ | `135a8bc` |
 
 ### A4 · Layout
 
@@ -93,9 +93,9 @@ Columns:
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A5.1 | `mat-table` | 🟢 | `.ax-table` | 🟢 | ✅ | Both solid. Verify sticky column + column resize. |
-| A5.2 | `mat-paginator` | 🔴 | `.ax-pagination` + new `.ax-paginator` (**needs enrichment**) | 🟡 | ✅ | `.ax-pagination` = numeric pager. `.ax-paginator` needs: page-size dropdown, range label "1–10 of 100", next/prev/first/last. |
-| A5.3 | `mat-sort` header | 🟡 | `.ax-table__sort` (part of `.ax-table`) | 🟡 | — | Both: arrow color + hover + aria-live. |
+| A5.1 | `mat-table` | 🟢 | `.ax-table` | 🟢 | ✅ | `2f0fad5` (sticky column) |
+| A5.2 | `mat-paginator` | 🟢 | `.ax-pagination` + `.ax-paginator` | 🟢 | ✅ | `2f0fad5` |
+| A5.3 | `mat-sort` header | 🟢 | `.ax-table__sort` | 🟢 | ✅ | `2f0fad5` |
 
 ### A6 · Popups & Modals
 
@@ -166,19 +166,20 @@ Each phase lands green (every row 🟢 per sign-off checklist) before the next s
 - [x] A1.8 `mat-slider` override + `.ax-slider` enrichment — `d2a94fb`
 - [x] A1.9 **build** `mat-datepicker` override + `.ax-datepicker` — `d2a94fb`
 
-### Phase 3 — Buttons, Nav, Tables (A2 + A3 + A5)
-- [ ] A2.1–A2.5 All button variants — hover / pressed / disabled / density
-- [ ] A2.6/A2.7 **build** `mat-fab` / `mat-mini-fab` override + `.ax-fab` / `.ax-fab--mini`
-- [ ] A2.8 `mat-progress-bar` indeterminate + buffer
-- [ ] A2.9 `mat-progress-spinner` override (Ax already done)
-- [ ] A2.10 `mat-badge` position variants
-- [ ] A3.1 `mat-sidenav` scrim + animation
-- [ ] A3.2 **build** `mat-toolbar` override + `.ax-toolbar`
-- [ ] A3.3 `mat-menu` items / dividers / submenus
-- [ ] A3.4 `mat-tabs` ink-bar + typography
-- [ ] A3.5 `mat-stepper` step icons + vertical variant
-- [ ] A5.2 **enrich** `.ax-paginator` + `mat-paginator` override
-- [ ] A5.3 `mat-sort` + `.ax-table__sort` arrow + aria
+### Phase 3 — Buttons, Nav, Tables (A2 + A3 + A5) ✅ complete
+- [x] A2.1–A2.5 button variants (text / filled / raised / outlined / icon) — `f4038e3`
+- [x] A2.6/A2.7 `mat-fab` / `mat-mini-fab` override + `.ax-fab` / `.ax-fab--mini` / `--extended` — `f4038e3`
+- [x] A2.8 `mat-progress-bar` indeterminate + buffer — `f4038e3`
+- [x] A2.9 `mat-progress-spinner` override — `f4038e3`
+- [x] A2.10 `mat-badge` role variants — `f4038e3`
+- [x] A3.1 `mat-sidenav` scrim + animation — `135a8bc`
+- [x] A3.2 `mat-toolbar` override + `.ax-toolbar` — `135a8bc`
+- [x] A3.3 `mat-menu` items / dividers / danger-item — `135a8bc`
+- [x] A3.4 `mat-tabs` ink-bar + typography — `135a8bc`
+- [x] A3.5 `mat-stepper` step icons + vertical variant — `135a8bc`
+- [x] A5.1 `mat-table` sticky columns — `2f0fad5`
+- [x] A5.2 `.ax-paginator` + `mat-paginator` override — `2f0fad5`
+- [x] A5.3 `mat-sort` + `.ax-table__sort` — `2f0fad5`
 
 ### Phase 4 — Popups + Other (A4 + A6 + A7)
 - [ ] A4.1 `mat-card` header / footer / media
