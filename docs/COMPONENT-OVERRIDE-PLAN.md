@@ -193,15 +193,16 @@ Each phase lands green (every row 🟢 per sign-off checklist) before the next s
 - [x] A7.2 `mat-list` override — `e9de33e`
 - [x] A7.3 `mat-tree` override + `.ax-tree` — `e9de33e`
 
-### Phase 5 — `ax-only` polish (Group B gaps)
-- [ ] `.ax-navbar` density + hamburger + search slot
-- [ ] `.ax-command` filter + keyboard + highlight
-- [ ] `.ax-otp` paste + error
-- [ ] `.ax-upload` multi-file + progress
-- [ ] `.ax-timeline` alternate-side
-- [ ] `.ax-image-preview` zoom
-- [ ] `.ax-drawer` swipe-dismiss
-- [ ] Mobile responsiveness audit
+### Phase 5 — `ax-only` polish (Group B gaps) ✅ complete
+- [x] `.ax-navbar` density + drawer + search slot — `9c1eaad`
+- [x] `.ax-command` filter visuals + keyboard states + highlight — `9c1eaad`
+- [x] `.ax-otp` focus ring + filled/error/success + size variants — `fdbc2e8`
+- [x] `.ax-upload` + `.ax-upload-list` multi-file + progress + error/success — `fdbc2e8`
+- [x] `.ax-timeline` alternate-side + icon slot + role states + density — `55be85e`
+- [x] `.ax-image-preview` zoom + toolbar + lightbox + caption — `55be85e`
+- [x] `.ax-drawer` transform animation + left/right/bottom variants + width presets — `55be85e`
+- [x] `.ax-toast` + `.ax-toast-stack` (6 positions + auto-dismiss progress) — `55be85e`
+- [x] Mobile audit — `.ax-table--stack`, responsive paginator / page-header / shell — `5751f43`
 
 ---
 

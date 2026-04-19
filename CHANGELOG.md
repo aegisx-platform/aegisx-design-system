@@ -6,6 +6,25 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.5.1] — 2026-04-19
+
+### Added — Phase 5 `ax-only` polish
+- **`.ax-navbar`** — height now derives from `--ax-control-h` (density-aware); new `.ax-navbar__drawer` mobile slide-in panel (with `[data-open=true]` toggle); new `.ax-navbar__search` slot with prefix icon + trailing ⌘K hint.
+- **`.ax-command`** — `aria-selected` highlighted state, `<mark>`/`.ax-match` substring highlight, `.ax-command__group-title` for grouped results, `.ax-command__empty`, `.ax-command__item-icon/-desc` slots, `.ax-command__footer-hint` for keyboard legend.
+- **`.ax-otp`** — hover + focus ring (color-mix tint), disabled state, `[data-filled]` indicator, `.ax-otp--error` / `--success` / `--sm` / `--lg` variants, `.ax-otp__separator`.
+- **`.ax-upload` + `.ax-upload-list` + `.ax-upload-item`** — drag-over state via `[data-drag=true]`, error/success/disabled states, per-file list with icon/info/progress/remove, per-file progress bar + success/error variants.
+- **`.ax-timeline`** — success green (was brand) for done state, new active (brand-faint halo) + warning states, optional `.ax-timeline__icon` slot, `.ax-timeline--dense/--relaxed/--alternate` variants (alternate collapses to single-column under 640px).
+- **`.ax-image-preview`** — zoom via `--ax-image-zoom` + `[data-zoom]`, `__caption` gradient overlay, `__toolbar` button row, `.ax-image-preview--lightbox` full-screen fixed overlay.
+- **`.ax-drawer`** — transform animation (`[data-open=true]`), `.ax-drawer--start` (left) and `.ax-drawer--bottom` (sheet with drag handle) variants, width presets `--sm/--md/--lg/--xl`, `.ax-drawer__close` button.
+- **`.ax-toast` + `.ax-toast-stack`** — `__icon/__title/__desc/__action/__close` slots, role-tinted icon, auto-dismiss progress bar (`--ax-toast-progress` + `--ax-toast-duration`), 6 corner positions (top/bottom × left/right/center), slide-in animation.
+
+### Added — Mobile responsiveness
+- `.ax-table-wrap` — horizontal scroll wrapper with rounded border.
+- `.ax-table--stack` — on ≤640px, rows render as cards with `data-label::before` column headers.
+- `.ax-page-header` — stacks vertically under 640px, actions take full width + `flex:1`.
+- `.ax-paginator` — flex-wraps under 640px, nav buttons pinned to end.
+- `.ax-shell` — sidebar collapses to fixed overlay under 1023px (toggled via `.is-open`); reduced padding under 640px.
+
 ## [0.5.0] — 2026-04-19
 
 Group A complete — every Angular Material v3 component on material.angular.dev/components/categories now has **both** a fully-themed Material override (`--mat-sys-*` + `--mdc-*`) and a standalone `ax-*` custom twin, driven by the same `--ax-*` tokens. The live Tweaks panel propagates into both paths. See `docs/COMPONENT-OVERRIDE-PLAN.md` for the per-component matrix.
