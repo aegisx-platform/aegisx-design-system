@@ -473,10 +473,10 @@
 .ax-textarea:focus {
   outline: none;
   border-color: var(--ax-input-border-focus);
-  border-width: 2px;
-  padding: 0 calc(var(--ax-control-pad-x) - 1px);
+  /* Keep border-width at 1px so total height doesn't shift by 1-2px on
+     focus. Draw the second 1px ring via inset box-shadow instead. */
+  box-shadow: inset 0 0 0 1px var(--ax-input-border-focus);
 }
-.ax-textarea:focus { padding: calc(var(--ax-control-pad-y) - 1px) calc(var(--ax-control-pad-x) - 1px); }
 
 .ax-input--error,
 .ax-textarea--error { border-color: var(--ax-input-border-error); }
@@ -539,7 +539,9 @@
   padding: 1rem 1.5rem;
   font-family: var(--ax-font-sans);
 }
-.ax-card__header { border-bottom: 1px solid var(--ax-border-default); }
+/* Header flows into body by default (matches mat-card). Add
+   .ax-card__header--divider when you need the visual separator. */
+.ax-card__header--divider { border-bottom: 1px solid var(--ax-border-subtle); }
 .ax-card__footer {
   border-top: 1px solid var(--ax-border-default);
   background: var(--ax-background-muted);
