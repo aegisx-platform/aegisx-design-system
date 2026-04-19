@@ -382,16 +382,42 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * MENU / AUTOCOMPLETE — 8px radius, shadow-md
+ * MENU / AUTOCOMPLETE / SELECT — 8px radius, shadow-md
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-menu-panel,
 .mat-mdc-autocomplete-panel,
 .mat-mdc-select-panel {
   --mat-menu-container-shape: var(--ax-radius-md);
+  --mat-menu-container-color: var(--ax-background-default);
   border-radius: var(--ax-radius-md) !important;
   box-shadow: var(--ax-elevation-2) !important;
   border: var(--ax-border-width-thin) solid var(--ax-border-default);
 }
+.mat-mdc-menu-panel {
+  --mat-menu-item-label-text-font:    var(--ax-font-sans);
+  --mat-menu-item-label-text-size:    var(--ax-text-sm-size);
+  --mat-menu-item-label-text-weight:  var(--ax-font-weight-regular);
+  --mat-menu-item-label-text-color:   var(--ax-text-default);
+  --mat-menu-item-icon-color:         var(--ax-text-secondary);
+  --mat-menu-item-hover-state-layer-color:   var(--ax-background-subtle);
+  --mat-menu-item-focus-state-layer-color:   var(--ax-background-subtle);
+  --mat-menu-item-pressed-state-layer-color: var(--ax-background-muted);
+  --mat-menu-divider-color: var(--ax-border-subtle);
+  min-width: 200px;
+  padding: var(--ax-spacing-xs) 0;
+}
+.mat-mdc-menu-item {
+  min-height: var(--ax-control-h-sm) !important;
+  padding: 0 var(--ax-control-pad-x) !important;
+}
+.mat-mdc-menu-item:hover { background: var(--ax-background-subtle) !important; }
+.mat-mdc-menu-item[disabled] { opacity: var(--ax-opacity-disabled); pointer-events: none; }
+.mat-mdc-menu-item.ax-menu-item--danger { color: var(--ax-error-default); }
+.mat-mdc-menu-item.ax-menu-item--danger:hover { background: var(--ax-error-faint) !important; color: var(--ax-error-emphasis); }
+.mat-mdc-menu-item .mat-icon { color: var(--ax-text-secondary); margin-inline-end: var(--ax-spacing-sm); }
+.mat-mdc-menu-item .mat-mdc-menu-submenu-icon { color: var(--ax-text-subtle); }
+/* Divider between items */
+.mat-mdc-menu-panel .mat-divider { border-top-color: var(--ax-border-subtle); margin: var(--ax-spacing-xs) 0; }
 
 /* ────────────────────────────────────────────────────────────
  * CHIP — pill style matching .ax-badge
@@ -686,16 +712,137 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * TABS — indigo underline, no ripple
+ * TABS — indigo underline, quiet ink-bar, typography polish
  * ──────────────────────────────────────────────────────────── */
-.mat-mdc-tab-group {
-  --mat-tab-header-active-label-text-color: var(--ax-primary);
-  --mat-tab-header-active-focus-label-text-color: var(--ax-primary-dark);
-  --mat-tab-header-active-hover-label-text-color: var(--ax-primary-dark);
+.mat-mdc-tab-group,
+.mat-mdc-tab-nav-bar {
+  --mat-tab-header-label-text-font:        var(--ax-font-sans);
+  --mat-tab-header-label-text-size:        var(--ax-text-sm-size);
+  --mat-tab-header-label-text-weight:      var(--ax-font-weight-medium);
+  --mat-tab-header-label-text-tracking:    0;
+  --mat-tab-header-inactive-label-text-color:       var(--ax-text-secondary);
+  --mat-tab-header-inactive-focus-label-text-color: var(--ax-text-default);
+  --mat-tab-header-inactive-hover-label-text-color: var(--ax-text-default);
+  --mat-tab-header-active-label-text-color:         var(--ax-primary);
+  --mat-tab-header-active-focus-label-text-color:   var(--ax-primary-dark);
+  --mat-tab-header-active-hover-label-text-color:   var(--ax-primary-dark);
   --mat-tab-header-active-focus-indicator-color: var(--ax-primary);
   --mat-tab-header-active-hover-indicator-color: var(--ax-primary);
-  --mat-tab-header-active-indicator-color: var(--ax-primary);
+  --mat-tab-header-active-indicator-color:       var(--ax-primary);
+  --mat-tab-header-divider-color:  var(--ax-border-subtle);
+  --mat-tab-header-divider-height: 1px;
+  --mdc-tab-indicator-active-indicator-height: 2px;
+  --mdc-tab-indicator-active-indicator-shape:  2px 2px 0 0;
   font-family: var(--ax-font-sans);
+}
+.mat-mdc-tab {
+  padding: 0 var(--ax-spacing-md) !important;
+  min-width: 96px !important;
+  opacity: 1 !important;
+}
+.mat-mdc-tab:disabled,
+.mat-mdc-tab.mdc-tab--disabled {
+  opacity: var(--ax-opacity-disabled);
+  cursor: not-allowed;
+}
+/* Scrollable pager buttons */
+.mat-mdc-tab-header-pagination {
+  color: var(--ax-text-secondary);
+  box-shadow: none !important;
+}
+.mat-mdc-tab-header-pagination:hover { color: var(--ax-text-heading); }
+
+/* ────────────────────────────────────────────────────────────
+ * STEPPER — brand step icons, neutral connector, header states
+ * ──────────────────────────────────────────────────────────── */
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+  --mat-stepper-container-color:                 var(--ax-background-default);
+  --mat-stepper-line-color:                      var(--ax-border-default);
+  --mat-stepper-header-focus-state-layer-color:  var(--ax-background-subtle);
+  --mat-stepper-header-hover-state-layer-color:  var(--ax-background-subtle);
+  --mat-stepper-header-label-text-font:          var(--ax-font-sans);
+  --mat-stepper-header-label-text-size:          var(--ax-text-sm-size);
+  --mat-stepper-header-label-text-weight:        var(--ax-font-weight-medium);
+  --mat-stepper-header-optional-label-text-color: var(--ax-text-subtle);
+  --mat-stepper-header-label-text-color:         var(--ax-text-secondary);
+  --mat-stepper-header-selected-state-label-text-color: var(--ax-text-heading);
+  --mat-stepper-header-error-state-label-text-color:    var(--ax-error-emphasis);
+  --mat-stepper-header-icon-background-color:       var(--ax-border-default);
+  --mat-stepper-header-icon-foreground-color:       var(--ax-text-inverted);
+  --mat-stepper-header-selected-state-icon-background-color: var(--ax-primary);
+  --mat-stepper-header-selected-state-icon-foreground-color: var(--ax-brand-inverted);
+  --mat-stepper-header-done-state-icon-background-color:     var(--ax-success-default);
+  --mat-stepper-header-done-state-icon-foreground-color:     var(--ax-success-inverted);
+  --mat-stepper-header-edit-state-icon-background-color:     var(--ax-primary);
+  --mat-stepper-header-edit-state-icon-foreground-color:     var(--ax-brand-inverted);
+  --mat-stepper-header-error-state-icon-background-color:    var(--ax-error-default);
+  --mat-stepper-header-error-state-icon-foreground-color:    var(--ax-error-inverted);
+  font-family: var(--ax-font-sans);
+}
+.mat-step-header .mat-step-icon {
+  width: 28px !important;
+  height: 28px !important;
+  font-size: var(--ax-text-xs-size);
+  font-weight: var(--ax-font-weight-semibold);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * SIDENAV — surface bg, scrim from bridge, animation timing
+ * ──────────────────────────────────────────────────────────── */
+.mat-drawer-container,
+.mat-sidenav-container {
+  --mat-sidenav-container-background-color: var(--ax-background-default);
+  --mat-sidenav-container-text-color:        var(--ax-text-default);
+  --mat-sidenav-container-shape:             0;
+  --mat-sidenav-container-divider-color:     var(--ax-border-default);
+  --mat-sidenav-content-background-color:    var(--ax-background-page);
+  --mat-sidenav-content-text-color:          var(--ax-text-default);
+  --mat-sidenav-scrim-color:                 var(--mat-sys-scrim);
+  font-family: var(--ax-font-sans);
+}
+.mat-drawer,
+.mat-sidenav {
+  box-shadow: var(--ax-shadow-md) !important;
+}
+/* mode="over" scrim fade timing */
+.mat-drawer-backdrop.mat-drawer-shown {
+  animation: ax-scrim-in var(--ax-duration-normal) var(--ax-easing-easeOut);
+}
+@keyframes ax-scrim-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ────────────────────────────────────────────────────────────
+ * TOOLBAR — application top bar with variants
+ * ──────────────────────────────────────────────────────────── */
+.mat-toolbar {
+  --mat-toolbar-container-background-color: var(--ax-background-default);
+  --mat-toolbar-container-text-color:        var(--ax-text-heading);
+  --mat-toolbar-title-text-font:             var(--ax-font-sans);
+  --mat-toolbar-title-text-size:             var(--ax-text-lg-size);
+  --mat-toolbar-title-text-weight:           var(--ax-font-weight-semibold);
+  --mat-toolbar-title-text-tracking:         0;
+  --mat-toolbar-standard-height:             64px;
+  --mat-toolbar-mobile-height:               56px;
+  border-bottom: 1px solid var(--ax-border-subtle);
+  font-family: var(--ax-font-sans);
+}
+.mat-toolbar.mat-primary {
+  --mat-toolbar-container-background-color: var(--ax-primary);
+  --mat-toolbar-container-text-color:        var(--ax-brand-inverted);
+  border-bottom: none;
+}
+.mat-toolbar.mat-accent {
+  --mat-toolbar-container-background-color: var(--ax-color-zinc-900);
+  --mat-toolbar-container-text-color:        #ffffff;
+  border-bottom: none;
+}
+.mat-toolbar.mat-warn {
+  --mat-toolbar-container-background-color: var(--ax-error-default);
+  --mat-toolbar-container-text-color:        var(--ax-error-inverted);
+  border-bottom: none;
 }
 
 /* ────────────────────────────────────────────────────────────

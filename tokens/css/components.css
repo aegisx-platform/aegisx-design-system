@@ -222,6 +222,40 @@
 .ax-fab--surface:hover { background: var(--ax-background-subtle); }
 
 /* ────────────────────────────────────────────────────────────
+ * TOOLBAR  ·  mat-toolbar · app top container (distinct from .ax-navbar)
+ * Markup:
+ *   <header class="ax-toolbar">
+ *     <span class="ax-toolbar__title">Page title</span>
+ *     <span class="ax-toolbar__spacer"></span>
+ *     <button class="ax-button ax-button--icon">…</button>
+ *   </header>
+ * Variants: .ax-toolbar--primary / --dark / --warn / --dense / --mobile
+ * ──────────────────────────────────────────────────────────── */
+.ax-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--ax-spacing-md);
+  height: 64px;
+  padding: 0 var(--ax-spacing-lg);
+  background: var(--ax-background-default);
+  color: var(--ax-text-heading);
+  border-bottom: 1px solid var(--ax-border-subtle);
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-lg-size);
+  font-weight: var(--ax-font-weight-semibold);
+}
+.ax-toolbar__title { margin: 0; font-size: inherit; font-weight: inherit; color: inherit; }
+.ax-toolbar__spacer { flex: 1; }
+.ax-toolbar__actions { display: inline-flex; align-items: center; gap: var(--ax-spacing-xs); }
+
+/* Variants */
+.ax-toolbar--primary { background: var(--ax-primary); color: var(--ax-brand-inverted); border-bottom: none; }
+.ax-toolbar--dark    { background: var(--ax-color-zinc-900); color: #fff; border-bottom: none; }
+.ax-toolbar--warn    { background: var(--ax-error-default); color: var(--ax-error-inverted); border-bottom: none; }
+.ax-toolbar--dense   { height: 48px; font-size: var(--ax-text-md-size); }
+.ax-toolbar--mobile  { height: 56px; }
+
+/* ────────────────────────────────────────────────────────────
  * INPUT  ·  mat-form-field (appearance=outline)
  * radius-md (6px) · 1px border · focus 2px brand
  * Source: _material-overrides.scss + _component-tokens.scss
@@ -1491,12 +1525,42 @@
 .ax-stepper__label { font-size: var(--ax-text-sm-size); color: var(--ax-text-secondary); white-space: nowrap; }
 .ax-stepper__line { flex: 1; height: 2px; background: var(--ax-border-default); min-width: 24px; margin: 0 var(--ax-spacing-sm); }
 
-.ax-stepper__step.done .ax-stepper__num { background: var(--ax-primary); border-color: var(--ax-primary); color: #fff; }
+.ax-stepper__step.done .ax-stepper__num { background: var(--ax-success-default); border-color: var(--ax-success-default); color: var(--ax-success-inverted); }
 .ax-stepper__step.done .ax-stepper__label { color: var(--ax-text-heading); }
-.ax-stepper__step.done + .ax-stepper__line { background: var(--ax-primary); }
+.ax-stepper__step.done + .ax-stepper__line { background: var(--ax-success-default); }
 
-.ax-stepper__step.active .ax-stepper__num { border-color: var(--ax-primary); color: var(--ax-primary); }
+.ax-stepper__step.active .ax-stepper__num { border-color: var(--ax-primary); color: var(--ax-primary); background: var(--ax-brand-faint); }
 .ax-stepper__step.active .ax-stepper__label { color: var(--ax-text-heading); font-weight: var(--ax-font-weight-medium); }
+
+.ax-stepper__step.error .ax-stepper__num { background: var(--ax-error-default); border-color: var(--ax-error-default); color: var(--ax-error-inverted); }
+.ax-stepper__step.error .ax-stepper__label { color: var(--ax-error-emphasis); }
+
+.ax-stepper__step.disabled .ax-stepper__num { opacity: var(--ax-opacity-disabled); }
+.ax-stepper__step.disabled .ax-stepper__label { color: var(--ax-text-disabled); }
+
+/* Vertical variant */
+.ax-stepper--vertical { flex-direction: column; align-items: stretch; gap: 0; }
+.ax-stepper--vertical .ax-stepper__step {
+  flex-direction: row;
+  align-items: flex-start;
+  padding-bottom: var(--ax-spacing-lg);
+  position: relative;
+}
+.ax-stepper--vertical .ax-stepper__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 32px;
+  bottom: 0;
+  width: 2px;
+  background: var(--ax-border-default);
+}
+.ax-stepper--vertical .ax-stepper__step.done:not(:last-child)::after { background: var(--ax-success-default); }
+.ax-stepper--vertical .ax-stepper__content {
+  padding-inline-start: var(--ax-spacing-md);
+  flex: 1;
+}
+.ax-stepper--vertical .ax-stepper__line { display: none; }
 
 /* ────────────────────────────────────────────────────────────
  * TIMELINE · vertical event log
