@@ -202,10 +202,38 @@
     }, [gearSvg]);
   }
 
+  // Whitelists — anything outside these is dropped on load so tampered localStorage can't flow
+  // into CSS selectors, setAttribute values, or getComputedStyle callsites.
+  const WHITELIST = {
+    theme:      ['light', 'dark'],
+    brand:      Object.keys(BRANDS),
+    density:    ['compact', 'comfortable', 'spacious'],
+    fontFamily: Object.keys(FONT_STACKS),
+    elevation:  ['flat', 'soft', 'strong'],
+    focusRing:  Object.keys(FOCUS_COLORS)
+  };
+  function sanitize(raw) {
+    const clean = {};
+    for (const key of Object.keys(DEFAULTS)) {
+      const v = raw[key];
+      if (v == null) continue;
+      if (WHITELIST[key]) {
+        if (WHITELIST[key].includes(v)) clean[key] = v;
+      } else if (key === 'radius') {
+        const n = Number(v);
+        if (Number.isFinite(n) && n >= 0 && n <= 16) clean[key] = n;
+      } else if (key === 'fontSize') {
+        const n = Number(v);
+        if (Number.isFinite(n) && n >= 12 && n <= 17) clean[key] = n;
+      }
+    }
+    return clean;
+  }
+
   let state = Object.assign({}, DEFAULTS);
   try {
     const stored = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-    state = Object.assign({}, DEFAULTS, stored);
+    state = Object.assign({}, DEFAULTS, sanitize(stored));
   } catch (e) { /* noop */ }
 
   function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} }
@@ -234,10 +262,15 @@
     root.style.setProperty('--ax-radius-xl', (r + 6) + 'px');
     root.style.setProperty('--ax-radius-2xl', (r + 10) + 'px');
 
+    // Only override font size when different from default — lets tokens.css win after reset.
     const fs = Number(state.fontSize ?? 14);
-    root.style.setProperty('--ax-text-sm-size', fs + 'px');
-    root.style.setProperty('--ax-text-sm-line', Math.round(fs * 1.5) + 'px');
-    root.style.fontSize = fs + 'px';
+    if (fs !== DEFAULTS.fontSize) {
+      root.style.setProperty('--ax-text-sm-size', fs + 'px');
+      root.style.setProperty('--ax-text-sm-line', Math.round(fs * 1.5) + 'px');
+    } else {
+      root.style.removeProperty('--ax-text-sm-size');
+      root.style.removeProperty('--ax-text-sm-line');
+    }
 
     const fam = FONT_STACKS[state.fontFamily] || FONT_STACKS.plex;
     root.style.setProperty('--ax-font-sans', fam);
@@ -294,7 +327,6 @@
      '--ax-text-sm-size','--ax-text-sm-line','--ax-font-sans',
      '--ax-border-focus','--ax-focus-ring-color'
     ].forEach(p => document.documentElement.style.removeProperty(p));
-    document.documentElement.style.fontSize = '';
     apply();
   }
 

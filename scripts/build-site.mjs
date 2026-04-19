@@ -24,11 +24,20 @@ cpSync(resolve(root, 'brand'), resolve(out, 'assets/brand'), { recursive: true }
 // Pages — all HTML preview pages live in pages/, served under site/pages/
 mkdirSync(resolve(out, 'pages'), { recursive: true });
 const pageFiles = readdirSync(resolve(root, 'pages')).filter(f => f.endsWith('.html') || f.endsWith('.css') || f.endsWith('.js'));
+// Inject live package version into HTML placeholders (`{{DS_VERSION}}`) so sidebar labels stay in sync.
+const DS_VERSION = pkg.version;
 for (const f of pageFiles) {
-  cpSync(resolve(root, 'pages', f), resolve(out, 'pages', f));
+  const src = resolve(root, 'pages', f);
+  const dst = resolve(out, 'pages', f);
+  if (f.endsWith('.html')) {
+    const content = readFileSync(src, 'utf8').replace(/\{\{DS_VERSION\}\}/g, DS_VERSION);
+    writeFileSync(dst, content);
+  } else {
+    cpSync(src, dst);
+  }
 }
-// Copy tokens.html as the default index for /pages/
-cpSync(resolve(root, 'pages/tokens.html'), resolve(out, 'pages/index.html'));
+// Copy tokens.html as the default index for /pages/ (already version-substituted above)
+cpSync(resolve(out, 'pages/tokens.html'), resolve(out, 'pages/index.html'));
 
 // Token data (CSS, SCSS, DTCG) — used by pages via ../tokens/css/tokens.css
 mkdirSync(resolve(out, 'tokens'), { recursive: true });
