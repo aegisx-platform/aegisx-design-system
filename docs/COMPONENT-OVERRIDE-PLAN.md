@@ -45,15 +45,15 @@ Columns:
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A1.1 | `mat-form-field` | 🟡 | `.ax-field` | 🟢 | ✅ | Mat: need density support + prefix/suffix alignment + label typography. Ax: complete. |
-| A1.2 | `mat-input` | 🟡 | `.ax-input` / `.ax-textarea` | 🟢 | ✅ | Mat: disabled contrast, readonly, autofill bg, number spinners. Ax: complete. |
-| A1.3 | `mat-select` | 🟡 | `.ax-select` (trigger) + new `.ax-menu` panel | 🟡 | ✅ | Mat: panel options hover/active/group-header. Ax: trigger exists — need `.ax-select-panel` for open-state dropdown (reuse `.ax-menu`). |
-| A1.4 | `mat-autocomplete` | 🟡 | `.ax-autocomplete` (**missing**) | 🔴 | ✅ | Build: input + floating panel + keyboard nav + match-highlight. |
-| A1.5 | `mat-checkbox` | 🟡 | `.ax-checkbox` | 🟢 | ✅ | Mat: indeterminate + ripple suppression. |
-| A1.6 | `mat-radio-group` | 🟡 | `.ax-radio` + `.ax-radio-group` | 🟢 | ✅ | Mat: group spacing, disabled tint. |
-| A1.7 | `mat-slide-toggle` | 🟡 | `.ax-toggle` | 🟢 | ✅ | Mat: off-track + focus ring. |
-| A1.8 | `mat-slider` | 🔴 | `.ax-slider` | 🟡 | ✅ | Mat: handle / track / tick / value-indicator not skinned yet. Ax: exists but basic — add value label, range variant, step ticks. |
-| A1.9 | `mat-datepicker` | 🔴 | `.ax-datepicker` (**missing**) | 🔴 | ✅ | Build both. Ax version: calendar popover, month/year nav, today/selected/range cells, Buddhist-era hook. |
+| A1.1 | `mat-form-field` | 🟢 | `.ax-field` | 🟢 | ✅ | `8407d72` |
+| A1.2 | `mat-input` | 🟢 | `.ax-input` / `.ax-textarea` | 🟢 | ✅ | `8407d72` |
+| A1.3 | `mat-select` | 🟢 | `.ax-select` + `.ax-select-panel` | 🟢 | ✅ | `8407d72` |
+| A1.4 | `mat-autocomplete` | 🟢 | `.ax-autocomplete` | 🟢 | ✅ | `d29110a` |
+| A1.5 | `mat-checkbox` | 🟢 | `.ax-checkbox` + `.ax-checkbox-group` | 🟢 | ✅ | `d29110a` |
+| A1.6 | `mat-radio-group` | 🟢 | `.ax-radio` + `.ax-radio-group` | 🟢 | ✅ | `d29110a` |
+| A1.7 | `mat-slide-toggle` | 🟢 | `.ax-toggle` (+ sm/lg variants) | 🟢 | ✅ | `d29110a` |
+| A1.8 | `mat-slider` | 🟢 | `.ax-slider` + `.ax-slider-range` + `.ax-slider-ticks` | 🟢 | ✅ | `d2a94fb` |
+| A1.9 | `mat-datepicker` | 🟢 | `.ax-datepicker` + `.ax-datepicker-input` | 🟢 | ✅ | `d2a94fb` |
 
 ### A2 · Buttons & Indicators
 
@@ -155,16 +155,16 @@ Each phase lands green (every row 🟢 per sign-off checklist) before the next s
 - [ ] 0.3 Component-consuming tokens (`--ax-control-h`, `--ax-focus-ring-*`)
 - [ ] 0.4 Three-column override-tests page
 
-### Phase 2 — Form Controls (A1)
-- [ ] A1.1 `mat-form-field` density + prefix/suffix + label
-- [ ] A1.2 `mat-input` disabled / readonly / autofill
-- [ ] A1.3 `mat-select` panel + `.ax-select-panel`
-- [ ] A1.4 **build** `mat-autocomplete` override + `.ax-autocomplete`
-- [ ] A1.5 `mat-checkbox` indeterminate
-- [ ] A1.6 `mat-radio-group` spacing
-- [ ] A1.7 `mat-slide-toggle` off-track + focus
-- [ ] A1.8 `mat-slider` override + `.ax-slider` enrichment
-- [ ] A1.9 **build** `mat-datepicker` override + `.ax-datepicker`
+### Phase 2 — Form Controls (A1) ✅ complete
+- [x] A1.1 `mat-form-field` density + prefix/suffix + label — `8407d72`
+- [x] A1.2 `mat-input` disabled / readonly / autofill — `8407d72`
+- [x] A1.3 `mat-select` panel + `.ax-select-panel` — `8407d72`
+- [x] A1.4 **build** `mat-autocomplete` override + `.ax-autocomplete` — `d29110a`
+- [x] A1.5 `mat-checkbox` indeterminate — `d29110a`
+- [x] A1.6 `mat-radio-group` spacing — `d29110a`
+- [x] A1.7 `mat-slide-toggle` off-track + focus — `d29110a`
+- [x] A1.8 `mat-slider` override + `.ax-slider` enrichment — `d2a94fb`
+- [x] A1.9 **build** `mat-datepicker` override + `.ax-datepicker` — `d2a94fb`
 
 ### Phase 3 — Buttons, Nav, Tables (A2 + A3 + A5)
 - [ ] A2.1–A2.5 All button variants — hover / pressed / disabled / density
