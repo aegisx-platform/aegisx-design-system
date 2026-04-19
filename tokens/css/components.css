@@ -110,6 +110,117 @@
 }
 .ax-button--outline:hover { background: var(--ax-brand-faint); }
 
+/* Pressed state (applies to all variants) */
+.ax-button--primary:active,
+.ax-button[data-variant='primary']:active { background: var(--ax-primary-dark); }
+.ax-button--secondary:active { background: var(--ax-background-muted); }
+.ax-button--ghost:active     { background: var(--ax-background-muted); }
+.ax-button--danger:active    { background: var(--ax-error-emphasis); }
+.ax-button--outline:active   { background: var(--ax-brand-muted); }
+
+/* Elevation modifier — raised button equivalent */
+.ax-button--elevated {
+  box-shadow: var(--ax-shadow-xs);
+  transition: background-color var(--ax-duration-fast) var(--ax-easing-easeOut),
+              box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-button--elevated:hover { box-shadow: var(--ax-shadow-sm); }
+.ax-button--elevated:active { box-shadow: var(--ax-shadow-xs); }
+
+/* Icon-only — square with --ax-control-h, centered */
+.ax-button--icon,
+.ax-button[data-icon-only] {
+  width: var(--ax-control-h);
+  padding: 0;
+  aspect-ratio: 1;
+  gap: 0;
+}
+.ax-button--icon svg,
+.ax-button[data-icon-only] svg { width: var(--ax-control-icon); height: var(--ax-control-icon); }
+
+/* Success variant (green filled, matches mat-flat-button tertiary) */
+.ax-button--success {
+  background: var(--ax-success-default);
+  color: var(--ax-success-inverted);
+}
+.ax-button--success:hover { background: var(--ax-success-emphasis); }
+.ax-button--success:active { background: var(--ax-success-emphasis); }
+
+/* Link variant — inline text button */
+.ax-button--link {
+  background: transparent;
+  color: var(--ax-brand-emphasis);
+  padding: 0;
+  height: auto;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ax-button--link:hover { color: var(--ax-primary-dark); }
+
+/* ────────────────────────────────────────────────────────────
+ * FAB  ·  mat-fab · floating action button (circular, brand)
+ * ──────────────────────────────────────────────────────────── */
+.ax-fab {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  background: var(--ax-primary);
+  color: var(--ax-brand-inverted);
+  border-radius: var(--ax-radius-full);
+  box-shadow: var(--ax-shadow-md);
+  cursor: pointer;
+  transition: background-color var(--ax-duration-fast) var(--ax-easing-easeOut),
+              box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut),
+              transform var(--ax-duration-fast) var(--ax-easing-easeOut);
+  position: relative;
+}
+.ax-fab svg { width: 24px; height: 24px; }
+.ax-fab:hover { background: var(--ax-primary-dark); box-shadow: var(--ax-shadow-lg); transform: translateY(-1px); }
+.ax-fab:active { transform: translateY(0); box-shadow: var(--ax-shadow-md); }
+.ax-fab:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+}
+.ax-fab:disabled,
+.ax-fab[aria-disabled='true'] {
+  background: var(--ax-background-muted);
+  color: var(--ax-text-disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Mini FAB — 40px */
+.ax-fab--mini { width: 40px; height: 40px; box-shadow: var(--ax-shadow-sm); }
+.ax-fab--mini svg { width: 20px; height: 20px; }
+.ax-fab--mini:hover { box-shadow: var(--ax-shadow-md); }
+
+/* Extended FAB — pill with label */
+.ax-fab--extended {
+  width: auto;
+  height: 48px;
+  padding: 0 var(--ax-spacing-lg);
+  gap: var(--ax-spacing-sm);
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  font-weight: var(--ax-font-weight-medium);
+}
+.ax-fab--extended svg { width: 20px; height: 20px; }
+
+/* Role variants */
+.ax-fab--success { background: var(--ax-success-default); color: var(--ax-success-inverted); }
+.ax-fab--success:hover { background: var(--ax-success-emphasis); }
+.ax-fab--danger  { background: var(--ax-error-default); color: var(--ax-error-inverted); }
+.ax-fab--danger:hover { background: var(--ax-error-emphasis); }
+.ax-fab--surface {
+  background: var(--ax-background-default);
+  color: var(--ax-text-default);
+  box-shadow: var(--ax-shadow-md), inset 0 0 0 1px var(--ax-border-default);
+}
+.ax-fab--surface:hover { background: var(--ax-background-subtle); }
+
 /* ────────────────────────────────────────────────────────────
  * INPUT  ·  mat-form-field (appearance=outline)
  * radius-md (6px) · 1px border · focus 2px brand
