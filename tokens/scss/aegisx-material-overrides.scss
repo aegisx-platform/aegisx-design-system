@@ -806,12 +806,14 @@
  * Legacy --mdc-* kept for backward compat with v18-.
  * ──────────────────────────────────────────────────────────── */
 /* Default + all color attribute variants (primary / accent / warn) — make every
-   checkbox, radio, toggle render AegisX brand regardless of [color="..."] prop. */
+   checkbox, radio, toggle render AegisX brand regardless of [color="..."] prop.
+   Specificity must match Material's `:root .mat-accent.mat-mdc-checkbox` (0,0,3,0)
+   emissions so our last-declared value wins the cascade. */
 :root,
-.mat-primary, .mat-accent, .mat-warn,
-.mat-mdc-checkbox, .mat-mdc-checkbox.mat-primary, .mat-mdc-checkbox.mat-accent, .mat-mdc-checkbox.mat-warn,
-.mat-mdc-radio-button, .mat-mdc-radio-button.mat-primary, .mat-mdc-radio-button.mat-accent, .mat-mdc-radio-button.mat-warn,
-.mat-mdc-slide-toggle, .mat-mdc-slide-toggle.mat-primary, .mat-mdc-slide-toggle.mat-accent, .mat-mdc-slide-toggle.mat-warn {
+:root .mat-primary, :root .mat-accent, :root .mat-warn,
+:root .mat-mdc-checkbox, :root .mat-mdc-checkbox.mat-primary, :root .mat-mdc-checkbox.mat-accent, :root .mat-mdc-checkbox.mat-warn,
+:root .mat-mdc-radio-button, :root .mat-mdc-radio-button.mat-primary, :root .mat-mdc-radio-button.mat-accent, :root .mat-mdc-radio-button.mat-warn,
+:root .mat-mdc-slide-toggle, :root .mat-mdc-slide-toggle.mat-primary, :root .mat-mdc-slide-toggle.mat-accent, :root .mat-mdc-slide-toggle.mat-warn {
   --mat-checkbox-selected-icon-color:              var(--ax-primary);
   --mat-checkbox-selected-focus-icon-color:        var(--ax-primary-dark);
   --mat-checkbox-selected-hover-icon-color:        var(--ax-primary-dark);
