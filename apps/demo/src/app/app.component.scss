@@ -1,0 +1,109 @@
+:host { display: block; min-height: 100vh; }
+
+.page { max-width: 1400px; margin: 0 auto; padding: 24px 24px 80px; }
+
+.page__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; gap: 24px; flex-wrap: wrap;
+}
+.page__brand { display: flex; align-items: center; gap: 14px; }
+.page__mark {
+  width: 36px; height: 36px;
+  border-radius: var(--ax-radius-md);
+  background: var(--ax-brand-default);
+  color: var(--ax-brand-inverted);
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 13px;
+}
+.page__title { margin: 0; font-size: 22px; font-weight: 600; color: var(--ax-text-heading); letter-spacing: -0.01em; }
+.page__sub { margin: 2px 0 0; font-size: 13px; color: var(--ax-text-secondary); }
+
+.page__actions { display: flex; gap: 12px; align-items: center; }
+
+.page__seg {
+  display: inline-flex;
+  border: 1px solid var(--ax-border-default);
+  border-radius: var(--ax-radius-md);
+  padding: 2px;
+  background: var(--ax-background-default);
+}
+.page__seg button {
+  all: unset; cursor: pointer;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--ax-text-secondary);
+  border-radius: var(--ax-radius-sm);
+}
+.page__seg button.is-active {
+  background: var(--ax-brand-faint);
+  color: var(--ax-brand-emphasis);
+  font-weight: 600;
+}
+
+.page__theme {
+  all: unset; cursor: pointer;
+  padding: 8px 16px;
+  background: var(--ax-background-default);
+  color: var(--ax-text-heading);
+  border: 1px solid var(--ax-border-default);
+  border-radius: var(--ax-radius-md);
+  font-family: var(--ax-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.page__theme:hover { background: var(--ax-background-subtle); }
+
+.page__grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr 1fr;
+  gap: 12px 16px;
+  align-items: start;
+  background: var(--ax-background-default);
+  border: 1px solid var(--ax-border-subtle);
+  border-radius: var(--ax-radius-lg);
+  padding: 20px;
+}
+.col-head {
+  font-family: var(--ax-font-mono);
+  font-size: 10px;
+  color: var(--ax-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 0 10px;
+  border-bottom: 1px solid var(--ax-border-subtle);
+  font-weight: 600;
+}
+.row-label {
+  display: flex; flex-direction: column;
+  padding-top: 16px;
+  border-top: 1px solid var(--ax-border-subtle);
+}
+.row-label strong { font-size: 14px; color: var(--ax-text-heading); }
+.row-label span { font-family: var(--ax-font-mono); font-size: 10px; color: var(--ax-text-subtle); margin-top: 2px; }
+.cell {
+  padding-top: 16px;
+  border-top: 1px solid var(--ax-border-subtle);
+  min-height: 60px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.cell--plain {
+  /* Opt out of our overrides to show Material's out-of-the-box look.
+     We invert the order by using !revert on the key overridden props. */
+}
+
+.page__foot {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--ax-text-secondary);
+}
+.page__foot a { color: var(--ax-brand-emphasis); text-decoration: none; }
+.page__foot a:hover { text-decoration: underline; }
+
+@media (max-width: 960px) {
+  .page__grid { grid-template-columns: 1fr; }
+  .col-head:nth-child(1), .col-head:nth-child(2), .col-head:nth-child(3), .col-head:nth-child(4) { display: none; }
+  .row-label { padding-top: 24px; }
+  .cell { min-height: auto; }
+}

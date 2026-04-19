@@ -63,20 +63,20 @@
     "./assets/brand/bg.svg": "./brand/aegisx-brand-bg.svg",
     "./styles/brand-bg.scss": "./brand/aegisx-brand-bg.scss",
     "./specs/*": "./specs/*",
-    "./tokens/css/tokens.css":      "./tokens/css/tokens.css",
-    "./tokens/css/components.css":  "./tokens/css/components.css",
-    "./tokens/scss/tokens":         "./tokens/scss/_tokens.scss",
+    "./tokens/css/tokens.css": "./tokens/css/tokens.css",
+    "./tokens/css/components.css": "./tokens/css/components.css",
+    "./tokens/scss/tokens": "./tokens/scss/_tokens.scss",
     "./tokens/scss/material-theme": "./tokens/scss/aegisx-material-theme.scss",
-    "./tokens/scss/material-bridge":"./tokens/scss/aegisx-material-bridge.scss",
+    "./tokens/scss/material-bridge": "./tokens/scss/aegisx-material-bridge.scss",
     "./tokens/scss/material-overrides": "./tokens/scss/aegisx-material-overrides.scss",
-    "./tokens/dtcg/*":              "./tokens/dtcg/*",
-    "./tokens/aegisx-tokens.json":      "./tokens/aegisx-tokens.json",
+    "./tokens/dtcg/*": "./tokens/dtcg/*",
+    "./tokens/aegisx-tokens.json": "./tokens/aegisx-tokens.json",
     "./tokens/aegisx-tokens-dark.json": "./tokens/aegisx-tokens-dark.json",
     "./tokens/tailwind/tailwind-preset": "./dist/tokens/tailwind/tailwind-preset.cjs",
-    "./tokens/ios/AegisXTokens.swift":   "./dist/tokens/ios/AegisXTokens.swift",
-    "./tokens/android/colors.xml":        "./dist/tokens/android/colors.xml",
-    "./tokens/android/dimens.xml":        "./dist/tokens/android/dimens.xml",
-    "./tokens/flutter/aegisx_tokens.dart":"./dist/tokens/flutter/aegisx_tokens.dart",
+    "./tokens/ios/AegisXTokens.swift": "./dist/tokens/ios/AegisXTokens.swift",
+    "./tokens/android/colors.xml": "./dist/tokens/android/colors.xml",
+    "./tokens/android/dimens.xml": "./dist/tokens/android/dimens.xml",
+    "./tokens/flutter/aegisx_tokens.dart": "./dist/tokens/flutter/aegisx_tokens.dart",
     "./package.json": "./package.json"
   },
   "files": [
@@ -116,7 +116,9 @@
     "check:icons": "node scripts/check-icons.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
     "gen:icon-data": "node scripts/generate-icon-data.mjs",
-    "site:build": "node scripts/build-site.mjs",
+    "site:build": "node scripts/build-site.mjs && pnpm run demo:build",
+    "demo:build": "ng build demo --configuration production",
+    "demo:serve": "ng serve demo --configuration development",
     "tokens:build": "node scripts/build-tokens.mjs && node scripts/build-tokens-studio.mjs && node scripts/build-platforms.mjs",
     "tokens:verify": "node scripts/verify-tokens.mjs",
     "tokens:platforms": "node scripts/build-platforms.mjs",
@@ -140,16 +142,33 @@
     "@angular/platform-browser": ">=18.0.0"
   },
   "peerDependenciesMeta": {
-    "@angular/core": { "optional": true },
-    "@angular/material": { "optional": true },
-    "@angular/platform-browser": { "optional": true }
+    "@angular/core": {
+      "optional": true
+    },
+    "@angular/material": {
+      "optional": true
+    },
+    "@angular/platform-browser": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@angular/core": "^18.0.0",
-    "@angular/material": "^18.0.0",
-    "@angular/platform-browser": "^18.0.0",
+    "@angular-devkit/build-angular": "^20.3.24",
+    "@angular/animations": "^20.3.19",
+    "@angular/cdk": "^20.2.14",
+    "@angular/cli": "^20.3.24",
+    "@angular/common": "^20.3.19",
+    "@angular/compiler": "^20",
+    "@angular/compiler-cli": "^20.3.19",
+    "@angular/core": "^20.3.19",
+    "@angular/forms": "^20.3.19",
+    "@angular/material": "^20.2.14",
+    "@angular/platform-browser": "^20.3.19",
+    "rxjs": "^7.8.0",
     "svgo": "^3.3.2",
-    "typescript": "^5.4.0"
+    "tslib": "^2.6.0",
+    "typescript": "^5.4.0",
+    "zone.js": "^0.15.1"
   },
   "packageManager": "pnpm@9.15.0"
 }

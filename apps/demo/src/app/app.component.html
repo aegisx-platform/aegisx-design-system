@@ -1,0 +1,208 @@
+<div class="page">
+  <header class="page__head">
+    <div class="page__brand">
+      <div class="page__mark">AX</div>
+      <div>
+        <h1 class="page__title">Override tests</h1>
+        <p class="page__sub">Plain Material (baseline) · AegisX-skinned Material · `.ax-*` custom</p>
+      </div>
+    </div>
+    <div class="page__actions">
+      <div class="page__seg">
+        <button [class.is-active]="density() === 'compact'" (click)="setDensity('compact')">Compact</button>
+        <button [class.is-active]="density() === 'comfortable'" (click)="setDensity('comfortable')">Default</button>
+        <button [class.is-active]="density() === 'spacious'" (click)="setDensity('spacious')">Spacious</button>
+      </div>
+      <button class="page__theme" type="button" (click)="toggleTheme()">
+        {{ theme() === 'light' ? 'Dark' : 'Light' }}
+      </button>
+    </div>
+  </header>
+
+  <main class="page__grid">
+    <div class="col-head">Component</div>
+    <div class="col-head">Plain Material</div>
+    <div class="col-head">Skinned Material (via overrides)</div>
+    <div class="col-head">ax-* custom</div>
+
+    <!-- Button -->
+    <div class="row-label"><strong>Button</strong><span>mat-flat-button · .ax-button--primary</span></div>
+    <div class="cell cell--plain">
+      <button mat-flat-button>Save</button>
+    </div>
+    <div class="cell">
+      <button mat-flat-button color="primary">Save</button>
+    </div>
+    <div class="cell">
+      <button class="ax-button ax-button--primary">Save</button>
+    </div>
+
+    <!-- Outlined button -->
+    <div class="row-label"><strong>Outlined</strong><span>mat-stroked-button · .ax-button--outline</span></div>
+    <div class="cell cell--plain">
+      <button mat-stroked-button>Cancel</button>
+    </div>
+    <div class="cell">
+      <button mat-stroked-button>Cancel</button>
+    </div>
+    <div class="cell">
+      <button class="ax-button ax-button--outline">Cancel</button>
+    </div>
+
+    <!-- Input -->
+    <div class="row-label"><strong>Input</strong><span>mat-form-field · .ax-input</span></div>
+    <div class="cell cell--plain">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="you@aegisx.health">
+      </mat-form-field>
+    </div>
+    <div class="cell">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="you@aegisx.health">
+      </mat-form-field>
+    </div>
+    <div class="cell">
+      <label class="ax-field">
+        <span class="ax-field__label">Email</span>
+        <input class="ax-input" placeholder="you@aegisx.health">
+      </label>
+    </div>
+
+    <!-- Select -->
+    <div class="row-label"><strong>Select</strong><span>mat-select · .ax-select</span></div>
+    <div class="cell cell--plain">
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <mat-select>
+          <mat-option value="card">Cardiology</mat-option>
+          <mat-option value="ortho">Orthopedics</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="cell">
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <mat-select>
+          <mat-option value="card">Cardiology</mat-option>
+          <mat-option value="ortho">Orthopedics</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="cell">
+      <div class="ax-select">
+        <select>
+          <option>Cardiology</option>
+          <option>Orthopedics</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="row-label"><strong>Checkbox</strong><span>mat-checkbox · .ax-checkbox</span></div>
+    <div class="cell cell--plain"><mat-checkbox checked>Accept</mat-checkbox></div>
+    <div class="cell"><mat-checkbox checked>Accept</mat-checkbox></div>
+    <div class="cell">
+      <label class="ax-checkbox">
+        <input type="checkbox" checked>
+        <span class="ax-checkbox__box"></span>
+        <span>Accept</span>
+      </label>
+    </div>
+
+    <!-- Radio -->
+    <div class="row-label"><strong>Radio</strong><span>mat-radio-group · .ax-radio</span></div>
+    <div class="cell cell--plain">
+      <mat-radio-group value="a">
+        <mat-radio-button value="a">One</mat-radio-button>
+        <mat-radio-button value="b">Two</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="cell">
+      <mat-radio-group value="a">
+        <mat-radio-button value="a">One</mat-radio-button>
+        <mat-radio-button value="b">Two</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="cell">
+      <div class="ax-radio-group ax-radio-group--horizontal">
+        <label class="ax-radio">
+          <input type="radio" name="d" checked>
+          <span class="ax-radio__dot"></span><span>One</span>
+        </label>
+        <label class="ax-radio">
+          <input type="radio" name="d">
+          <span class="ax-radio__dot"></span><span>Two</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="row-label"><strong>Toggle</strong><span>mat-slide-toggle · .ax-toggle</span></div>
+    <div class="cell cell--plain"><mat-slide-toggle checked>On</mat-slide-toggle></div>
+    <div class="cell"><mat-slide-toggle checked>On</mat-slide-toggle></div>
+    <div class="cell">
+      <label class="ax-toggle" style="display:inline-flex;gap:8px;align-items:center">
+        <span style="position:relative;display:inline-flex;width:36px;height:20px">
+          <input type="checkbox" checked style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);margin:-1px">
+          <span class="ax-toggle__track"></span>
+          <span class="ax-toggle__thumb"></span>
+        </span>
+        <span>On</span>
+      </label>
+    </div>
+
+    <!-- Slider -->
+    <div class="row-label"><strong>Slider</strong><span>mat-slider · .ax-slider</span></div>
+    <div class="cell cell--plain">
+      <mat-slider min="0" max="100" discrete><input matSliderThumb [value]="40"></mat-slider>
+    </div>
+    <div class="cell">
+      <mat-slider min="0" max="100" discrete><input matSliderThumb [value]="40"></mat-slider>
+    </div>
+    <div class="cell">
+      <input class="ax-slider" type="range" min="0" max="100" value="40" style="max-width:200px">
+    </div>
+
+    <!-- Chip -->
+    <div class="row-label"><strong>Chip</strong><span>mat-chip · .ax-chip</span></div>
+    <div class="cell cell--plain">
+      <mat-chip-set><mat-chip>HN-01234</mat-chip><mat-chip highlighted>Active</mat-chip></mat-chip-set>
+    </div>
+    <div class="cell">
+      <mat-chip-set><mat-chip>HN-01234</mat-chip><mat-chip highlighted>Active</mat-chip></mat-chip-set>
+    </div>
+    <div class="cell">
+      <span class="ax-chip">HN-01234</span>
+      <span class="ax-chip ax-chip--selected" style="margin-left:8px">Active</span>
+    </div>
+
+    <!-- Progress -->
+    <div class="row-label"><strong>Progress bar</strong><span>mat-progress-bar · .ax-progress</span></div>
+    <div class="cell cell--plain"><mat-progress-bar mode="determinate" value="60"></mat-progress-bar></div>
+    <div class="cell"><mat-progress-bar mode="determinate" value="60"></mat-progress-bar></div>
+    <div class="cell">
+      <div class="ax-progress" style="width:100%">
+        <div class="ax-progress__bar" style="width:60%"></div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="row-label"><strong>Card</strong><span>mat-card · .ax-card</span></div>
+    <div class="cell cell--plain">
+      <mat-card><mat-card-header><mat-card-title>Patient</mat-card-title></mat-card-header><mat-card-content>Ward 5A</mat-card-content></mat-card>
+    </div>
+    <div class="cell">
+      <mat-card><mat-card-header><mat-card-title>Patient</mat-card-title></mat-card-header><mat-card-content>Ward 5A</mat-card-content></mat-card>
+    </div>
+    <div class="cell">
+      <div class="ax-card"><div class="ax-card__header"><div class="ax-card__title">Patient</div></div><div class="ax-card__body">Ward 5A</div></div>
+    </div>
+  </main>
+
+  <footer class="page__foot">
+    <a href="../tokens.html">← back to docs</a>
+    <span>Theme &amp; density are applied to the document root — affects every column above.</span>
+  </footer>
+</div>

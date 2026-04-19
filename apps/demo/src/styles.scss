@@ -1,0 +1,17 @@
+// Theme setup — order matters: theme → bridge → overrides.
+@use '@angular/material' as mat;
+@use 'aegisx-material-theme';
+@use 'aegisx-material-bridge';
+@use 'aegisx-material-overrides';
+
+// App-local reset + page chrome
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  line-height: var(--ax-text-sm-line);
+  color: var(--ax-text-default);
+  background: var(--ax-background-page);
+  -webkit-font-smoothing: antialiased;
+}

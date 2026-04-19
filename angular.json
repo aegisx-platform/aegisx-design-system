@@ -1,0 +1,60 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "apps",
+  "projects": {
+    "demo": {
+      "projectType": "application",
+      "root": "apps/demo",
+      "sourceRoot": "apps/demo/src",
+      "prefix": "ax-demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": {
+              "base": "site/pages/override-tests",
+              "browser": ""
+            },
+            "index": "apps/demo/src/index.html",
+            "browser": "apps/demo/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "apps/demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "baseHref": "./",
+            "assets": [],
+            "styles": [
+              "tokens/css/tokens.css",
+              "tokens/css/components.css",
+              "apps/demo/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["tokens/scss", "node_modules"]
+            },
+            "optimization": true,
+            "sourceMap": false
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "sourceMap": false
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "demo:build:development"
+          }
+        }
+      }
+    }
+  }
+}
