@@ -84,10 +84,10 @@ Columns:
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A4.1 | `mat-card` | 🟡 | `.ax-card` | 🟢 | ✅ | Mat: header/subtitle/footer typography, media, action-buttons padding; elevation matches Tweaks. |
-| A4.2 | `mat-divider` | 🔴 | `.ax-divider` | 🟢 | — | Mat: color + inset. |
-| A4.3 | `mat-expansion-panel` | 🔴 | `.ax-accordion` | 🟢 | ✅ | Mat: header hover, expand icon, body padding. Ax: complete — verify `.ax-expansion-panel` alias. |
-| A4.4 | `mat-grid-list` | — | `.ax-grid` (utility) | 🟢 | — | No mat skin needed; document CSS grid as the preferred approach. |
+| A4.1 | `mat-card` | 🟢 | `.ax-card` | 🟢 | ✅ | `e9de33e` |
+| A4.2 | `mat-divider` | 🟢 | `.ax-divider` | 🟢 | — | `e9de33e` |
+| A4.3 | `mat-expansion-panel` | 🟢 | `.ax-accordion` | 🟢 | ✅ | `e9de33e` |
+| A4.4 | `mat-grid-list` | — | `.ax-grid` (utility) | 🟢 | — | Use CSS grid directly — no Material skin needed. |
 
 ### A5 · Data Table
 
@@ -101,18 +101,18 @@ Columns:
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A6.1 | `mat-dialog` | 🟡 | `.ax-dialog` | 🟢 | ✅ | Mat: padding + width presets (sm/md/lg) + divider. |
-| A6.2 | `mat-snack-bar` | 🟡 | `.ax-toast` | 🟡 | ✅ | Mat: action button + success/warning/error variants. Ax: stack + auto-dismiss progress. |
-| A6.3 | `mat-tooltip` | 🟢 | `.ax-tooltip` (`[data-tooltip]`) | 🟢 | ✅ | Both done. Verify Thai font + max-width. |
-| A6.4 | `mat-bottom-sheet` | 🔴 | `.ax-bottom-sheet` (**missing**) | 🔴 | ✅ | Build both. Handle + safe-area inset + swipe-dismiss. |
+| A6.1 | `mat-dialog` | 🟢 | `.ax-dialog` + `.ax-dialog--sm/md/lg/full` | 🟢 | ✅ | `e9de33e` |
+| A6.2 | `mat-snack-bar` | 🟢 | `.ax-toast` + `.ax-snack--*` role variants | 🟢 | ✅ | `e9de33e` |
+| A6.3 | `mat-tooltip` | 🟢 | `.ax-tooltip` (`[data-tooltip]`) | 🟢 | ✅ | (shipped v0.4.0) |
+| A6.4 | `mat-bottom-sheet` | 🟢 | `.ax-bottom-sheet` | 🟢 | ✅ | `e9de33e` |
 
 ### A7 · Other
 
 | # | Material component | Mat | Ax twin (class) | Ax | Tweaks | Gap / notes |
 |---|---|:---:|---|:---:|:---:|---|
-| A7.1 | `mat-chips` | 🟡 | `.ax-chip` + `.ax-tag-input` | 🟢 | ✅ | Mat: selected / disabled / removable / avatar slot. |
-| A7.2 | `mat-list` / `mat-nav-list` | 🔴 | `.ax-list` | 🟢 | ✅ | Mat: row height, leading-icon, trailing-meta, 2/3-line variants. |
-| A7.3 | `mat-tree` | 🔴 | `.ax-tree` (**missing**) | 🔴 | ✅ | Build both. Chevron, indent rails, drag-drop hint, keyboard. |
+| A7.1 | `mat-chips` | 🟢 | `.ax-chip` + `.ax-tag-input` + role variants | 🟢 | ✅ | `e9de33e` |
+| A7.2 | `mat-list` / `mat-nav-list` | 🟢 | `.ax-list` | 🟢 | ✅ | `e9de33e` |
+| A7.3 | `mat-tree` | 🟢 | `.ax-tree` | 🟢 | ✅ | `e9de33e` |
 
 ---
 
@@ -181,17 +181,17 @@ Each phase lands green (every row 🟢 per sign-off checklist) before the next s
 - [x] A5.2 `.ax-paginator` + `mat-paginator` override — `2f0fad5`
 - [x] A5.3 `mat-sort` + `.ax-table__sort` — `2f0fad5`
 
-### Phase 4 — Popups + Other (A4 + A6 + A7)
-- [ ] A4.1 `mat-card` header / footer / media
-- [ ] A4.2 `mat-divider` override
-- [ ] A4.3 `mat-expansion-panel` override (Ax `.ax-accordion` already done)
-- [ ] A6.1 `mat-dialog` size presets
-- [ ] A6.2 `mat-snack-bar` variants + `.ax-toast` stack
-- [ ] A6.3 `mat-tooltip` polish
-- [ ] A6.4 **build** `mat-bottom-sheet` override + `.ax-bottom-sheet`
-- [ ] A7.1 `mat-chips` variants
-- [ ] A7.2 `mat-list` override
-- [ ] A7.3 **build** `mat-tree` override + `.ax-tree`
+### Phase 4 — Popups + Other (A4 + A6 + A7) ✅ complete
+- [x] A4.1 `mat-card` header / footer / media — `e9de33e`
+- [x] A4.2 `mat-divider` override — `e9de33e`
+- [x] A4.3 `mat-expansion-panel` override — `e9de33e`
+- [x] A6.1 `mat-dialog` size presets — `e9de33e`
+- [x] A6.2 `mat-snack-bar` role variants — `e9de33e`
+- [x] A6.3 `mat-tooltip` (shipped v0.4.0)
+- [x] A6.4 `mat-bottom-sheet` override + `.ax-bottom-sheet` — `e9de33e`
+- [x] A7.1 `mat-chips` variants — `e9de33e`
+- [x] A7.2 `mat-list` override — `e9de33e`
+- [x] A7.3 `mat-tree` override + `.ax-tree` — `e9de33e`
 
 ### Phase 5 — `ax-only` polish (Group B gaps)
 - [ ] `.ax-navbar` density + hamburger + search slot
