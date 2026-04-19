@@ -206,10 +206,20 @@ push(`  --ax-input-border-hover: var(--ax-border-emphasis);`);
 push(`  --ax-input-border-focus: var(--ax-primary);`);
 push(`  --ax-input-border-error: var(--ax-error-default);`);
 push('  /* Focus ring */');
-push(`  --ax-focus-ring-width: ${shadow.focusRing.width.$value};`);
-push(`  --ax-focus-ring-offset: ${shadow.focusRing.offset.$value};`);
-push(`  --ax-focus-ring-opacity: ${shadow.focusRing.opacity.$value};`);
+push(`  --ax-focus-ring-width: ${component.focusRing.width.$value};`);
+push(`  --ax-focus-ring-offset: ${component.focusRing.offset.$value};`);
+push(`  --ax-focus-ring-opacity: ${component.focusRing.opacity.$value};`);
 push(`  --ax-focus-ring-color: ${shadow.focusRing.color.$value};`);
+
+// Form control sizing (density-aware — default = md, [data-density] swaps)
+push('  /* Control sizing (density-default) */');
+push(`  --ax-control-h: ${component.control.height.md.$value};`);
+push(`  --ax-control-h-sm: ${component.control.height.sm.$value};`);
+push(`  --ax-control-h-lg: ${component.control.height.lg.$value};`);
+push(`  --ax-control-pad-x: ${component.control.paddingX.md.$value};`);
+push(`  --ax-control-pad-y: ${component.control.paddingY.md.$value};`);
+push(`  --ax-control-gap: ${component.control.gap.md.$value};`);
+push(`  --ax-control-icon: ${component.control.iconSize.md.$value};`);
 
 // Form layout
 push('  /* Form layout */');
@@ -431,6 +441,24 @@ for (const k of ['subtle','default','emphasis']) {
 }
 push(`    --ax-primary: ${resolveSemanticPrimary('dark', 'default')};`);
 push('  }');
+push('}');
+push('');
+
+// Density variants — [data-density] swaps control sizing tokens
+push('/* ── Density variants ── */');
+push('[data-density="compact"] {');
+push(`  --ax-control-h: ${component.control.height.sm.$value};`);
+push(`  --ax-control-pad-x: ${component.control.paddingX.sm.$value};`);
+push(`  --ax-control-pad-y: ${component.control.paddingY.sm.$value};`);
+push(`  --ax-control-gap: ${component.control.gap.sm.$value};`);
+push(`  --ax-control-icon: ${component.control.iconSize.sm.$value};`);
+push('}');
+push('[data-density="spacious"] {');
+push(`  --ax-control-h: ${component.control.height.lg.$value};`);
+push(`  --ax-control-pad-x: ${component.control.paddingX.lg.$value};`);
+push(`  --ax-control-pad-y: ${component.control.paddingY.lg.$value};`);
+push(`  --ax-control-gap: ${component.control.gap.lg.$value};`);
+push(`  --ax-control-icon: ${component.control.iconSize.lg.$value};`);
 push('}');
 push('');
 

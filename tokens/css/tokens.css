@@ -222,6 +222,14 @@
   --ax-focus-ring-offset: 2px;
   --ax-focus-ring-opacity: 0.5;
   --ax-focus-ring-color: #3b82f6;
+  /* Control sizing (density-default) */
+  --ax-control-h: 2.5rem;
+  --ax-control-h-sm: 2rem;
+  --ax-control-h-lg: 3rem;
+  --ax-control-pad-x: 0.875rem;
+  --ax-control-pad-y: 0.625rem;
+  --ax-control-gap: 0.5rem;
+  --ax-control-icon: 1.125rem;
   /* Form layout */
   --ax-form-gap-dense: 0.75rem;
   --ax-form-gap-default: 1rem;
@@ -491,6 +499,22 @@
     --ax-border-emphasis: var(--ax-color-gray-600);
     --ax-primary: var(--ax-color-indigo-400);
   }
+}
+
+/* ── Density variants ── */
+[data-density="compact"] {
+  --ax-control-h: 2rem;
+  --ax-control-pad-x: 0.625rem;
+  --ax-control-pad-y: 0.375rem;
+  --ax-control-gap: 0.375rem;
+  --ax-control-icon: 1rem;
+}
+[data-density="spacious"] {
+  --ax-control-h: 3rem;
+  --ax-control-pad-x: 1.125rem;
+  --ax-control-pad-y: 0.875rem;
+  --ax-control-gap: 0.625rem;
+  --ax-control-icon: 1.25rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

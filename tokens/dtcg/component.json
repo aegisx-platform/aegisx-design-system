@@ -10,6 +10,40 @@
     "sectionGap": { "$value": "2.5rem",  "$type": "dimension", "$description": "40px — gap between form sections" },
     "cardPadding": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — padding inside form cards" }
   },
+  "control": {
+    "$description": "Form control sizing (button / input / select / textarea / chip / etc). Density-aware: [data-density=compact] shrinks, [data-density=spacious] expands. Consumed by every .ax-* form class AND mirrored into Material via --mdc-*-container-height overrides.",
+    "height": {
+      "sm": { "$value": "2rem",    "$type": "dimension", "$description": "32px — compact density" },
+      "md": { "$value": "2.5rem",  "$type": "dimension", "$description": "40px — default density" },
+      "lg": { "$value": "3rem",    "$type": "dimension", "$description": "48px — spacious density" }
+    },
+    "paddingX": {
+      "sm": { "$value": "0.625rem", "$type": "dimension", "$description": "10px" },
+      "md": { "$value": "0.875rem", "$type": "dimension", "$description": "14px" },
+      "lg": { "$value": "1.125rem", "$type": "dimension", "$description": "18px" }
+    },
+    "paddingY": {
+      "sm": { "$value": "0.375rem", "$type": "dimension", "$description": "6px" },
+      "md": { "$value": "0.625rem", "$type": "dimension", "$description": "10px" },
+      "lg": { "$value": "0.875rem", "$type": "dimension", "$description": "14px" }
+    },
+    "gap": {
+      "sm": { "$value": "0.375rem", "$type": "dimension", "$description": "6px  — compact inline gap" },
+      "md": { "$value": "0.5rem",   "$type": "dimension", "$description": "8px  — default inline gap" },
+      "lg": { "$value": "0.625rem", "$type": "dimension", "$description": "10px — spacious inline gap" }
+    },
+    "iconSize": {
+      "sm": { "$value": "1rem",     "$type": "dimension", "$description": "16px" },
+      "md": { "$value": "1.125rem", "$type": "dimension", "$description": "18px" },
+      "lg": { "$value": "1.25rem",  "$type": "dimension", "$description": "20px" }
+    }
+  },
+  "focusRing": {
+    "$description": "Focus-visible outline applied to all interactive controls. Both .ax-* and Material MDC overrides reference these tokens.",
+    "width":  { "$value": "2px",     "$type": "dimension" },
+    "offset": { "$value": "2px",     "$type": "dimension" },
+    "opacity": { "$value": 0.5,      "$type": "number" }
+  },
   "surface": {
     "$description": "Per-role surface backgrounds (light mode)",
     "info":    { "$value": "#dbeafe", "$type": "color" },
