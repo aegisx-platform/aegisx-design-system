@@ -6,6 +6,12 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+## [0.4.1] — 2026-04-19
+
+### Fixed
+- **Navbar demo** (`pages/components.html`) — used non-existent `.ax-navbar__nav` / `.ax-navbar__actions` classes without the required `.ax-navbar__container` wrapper, so brand/links/actions stacked vertically instead of laying out horizontally. Rewritten to the production API: `__container > __start + __center + __end`.
+- **Density tweak now visibly changes form controls + tables** — `[data-density]` previously set `--ax-density-row` / `--ax-density-pad` tokens that no component consumed. `pages/_tweaks.css` now overrides heights + padding + font-size on `.ax-button`, `.ax-input`, `.ax-select`, `.ax-search`, `.ax-textarea`, `.ax-counter__value`, `.ax-tab-pills__item`, `.ax-segmented button`, plus `.ax-table` row padding and `.ax-list__item` min-height, when a `[data-density]` attribute is set. Production CSS (`tokens/css/components.css`) is untouched.
+
 ## [0.4.0] — 2026-04-19
 
 ### Added

@@ -820,19 +820,23 @@ const { style } = getIconStyle('pharmacy', 'md');</div>
     <h2>Navbar</h2>
     <p class="muted">Horizontal top nav with brand, links, actions, and user menu.</p>
     <div class="demo" style="display:block;padding:0;border-radius:var(--ax-radius-lg);overflow:hidden;">
-      <div class="ax-navbar">
-        <div class="ax-navbar__brand"><span style="font-weight:var(--ax-font-weight-semibold)">AegisX</span></div>
-        <nav class="ax-navbar__nav">
-          <a class="ax-navbar__link active" href="#">Dashboard</a>
-          <a class="ax-navbar__link" href="#">Patients</a>
-          <a class="ax-navbar__link" href="#">Reports</a>
-        </nav>
-        <div class="ax-navbar__actions">
-          <button class="ax-navbar__icon-btn" data-tooltip="Notifications">🔔</button>
-          <div class="ax-navbar-user">
-            <span class="ax-avatar ax-avatar--sm">Dr</span>
-            <div><div class="ax-navbar-user__name">Dr. Chaiyaphum</div><div class="ax-navbar-user__role">Admin</div></div>
-            <span class="ax-navbar-user__chevron">▾</span>
+      <div class="ax-navbar ax-navbar--bordered">
+        <div class="ax-navbar__container">
+          <div class="ax-navbar__start">
+            <div class="ax-navbar__brand">AegisX</div>
+          </div>
+          <nav class="ax-navbar__center ax-navbar__center--start">
+            <a class="ax-navbar__link active" href="#">Dashboard</a>
+            <a class="ax-navbar__link" href="#">Patients</a>
+            <a class="ax-navbar__link" href="#">Reports</a>
+          </nav>
+          <div class="ax-navbar__end">
+            <button class="ax-navbar__icon-btn" data-tooltip="Notifications">🔔</button>
+            <div class="ax-navbar-user">
+              <span class="ax-avatar ax-avatar--sm">Dr</span>
+              <div><div class="ax-navbar-user__name">Dr. Chaiyaphum</div><div class="ax-navbar-user__role">Admin</div></div>
+              <span class="ax-navbar-user__chevron">▾</span>
+            </div>
           </div>
         </div>
       </div>
