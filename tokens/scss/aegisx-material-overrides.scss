@@ -373,6 +373,63 @@
   background: var(--ax-table-row-hover-bg);
 }
 
+/* Sticky columns retain hover bg */
+.mat-mdc-table .mat-mdc-cell.mat-table-sticky,
+.mat-mdc-table .mat-mdc-header-cell.mat-table-sticky {
+  background: var(--mat-table-header-container-color) !important;
+  box-shadow: inset -1px 0 0 var(--ax-border-subtle);
+}
+.mat-mdc-row:hover .mat-mdc-cell.mat-table-sticky {
+  background: var(--ax-table-row-hover-bg) !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * SORT HEADER — arrow color + hover, aria-sort indicator
+ * ──────────────────────────────────────────────────────────── */
+.mat-sort-header-container {
+  color: inherit;
+}
+.mat-sort-header-arrow {
+  color: var(--ax-text-subtle);
+  opacity: 0;
+  transition: opacity var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.mat-sort-header:hover .mat-sort-header-arrow,
+.mat-sort-header[aria-sort]:not([aria-sort='none']) .mat-sort-header-arrow {
+  color: var(--ax-text-secondary);
+  opacity: 1;
+}
+.mat-sort-header[aria-sort='ascending'] .mat-sort-header-arrow,
+.mat-sort-header[aria-sort='descending'] .mat-sort-header-arrow {
+  color: var(--ax-primary);
+  opacity: 1;
+}
+.mat-sort-header-button:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+  border-radius: var(--ax-radius-sm);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * PAGINATOR — range label + page-size select + nav buttons
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-paginator {
+  --mat-paginator-container-background-color: var(--ax-background-default);
+  --mat-paginator-container-text-color:        var(--ax-text-default);
+  --mat-paginator-container-text-font:         var(--ax-font-sans);
+  --mat-paginator-container-text-size:         var(--ax-text-sm-size);
+  --mat-paginator-container-text-line-height:  var(--ax-text-sm-line);
+  --mat-paginator-select-trigger-text-size:    var(--ax-text-sm-size);
+  --mat-paginator-enabled-icon-color:          var(--ax-text-secondary);
+  --mat-paginator-disabled-icon-color:         var(--ax-text-disabled);
+  border-top: 1px solid var(--ax-border-subtle);
+  font-family: var(--ax-font-sans);
+}
+.mat-mdc-paginator .mat-mdc-icon-button { color: var(--ax-text-secondary); }
+.mat-mdc-paginator .mat-mdc-icon-button:hover { color: var(--ax-text-heading); }
+.mat-mdc-paginator .mat-mdc-paginator-range-label { color: var(--ax-text-secondary); margin: 0 var(--ax-spacing-md); }
+.mat-mdc-paginator .mat-mdc-paginator-page-size-label { color: var(--ax-text-secondary); }
+
 /* ────────────────────────────────────────────────────────────
  * DIALOG — 12px radius, scrim per bridge
  * ──────────────────────────────────────────────────────────── */

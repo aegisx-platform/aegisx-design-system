@@ -738,8 +738,73 @@
   color: #fff;
 }
 .ax-pagination__btn:disabled { color: var(--ax-text-disabled); cursor: not-allowed; }
-.ax-pagination__btn:focus-visible { outline: none; box-shadow: var(--ax-focus-ring); }
+.ax-pagination__btn:focus-visible { outline: var(--ax-focus-ring-width) solid var(--ax-border-focus); outline-offset: var(--ax-focus-ring-offset); }
 .ax-pagination__info { color: var(--ax-text-secondary); font-size: var(--ax-text-xs-size); margin: 0 var(--ax-spacing-sm); }
+
+/* ────────────────────────────────────────────────────────────
+ * PAGINATOR  ·  mat-paginator · table footer with range + page size
+ * Markup:
+ *   <div class="ax-paginator">
+ *     <label class="ax-paginator__size">
+ *       Items per page:
+ *       <select class="ax-select"><option>10</option>…</select>
+ *     </label>
+ *     <span class="ax-paginator__range">1–10 of 100</span>
+ *     <div class="ax-paginator__nav">
+ *       <button class="ax-button ax-button--icon" aria-label="First"> ⟪ </button>
+ *       <button class="ax-button ax-button--icon" aria-label="Prev">  ‹  </button>
+ *       <button class="ax-button ax-button--icon" aria-label="Next">  ›  </button>
+ *       <button class="ax-button ax-button--icon" aria-label="Last"> ⟫ </button>
+ *     </div>
+ *   </div>
+ * ──────────────────────────────────────────────────────────── */
+.ax-paginator {
+  display: flex;
+  align-items: center;
+  gap: var(--ax-spacing-lg);
+  padding: var(--ax-spacing-sm) var(--ax-spacing-md);
+  border-top: 1px solid var(--ax-border-subtle);
+  background: var(--ax-background-default);
+  font-family: var(--ax-font-sans);
+  font-size: var(--ax-text-sm-size);
+  color: var(--ax-text-secondary);
+}
+.ax-paginator__size { display: inline-flex; align-items: center; gap: var(--ax-spacing-sm); }
+.ax-paginator__size .ax-select { width: auto; min-width: 72px; }
+.ax-paginator__range { margin-inline-start: auto; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ax-paginator__nav { display: inline-flex; gap: 2px; }
+.ax-paginator__nav .ax-button--icon { color: var(--ax-text-secondary); }
+.ax-paginator__nav .ax-button--icon:hover { color: var(--ax-text-heading); background: var(--ax-background-subtle); }
+.ax-paginator__nav .ax-button--icon:disabled { color: var(--ax-text-disabled); background: transparent; }
+
+/* ────────────────────────────────────────────────────────────
+ * SORT HEADER (for .ax-table)  ·  mat-sort
+ * Apply .ax-table__sort to <th> + aria-sort='ascending|descending'
+ * ──────────────────────────────────────────────────────────── */
+.ax-table__sort {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-inline-end: calc(var(--ax-spacing-md) + 14px) !important;
+}
+.ax-table__sort::after {
+  content: '↕';
+  position: absolute;
+  inset-inline-end: var(--ax-spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ax-text-subtle);
+  opacity: 0;
+  transition: opacity var(--ax-duration-fast) var(--ax-easing-easeOut), color var(--ax-duration-fast) var(--ax-easing-easeOut);
+  font-size: 11px;
+}
+.ax-table__sort:hover::after { opacity: 1; color: var(--ax-text-secondary); }
+.ax-table__sort[aria-sort='ascending']::after  { content: '↑'; opacity: 1; color: var(--ax-primary); }
+.ax-table__sort[aria-sort='descending']::after { content: '↓'; opacity: 1; color: var(--ax-primary); }
+.ax-table__sort:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: -1px;
+}
 
 /* ────────────────────────────────────────────────────────────
  * PROGRESS BAR
