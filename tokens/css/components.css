@@ -1865,11 +1865,111 @@
   transition: border-color var(--ax-duration-fast) var(--ax-easing-easeOut),
               background var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
-.ax-upload:hover { border-color: var(--ax-primary); background: var(--ax-brand-faint); }
+.ax-upload:hover,
+.ax-upload[data-drag='true'] {
+  border-color: var(--ax-primary);
+  background: var(--ax-brand-faint);
+}
+.ax-upload:focus-visible {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+}
+.ax-upload--error {
+  border-color: var(--ax-error-default);
+  background: var(--ax-error-faint);
+}
+.ax-upload--error .ax-upload__icon { color: var(--ax-error-default); }
+.ax-upload--success {
+  border-color: var(--ax-success-default);
+  background: var(--ax-success-faint);
+}
+.ax-upload--disabled,
+.ax-upload[aria-disabled='true'] {
+  opacity: var(--ax-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
 .ax-upload__icon { font-size: 28px; color: var(--ax-text-subtle); }
 .ax-upload__title { font-size: var(--ax-text-sm-size); font-weight: var(--ax-font-weight-medium); color: var(--ax-text-heading); }
 .ax-upload__title .ax-link { font-weight: var(--ax-font-weight-semibold); }
 .ax-upload__hint { font-size: var(--ax-text-xs-size); color: var(--ax-text-secondary); }
+
+/* File list below dropzone — one row per uploaded/queued file */
+.ax-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ax-spacing-xs);
+  margin-top: var(--ax-spacing-md);
+}
+.ax-upload-item {
+  display: grid;
+  grid-template-columns: var(--ax-control-h-sm) 1fr auto;
+  gap: var(--ax-control-gap);
+  align-items: center;
+  padding: var(--ax-spacing-sm) var(--ax-spacing-md);
+  background: var(--ax-background-default);
+  border: 1px solid var(--ax-border-subtle);
+  border-radius: var(--ax-radius-md);
+  font-family: var(--ax-font-sans);
+}
+.ax-upload-item__icon {
+  width: var(--ax-control-h-sm); height: var(--ax-control-h-sm);
+  background: var(--ax-background-subtle);
+  border-radius: var(--ax-radius-sm);
+  display: grid; place-items: center;
+  color: var(--ax-text-secondary);
+  font-size: var(--ax-control-icon);
+}
+.ax-upload-item__info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ax-upload-item__name {
+  font-size: var(--ax-text-sm-size);
+  color: var(--ax-text-heading);
+  font-weight: var(--ax-font-weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ax-upload-item__meta {
+  font-size: var(--ax-text-xs-size);
+  color: var(--ax-text-secondary);
+  display: flex; gap: var(--ax-spacing-sm);
+  font-variant-numeric: tabular-nums;
+}
+.ax-upload-item__progress {
+  grid-column: 1 / -1;
+  height: 4px;
+  background: var(--ax-background-muted);
+  border-radius: var(--ax-radius-full);
+  overflow: hidden;
+  margin-top: var(--ax-spacing-xs);
+}
+.ax-upload-item__progress-bar {
+  height: 100%;
+  background: var(--ax-primary);
+  border-radius: var(--ax-radius-full);
+  transition: width var(--ax-duration-normal) var(--ax-easing-easeOut);
+}
+.ax-upload-item--error  { border-color: var(--ax-error-default); background: var(--ax-error-faint); }
+.ax-upload-item--error  .ax-upload-item__progress-bar { background: var(--ax-error-default); }
+.ax-upload-item--success { border-color: var(--ax-success-default); }
+.ax-upload-item--success .ax-upload-item__progress-bar { background: var(--ax-success-default); }
+.ax-upload-item__remove {
+  all: unset; cursor: pointer;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border-radius: var(--ax-radius-sm);
+  color: var(--ax-text-secondary);
+}
+.ax-upload-item__remove:hover { background: var(--ax-error-faint); color: var(--ax-error-default); }
+
+/* JS contract: consumer handles dragenter/leave (sets [data-drag=true]),
+   file picker, progress per file (sets .ax-upload-item__progress-bar width),
+   and success/error state class on .ax-upload-item. */
 
 /* ════════════════════════════════════════════════════════════════
  * Components below mirror aegisx-ui library structure.
@@ -2269,7 +2369,10 @@
 /* ────────────────────────────────────────────────────────────
  * OTP INPUT · digit box grid
  * ──────────────────────────────────────────────────────────── */
-.ax-otp { display: flex; gap: var(--ax-spacing-sm); }
+.ax-otp {
+  display: inline-flex;
+  gap: var(--ax-spacing-sm);
+}
 .ax-otp__digit {
   width: 44px; height: 48px;
   text-align: center;
@@ -2279,10 +2382,54 @@
   color: var(--ax-text-heading);
   background: var(--ax-input-bg);
   border: var(--ax-border-width-thin) solid var(--ax-input-border);
-  border-radius: var(--ax-radius-sm);
-  transition: border-color var(--ax-duration-fast) var(--ax-easing-easeOut);
+  border-radius: var(--ax-radius-md);
+  transition: border-color var(--ax-duration-fast) var(--ax-easing-easeOut),
+              box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+  caret-color: var(--ax-primary);
 }
-.ax-otp__digit:focus { outline: none; border-color: var(--ax-input-border-focus); box-shadow: var(--ax-input-ring-focus); }
+.ax-otp__digit:hover { border-color: var(--ax-input-border-hover); }
+.ax-otp__digit:focus,
+.ax-otp__digit:focus-visible {
+  outline: none;
+  border-color: var(--ax-input-border-focus);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ax-primary) 25%, transparent);
+}
+.ax-otp__digit:disabled {
+  background: var(--ax-input-bg-disabled);
+  color: var(--ax-text-disabled);
+  cursor: not-allowed;
+}
+/* Filled digit indicator */
+.ax-otp__digit[data-filled='true'],
+.ax-otp__digit:not(:placeholder-shown) { border-color: var(--ax-border-emphasis); }
+/* Error state — wrap .ax-otp with aria-invalid or .ax-otp--error */
+.ax-otp--error .ax-otp__digit,
+.ax-otp[aria-invalid='true'] .ax-otp__digit {
+  border-color: var(--ax-error-default);
+  color: var(--ax-error-emphasis);
+}
+.ax-otp--error .ax-otp__digit:focus,
+.ax-otp[aria-invalid='true'] .ax-otp__digit:focus {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ax-error-default) 25%, transparent);
+}
+/* Success state after valid confirmation */
+.ax-otp--success .ax-otp__digit {
+  border-color: var(--ax-success-default);
+  color: var(--ax-success-emphasis);
+}
+/* Separator (e.g. between 3+3 groups) */
+.ax-otp__separator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ax-text-subtle);
+  font-size: var(--ax-text-xl-size);
+}
+/* Size variants */
+.ax-otp--sm .ax-otp__digit { width: 36px; height: 40px; font-size: var(--ax-text-lg-size); }
+.ax-otp--lg .ax-otp__digit { width: 52px; height: 56px; font-size: var(--ax-display-xs-size); }
+
+/* JS contract: consumer wires auto-advance (on input) + paste-all (on paste,
+   split into digits + focus last). Use [data-filled] toggled per-digit. */
 
 /* ────────────────────────────────────────────────────────────
  * COMMAND PALETTE · search modal (visual shell only)
