@@ -2075,29 +2075,42 @@
 
 /* ────────────────────────────────────────────────────────────
  * SLIDER  ·  mat-slider · styled range input
+ * Single-thumb native <input type=range>. For dual-thumb range use
+ * .ax-slider-range (two inputs overlapped with a tracked fill div).
  * ──────────────────────────────────────────────────────────── */
 .ax-slider {
   width: 100%;
   appearance: none;
+  -webkit-appearance: none;
   height: 6px;
-  background: var(--ax-background-subtle);
+  background: var(--ax-background-muted);
   border-radius: var(--ax-radius-full);
   outline: none;
   cursor: pointer;
+  /* Progress fill via accent-color (native per-browser track) */
+  accent-color: var(--ax-primary);
+}
+.ax-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: var(--ax-background-muted);
+  border-radius: var(--ax-radius-full);
+}
+.ax-slider::-moz-range-track {
+  height: 6px;
+  background: var(--ax-background-muted);
+  border-radius: var(--ax-radius-full);
 }
 .ax-slider::-webkit-slider-thumb {
   appearance: none;
+  -webkit-appearance: none;
   width: 20px; height: 20px;
+  margin-top: -7px;
   border-radius: var(--ax-radius-full);
   background: var(--ax-background-default);
   box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-shadow-sm);
   cursor: grab;
-  transition: box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut);
+  transition: box-shadow var(--ax-duration-fast) var(--ax-easing-easeOut), transform var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
-.ax-slider::-webkit-slider-thumb:hover {
-  box-shadow: inset 0 0 0 2px var(--ax-primary-dark), var(--ax-shadow-md);
-}
-.ax-slider::-webkit-slider-thumb:active { cursor: grabbing; }
 .ax-slider::-moz-range-thumb {
   width: 20px; height: 20px; border: none;
   border-radius: var(--ax-radius-full);
@@ -2105,10 +2118,227 @@
   box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-shadow-sm);
   cursor: grab;
 }
-.ax-slider:focus-visible::-webkit-slider-thumb { box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-focus-ring); }
-.ax-slider:focus-visible::-moz-range-thumb { box-shadow: inset 0 0 0 2px var(--ax-primary), var(--ax-focus-ring); }
-.ax-slider:disabled { opacity: 0.5; cursor: not-allowed; }
-.ax-slider:disabled::-webkit-slider-thumb { cursor: not-allowed; }
+.ax-slider::-webkit-slider-thumb:hover,
+.ax-slider::-moz-range-thumb:hover {
+  box-shadow: inset 0 0 0 2px var(--ax-primary-dark), var(--ax-shadow-md);
+  transform: scale(1.1);
+}
+.ax-slider::-webkit-slider-thumb:active { cursor: grabbing; }
+.ax-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: inset 0 0 0 2px var(--ax-primary), 0 0 0 var(--ax-focus-ring-offset) var(--ax-background-default), 0 0 0 calc(var(--ax-focus-ring-offset) + var(--ax-focus-ring-width)) var(--ax-border-focus);
+}
+.ax-slider:focus-visible::-moz-range-thumb {
+  box-shadow: inset 0 0 0 2px var(--ax-primary), 0 0 0 var(--ax-focus-ring-offset) var(--ax-background-default), 0 0 0 calc(var(--ax-focus-ring-offset) + var(--ax-focus-ring-width)) var(--ax-border-focus);
+}
+.ax-slider:disabled { opacity: var(--ax-opacity-disabled); cursor: not-allowed; }
+.ax-slider:disabled::-webkit-slider-thumb,
+.ax-slider:disabled::-moz-range-thumb { cursor: not-allowed; background: var(--ax-background-muted); }
+
+/* Tick marks — pair with datalist or separate DOM */
+.ax-slider-ticks {
+  display: flex; justify-content: space-between;
+  margin-top: var(--ax-spacing-xs);
+  padding: 0 10px; /* thumb-radius half */
+}
+.ax-slider-ticks span {
+  width: 2px; height: 6px;
+  background: var(--ax-border-default);
+  border-radius: 1px;
+}
+
+/* Value label (shown on thumb or above) */
+.ax-slider-label {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--ax-background-emphasis);
+  color: var(--ax-text-inverted);
+  border-radius: var(--ax-radius-sm);
+  font-family: var(--ax-font-mono);
+  font-size: var(--ax-text-xs-size);
+  font-weight: var(--ax-font-weight-medium);
+}
+
+/* Dual-thumb range — two inputs overlapped */
+.ax-slider-range {
+  position: relative;
+  height: 20px;
+  padding: 7px 0;
+}
+.ax-slider-range input[type='range'] {
+  position: absolute; inset: 7px 0;
+  pointer-events: none;
+  background: transparent;
+  -webkit-appearance: none; appearance: none;
+  width: 100%;
+}
+.ax-slider-range input[type='range']::-webkit-slider-thumb { pointer-events: auto; }
+.ax-slider-range input[type='range']::-moz-range-thumb     { pointer-events: auto; }
+.ax-slider-range__track {
+  position: absolute; inset: 7px 0 auto 0;
+  height: 6px;
+  background: var(--ax-background-muted);
+  border-radius: var(--ax-radius-full);
+}
+.ax-slider-range__fill {
+  position: absolute; inset: 7px 0;
+  height: 6px;
+  background: var(--ax-primary);
+  border-radius: var(--ax-radius-full);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * DATEPICKER  ·  mat-datepicker · calendar popover
+ * Markup:
+ *   <div class="ax-datepicker" role="dialog" aria-modal="true">
+ *     <header class="ax-datepicker__header">
+ *       <button class="ax-datepicker__nav" aria-label="Prev">‹</button>
+ *       <button class="ax-datepicker__period">April 2026</button>
+ *       <button class="ax-datepicker__nav" aria-label="Next">›</button>
+ *     </header>
+ *     <div class="ax-datepicker__weekdays"><span>Mo</span>…</div>
+ *     <div class="ax-datepicker__grid" role="grid">
+ *       <button class="ax-datepicker__day">1</button>
+ *       <button class="ax-datepicker__day ax-datepicker__day--today">15</button>
+ *       <button class="ax-datepicker__day ax-datepicker__day--selected">16</button>
+ *       <button class="ax-datepicker__day ax-datepicker__day--in-range">17</button>
+ *       <button class="ax-datepicker__day" disabled>18</button>
+ *     </div>
+ *     <footer class="ax-datepicker__footer">
+ *       <button class="ax-button ax-button--ghost ax-button--sm">Clear</button>
+ *       <button class="ax-button ax-button--primary ax-button--sm">Apply</button>
+ *     </footer>
+ *   </div>
+ * ──────────────────────────────────────────────────────────── */
+.ax-datepicker {
+  width: 320px;
+  background: var(--ax-background-default);
+  border: 1px solid var(--ax-border-default);
+  border-radius: var(--ax-radius-lg);
+  box-shadow: var(--ax-shadow-lg);
+  padding: var(--ax-spacing-md);
+  font-family: var(--ax-font-sans);
+  color: var(--ax-text-default);
+}
+.ax-datepicker__header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--ax-spacing-sm);
+  padding-bottom: var(--ax-spacing-sm);
+  border-bottom: 1px solid var(--ax-border-subtle);
+}
+.ax-datepicker__period {
+  all: unset;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  font-size: var(--ax-text-sm-size);
+  font-weight: var(--ax-font-weight-semibold);
+  color: var(--ax-text-heading);
+  padding: var(--ax-spacing-xs) var(--ax-spacing-sm);
+  border-radius: var(--ax-radius-sm);
+  transition: background var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-datepicker__period:hover { background: var(--ax-background-subtle); }
+.ax-datepicker__nav {
+  all: unset;
+  cursor: pointer;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  color: var(--ax-text-secondary);
+  border-radius: var(--ax-radius-sm);
+  transition: background var(--ax-duration-fast) var(--ax-easing-easeOut);
+}
+.ax-datepicker__nav:hover { background: var(--ax-background-subtle); color: var(--ax-text-heading); }
+.ax-datepicker__nav:disabled { opacity: var(--ax-opacity-disabled); pointer-events: none; }
+.ax-datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: var(--ax-spacing-xs);
+}
+.ax-datepicker__weekdays span {
+  text-align: center;
+  font-size: var(--ax-text-xs-size);
+  font-weight: var(--ax-font-weight-medium);
+  color: var(--ax-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-wide);
+  padding: var(--ax-spacing-xs) 0;
+}
+.ax-datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.ax-datepicker__day {
+  all: unset;
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+  cursor: pointer;
+  font-size: var(--ax-text-sm-size);
+  color: var(--ax-text-default);
+  border-radius: var(--ax-radius-md);
+  transition: background var(--ax-duration-fast) var(--ax-easing-easeOut), color var(--ax-duration-fast) var(--ax-easing-easeOut);
+  text-align: center;
+}
+.ax-datepicker__day:hover { background: var(--ax-background-subtle); }
+.ax-datepicker__day:focus-visible { outline: var(--ax-focus-ring-width) solid var(--ax-border-focus); outline-offset: -1px; }
+.ax-datepicker__day--other-month { color: var(--ax-text-disabled); }
+.ax-datepicker__day--today { box-shadow: inset 0 0 0 1px var(--ax-primary); color: var(--ax-brand-emphasis); font-weight: var(--ax-font-weight-semibold); }
+.ax-datepicker__day--in-range { background: var(--ax-brand-faint); border-radius: 0; color: var(--ax-brand-emphasis); }
+.ax-datepicker__day--range-start,
+.ax-datepicker__day--range-end { background: var(--ax-brand-faint); color: var(--ax-brand-emphasis); }
+.ax-datepicker__day--range-start { border-radius: var(--ax-radius-md) 0 0 var(--ax-radius-md); }
+.ax-datepicker__day--range-end   { border-radius: 0 var(--ax-radius-md) var(--ax-radius-md) 0; }
+.ax-datepicker__day--selected {
+  background: var(--ax-primary);
+  color: var(--ax-brand-inverted);
+  font-weight: var(--ax-font-weight-semibold);
+  border-radius: var(--ax-radius-md);
+}
+.ax-datepicker__day--selected:hover { background: var(--ax-primary-dark); }
+.ax-datepicker__day[disabled],
+.ax-datepicker__day[aria-disabled='true'] {
+  color: var(--ax-text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ax-datepicker__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ax-spacing-sm);
+  margin-top: var(--ax-spacing-sm);
+  padding-top: var(--ax-spacing-sm);
+  border-top: 1px solid var(--ax-border-subtle);
+}
+
+/* Month-picker + year-picker variants use the same grid */
+.ax-datepicker--months .ax-datepicker__grid,
+.ax-datepicker--years  .ax-datepicker__grid { grid-template-columns: repeat(4, 1fr); }
+.ax-datepicker--months .ax-datepicker__day,
+.ax-datepicker--years  .ax-datepicker__day  { aspect-ratio: auto; min-height: calc(var(--ax-control-h-sm) + 4px); }
+
+/* Input + toggle button pair — consumer wires the open/close toggle */
+.ax-datepicker-input {
+  display: inline-flex;
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+}
+.ax-datepicker-input .ax-input { padding-inline-end: calc(var(--ax-control-h) + 4px); }
+.ax-datepicker-input__toggle {
+  all: unset;
+  position: absolute;
+  inset-inline-end: 4px; top: 50%;
+  transform: translateY(-50%);
+  width: calc(var(--ax-control-h) - 8px);
+  height: calc(var(--ax-control-h) - 8px);
+  display: grid; place-items: center;
+  color: var(--ax-text-secondary);
+  cursor: pointer;
+  border-radius: var(--ax-radius-sm);
+}
+.ax-datepicker-input__toggle:hover { color: var(--ax-text-heading); background: var(--ax-background-subtle); }
+.ax-datepicker-input__toggle:focus-visible { outline: var(--ax-focus-ring-width) solid var(--ax-border-focus); }
 
 /* ────────────────────────────────────────────────────────────
  * TAG INPUT · removable tags with inline input

@@ -445,6 +445,71 @@
 }
 
 /* ────────────────────────────────────────────────────────────
+ * SLIDER — brand active track, quiet inactive, circular handle
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-slider {
+  --mdc-slider-active-track-color:                    var(--ax-primary);
+  --mdc-slider-inactive-track-color:                  var(--ax-background-muted);
+  --mdc-slider-with-tick-marks-active-container-color: var(--ax-brand-inverted);
+  --mdc-slider-with-tick-marks-inactive-container-color: var(--ax-border-default);
+  --mdc-slider-handle-color:        var(--ax-primary);
+  --mdc-slider-focus-handle-color:  var(--ax-primary-dark);
+  --mdc-slider-hover-handle-color:  var(--ax-primary-dark);
+  --mdc-slider-handle-height:       20px;
+  --mdc-slider-handle-width:        20px;
+  --mdc-slider-handle-elevation:    var(--ax-shadow-sm);
+  --mdc-slider-label-container-color: var(--ax-background-emphasis);
+  --mdc-slider-label-label-text-color: var(--ax-text-inverted);
+  --mdc-slider-active-track-height:   6px;
+  --mdc-slider-inactive-track-height: 6px;
+  /* Disabled */
+  --mdc-slider-disabled-active-track-color:   var(--ax-brand-muted);
+  --mdc-slider-disabled-inactive-track-color: var(--ax-background-muted);
+  --mdc-slider-disabled-handle-color:         var(--ax-border-emphasis);
+}
+.mat-mdc-slider .mdc-slider__thumb:focus-visible .mdc-slider__thumb-knob {
+  box-shadow: 0 0 0 var(--ax-focus-ring-offset) var(--ax-background-default),
+              0 0 0 calc(var(--ax-focus-ring-offset) + var(--ax-focus-ring-width)) var(--ax-border-focus);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * DATEPICKER — brand tints, calendar grid, today/selected/range cells
+ * ──────────────────────────────────────────────────────────── */
+.mat-datepicker-content {
+  --mat-datepicker-calendar-container-background-color: var(--ax-background-default);
+  --mat-datepicker-calendar-container-text-color:       var(--ax-text-default);
+  --mat-datepicker-calendar-container-shape:            var(--ax-radius-lg);
+  --mat-datepicker-calendar-container-elevation-shadow: var(--ax-shadow-lg);
+  /* Header */
+  --mat-datepicker-calendar-header-text-color:          var(--ax-text-heading);
+  --mat-datepicker-calendar-header-divider-color:       var(--ax-border-subtle);
+  --mat-datepicker-calendar-period-button-text-color:   var(--ax-text-heading);
+  --mat-datepicker-calendar-navigation-button-icon-color: var(--ax-text-secondary);
+  /* Weekday labels */
+  --mat-datepicker-calendar-body-label-text-color:      var(--ax-text-secondary);
+  /* Day cells */
+  --mat-datepicker-calendar-date-text-color:            var(--ax-text-default);
+  --mat-datepicker-calendar-date-outline-color:         transparent;
+  --mat-datepicker-calendar-date-hover-state-background-color:  var(--ax-background-subtle);
+  --mat-datepicker-calendar-date-focus-state-background-color:  var(--ax-background-subtle);
+  --mat-datepicker-calendar-date-today-outline-color:           var(--ax-primary);
+  --mat-datepicker-calendar-date-today-selected-state-outline-color: var(--ax-brand-inverted);
+  --mat-datepicker-calendar-date-selected-state-background-color:   var(--ax-primary);
+  --mat-datepicker-calendar-date-selected-state-text-color:         var(--ax-brand-inverted);
+  --mat-datepicker-calendar-date-selected-disabled-state-background-color: var(--ax-brand-muted);
+  --mat-datepicker-calendar-date-in-range-state-background-color:  var(--ax-brand-faint);
+  --mat-datepicker-calendar-date-in-comparison-range-state-background-color: var(--ax-brand-faint);
+  --mat-datepicker-calendar-date-disabled-state-text-color:        var(--ax-text-disabled);
+  /* Toggle / input icon */
+  --mat-datepicker-toggle-active-state-icon-color: var(--ax-primary);
+  --mat-datepicker-toggle-icon-color:              var(--ax-text-secondary);
+  font-family: var(--ax-font-sans);
+}
+.mat-datepicker-content .mat-calendar-body-cell-content {
+  border-radius: var(--ax-radius-md);
+}
+
+/* ────────────────────────────────────────────────────────────
  * TABS — indigo underline, no ripple
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-tab-group {
