@@ -201,9 +201,25 @@
   padding: 0;
 }
 
-/* Make Material form-field + textarea use available width */
+/* Keep all cells from bleeding past allocated column width */
+.parity tbody td { overflow: hidden; }
+.parity tbody td > * { max-width: 100%; }
+
+/* Parity widths for interactive form controls */
 .parity .mat-mdc-form-field { width: 100%; max-width: 280px; }
 .parity .mat-mdc-form-field:has(textarea) { max-width: none; }
+
+/* .ax-field is a flex-column label wrapper by default — cap its width in
+   the grid so it never outgrows the column. Inline-flex rows below (two
+   fields side-by-side) also need min-width:0 so they shrink-to-fit. */
+.parity .ax-field { max-width: 280px; min-width: 0; }
+.parity .ax-field:has(textarea) { max-width: 100%; }
+.parity [style*="display:flex"] { max-width: 100%; min-width: 0; }
+.parity [style*="display:flex"] .ax-field { flex: 1 1 auto; min-width: 0; }
+.parity .ax-input,
+.parity .ax-textarea,
+.parity .ax-select,
+.parity .ax-select select { max-width: 100%; }
 
 /* ────────────────────────────────────────────────────────────
  * ax-only preview grid
