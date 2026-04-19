@@ -239,33 +239,11 @@
   font-family: var(--ax-font-sans);
 }
 
-/* Height — use --ax-control-h for density awareness */
-.mat-mdc-form-field .mat-mdc-text-field-wrapper {
-  height: var(--ax-control-h);
-  padding: 0 var(--ax-control-pad-x);
-}
-.mat-mdc-form-field .mat-mdc-form-field-flex {
-  min-height: var(--ax-control-h);
-  align-items: center;
-}
-.mat-mdc-form-field .mat-mdc-form-field-infix {
-  min-height: var(--ax-control-h);
-  padding-top: 0;
-  padding-bottom: 0;
-  display: flex;
-  align-items: center;
-}
-
-/* Textarea should grow — not fixed height */
-.mat-mdc-form-field:has(textarea) .mat-mdc-text-field-wrapper,
-.mat-mdc-form-field:has(textarea) .mat-mdc-form-field-flex,
-.mat-mdc-form-field:has(textarea) .mat-mdc-form-field-infix {
-  height: auto;
-  min-height: calc(var(--ax-control-h) * 2.4);
-}
-.mat-mdc-form-field textarea.mat-mdc-input-element {
-  padding: var(--ax-control-pad-y) 0;
-}
+/* Height — DO NOT force via .mat-mdc-text-field-wrapper. Material manages
+   form-field height internally via its density scale (set in theme file).
+   Forcing a fixed height here breaks the internal flex layout of prefix /
+   suffix / notched-outline / floating label. .ax-* counterpart should size
+   from the same density source (see --ax-control-h in tokens). */
 
 /* Prefix / suffix icons align to --ax-control-icon */
 .mat-mdc-form-field .mat-mdc-form-field-icon-prefix,

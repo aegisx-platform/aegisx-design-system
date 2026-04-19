@@ -37,7 +37,7 @@ $aegisx-light: mat.define-theme((
     use-system-variables: true,
   ),
   density: (
-    scale: -1,   // clinical density — 14px body, tighter component heights
+    scale: -2,   // 48px form-field — matches --ax-control-h default
   ),
 ));
 
@@ -61,7 +61,7 @@ $aegisx-dark: mat.define-theme((
     brand-family: '"IBM Plex Sans Thai", "IBM Plex Sans", system-ui, sans-serif',
     use-system-variables: true,
   ),
-  density: (scale: -1),
+  density: (scale: -2),
 ));
 
 [data-theme="dark"] {

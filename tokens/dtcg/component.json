@@ -11,11 +11,11 @@
     "cardPadding": { "$value": "0.75rem", "$type": "dimension", "$description": "12px — padding inside form cards" }
   },
   "control": {
-    "$description": "Form control sizing (button / input / select / textarea / chip / etc). Density-aware: [data-density=compact] shrinks, [data-density=spacious] expands. Consumed by every .ax-* form class AND mirrored into Material via --mdc-*-container-height overrides.",
+    "$description": "Form control sizing (button / input / select / textarea / chip / etc). Density-aware: [data-density=compact] shrinks, [data-density=spacious] expands. Values align with Angular Material density scale so .ax-* heights match <mat-*> heights exactly when both share a density.",
     "height": {
-      "sm": { "$value": "2rem",    "$type": "dimension", "$description": "32px — compact density" },
-      "md": { "$value": "2.5rem",  "$type": "dimension", "$description": "40px — default density" },
-      "lg": { "$value": "3rem",    "$type": "dimension", "$description": "48px — spacious density" }
+      "sm": { "$value": "2.5rem",  "$type": "dimension", "$description": "40px — compact (Mat density=-4)" },
+      "md": { "$value": "3rem",    "$type": "dimension", "$description": "48px — default (Mat density=-2)" },
+      "lg": { "$value": "3.5rem",  "$type": "dimension", "$description": "56px — spacious (Mat density=0)" }
     },
     "paddingX": {
       "sm": { "$value": "0.625rem", "$type": "dimension", "$description": "10px" },
