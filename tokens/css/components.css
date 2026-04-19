@@ -877,6 +877,40 @@
 .ax-table tbody tr:hover { background: var(--ax-table-row-hover-bg); }
 .ax-table tbody tr:last-child td { border-bottom: none; }
 
+/* Scroll wrapper — keeps narrow tables readable on mobile without horizontal page scroll */
+.ax-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--ax-border-subtle);
+  border-radius: var(--ax-radius-lg);
+  background: var(--ax-background-default);
+}
+.ax-table-wrap > .ax-table { border-radius: 0; }
+
+/* Mobile: stack table rows as cards (consumer opts in with .ax-table--stack) */
+@media (max-width: 640px) {
+  .ax-table--stack thead { display: none; }
+  .ax-table--stack tr {
+    display: block;
+    border-bottom: 1px solid var(--ax-border-subtle);
+    padding: var(--ax-spacing-md);
+  }
+  .ax-table--stack td {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: var(--ax-spacing-xs) 0;
+    border: 0;
+  }
+  .ax-table--stack td::before {
+    content: attr(data-label);
+    font-size: var(--ax-text-xs-size);
+    color: var(--ax-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: var(--ax-tracking-wide);
+    font-weight: var(--ax-font-weight-medium);
+  }
+}
+
 /* ════════════════════════════════════════════════════════════════
  * AEGISX-CUSTOM COMPONENTS
  * No Angular Material v3 equivalent. Pure AegisX patterns.
@@ -1038,6 +1072,13 @@
 .ax-paginator__nav .ax-button--icon { color: var(--ax-text-secondary); }
 .ax-paginator__nav .ax-button--icon:hover { color: var(--ax-text-heading); background: var(--ax-background-subtle); }
 .ax-paginator__nav .ax-button--icon:disabled { color: var(--ax-text-disabled); background: transparent; }
+
+@media (max-width: 640px) {
+  .ax-paginator { flex-wrap: wrap; gap: var(--ax-spacing-sm); }
+  .ax-paginator__size { order: 3; }
+  .ax-paginator__range { margin-inline-start: 0; flex: 1 0 auto; }
+  .ax-paginator__nav { margin-inline-start: auto; }
+}
 
 /* ────────────────────────────────────────────────────────────
  * SORT HEADER (for .ax-table)  ·  mat-sort
@@ -2223,10 +2264,16 @@
   border-bottom: var(--ax-border-width-thin) solid var(--ax-border-default);
   margin-bottom: var(--ax-spacing-xl);
 }
-.ax-page-header__left { display: flex; flex-direction: column; gap: var(--ax-spacing-xs); }
+.ax-page-header__left { display: flex; flex-direction: column; gap: var(--ax-spacing-xs); min-width: 0; }
 .ax-page-header__title { margin: 0; font-size: var(--ax-display-xs-size); line-height: var(--ax-display-xs-line); font-weight: var(--ax-font-weight-semibold); color: var(--ax-text-heading); }
 .ax-page-header__desc { margin: 0; font-size: var(--ax-text-sm-size); color: var(--ax-text-secondary); }
-.ax-page-header__actions { display: flex; gap: var(--ax-spacing-sm); align-items: center; }
+.ax-page-header__actions { display: flex; gap: var(--ax-spacing-sm); align-items: center; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .ax-page-header { flex-direction: column; align-items: stretch; gap: var(--ax-spacing-md); }
+  .ax-page-header__title { font-size: var(--ax-text-xl-size); line-height: var(--ax-text-xl-line); }
+  .ax-page-header__actions { width: 100%; }
+  .ax-page-header__actions .ax-button { flex: 1; }
+}
 
 /* ────────────────────────────────────────────────────────────
  * PAGE SHELL · sidebar + topbar + content layout
@@ -2241,6 +2288,24 @@
   border-bottom: var(--ax-border-width-thin) solid var(--ax-border-default);
 }
 .ax-shell__content { flex: 1; padding: var(--ax-spacing-xl); background: var(--ax-background-page); }
+@media (max-width: 1023px) {
+  .ax-shell { grid-template-columns: 1fr; }
+  .ax-shell__sidebar { display: none; }
+  .ax-shell__sidebar.is-open {
+    display: block;
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    z-index: var(--ax-z-overlay);
+    width: 280px;
+    max-width: 85vw;
+    box-shadow: var(--ax-shadow-lg);
+  }
+}
+@media (max-width: 640px) {
+  .ax-shell__content { padding: var(--ax-spacing-lg) var(--ax-spacing-md); }
+  .ax-shell__topbar { padding: var(--ax-spacing-sm) var(--ax-spacing-md); gap: var(--ax-spacing-sm); }
+}
 
 /* ────────────────────────────────────────────────────────────
  * NAVBAR · enterprise-grade top nav (extracted from aegisx-ui)
