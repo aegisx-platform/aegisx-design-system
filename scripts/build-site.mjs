@@ -23,7 +23,7 @@ cpSync(resolve(root, 'brand'), resolve(out, 'assets/brand'), { recursive: true }
 
 // Pages — all HTML preview pages live in pages/, served under site/pages/
 mkdirSync(resolve(out, 'pages'), { recursive: true });
-const pageFiles = readdirSync(resolve(root, 'pages')).filter(f => f.endsWith('.html') || f.endsWith('.css'));
+const pageFiles = readdirSync(resolve(root, 'pages')).filter(f => f.endsWith('.html') || f.endsWith('.css') || f.endsWith('.js'));
 for (const f of pageFiles) {
   cpSync(resolve(root, 'pages', f), resolve(out, 'pages', f));
 }

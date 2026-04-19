@@ -7,14 +7,13 @@
   <link rel="icon" href="../assets/logo/favicons/favicon.ico" />
   <link rel="stylesheet" href="../tokens/css/tokens.css" />
   <link rel="stylesheet" href="_shared.css" />
+  <link rel="stylesheet" href="_tweaks.css" />
+  <script src="_tweaks.js" defer></script>
   <style>
     /* ================================================================
      * PAGE-SPECIFIC STYLES — a11y audit only
      * ================================================================ */
-    main { padding: 32px; max-width: 1280px; margin: 0 auto; }
-    section.block + section.block { margin-top: 56px; }
-    section.block > h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; color: #0f172a; }
-    section.block > p.muted { margin: 0 0 20px; color: #71717a; font-size: 13px; }
+    /* main.main padding handled by _shared.css */
 
     .summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
     .summary .card { background: #fff; border: 1px solid #e4e4e7; border-radius: 12px; padding: 16px 18px; }
@@ -38,8 +37,6 @@
     .pill.fail { background: #fee2e2; color: #b91c1c; }
 
     /* ── Dark theme overrides (page-specific only) ── */
-    [data-theme="dark"] section.block > h2 { color: #fafafa; }
-    [data-theme="dark"] section.block > p.muted { color: #a1a1aa; }
     [data-theme="dark"] .summary .card { background: #18181b; border-color: #3f3f46; }
     [data-theme="dark"] table.contrast { background: #18181b; border-color: #3f3f46; }
     [data-theme="dark"] table.contrast th { background: #27272a; color: #a1a1aa; }
@@ -48,120 +45,138 @@
   </style>
 </head>
 <body>
+<div class="app">
 
-<div class="page-layout">
-  <!-- ── Sidebar rail — extracted from ax-nav-rail.component.ts ── -->
-  <aside class="page-sidebar" aria-label="Site navigation">
-    <!-- Logo -->
-    <div class="page-sidebar__logo">
-      <img src="../logo/aegisx-icon-dark.svg" alt="AegisX" onerror="this.style.display='none'" />
-    </div>
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <aside class="sidebar" aria-label="Docs navigation">
+    <a class="sidebar__brand" href="../index.html">
+      <div class="sidebar__mark">AX</div>
+      <div class="sidebar__brand-meta">
+        <span class="sidebar__title">AegisX</span>
+        <span class="sidebar__sub">Design System · v0.3</span>
+      </div>
+    </a>
 
-    <div class="page-sidebar__divider"></div>
+    <div class="sidebar__group-title">Pages</div>
+    <a href="tokens.html" class="sidebar__link"><span class="sidebar__dot"></span>Tokens</a>
+    <a href="components.html" class="sidebar__link"><span class="sidebar__dot"></span>Components</a>
+    <a href="navigation.html" class="sidebar__link"><span class="sidebar__dot"></span>Navigation</a>
+    <a href="a11y.html" class="sidebar__link is-active"><span class="sidebar__dot"></span>A11y audit</a>
 
-    <!-- Search -->
-    <button class="page-sidebar__search" title="Search">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    </button>
+    <div class="sidebar__group-title">Audit · on this page</div>
+    <a href="#summary" class="sidebar__link"><span class="sidebar__dot"></span>Summary</a>
+    <a href="#text-bg" class="sidebar__link"><span class="sidebar__dot"></span>Text on surfaces</a>
+    <a href="#buttons" class="sidebar__link"><span class="sidebar__dot"></span>Button contrast</a>
+    <a href="#alerts" class="sidebar__link"><span class="sidebar__dot"></span>Alerts &amp; status</a>
+    <a href="#borders" class="sidebar__link"><span class="sidebar__dot"></span>Border visibility</a>
+    <a href="#how" class="sidebar__link"><span class="sidebar__dot"></span>How it works</a>
 
-    <div class="page-sidebar__divider page-sidebar__divider--thin"></div>
-
-    <!-- Nav items -->
-    <nav class="page-sidebar__nav">
-      <a href="tokens.html" class="page-sidebar__btn" title="Tokens">
-        <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-      </a>
-      <a href="components.html" class="page-sidebar__btn" title="Components">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      </a>
-      <a href="navigation.html" class="page-sidebar__btn" title="Navigation">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
-      </a>
-      <a href="a11y.html" class="page-sidebar__btn page-sidebar__btn--active" title="Accessibility">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-      </a>
-    </nav>
-
-    <!-- Bottom section -->
-    <div class="page-sidebar__bottom">
-      <a href="../" class="page-sidebar__btn" title="Home">
-        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </a>
-      <div class="page-sidebar__avatar" title="User">DS</div>
-    </div>
+    <div class="sidebar__group-title">Specs</div>
+    <a href="../AEGISX-DESIGN-PRINCIPLES.md" class="sidebar__link"><span class="sidebar__dot"></span>Design principles ↗</a>
   </aside>
 
-  <!-- ── Main content ── -->
-  <div class="page-main">
+  <!-- ═══════ CONTENT ═══════ -->
+  <div class="content">
 
-<header class="page-head">
-  <h1>Accessibility · WCAG contrast audit</h1>
-  <p>Runtime contrast check of every semantic text × background pairing. Values are computed from resolved CSS custom properties — flip theme to re-run.</p>
-  <div class="row">
-    <span class="badge">WCAG 2.1</span>
-    <span class="badge">AA ≥ 4.5 · AAA ≥ 7</span>
-    <span class="badge">Non-text ≥ 3</span>
-    <span class="spacer"></span>
-    <div class="toggle" role="tablist" aria-label="Theme">
-      <button data-set-theme="light" aria-pressed="true">LIGHT</button>
-      <button data-set-theme="dark"  aria-pressed="false">DARK</button>
-      <button data-set-theme="auto"  aria-pressed="false">AUTO</button>
-    </div>
-  </div>
-</header>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__crumbs">
+        <span>AegisX</span>
+        <span>›</span>
+        <strong>Accessibility</strong>
+      </div>
+      <div class="topbar__actions">
+        <div class="toggle" role="tablist" aria-label="Theme">
+          <button data-set-theme="light" aria-pressed="true">LIGHT</button>
+          <button data-set-theme="dark"  aria-pressed="false">DARK</button>
+          <button data-set-theme="auto"  aria-pressed="false">AUTO</button>
+        </div>
+      </div>
+    </header>
 
-<main>
+    <main class="main">
 
-  <section class="block">
-    <h2>Summary</h2>
-    <p class="muted">Counts recompute when you flip the theme.</p>
-    <div class="summary" id="summary"></div>
-  </section>
+      <!-- Hero -->
+      <section class="hero">
+        <span class="hero__eyebrow">AegisX · Accessibility audit</span>
+        <h1 class="hero__title">WCAG 2.1 contrast<br>verified at runtime.</h1>
+        <p class="hero__lede">
+          Every <code>--ax-text-*</code> × <code>--ax-background-*</code> pairing is checked against the WCAG 2.1 formula
+          using resolved CSS custom properties. Flip theme in the panel (or press <code>T</code>) to re-run.
+          Thresholds: <strong>AA ≥ 4.5</strong>, <strong>AAA ≥ 7</strong>, non-text <strong>≥ 3</strong>.
+        </p>
+        <dl class="hero__meta">
+          <div class="hero__meta-item"><dt>Standard</dt><dd>WCAG 2.1</dd></div>
+          <div class="hero__meta-item"><dt>Text AA</dt><dd>≥ 4.5:1</dd></div>
+          <div class="hero__meta-item"><dt>Text AAA</dt><dd>≥ 7:1</dd></div>
+          <div class="hero__meta-item"><dt>Non-text</dt><dd>≥ 3:1</dd></div>
+        </dl>
+      </section>
 
-  <section class="block">
-    <h2>Text on surfaces</h2>
-    <p class="muted">All <code>--ax-text-*</code> × <code>--ax-background-*</code> combinations (threshold AA 4.5).</p>
-    <table class="contrast" id="tbl-text-bg"><thead><tr>
-      <th>Text token</th><th>Background</th><th>Sample</th><th>Colors</th>
-      <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
-    </tr></thead><tbody></tbody></table>
-  </section>
+      <section class="section" id="summary">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">01</span>Summary</h2>
+          <p class="section__desc">Counts recompute when you flip the theme.</p>
+        </div>
+        <div class="summary" id="summary-grid"></div>
+      </section>
 
-  <section class="block">
-    <h2>Button contrast</h2>
-    <p class="muted">Button label on filled background for each role.</p>
-    <table class="contrast" id="tbl-buttons"><thead><tr>
-      <th>Button</th><th>Text</th><th>Background</th><th>Sample</th>
-      <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
-    </tr></thead><tbody></tbody></table>
-  </section>
+      <section class="section" id="text-bg">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">02</span>Text on surfaces</h2>
+          <p class="section__desc">All <code>--ax-text-*</code> × <code>--ax-background-*</code> combinations (threshold AA 4.5).</p>
+        </div>
+        <table class="contrast" id="tbl-text-bg"><thead><tr>
+          <th>Text token</th><th>Background</th><th>Sample</th><th>Colors</th>
+          <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
+        </tr></thead><tbody></tbody></table>
+      </section>
 
-  <section class="block">
-    <h2>Alerts &amp; status</h2>
-    <p class="muted">Alert text (<code>role-emphasis</code>) on its faint background.</p>
-    <table class="contrast" id="tbl-alerts"><thead><tr>
-      <th>Role</th><th>Text</th><th>Background</th><th>Sample</th>
-      <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
-    </tr></thead><tbody></tbody></table>
-  </section>
+      <section class="section" id="buttons">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">03</span>Button contrast</h2>
+          <p class="section__desc">Button label on filled background for each role.</p>
+        </div>
+        <table class="contrast" id="tbl-buttons"><thead><tr>
+          <th>Button</th><th>Text</th><th>Background</th><th>Sample</th>
+          <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
+        </tr></thead><tbody></tbody></table>
+      </section>
 
-  <section class="block">
-    <h2>Border visibility</h2>
-    <p class="muted">Non-text WCAG minimum is 3:1.</p>
-    <table class="contrast" id="tbl-borders"><thead><tr>
-      <th>Border</th><th>Surface</th><th>Demo</th>
-      <th style="text-align:right">Ratio</th><th>≥3</th>
-    </tr></thead><tbody></tbody></table>
-  </section>
+      <section class="section" id="alerts">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">04</span>Alerts &amp; status</h2>
+          <p class="section__desc">Alert text (<code>role-emphasis</code>) on its faint background.</p>
+        </div>
+        <table class="contrast" id="tbl-alerts"><thead><tr>
+          <th>Role</th><th>Text</th><th>Background</th><th>Sample</th>
+          <th style="text-align:right">Ratio</th><th>AA</th><th>AAA</th>
+        </tr></thead><tbody></tbody></table>
+      </section>
 
-  <section class="block">
-    <h2>How this works</h2>
-    <p class="muted" style="max-width: 720px; line-height: 1.7;">
-      Each cell's <code>color</code> and <code>background</code> are resolved through <code>getComputedStyle</code>. Relative luminance follows the <a style="color:#6366f1" href="https://www.w3.org/TR/WCAG21/#dfn-relative-luminance" target="_blank" rel="noopener">WCAG 2.1 formula</a>; contrast ratio is <code>(L1 + 0.05) / (L2 + 0.05)</code>. Thresholds: <strong>AA normal text ≥ 4.5</strong>, <strong>AAA ≥ 7</strong>, <strong>non-text ≥ 3</strong>.
-    </p>
-  </section>
+      <section class="section" id="borders">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">05</span>Border visibility</h2>
+          <p class="section__desc">Non-text WCAG minimum is 3:1.</p>
+        </div>
+        <table class="contrast" id="tbl-borders"><thead><tr>
+          <th>Border</th><th>Surface</th><th>Demo</th>
+          <th style="text-align:right">Ratio</th><th>≥3</th>
+        </tr></thead><tbody></tbody></table>
+      </section>
 
-</main>
+      <section class="section" id="how">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">06</span>How this works</h2>
+          <p class="section__desc">
+            Each cell's <code>color</code> and <code>background</code> are resolved through <code>getComputedStyle</code>. Relative luminance follows the <a href="https://www.w3.org/TR/WCAG21/#dfn-relative-luminance" target="_blank" rel="noopener">WCAG 2.1 formula</a>; contrast ratio is <code>(L1 + 0.05) / (L2 + 0.05)</code>. Thresholds: <strong>AA normal text ≥ 4.5</strong>, <strong>AAA ≥ 7</strong>, <strong>non-text ≥ 3</strong>.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /.content -->
+</div><!-- /.app -->
 
 <script>
   const root = document.documentElement;
@@ -360,7 +375,7 @@
       ]));
     }
 
-    const summary = document.getElementById('summary');
+    const summary = document.getElementById('summary-grid');
     clear(summary);
     const cards = [
       { cls: '',     n: counts.total, lbl: 'Pairs tested' },
@@ -377,8 +392,6 @@
   }
 </script>
 
-  </div><!-- /.page-main -->
-</div><!-- /.page-layout -->
 
 </body>
 </html>

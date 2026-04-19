@@ -5,536 +5,438 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AegisX Design System — Tokens</title>
   <link rel="icon" href="../assets/logo/favicons/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../tokens/css/tokens.css" />
   <link rel="stylesheet" href="_shared.css" />
-  <style>
-    /* ================================================================
-     * PAGE-SPECIFIC STYLES — token preview only
-     * ================================================================ */
-    main { padding: 32px; max-width: 1280px; margin: 0 auto; }
-    section.block + section.block { margin-top: 56px; }
-    section.block > h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; color: #0f172a; }
-    section.block > p.muted { margin: 0 0 20px; color: #71717a; font-size: 13px; }
-    section.block > h3 { margin: 28px 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #71717a; font-weight: 600; }
-    section.block > h4 { margin: 20px 0 10px; font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 12px; color: #0f172a; font-weight: 600; }
-
-    /* ── Palette grid ── */
-    .palette-row { display: grid; grid-template-columns: 110px repeat(11, 1fr); gap: 6px; margin-bottom: 8px; align-items: stretch; }
-    .palette-row .label { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #3f3f46; display: flex; align-items: center; font-weight: 500; }
-    .swatch { aspect-ratio: 1; border-radius: 8px; display: flex; align-items: flex-end; justify-content: flex-start; padding: 6px 8px; font-size: 10px; font-family: var(--ax-font-mono, ui-monospace, monospace); color: rgba(15,23,42,.55); border: 1px solid rgba(15,23,42,.06); }
-    .swatch.dark-text { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.08); }
-
-    /* ── Semantic cards ── */
-    .sem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-    .sem-grid.six { grid-template-columns: repeat(6, 1fr); }
-    @media (max-width: 900px) { .sem-grid.six { grid-template-columns: repeat(3, 1fr); } }
-    .sem-card { background: #fff; border: 1px solid #e4e4e7; border-radius: 12px; overflow: hidden; transition: border-color .12s; }
-    .sem-card:hover { border-color: #d4d4d8; }
-    .sem-card .preview { height: 64px; border-bottom: 1px solid #f4f4f5; display: grid; place-items: center; }
-    .sem-card .meta { padding: 10px 12px; }
-    .sem-card .meta .role { font-size: 10px; color: #a1a1aa; text-transform: uppercase; letter-spacing: .1em; font-weight: 500; }
-    .sem-card .meta .name { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #3f3f46; word-break: break-all; margin-top: 2px; }
-    .text-sample { font-weight: 600; font-size: 18px; font-family: var(--ax-font-mono, ui-monospace, monospace); }
-    .border-demo { width: 70%; height: 40px; border-radius: 8px; border-style: solid; border-width: 2px; }
-
-    /* ── Typography rows ── */
-    .type-row { display: grid; grid-template-columns: 180px 1fr auto; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid #f4f4f5; }
-    .type-row:last-child { border-bottom: 0; }
-    .type-row .name { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #71717a; }
-    .type-row .spec { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 10px; color: #a1a1aa; white-space: nowrap; }
-    .type-row .sample { color: #0f172a; font-family: var(--ax-font-sans); }
-
-    /* ── Spacing scale ── */
-    .spacing-scale { background: #fff; border: 1px solid #e4e4e7; border-radius: 12px; padding: 20px; }
-    .spacing-row { display: grid; grid-template-columns: 160px 60px 1fr; gap: 16px; align-items: center; padding: 8px 0; }
-    .spacing-row + .spacing-row { border-top: 1px solid #f4f4f5; }
-    .spacing-row .name { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #3f3f46; }
-    .spacing-row .px { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #a1a1aa; }
-    .spacing-bar { height: 14px; background: var(--ax-brand-default, #3f51b5); border-radius: 4px; }
-
-    /* ── Tile grid (radius, border, shadow, breakpoints) ── */
-    .tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
-    .tile { background: #fff; border: 1px solid #e4e4e7; height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 12px; color: #3f3f46; gap: 4px; padding: 12px; text-align: center; }
-    .tile .val { color: #a1a1aa; font-size: 10px; word-break: break-all; }
-    .tile.radius-demo { background: var(--ax-brand-faint, #e8eaf6); color: var(--ax-brand-emphasis, #303f9f); border-color: var(--ax-brand-subtle, #7986cb); }
-    .tile.border-demo-tile { border-color: var(--ax-brand-default, #3f51b5); border-style: solid; border-radius: 12px; }
-    .tile.shadow-demo { border: none; border-radius: 12px; }
-
-    /* ── Motion rows ── */
-    .motion-row { display: grid; grid-template-columns: 200px 80px 1fr; gap: 16px; align-items: center; padding: 8px 0; }
-    .motion-row + .motion-row { border-top: 1px solid #f4f4f5; }
-    .motion-row .name { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #3f3f46; }
-    .motion-row .px { font-family: var(--ax-font-mono, ui-monospace, monospace); font-size: 11px; color: #a1a1aa; }
-    .motion-wrap { background: #fff; border: 1px solid #e4e4e7; border-radius: 12px; padding: 16px 20px; }
-    .motion-track { position: relative; height: 36px; background: #f4f4f5; border-radius: 8px; overflow: hidden; }
-    .motion-ball { position: absolute; top: 4px; left: 4px; width: 28px; height: 28px; background: var(--ax-brand-default, #3f51b5); border-radius: 50%; box-shadow: 0 2px 6px rgba(63,81,181,.35); }
-
-    /* ── Dark theme overrides (page-specific only) ── */
-    [data-theme="dark"] section.block > h2 { color: #fafafa; }
-    [data-theme="dark"] section.block > h4 { color: #fafafa; }
-    [data-theme="dark"] section.block > p.muted { color: #a1a1aa; }
-    [data-theme="dark"] .sem-card { background: #18181b; border-color: #3f3f46; }
-    [data-theme="dark"] .sem-card:hover { border-color: #52525b; }
-    [data-theme="dark"] .sem-card .preview { border-bottom-color: #09090b; }
-    [data-theme="dark"] .sem-card .meta .role { color: #71717a; }
-    [data-theme="dark"] .sem-card .meta .name { color: #d4d4d8; }
-    [data-theme="dark"] .type-row { border-bottom-color: #27272a; }
-    [data-theme="dark"] .type-row .sample { color: #fafafa; }
-    [data-theme="dark"] .type-row .name { color: #a1a1aa; }
-    [data-theme="dark"] .type-row .spec { color: #71717a; }
-    [data-theme="dark"] .spacing-scale,
-    [data-theme="dark"] .motion-wrap,
-    [data-theme="dark"] .tile { background: #18181b; border-color: #3f3f46; color: #d4d4d8; }
-    [data-theme="dark"] .tile .val { color: #71717a; }
-    [data-theme="dark"] .spacing-row + .spacing-row,
-    [data-theme="dark"] .motion-row + .motion-row { border-top-color: #09090b; }
-    [data-theme="dark"] .motion-track { background: #09090b; }
-    [data-theme="dark"] .tile.radius-demo { background: var(--ax-brand-faint, #1a237e); color: var(--ax-brand-muted, #9fa8da); border-color: var(--ax-brand-subtle, #303f9f); }
-    [data-theme="dark"] .palette-row .label { color: #d4d4d8; }
-    [data-theme="dark"] .spacing-row .name { color: #d4d4d8; }
-    [data-theme="dark"] .motion-row .name { color: #d4d4d8; }
-  </style>
+  <link rel="stylesheet" href="_tweaks.css" />
+  <script src="_tweaks.js" defer></script>
 </head>
 <body>
 
-<div class="page-layout">
-  <!-- ── Sidebar rail — extracted from ax-nav-rail.component.ts ── -->
-  <aside class="page-sidebar" aria-label="Navigation">
-    <!-- Logo -->
-    <div class="page-sidebar__logo">
-      <img src="../logo/aegisx-icon-dark.svg" alt="AegisX" onerror="this.style.display='none'" />
-    </div>
+<div class="app">
 
-    <div class="page-sidebar__divider"></div>
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <aside class="sidebar" aria-label="Docs navigation">
+    <a class="sidebar__brand" href="../index.html">
+      <div class="sidebar__mark">AX</div>
+      <div class="sidebar__brand-meta">
+        <span class="sidebar__title">AegisX</span>
+        <span class="sidebar__sub">Design System · v0.3</span>
+      </div>
+    </a>
 
-    <!-- Search -->
-    <button class="page-sidebar__search" title="Search">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    </button>
+    <div class="sidebar__group-title">Pages</div>
+    <a href="tokens.html" class="sidebar__link is-active"><span class="sidebar__dot"></span>Tokens</a>
+    <a href="components.html" class="sidebar__link"><span class="sidebar__dot"></span>Components</a>
+    <a href="navigation.html" class="sidebar__link"><span class="sidebar__dot"></span>Navigation</a>
+    <a href="a11y.html" class="sidebar__link"><span class="sidebar__dot"></span>A11y audit</a>
 
-    <div class="page-sidebar__divider page-sidebar__divider--thin"></div>
+    <div class="sidebar__group-title">Tokens · on this page</div>
+    <a href="#palette" class="sidebar__link"><span class="sidebar__dot"></span>Color · palette</a>
+    <a href="#semantic" class="sidebar__link"><span class="sidebar__dot"></span>Color · semantic</a>
+    <a href="#typography" class="sidebar__link"><span class="sidebar__dot"></span>Typography</a>
+    <a href="#spacing" class="sidebar__link"><span class="sidebar__dot"></span>Spacing</a>
+    <a href="#radius" class="sidebar__link"><span class="sidebar__dot"></span>Radius</a>
+    <a href="#shadow" class="sidebar__link"><span class="sidebar__dot"></span>Shadow</a>
+    <a href="#motion" class="sidebar__link"><span class="sidebar__dot"></span>Motion</a>
+    <a href="#breakpoints" class="sidebar__link"><span class="sidebar__dot"></span>Breakpoints</a>
 
-    <!-- Nav items -->
-    <nav class="page-sidebar__nav">
-      <a href="tokens.html" class="page-sidebar__btn page-sidebar__btn--active" title="Tokens">
-        <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-      </a>
-      <a href="components.html" class="page-sidebar__btn" title="Components">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      </a>
-      <a href="navigation.html" class="page-sidebar__btn" title="Navigation">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
-      </a>
-      <a href="a11y.html" class="page-sidebar__btn" title="Accessibility">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-      </a>
-    </nav>
-
-    <!-- Bottom section -->
-    <div class="page-sidebar__bottom">
-      <a href="../" class="page-sidebar__btn" title="Home">
-        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </a>
-      <button class="page-sidebar__btn" title="Settings" onclick="document.querySelector('.toggle').scrollIntoView({behavior:'smooth'})">
-        <svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-      </button>
-      <div class="page-sidebar__avatar" title="User">DS</div>
-    </div>
+    <div class="sidebar__group-title">Specs</div>
+    <a href="../tokens/AEGISX-TOKENS-SPEC.md" class="sidebar__link"><span class="sidebar__dot"></span>Tokens spec ↗</a>
+    <a href="../tokens/ANGULAR-MATERIAL-SETUP.md" class="sidebar__link"><span class="sidebar__dot"></span>Angular Material ↗</a>
+    <a href="../AEGISX-DESIGN-PRINCIPLES.md" class="sidebar__link"><span class="sidebar__dot"></span>Design principles ↗</a>
   </aside>
 
-  <!-- ── Main content ── -->
-  <div class="page-main">
+  <!-- ═══════ CONTENT ═══════ -->
+  <div class="content">
 
-<header class="page-head">
-  <h1>Design Tokens</h1>
-  <p>Material Indigo + Zinc + Emerald + IBM Plex Sans Thai + 14px clinical base. Extracted from production <code>_aegisx-tokens.scss</code>.</p>
-  <div class="row">
-    <span class="badge">v0.4 · Production-aligned</span>
-    <span class="badge">3-layer tokens</span>
-    <span class="badge">Angular Material v3</span>
-    <span class="spacer"></span>
-    <div class="toggle" role="tablist" aria-label="Theme">
-      <button data-set-theme="light" aria-pressed="true">LIGHT</button>
-      <button data-set-theme="dark"  aria-pressed="false">DARK</button>
-      <button data-set-theme="auto"  aria-pressed="false">AUTO</button>
-    </div>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__crumbs">
+        <span>AegisX</span>
+        <span>›</span>
+        <strong>Tokens</strong>
+      </div>
+      <div class="topbar__actions">
+        <div class="toggle" role="tablist" aria-label="Theme">
+          <button data-set-theme="light" aria-pressed="true">LIGHT</button>
+          <button data-set-theme="dark"  aria-pressed="false">DARK</button>
+          <button data-set-theme="auto"  aria-pressed="false">AUTO</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <!-- Hero -->
+      <section class="hero">
+        <span class="hero__eyebrow">AegisX Hospital Platform · Design Tokens</span>
+        <h1 class="hero__title">Calm, high-contrast,<br>Thai-first, clinical-dense.</h1>
+        <p class="hero__lede">
+          Material Indigo + Zinc + Emerald + IBM Plex Sans Thai + 14px clinical base.
+          3-layer token architecture (primitive → semantic → component) extracted from production
+          <code>_aegisx-tokens.scss</code>. Every pair meets WCAG 2.1 AA minimum.
+        </p>
+        <dl class="hero__meta">
+          <div class="hero__meta-item"><dt>Foundation</dt><dd>Material 3 · Zinc/Gray</dd></div>
+          <div class="hero__meta-item"><dt>Primary</dt><dd>Indigo #3f51b5</dd></div>
+          <div class="hero__meta-item"><dt>Body type</dt><dd>IBM Plex Sans Thai · 14px</dd></div>
+          <div class="hero__meta-item"><dt>Density</dt><dd>Material −1 · row 40px</dd></div>
+          <div class="hero__meta-item"><dt>A11y target</dt><dd>WCAG 2.1 AA+</dd></div>
+        </dl>
+      </section>
+
+      <!-- 01 · Palette -->
+      <section class="section" id="palette">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">01</span>Color · Primitive palette</h2>
+          <p class="section__desc">
+            Layer 1. Raw hue ladders — Zinc, Gray, Material Indigo, Emerald, Amber, Red, Blue, Cyan, Purple, Pink.
+            Use via <code>--ax-color-{hue}-{step}</code>. Avoid in UI code; prefer semantic tokens below.
+            Click any swatch to copy its hex.
+          </p>
+        </div>
+        <div class="demo" id="palette-wrap"></div>
+      </section>
+
+      <!-- 02 · Semantic -->
+      <section class="section" id="semantic">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">02</span>Color · Semantic roles</h2>
+          <p class="section__desc">
+            Layer 2. Role-based aliases. Use these in UI code — they flip between light and dark theme automatically.
+            Each role has six variants: <code>faint · muted · subtle · default · emphasis · inverted</code>.
+          </p>
+        </div>
+
+        <h3 class="subsection__title">Surfaces · background + border</h3>
+        <div class="semantic-grid semantic-grid--wide" id="sem-surfaces" style="margin-bottom:24px"></div>
+
+        <h3 class="subsection__title">Text hierarchy</h3>
+        <div class="semantic-grid semantic-grid--wide" id="sem-text" style="margin-bottom:24px"></div>
+
+        <div id="sem-roles"></div>
+      </section>
+
+      <!-- 03 · Typography -->
+      <section class="section" id="typography">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">03</span>Typography</h2>
+          <p class="section__desc">
+            Untitled UI scale. Body <code>xs → xl</code> + Display <code>xs → lg</code>. Base body is <code>text-sm</code> (14px) for clinical density.
+            Font stack: <code>IBM Plex Sans Thai</code>.
+          </p>
+        </div>
+        <h3 class="subsection__title">Body</h3>
+        <div class="demo" id="type-body" style="margin-bottom:24px"></div>
+        <h3 class="subsection__title">Display</h3>
+        <div class="demo" id="type-display"></div>
+      </section>
+
+      <!-- 04 · Spacing -->
+      <section class="section" id="spacing">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">04</span>Spacing</h2>
+          <p class="section__desc">4px grid. Base <code>2xs → 4xl</code>. Semantic aliases <code>component.* · layout.* · inset.* · stack.*</code> in <code>dtcg/spacing.json</code>.</p>
+        </div>
+        <div class="demo" id="spacing-scale"></div>
+      </section>
+
+      <!-- 05 · Radius -->
+      <section class="section" id="radius">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">05</span>Radius</h2>
+          <p class="section__desc">Border radius scale. <code>md: 6px</code> is default for buttons/inputs/cards.</p>
+        </div>
+        <div class="radius-grid" id="radius-grid"></div>
+      </section>
+
+      <!-- 06 · Shadow -->
+      <section class="section" id="shadow">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">06</span>Elevation · Shadow</h2>
+          <p class="section__desc">Soft shadows tuned for light + dark. <code>sm</code> for cards, <code>md</code> for raised panels, <code>lg</code> for modals/dropdowns.</p>
+        </div>
+        <div class="shadow-grid" id="shadow-grid"></div>
+      </section>
+
+      <!-- 07 · Motion -->
+      <section class="section" id="motion">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">07</span>Motion</h2>
+          <p class="section__desc">
+            Durations <code>fast · normal · slow · slower</code> + M3 easing <code>standard · emphasized</code>.
+            Respects <code>prefers-reduced-motion</code>.
+          </p>
+        </div>
+        <div class="demo" id="motion-list"></div>
+      </section>
+
+      <!-- 08 · Breakpoints -->
+      <section class="section" id="breakpoints">
+        <div class="section__head">
+          <h2 class="section__title"><span class="section__num">08</span>Breakpoints &amp; Grid</h2>
+          <p class="section__desc">Material-style breakpoints <code>xs → 2xl</code>. 12-column grid with 24px gutter.</p>
+        </div>
+        <h3 class="subsection__title">Breakpoints</h3>
+        <div class="demo" id="breakpoint-list" style="margin-bottom:24px"></div>
+        <h3 class="subsection__title">12-column grid</h3>
+        <div class="grid-viz" id="grid-viz"></div>
+      </section>
+
+    </main>
   </div>
-</header>
-
-<nav class="tabs">
-  <a href="#palette">Palette</a>
-  <a href="#semantic">Semantic</a>
-  <a href="#typography">Typography</a>
-  <a href="#spacing">Spacing</a>
-  <a href="#radius">Radius</a>
-  <a href="#border">Border</a>
-  <a href="#shadow">Shadow</a>
-  <a href="#motion">Motion</a>
-  <a href="#breakpoints">Breakpoints</a>
-</nav>
-
-<main>
-
-  <section class="block" id="palette">
-    <h2>Color · Reference palette</h2>
-    <p class="muted">Primitive tokens — Zinc + Gray + Material Indigo + Emerald + Amber + Red + Blue + Cyan + Purple + Pink. Use via <code>--ax-color-{hue}-{step}</code>. <strong>Avoid in app code</strong> — prefer semantic tokens below.</p>
-    <div id="palette-grid"></div>
-  </section>
-
-  <section class="block" id="semantic">
-    <h2>Color · Semantic</h2>
-    <p class="muted">Role-based aliases. Use these in UI code — they respond to light / dark theme automatically.</p>
-
-    <h3>Surfaces · background</h3>
-    <div class="sem-grid" id="sem-bg"></div>
-
-    <h3>Text hierarchy</h3>
-    <div class="sem-grid" id="sem-text"></div>
-
-    <h3>Border</h3>
-    <div class="sem-grid" id="sem-border"></div>
-
-    <h3>Primary · brand (Material Indigo #3f51b5)</h3>
-    <div class="sem-grid" id="sem-primary"></div>
-
-    <h3>Navigation layer</h3>
-    <div class="sem-grid" id="sem-nav"></div>
-
-    <h3>Status &amp; accent roles · faint / muted / subtle / default / emphasis / inverted</h3>
-    <div id="sem-roles"></div>
-  </section>
-
-  <section class="block" id="typography">
-    <h2>Typography · Untitled UI scale</h2>
-    <p class="muted">Body text <code>xs → xl</code> + Display <code>xs → lg</code>. Base body is <code>text-sm</code> (14px) per clinical density. Font stack <code>IBM Plex Sans Thai</code> (Thai-first).</p>
-
-    <h3>Body text</h3>
-    <div id="type-text"></div>
-
-    <h3>Display</h3>
-    <div id="type-display"></div>
-  </section>
-
-  <section class="block" id="spacing">
-    <h2>Spacing · 4px grid</h2>
-    <p class="muted">Base scale <code>2xs → 4xl</code>. Semantic aliases (<code>component.*</code>, <code>layout.*</code>, <code>inset.*</code>, <code>stack.*</code>) in <code>dtcg/spacing.json</code>.</p>
-    <div class="spacing-scale" id="spacing-scale"></div>
-  </section>
-
-  <section class="block" id="radius">
-    <h2>Radius</h2>
-    <p class="muted">sm (4px) badges · md (6px) buttons/inputs · lg (8px) cards · xl (12px) modals · 2xl (16px) hero — per production.</p>
-    <div class="tile-grid" id="radius-grid"></div>
-  </section>
-
-  <section class="block" id="border">
-    <h2>Border width</h2>
-    <p class="muted">Default 1px — thin borders over heavy shadows.</p>
-    <div class="tile-grid" id="border-grid"></div>
-  </section>
-
-  <section class="block" id="shadow">
-    <h2>Shadow</h2>
-    <p class="muted">Production shadows. Borders as primary separation; shadows only for elevation.</p>
-    <div class="tile-grid" id="shadow-grid"></div>
-
-    <h3>Elevation · 0 flat · 1 raised · 2 floating · 3 overlay · 4 toast</h3>
-    <div class="tile-grid" id="elevation-grid"></div>
-  </section>
-
-  <section class="block" id="motion">
-    <h2>Motion · duration × easing</h2>
-    <p class="muted">Auto-disables under <code>prefers-reduced-motion: reduce</code>. Includes M3 durations &amp; easing.</p>
-    <div class="motion-wrap" id="motion-grid"></div>
-  </section>
-
-  <section class="block" id="breakpoints">
-    <h2>Breakpoints</h2>
-    <p class="muted">Mobile-first. Use with <code>@media (min-width: var(--ax-breakpoint-*))</code>.</p>
-    <div class="tile-grid" id="breakpoint-grid"></div>
-  </section>
-
-</main>
-
-  </div><!-- .page-main -->
-</div><!-- .page-layout -->
+</div>
 
 <script>
-  const el = (tag, attrs = {}, children = []) => {
+(function () {
+  'use strict';
+  const el = (tag, attrs, children) => {
     const n = document.createElement(tag);
-    for (const [k, v] of Object.entries(attrs)) {
-      if (k === 'text') n.textContent = v;
-      else if (k === 'style') n.style.cssText = v;
-      else if (k === 'class') n.className = v;
-      else n.setAttribute(k, v);
+    if (attrs) for (const k in attrs) {
+      if (k === 'text') n.textContent = attrs[k];
+      else if (k === 'class') n.className = attrs[k];
+      else if (k === 'style') n.style.cssText = attrs[k];
+      else n.setAttribute(k, attrs[k]);
     }
-    children.forEach(c => n.appendChild(c));
+    if (children) for (const c of children) if (c != null) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
     return n;
   };
 
-  const root = document.documentElement;
-  const buttons = document.querySelectorAll('[data-set-theme]');
-  const apply = (mode) => {
-    if (mode === 'auto') root.removeAttribute('data-theme');
-    else root.setAttribute('data-theme', mode);
-    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === mode)));
-    try { localStorage.setItem('ax-theme', mode); } catch (e) {}
-  };
-  buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.setTheme)));
-  let saved = 'light';
-  try { saved = localStorage.getItem('ax-theme') || 'light'; } catch (e) {}
-  apply(saved);
-
-  // Palette — all hues from tokens.css
-  const hues = ['zinc','gray','indigo','emerald','amber','red','blue','cyan','purple','pink'];
-  const steps = [50,100,200,300,400,500,600,700,800,900];
-  const paletteEl = document.getElementById('palette-grid');
-  hues.forEach(hue => {
-    const row = el('div', { class: 'palette-row' });
-    row.appendChild(el('div', { class: 'label', text: hue }));
-    const list = hue === 'zinc' ? steps.concat([950]) : steps.concat([null]);
-    list.forEach(step => {
-      if (step === null) { row.appendChild(el('div')); return; }
-      const cssVar = '--ax-color-' + hue + '-' + step;
+  // ═══ Palette ═══
+  const palettes = [
+    ['zinc',    'Neutral · body + borders'],
+    ['gray',    'Neutral · dark-mode backgrounds'],
+    ['indigo',  'Brand · Material #3f51b5'],
+    ['emerald', 'Success'],
+    ['amber',   'Warning'],
+    ['red',     'Error / Danger'],
+    ['blue',    'Info / Focus ring'],
+    ['cyan',    'Extra · cyan'],
+    ['purple',  'Extra · purple'],
+    ['pink',    'Extra · pink']
+  ];
+  const stepsBase = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  const paletteWrap = document.getElementById('palette-wrap');
+  for (const [hue, desc] of palettes) {
+    const row = el('div', { class: 'swatch-row' });
+    row.appendChild(el('div', { class: 'swatch-row__label' }, [
+      el('strong', { text: hue }),
+      el('span', { text: desc })
+    ]));
+    const steps = hue === 'zinc' ? stepsBase.concat([950]) : stepsBase.concat([null]);
+    steps.forEach(step => {
+      if (step == null) { row.appendChild(el('div')); return; }
+      const cssVar = `--ax-color-${hue}-${step}`;
+      const light = step <= 300;
       const sw = el('div', {
-        class: 'swatch' + (step >= 500 ? ' dark-text' : ''),
-        style: 'background: var(' + cssVar + ')',
-        title: cssVar
+        class: 'swatch' + (light ? ' swatch--light' : ''),
+        style: `background: var(${cssVar})`,
+        title: cssVar + ' · click to copy'
+      }, [
+        el('span', { class: 'swatch__step', text: String(step) }),
+        el('span', { class: 'swatch__hex', text: cssVar })
+      ]);
+      sw.addEventListener('click', () => {
+        const hex = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+        if (hex) navigator.clipboard?.writeText(hex);
+        sw.querySelector('.swatch__hex').textContent = '✓ ' + hex;
+        setTimeout(() => sw.querySelector('.swatch__hex').textContent = cssVar, 900);
       });
-      sw.appendChild(el('span', { text: String(step) }));
       row.appendChild(sw);
     });
-    paletteEl.appendChild(row);
-  });
+    paletteWrap.appendChild(row);
+  }
 
-  // Card builder
-  const makeCard = (role, cssVar, fill) => {
-    const card = el('div', { class: 'sem-card' });
-    const preview = el('div', { class: 'preview' });
-    fill(preview);
-    card.appendChild(preview);
-    const meta = el('div', { class: 'meta' });
-    meta.appendChild(el('div', { class: 'role', text: role }));
-    meta.appendChild(el('div', { class: 'name', text: cssVar }));
-    card.appendChild(meta);
-    return card;
-  };
+  // ═══ Semantic cells ═══
+  function cell(role, variant) {
+    const cssVar = `--ax-${role}-${variant}`;
+    return el('div', { class: 'semantic' }, [
+      el('div', { class: 'semantic__preview', style: `background: var(${cssVar})` }),
+      el('div', { class: 'semantic__name', text: cssVar }),
+      el('div', { class: 'semantic__tag', text: variant })
+    ]);
+  }
 
-  // Backgrounds
-  const bgGrid = document.getElementById('sem-bg');
-  ['page','default','subtle','muted','emphasis'].forEach(v => {
-    bgGrid.appendChild(makeCard('background', '--ax-background-' + v, p => {
-      p.style.background = 'var(--ax-background-' + v + ')';
-    }));
-  });
+  // Surfaces
+  const surfaces = [
+    ['background', 'page'], ['background', 'default'], ['background', 'subtle'], ['background', 'muted'],
+    ['border', 'subtle'],   ['border', 'default'],    ['border', 'emphasis']
+  ];
+  const semSurfaces = document.getElementById('sem-surfaces');
+  for (const [cat, v] of surfaces) semSurfaces.appendChild(cell(cat, v));
 
-  // Text
-  const textGrid = document.getElementById('sem-text');
-  ['disabled','subtle','secondary','default','strong','heading','inverted'].forEach(v => {
-    textGrid.appendChild(makeCard('text', '--ax-text-' + v, p => {
-      p.style.background = 'var(--ax-background-default)';
-      const s = el('span', { class: 'text-sample', text: 'Aa ก' });
-      s.style.color = 'var(--ax-text-' + v + ')';
-      p.appendChild(s);
-    }));
-  });
+  // Text hierarchy — render as text samples on light bg
+  const textRoles = ['heading', 'default', 'secondary', 'subtle', 'disabled', 'inverted'];
+  const semText = document.getElementById('sem-text');
+  for (const v of textRoles) {
+    const c = el('div', { class: 'semantic' });
+    const preview = el('div', {
+      class: 'semantic__preview',
+      style: `display:flex;align-items:center;justify-content:center;color:var(--ax-text-${v});background:${v === 'inverted' ? 'var(--ax-background-emphasis)' : 'var(--ax-background-default)'};font-weight:600;font-size:15px;`
+    });
+    preview.appendChild(document.createTextNode('Aa ก'));
+    c.appendChild(preview);
+    c.appendChild(el('div', { class: 'semantic__name', text: `--ax-text-${v}` }));
+    c.appendChild(el('div', { class: 'semantic__tag', text: v }));
+    semText.appendChild(c);
+  }
 
-  // Border
-  const borderGrid = document.getElementById('sem-border');
-  ['subtle','default','emphasis'].forEach(v => {
-    borderGrid.appendChild(makeCard('border', '--ax-border-' + v, p => {
-      p.style.background = 'var(--ax-background-default)';
-      const d = el('div', { class: 'border-demo' });
-      d.style.borderColor = 'var(--ax-border-' + v + ')';
-      p.appendChild(d);
-    }));
-  });
+  // Role families (brand / success / warning / error / info) × 6 variants
+  const roles = [
+    ['Brand',   'brand',   'Material Indigo'],
+    ['Success', 'success', 'Emerald'],
+    ['Warning', 'warning', 'Amber'],
+    ['Error',   'error',   'Red'],
+    ['Info',    'info',    'Blue']
+  ];
+  const variants = ['faint', 'muted', 'subtle', 'default', 'emphasis', 'inverted'];
+  const semRoles = document.getElementById('sem-roles');
+  for (const [label, role, note] of roles) {
+    semRoles.appendChild(el('h3', { class: 'subsection__title', style: 'margin-top:28px' },
+      [`${label}  ·  --ax-${role}-*  ·  ${note}`]));
+    const grid = el('div', { class: 'semantic-grid' });
+    variants.forEach(v => grid.appendChild(cell(role, v)));
+    semRoles.appendChild(grid);
+  }
 
-  // Primary
-  const primaryGrid = document.getElementById('sem-primary');
-  ['light','default','dark'].forEach(v => {
-    const name = v === 'default' ? '--ax-primary' : '--ax-primary-' + v;
-    primaryGrid.appendChild(makeCard('primary', name, p => {
-      p.style.background = 'var(' + name + ')';
-    }));
-  });
-
-  // Nav
-  const navGrid = document.getElementById('sem-nav');
+  // ═══ Typography rows ═══
+  function typeRow(name, metrics, sample, css) {
+    return el('div', { class: 'type-row' }, [
+      el('div', { class: 'type-row__name', text: name }),
+      el('div', { class: 'type-row__meta', text: metrics }),
+      el('div', { class: 'type-row__sample', style: css, text: sample })
+    ]);
+  }
+  const typeBody = document.getElementById('type-body');
+  const typeDisplay = document.getElementById('type-display');
   [
-    ['bg', '--ax-nav-bg', 'surface'],
-    ['bg-active', '--ax-nav-bg-active', 'active pill'],
-    ['text', '--ax-nav-text', 'inactive'],
-    ['text-hover', '--ax-nav-text-hover', 'hover'],
-    ['text-active', '--ax-nav-text-active', 'active'],
-    ['border', '--ax-nav-border', 'border']
-  ].forEach(([_, cssVar, role]) => {
-    navGrid.appendChild(makeCard(role, cssVar, p => {
-      if (cssVar.includes('bg') || cssVar.includes('border')) {
-        p.style.background = 'var(' + cssVar + ')';
-      } else {
-        p.style.background = 'var(--ax-nav-bg)';
-        const s = el('span', { text: 'Link', class: 'text-sample' });
-        s.style.color = 'var(' + cssVar + ')';
-        p.appendChild(s);
-      }
-    }));
-  });
+    ['text-xl', '20/30 · 600', 'Section title — Overview · หัวข้อส่วนงาน', 'font-size:20px;line-height:30px;font-weight:600'],
+    ['text-lg', '18/28 · 500', 'Card heading · หัวการ์ด', 'font-size:18px;line-height:28px;font-weight:500'],
+    ['text-md', '16/24 · 400', 'Body large · เนื้อหาอ่านสบาย ขนาดมาตรฐาน', 'font-size:16px;line-height:24px'],
+    ['text-sm', '14/20 · 400 (base)', 'Body default · ใช้เป็นฐาน (IBM Plex Sans Thai @ 14px)', 'font-size:14px;line-height:20px'],
+    ['text-xs', '12/18 · 500', 'Caption / Helper — 3 พ.ย. 2568 · 14:32', 'font-size:12px;line-height:18px;font-weight:500']
+  ].forEach(args => typeBody.appendChild(typeRow(...args)));
 
-  // Status roles
-  const rolesEl = document.getElementById('sem-roles');
-  const roleNames = ['brand','success','warning','error','info'];
-  const variants = ['faint','muted','subtle','default','emphasis','inverted'];
-  roleNames.forEach(r => {
-    rolesEl.appendChild(el('h4', { text: r }));
-    const grid = el('div', { class: 'sem-grid six' });
-    variants.forEach(v => {
-      grid.appendChild(makeCard(v, '--ax-' + r + '-' + v, p => {
-        p.style.background = 'var(--ax-' + r + '-' + v + ')';
-      }));
-    });
-    rolesEl.appendChild(grid);
-  });
+  [
+    ['display-lg', '48/60 · -0.02em · 600', 'Ward 5A ตรวจผู้ป่วย 24 ราย', 'font-size:48px;line-height:60px;letter-spacing:-0.02em;font-weight:600'],
+    ['display-md', '36/44 · -0.02em · 600', 'คลังยาประจำวัน · Daily pharmacy', 'font-size:36px;line-height:44px;letter-spacing:-0.02em;font-weight:600'],
+    ['display-sm', '30/38 · 600',           'รายงานการเงิน · Finance', 'font-size:30px;line-height:38px;font-weight:600'],
+    ['display-xs', '24/32 · 600',           'หัวข้อหลักของหน้า · Page heading', 'font-size:24px;line-height:32px;font-weight:600']
+  ].forEach(args => typeDisplay.appendChild(typeRow(...args)));
 
-  // Typography — body text
-  const textEl = document.getElementById('type-text');
-  ['xs','sm','md','lg','xl'].forEach(size => {
-    const row = el('div', { class: 'type-row' });
-    row.appendChild(el('div', { class: 'name', text: '--ax-text-' + size }));
-    const sample = el('div', { class: 'sample', text: 'AegisX · Sample ทดสอบภาษาไทย' });
-    sample.style.fontSize = 'var(--ax-text-' + size + '-size)';
-    sample.style.lineHeight = 'var(--ax-text-' + size + '-line)';
-    sample.style.fontWeight = 'var(--ax-font-weight-regular)';
-    row.appendChild(sample);
-    row.appendChild(el('div', { class: 'spec', text: 'text-' + size }));
-    textEl.appendChild(row);
-  });
+  // ═══ Spacing ═══
+  const spacings = [
+    ['spacing-2xs', '0.125rem · 2px', 2],
+    ['spacing-xs',  '0.25rem · 4px',  4],
+    ['spacing-sm',  '0.5rem · 8px',   8],
+    ['spacing-md',  '1rem · 16px',    16],
+    ['spacing-lg',  '1.5rem · 24px',  24],
+    ['spacing-xl',  '2rem · 32px',    32],
+    ['spacing-2xl', '2.5rem · 40px',  40],
+    ['spacing-3xl', '3rem · 48px',    48],
+    ['spacing-4xl', '4rem · 64px',    64]
+  ];
+  const spacingWrap = document.getElementById('spacing-scale');
+  for (const [name, meta, px] of spacings) {
+    spacingWrap.appendChild(el('div', { class: 'spacing-row' }, [
+      el('div', { class: 'spacing-row__name', text: `--ax-${name}` }),
+      el('div', { class: 'spacing-row__value', text: meta }),
+      el('div', { class: 'spacing-bar', style: `width:${px}px` })
+    ]));
+  }
 
-  // Typography — display
-  const displayEl = document.getElementById('type-display');
-  ['xs','sm','md','lg'].forEach(size => {
-    const row = el('div', { class: 'type-row' });
-    row.appendChild(el('div', { class: 'name', text: '--ax-display-' + size }));
-    const sample = el('div', { class: 'sample', text: 'AegisX ทดสอบ' });
-    sample.style.fontSize = 'var(--ax-display-' + size + '-size)';
-    sample.style.lineHeight = 'var(--ax-display-' + size + '-line)';
-    sample.style.letterSpacing = 'var(--ax-display-' + size + '-tracking)';
-    sample.style.fontWeight = 'var(--ax-font-weight-semibold)';
-    row.appendChild(sample);
-    row.appendChild(el('div', { class: 'spec', text: 'display-' + size }));
-    displayEl.appendChild(row);
-  });
+  // ═══ Radius ═══
+  const radii = [
+    ['none', '0'], ['sm', '4px'], ['md', '6px'], ['lg', '8px'],
+    ['xl', '12px'], ['2xl', '16px'], ['full', '9999px']
+  ];
+  const radiusGrid = document.getElementById('radius-grid');
+  for (const [name, val] of radii) {
+    radiusGrid.appendChild(el('div', {
+      class: 'radius-cell',
+      style: `border-radius: var(--ax-radius-${name})`
+    }, [
+      el('strong', { text: name }),
+      el('span', { text: val })
+    ]));
+  }
 
-  // Spacing
-  const spacingScale = [['2xs',2],['xs',4],['sm',8],['md',16],['lg',24],['xl',32],['2xl',40],['3xl',48],['4xl',64]];
-  const spacingEl = document.getElementById('spacing-scale');
-  spacingScale.forEach(([s, px]) => {
-    const row = el('div', { class: 'spacing-row' });
-    row.appendChild(el('div', { class: 'name', text: '--ax-spacing-' + s }));
-    row.appendChild(el('div', { class: 'px', text: px + 'px' }));
-    const bar = el('div', { class: 'spacing-bar' });
-    bar.style.width = 'var(--ax-spacing-' + s + ')';
-    const wrap = el('div');
-    wrap.appendChild(bar);
-    row.appendChild(wrap);
-    spacingEl.appendChild(row);
-  });
+  // ═══ Shadow ═══
+  const shadows = [['xs', 'subtle hover'], ['sm', 'cards'], ['md', 'raised'], ['lg', 'dropdown'], ['xl', 'modal']];
+  const shadowGrid = document.getElementById('shadow-grid');
+  for (const [name, note] of shadows) {
+    shadowGrid.appendChild(el('div', {
+      class: 'shadow-cell',
+      style: `box-shadow: var(--ax-shadow-${name})`
+    }, [
+      el('strong', { text: 'shadow-' + name }),
+      el('span', { text: note })
+    ]));
+  }
 
-  // Radius
-  const radii = ['none','sm','md','lg','xl','2xl','full'];
-  const radiusEl = document.getElementById('radius-grid');
-  radii.forEach(r => {
-    const t = el('div', { class: 'tile radius-demo' });
-    t.style.borderRadius = 'var(--ax-radius-' + r + ')';
-    t.appendChild(el('div', { text: 'radius-' + r }));
-    t.appendChild(el('div', { class: 'val', text: 'var(--ax-radius-' + r + ')' }));
-    radiusEl.appendChild(t);
-  });
+  // ═══ Motion rows ═══
+  const motions = [
+    ['duration-fast',   '150ms', 'micro-interactions'],
+    ['duration-normal', '250ms', 'default transitions'],
+    ['duration-slow',   '350ms', 'drawer / dialog'],
+    ['duration-slower', '500ms', 'page transitions'],
+    ['easing-m3-standard',   'cubic-bezier(0.2, 0, 0, 1)', 'M3 standard'],
+    ['easing-m3-emphasized', 'cubic-bezier(0.2, 0, 0, 1)', 'M3 emphasized'],
+    ['easing-easeOut',       'cubic-bezier(0, 0, 0.2, 1)', 'ease-out']
+  ];
+  const motionWrap = document.getElementById('motion-list');
+  for (const [name, val, note] of motions) {
+    motionWrap.appendChild(el('div', { class: 'spacing-row' }, [
+      el('div', { class: 'spacing-row__name', text: `--ax-${name}` }),
+      el('div', { class: 'spacing-row__value', text: val }),
+      el('div', { class: 'type-row__sample', style: 'font-size:12px;color:var(--ax-text-secondary)', text: note })
+    ]));
+  }
 
-  // Border width
-  const borders = ['none','thin','default','thick'];
-  const borderEl = document.getElementById('border-grid');
-  borders.forEach(b => {
-    const t = el('div', { class: 'tile border-demo-tile' });
-    t.style.borderWidth = 'var(--ax-border-width-' + b + ')';
-    t.appendChild(el('div', { text: 'width-' + b }));
-    t.appendChild(el('div', { class: 'val', text: 'var(--ax-border-width-' + b + ')' }));
-    borderEl.appendChild(t);
-  });
+  // ═══ Breakpoints ═══
+  const breakpoints = [
+    ['breakpoint-xs', '0px',    'Mobile — phones'],
+    ['breakpoint-sm', '600px',  'Large phone / small tablet'],
+    ['breakpoint-md', '960px',  'Tablet'],
+    ['breakpoint-lg', '1280px', 'Laptop · default app'],
+    ['breakpoint-xl', '1440px', 'Desktop'],
+    ['breakpoint-2xl','1920px', 'Large desktop']
+  ];
+  const bpWrap = document.getElementById('breakpoint-list');
+  for (const [name, val, note] of breakpoints) {
+    bpWrap.appendChild(el('div', { class: 'spacing-row' }, [
+      el('div', { class: 'spacing-row__name', text: `--ax-${name}` }),
+      el('div', { class: 'spacing-row__value', text: val }),
+      el('div', { class: 'type-row__sample', style: 'font-size:12px;color:var(--ax-text-secondary)', text: note })
+    ]));
+  }
+  const gridViz = document.getElementById('grid-viz');
+  for (let i = 1; i <= 12; i++) gridViz.appendChild(el('div', { class: 'grid-viz__col', text: String(i) }));
 
-  // Shadow
-  const shadows = ['none','xs','sm','md','lg','xl'];
-  const shadowEl = document.getElementById('shadow-grid');
-  shadows.forEach(s => {
-    const t = el('div', { class: 'tile shadow-demo' });
-    t.style.boxShadow = 'var(--ax-shadow-' + s + ')';
-    t.appendChild(el('div', { text: 'shadow-' + s }));
-    t.appendChild(el('div', { class: 'val', text: 'var(--ax-shadow-' + s + ')' }));
-    shadowEl.appendChild(t);
-  });
-
-  const elevations = [0,1,2,3,4];
-  const elevationEl = document.getElementById('elevation-grid');
-  elevations.forEach(e => {
-    const t = el('div', { class: 'tile shadow-demo' });
-    t.style.boxShadow = 'var(--ax-elevation-' + e + ')';
-    t.appendChild(el('div', { text: 'elevation-' + e }));
-    t.appendChild(el('div', { class: 'val', text: 'var(--ax-elevation-' + e + ')' }));
-    elevationEl.appendChild(t);
-  });
-
-  // Motion
-  const durations = [['instant','0ms'],['fast','150ms'],['normal','250ms'],['slow','350ms'],['slower','500ms']];
-  const easings = ['linear','easeIn','easeOut','easeInOut'];
-  const motionEl = document.getElementById('motion-grid');
-  const balls = [];
-  durations.forEach(([dKey, dVal]) => {
-    easings.forEach(eKey => {
-      const row = el('div', { class: 'motion-row' });
-      row.appendChild(el('div', { class: 'name', text: dKey + ' · ' + eKey }));
-      row.appendChild(el('div', { class: 'px', text: dVal }));
-      const track = el('div', { class: 'motion-track' });
-      const ball = el('div', { class: 'motion-ball' });
-      ball.style.transition = 'transform var(--ax-duration-' + dKey + ') var(--ax-easing-' + eKey + ')';
-      track.appendChild(ball);
-      row.appendChild(track);
-      motionEl.appendChild(row);
-      balls.push({ ball, track });
-    });
-  });
-  let at = 0;
-  setInterval(() => {
-    at = 1 - at;
-    balls.forEach(({ ball, track }) => {
-      const max = Math.max(0, track.getBoundingClientRect().width - 36);
-      ball.style.transform = at ? 'translateX(' + max + 'px)' : 'translateX(0px)';
-    });
-  }, 1400);
-
-  // Breakpoints
-  const bps = [['xs','0px'],['sm','600px'],['md','960px'],['lg','1280px'],['xl','1440px'],['2xl','1920px']];
-  const bpEl = document.getElementById('breakpoint-grid');
-  bps.forEach(([k, v]) => {
-    const t = el('div', { class: 'tile' });
-    t.appendChild(el('div', { text: k }));
-    t.appendChild(el('div', { class: 'val', text: v }));
-    t.appendChild(el('div', { class: 'val', text: '--ax-breakpoint-' + k }));
-    bpEl.appendChild(t);
-  });
-
-  // Highlight active tab based on scroll
-  const tabs = document.querySelectorAll('nav.tabs a');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        tabs.forEach(t => t.classList.remove('active'));
-        const link = document.querySelector('nav.tabs a[href="#' + e.target.id + '"]');
-        if (link) link.classList.add('active');
+  // ═══ Sidebar active-link highlight on scroll ═══
+  const sidebarLinks = document.querySelectorAll('.sidebar__link[href^="#"]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        sidebarLinks.forEach(l => l.classList.remove('is-active'));
+        const id = en.target.id;
+        const active = document.querySelector(`.sidebar__link[href="#${id}"]`);
+        if (active) active.classList.add('is-active');
       }
     });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  document.querySelectorAll('section.block[id]').forEach(s => observer.observe(s));
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('section.section[id]').forEach(s => io.observe(s));
+
+  // Smooth scroll for in-page anchors
+  sidebarLinks.forEach(l => l.addEventListener('click', e => {
+    const id = l.getAttribute('href').slice(1);
+    const t = document.getElementById(id);
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }));
+})();
 </script>
-
 </body>
 </html>

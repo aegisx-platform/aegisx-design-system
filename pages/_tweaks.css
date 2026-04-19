@@ -1,0 +1,238 @@
+/**
+ * AegisX Design System — Tweaks (live token editor)
+ * Floating panel for previewing theme / brand / density / radius / font / elevation.
+ * Values are written to :root as inline styles (overrides tokens.css at runtime only).
+ * Persisted to localStorage key `aegisx-ds-tweaks`. Production values are untouched.
+ *
+ * Usage: <link rel="stylesheet" href="_tweaks.css" />  +  <script src="_tweaks.js" defer></script>
+ *         plus the <aside class="ax-tweaks" id="ax-tweaks" hidden>...</aside> markup.
+ * Toggle: FAB bottom-right, or press `T` (outside form fields).
+ */
+
+/* ── Floating "open tweaks" FAB ── */
+.ax-tweaks-fab {
+  position: fixed;
+  right: 20px; bottom: 20px;
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--ax-border-default, #d4d4d8);
+  background: var(--ax-background-default, #fff);
+  color: var(--ax-text-default, #3f3f46);
+  box-shadow: var(--ax-shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: transform 150ms ease, background-color 150ms ease;
+  z-index: 49;
+  font-family: inherit;
+}
+.ax-tweaks-fab:hover {
+  transform: translateY(-2px);
+  background: var(--ax-background-subtle, #f4f4f5);
+}
+.ax-tweaks-fab svg {
+  width: 18px; height: 18px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+}
+[data-theme="dark"] .ax-tweaks-fab {
+  background: #18181b;
+  border-color: #3f3f46;
+  color: #e4e4e7;
+}
+
+/* ── Panel shell ── */
+.ax-tweaks {
+  position: fixed;
+  right: 20px; bottom: 20px;
+  width: 300px;
+  background: var(--ax-background-default, #fff);
+  border: 1px solid var(--ax-border-default, #d4d4d8);
+  border-radius: var(--ax-radius-xl, 0.75rem);
+  box-shadow: var(--ax-shadow-xl, 0 20px 25px -5px rgb(0 0 0 / 0.1));
+  z-index: 50;
+  overflow: hidden;
+  font-family: var(--ax-font-sans, system-ui, sans-serif);
+  color: var(--ax-text-default, #3f3f46);
+}
+.ax-tweaks[hidden] { display: none; }
+
+.ax-tweaks__header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 10px 10px 16px;
+  border-bottom: 1px solid var(--ax-border-subtle, #e4e4e7);
+  background: var(--ax-background-page, #fafafa);
+}
+.ax-tweaks__title {
+  font-size: 11px; font-weight: 600;
+  font-family: var(--ax-font-mono, ui-monospace, monospace);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--ax-text-heading, #0a0a0a);
+}
+.ax-tweaks__close {
+  width: 28px; height: 28px;
+  border: 0; background: transparent;
+  border-radius: var(--ax-radius-md, 0.375rem);
+  color: var(--ax-text-secondary, #52525b);
+  cursor: pointer;
+  display: grid; place-items: center;
+}
+.ax-tweaks__close:hover { background: var(--ax-background-subtle, #f4f4f5); }
+.ax-tweaks__close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+.ax-tweaks__body {
+  padding: 14px 16px;
+  max-height: 70vh;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 14px;
+}
+
+.ax-tweaks__group { display: flex; flex-direction: column; gap: 6px; }
+.ax-tweaks__label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 11px; font-weight: 600;
+  color: var(--ax-text-heading, #0a0a0a);
+}
+.ax-tweaks__label-val {
+  font-family: var(--ax-font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ax-text-subtle, #a1a1aa);
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 0;
+}
+
+/* Segmented control */
+.ax-tweaks__seg {
+  display: flex;
+  border: 1px solid var(--ax-border-default, #d4d4d8);
+  background: var(--ax-background-default, #fff);
+  border-radius: var(--ax-radius-md, 0.375rem);
+  padding: 2px;
+  gap: 2px;
+}
+.ax-tweaks__seg button {
+  flex: 1;
+  padding: 5px 4px;
+  border: 0; background: transparent;
+  font: inherit; font-size: 11px;
+  color: var(--ax-text-secondary, #52525b);
+  border-radius: var(--ax-radius-sm, 0.25rem);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.ax-tweaks__seg button:hover { color: var(--ax-text-heading, #0a0a0a); }
+.ax-tweaks__seg button.is-active {
+  background: var(--ax-brand-faint, #e8eaf6);
+  color: var(--ax-brand-emphasis, #303f9f);
+  font-weight: 600;
+}
+
+/* Color swatches */
+.ax-tweaks__color-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.ax-tweaks__swatch {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1.5px var(--ax-background-default, #fff);
+  transition: transform 120ms ease;
+}
+.ax-tweaks__swatch:hover { transform: scale(1.12); }
+.ax-tweaks__swatch.is-active { border-color: var(--ax-text-heading, #0a0a0a); }
+
+/* Slider */
+.ax-tweaks__slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px;
+  background: var(--ax-background-muted, #e4e4e7);
+  border-radius: 999px;
+  outline: none;
+  margin: 4px 0;
+}
+.ax-tweaks__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  background: var(--ax-brand-default, #3f51b5);
+  border: 2px solid var(--ax-background-default, #fff);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--ax-shadow-sm, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+}
+.ax-tweaks__slider::-moz-range-thumb {
+  width: 14px; height: 14px;
+  background: var(--ax-brand-default, #3f51b5);
+  border: 2px solid var(--ax-background-default, #fff);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--ax-shadow-sm, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+}
+
+.ax-tweaks__footer {
+  padding: 8px 16px;
+  border-top: 1px solid var(--ax-border-subtle, #e4e4e7);
+  background: var(--ax-background-page, #fafafa);
+  font-size: 10px;
+  color: var(--ax-text-subtle, #a1a1aa);
+  font-family: var(--ax-font-mono, ui-monospace, monospace);
+  text-align: center;
+}
+.ax-tweaks__footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  cursor: pointer;
+}
+
+/* Dark theme */
+[data-theme="dark"] .ax-tweaks {
+  background: #18181b;
+  border-color: #3f3f46;
+  color: #e4e4e7;
+}
+[data-theme="dark"] .ax-tweaks__header,
+[data-theme="dark"] .ax-tweaks__footer {
+  background: #09090b;
+  border-color: #27272a;
+}
+[data-theme="dark"] .ax-tweaks__title { color: #fafafa; }
+[data-theme="dark"] .ax-tweaks__label { color: #fafafa; }
+[data-theme="dark"] .ax-tweaks__seg {
+  background: #18181b;
+  border-color: #3f3f46;
+}
+[data-theme="dark"] .ax-tweaks__swatch { box-shadow: inset 0 0 0 1.5px #18181b; }
+[data-theme="dark"] .ax-tweaks__swatch.is-active { border-color: #fafafa; }
+
+/* ── Density variants (opt-in; panel writes data-density on <html>) ── */
+[data-density="compact"]    { --ax-density-row: 32px; --ax-density-pad: 6px 10px; }
+[data-density="comfortable"]{ --ax-density-row: 40px; --ax-density-pad: 10px 14px; }
+[data-density="spacious"]   { --ax-density-row: 48px; --ax-density-pad: 14px 18px; }
+
+/* ── Elevation variants (panel writes data-elevation on <html>) ── */
+[data-elevation="flat"] .sem-card,
+[data-elevation="flat"] .tile,
+[data-elevation="flat"] .spacing-scale,
+[data-elevation="flat"] .motion-wrap,
+[data-elevation="flat"] .card,
+[data-elevation="flat"] .stat {
+  box-shadow: none !important;
+}
+[data-elevation="soft"] .sem-card,
+[data-elevation="soft"] .tile,
+[data-elevation="soft"] .card,
+[data-elevation="soft"] .stat {
+  box-shadow: var(--ax-shadow-sm);
+}
+[data-elevation="strong"] .sem-card,
+[data-elevation="strong"] .tile,
+[data-elevation="strong"] .card,
+[data-elevation="strong"] .stat {
+  box-shadow: var(--ax-shadow-lg);
+  border-color: transparent;
+}
+
+@media (max-width: 640px) {
+  .ax-tweaks, .ax-tweaks-fab { right: 10px; bottom: 10px; }
+  .ax-tweaks { width: calc(100vw - 20px); }
+}
