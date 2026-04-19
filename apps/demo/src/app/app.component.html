@@ -86,11 +86,13 @@
                 <code>.ax-field + .ax-input</code>
               </td>
               <td>
-                <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                  <mat-label>Email</mat-label>
-                  <input matInput placeholder="you@aegisx.health">
-                  <mat-hint>Case-sensitive</mat-hint>
-                </mat-form-field>
+                <label class="ax-field">
+                  <span class="ax-field__label">Email</span>
+                  <mat-form-field class="ax-mat-field" appearance="outline" subscriptSizing="dynamic">
+                    <input matInput placeholder="you@aegisx.health" aria-label="Email">
+                  </mat-form-field>
+                  <span class="ax-field__hint">Case-sensitive</span>
+                </label>
               </td>
               <td>
                 <label class="ax-field">
@@ -108,15 +110,19 @@
               </td>
               <td>
                 <div style="display:flex;gap:12px;flex-wrap:wrap">
-                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                    <mat-label>Disabled</mat-label>
-                    <input matInput disabled value="HN-99999">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="mat-form-field-invalid">
-                    <mat-label>Error</mat-label>
-                    <input matInput value="invalid@">
-                    <mat-error>Must be a valid address</mat-error>
-                  </mat-form-field>
+                  <label class="ax-field">
+                    <span class="ax-field__label">Disabled</span>
+                    <mat-form-field class="ax-mat-field" appearance="outline" subscriptSizing="dynamic">
+                      <input matInput disabled value="HN-99999" aria-label="Disabled">
+                    </mat-form-field>
+                  </label>
+                  <label class="ax-field">
+                    <span class="ax-field__label">Error</span>
+                    <mat-form-field class="ax-mat-field mat-form-field-invalid" appearance="outline" subscriptSizing="dynamic">
+                      <input matInput value="invalid@" aria-label="Error" aria-invalid="true">
+                    </mat-form-field>
+                    <span class="ax-field__hint ax-field__hint--error">Must be a valid address</span>
+                  </label>
                 </div>
               </td>
               <td>
@@ -141,10 +147,12 @@
                 <code>.ax-textarea</code>
               </td>
               <td>
-                <mat-form-field appearance="outline" subscriptSizing="dynamic" style="width:100%">
-                  <mat-label>Clinical note</mat-label>
-                  <textarea matInput rows="3" placeholder="Enter observation…"></textarea>
-                </mat-form-field>
+                <label class="ax-field" style="width:100%">
+                  <span class="ax-field__label">Clinical note</span>
+                  <mat-form-field class="ax-mat-field" appearance="outline" subscriptSizing="dynamic" style="width:100%">
+                    <textarea matInput rows="3" placeholder="Enter observation…" aria-label="Clinical note"></textarea>
+                  </mat-form-field>
+                </label>
               </td>
               <td>
                 <label class="ax-field" style="width:100%">
@@ -161,23 +169,28 @@
                 <code>.ax-select</code>
               </td>
               <td>
-                <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                  <mat-label>Department</mat-label>
-                  <mat-select>
-                    @for (opt of departmentOptions; track opt) {
-                      <mat-option [value]="opt">{{ opt }}</mat-option>
-                    }
-                  </mat-select>
-                </mat-form-field>
+                <label class="ax-field">
+                  <span class="ax-field__label">Department</span>
+                  <mat-form-field class="ax-mat-field" appearance="outline" subscriptSizing="dynamic">
+                    <mat-select aria-label="Department" placeholder="Select">
+                      @for (opt of departmentOptions; track opt) {
+                        <mat-option [value]="opt">{{ opt }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </label>
               </td>
               <td>
-                <div class="ax-select">
-                  <select>
-                    @for (opt of departmentOptions; track opt) {
-                      <option>{{ opt }}</option>
-                    }
-                  </select>
-                </div>
+                <label class="ax-field">
+                  <span class="ax-field__label">Department</span>
+                  <div class="ax-select">
+                    <select>
+                      @for (opt of departmentOptions; track opt) {
+                        <option>{{ opt }}</option>
+                      }
+                    </select>
+                  </div>
+                </label>
               </td>
             </tr>
 
@@ -188,25 +201,23 @@
                 <code>.ax-autocomplete</code>
               </td>
               <td>
-                <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                  <mat-label>Search dept</mat-label>
-                  <input matInput [matAutocomplete]="auto" (input)="filterAutocomplete(($any($event.target)).value)">
-                  <mat-autocomplete #auto>
-                    @for (opt of autocompleteFiltered(); track opt) {
-                      <mat-option [value]="opt">{{ opt }}</mat-option>
-                    }
-                  </mat-autocomplete>
-                </mat-form-field>
+                <label class="ax-field">
+                  <span class="ax-field__label">Search dept</span>
+                  <mat-form-field class="ax-mat-field" appearance="outline" subscriptSizing="dynamic">
+                    <input matInput placeholder="Search dept…" [matAutocomplete]="auto" aria-label="Search dept" (input)="filterAutocomplete(($any($event.target)).value)">
+                    <mat-autocomplete #auto>
+                      @for (opt of autocompleteFiltered(); track opt) {
+                        <mat-option [value]="opt">{{ opt }}</mat-option>
+                      }
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </label>
               </td>
               <td>
-                <div class="ax-autocomplete">
+                <label class="ax-field">
+                  <span class="ax-field__label">Search dept</span>
                   <input class="ax-input" placeholder="Search dept…">
-                  <div class="ax-autocomplete__panel" style="position:relative;top:4px">
-                    <div class="ax-option"><mark>Card</mark>iology</div>
-                    <div class="ax-option">Orthopedics</div>
-                    <div class="ax-option">Pharmacy</div>
-                  </div>
-                </div>
+                </label>
               </td>
             </tr>
 
@@ -218,10 +229,10 @@
               </td>
               <td>
                 <div style="display:flex;flex-direction:column;gap:6px">
-                  <mat-checkbox checked>Checked</mat-checkbox>
-                  <mat-checkbox [indeterminate]="true">Indeterminate</mat-checkbox>
-                  <mat-checkbox>Unchecked</mat-checkbox>
-                  <mat-checkbox disabled checked>Disabled</mat-checkbox>
+                  <mat-checkbox color="primary" checked>Checked</mat-checkbox>
+                  <mat-checkbox color="primary" [indeterminate]="true">Indeterminate</mat-checkbox>
+                  <mat-checkbox color="primary">Unchecked</mat-checkbox>
+                  <mat-checkbox color="primary" disabled checked>Disabled</mat-checkbox>
                 </div>
               </td>
               <td>
@@ -241,7 +252,7 @@
                 <code>.ax-radio-group</code>
               </td>
               <td>
-                <mat-radio-group value="b" style="display:flex;gap:16px">
+                <mat-radio-group color="primary" value="b" style="display:flex;gap:16px">
                   <mat-radio-button value="a">Male</mat-radio-button>
                   <mat-radio-button value="b">Female</mat-radio-button>
                   <mat-radio-button value="c" disabled>N/A</mat-radio-button>
@@ -264,9 +275,9 @@
               </td>
               <td>
                 <div style="display:flex;flex-direction:column;gap:6px">
-                  <mat-slide-toggle checked>Active</mat-slide-toggle>
-                  <mat-slide-toggle>Inactive</mat-slide-toggle>
-                  <mat-slide-toggle disabled checked>Disabled</mat-slide-toggle>
+                  <mat-slide-toggle color="primary" checked>Active</mat-slide-toggle>
+                  <mat-slide-toggle color="primary">Inactive</mat-slide-toggle>
+                  <mat-slide-toggle color="primary" disabled checked>Disabled</mat-slide-toggle>
                 </div>
               </td>
               <td>

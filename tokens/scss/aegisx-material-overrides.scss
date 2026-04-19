@@ -798,100 +798,149 @@
 .mat-badge.mat-badge--info    { --mat-badge-background-color: var(--ax-info-default);    --mat-badge-text-color: var(--ax-info-inverted); }
 
 /* ────────────────────────────────────────────────────────────
- * CHECKBOX — brand tint on, unselected border, indeterminate, disabled
+ * CHECKBOX — brand tint on, unselected border, disabled
+ *
+ * Angular Material v20 emits --mat-checkbox-* at :root (higher specificity
+ * than our .mat-mdc-checkbox wrapper). Mirror every token at :root so the
+ * theme's green (tertiary) is replaced by --ax-primary across the cascade.
+ * Legacy --mdc-* kept for backward compat with v18-.
  * ──────────────────────────────────────────────────────────── */
-.mat-mdc-checkbox {
-  /* On state */
-  --mdc-checkbox-selected-icon-color:        var(--ax-primary);
-  --mdc-checkbox-selected-focus-icon-color:  var(--ax-primary-dark);
-  --mdc-checkbox-selected-hover-icon-color:  var(--ax-primary-dark);
-  --mdc-checkbox-selected-pressed-icon-color: var(--ax-primary-dark);
-  --mdc-checkbox-selected-checkmark-color:   var(--ax-brand-inverted);
-  --mdc-checkbox-selected-hover-state-layer-color: var(--ax-primary);
-  --mdc-checkbox-selected-focus-state-layer-color: var(--ax-primary);
-  --mdc-checkbox-selected-pressed-state-layer-color: var(--ax-primary);
-  /* Off state */
-  --mdc-checkbox-unselected-icon-color:       var(--ax-border-emphasis);
-  --mdc-checkbox-unselected-focus-icon-color: var(--ax-border-emphasis);
-  --mdc-checkbox-unselected-hover-icon-color: var(--ax-text-default);
-  --mdc-checkbox-unselected-pressed-icon-color: var(--ax-text-default);
-  --mdc-checkbox-unselected-hover-state-layer-color: var(--ax-text-default);
-  --mdc-checkbox-unselected-focus-state-layer-color: var(--ax-text-default);
-  --mdc-checkbox-unselected-pressed-state-layer-color: var(--ax-text-default);
-  /* Disabled */
-  --mdc-checkbox-disabled-selected-icon-color:   var(--ax-text-disabled);
-  --mdc-checkbox-disabled-unselected-icon-color: var(--ax-text-disabled);
-  /* State layer sizing — quieter */
-  --mdc-checkbox-state-layer-size: calc(var(--ax-control-h-sm) + 4px);
-  /* Label */
-  --mat-checkbox-label-text-color: var(--ax-text-default);
-  --mat-checkbox-label-text-font: var(--ax-font-sans);
-  --mat-checkbox-label-text-size: var(--ax-text-sm-size);
+/* Default + all color attribute variants (primary / accent / warn) — make every
+   checkbox, radio, toggle render AegisX brand regardless of [color="..."] prop. */
+:root,
+.mat-primary, .mat-accent, .mat-warn,
+.mat-mdc-checkbox, .mat-mdc-checkbox.mat-primary, .mat-mdc-checkbox.mat-accent, .mat-mdc-checkbox.mat-warn,
+.mat-mdc-radio-button, .mat-mdc-radio-button.mat-primary, .mat-mdc-radio-button.mat-accent, .mat-mdc-radio-button.mat-warn,
+.mat-mdc-slide-toggle, .mat-mdc-slide-toggle.mat-primary, .mat-mdc-slide-toggle.mat-accent, .mat-mdc-slide-toggle.mat-warn {
+  --mat-checkbox-selected-icon-color:              var(--ax-primary);
+  --mat-checkbox-selected-focus-icon-color:        var(--ax-primary-dark);
+  --mat-checkbox-selected-hover-icon-color:        var(--ax-primary-dark);
+  --mat-checkbox-selected-pressed-icon-color:      var(--ax-primary-dark);
+  --mat-checkbox-selected-checkmark-color:         var(--ax-brand-inverted);
+  --mat-checkbox-selected-focus-state-layer-color: var(--ax-primary);
+  --mat-checkbox-selected-hover-state-layer-color: var(--ax-primary);
+  --mat-checkbox-selected-pressed-state-layer-color: var(--ax-primary);
+  --mat-checkbox-unselected-icon-color:          var(--ax-border-emphasis);
+  --mat-checkbox-unselected-focus-icon-color:    var(--ax-border-emphasis);
+  --mat-checkbox-unselected-hover-icon-color:    var(--ax-text-default);
+  --mat-checkbox-unselected-pressed-icon-color:  var(--ax-text-default);
+  --mat-checkbox-unselected-hover-state-layer-color:   var(--ax-text-default);
+  --mat-checkbox-unselected-focus-state-layer-color:   var(--ax-text-default);
+  --mat-checkbox-unselected-pressed-state-layer-color: var(--ax-text-default);
+  --mat-checkbox-disabled-selected-icon-color:   var(--ax-text-disabled);
+  --mat-checkbox-disabled-unselected-icon-color: var(--ax-text-disabled);
+  --mat-checkbox-disabled-selected-checkmark-color: var(--ax-background-muted);
+  --mat-checkbox-disabled-label-color:           var(--ax-text-disabled);
+  --mat-checkbox-label-text-color:       var(--ax-text-default);
+  --mat-checkbox-label-text-font:        var(--ax-font-sans);
+  --mat-checkbox-label-text-size:        var(--ax-text-sm-size);
   --mat-checkbox-label-text-line-height: var(--ax-text-sm-line);
-  --mat-checkbox-disabled-label-color: var(--ax-text-disabled);
+  --mat-checkbox-state-layer-size:       calc(var(--ax-control-h-sm) + 4px);
+}
+.mat-mdc-checkbox {
+  /* Legacy MDC token fallback (v18-) */
+  --mdc-checkbox-selected-icon-color:          var(--ax-primary);
+  --mdc-checkbox-selected-focus-icon-color:    var(--ax-primary-dark);
+  --mdc-checkbox-selected-hover-icon-color:    var(--ax-primary-dark);
+  --mdc-checkbox-selected-pressed-icon-color:  var(--ax-primary-dark);
+  --mdc-checkbox-selected-checkmark-color:     var(--ax-brand-inverted);
+  --mdc-checkbox-unselected-icon-color:        var(--ax-border-emphasis);
+  --mdc-checkbox-unselected-hover-icon-color:  var(--ax-text-default);
+  --mdc-checkbox-disabled-selected-icon-color: var(--ax-text-disabled);
+  --mdc-checkbox-state-layer-size:             calc(var(--ax-control-h-sm) + 4px);
 }
 .mat-mdc-checkbox .mdc-form-field > label { padding-inline-start: var(--ax-control-gap); }
 
 /* ────────────────────────────────────────────────────────────
- * RADIO — brand tint on, disabled label color, group spacing
+ * RADIO — :root vars so theme tertiary is overridden globally
  * ──────────────────────────────────────────────────────────── */
+:root {
+  --mat-radio-selected-icon-color:          var(--ax-primary);
+  --mat-radio-selected-focus-icon-color:    var(--ax-primary-dark);
+  --mat-radio-selected-hover-icon-color:    var(--ax-primary-dark);
+  --mat-radio-selected-pressed-icon-color:  var(--ax-primary-dark);
+  --mat-radio-unselected-icon-color:        var(--ax-border-emphasis);
+  --mat-radio-unselected-focus-icon-color:  var(--ax-border-emphasis);
+  --mat-radio-unselected-hover-icon-color:  var(--ax-text-default);
+  --mat-radio-unselected-pressed-icon-color: var(--ax-text-default);
+  --mat-radio-disabled-selected-icon-color:   var(--ax-text-disabled);
+  --mat-radio-disabled-unselected-icon-color: var(--ax-text-disabled);
+  --mat-radio-disabled-label-color:         var(--ax-text-disabled);
+  --mat-radio-checked-ripple-color:         var(--ax-primary);
+  --mat-radio-ripple-color:                 var(--ax-text-default);
+  --mat-radio-label-text-color:       var(--ax-text-default);
+  --mat-radio-label-text-font:        var(--ax-font-sans);
+  --mat-radio-label-text-size:        var(--ax-text-sm-size);
+  --mat-radio-label-text-line-height: var(--ax-text-sm-line);
+  --mat-radio-state-layer-size:       calc(var(--ax-control-h-sm) + 4px);
+}
 .mat-mdc-radio-button {
-  --mdc-radio-selected-icon-color:          var(--ax-primary);
-  --mdc-radio-selected-focus-icon-color:    var(--ax-primary-dark);
-  --mdc-radio-selected-hover-icon-color:    var(--ax-primary-dark);
-  --mdc-radio-selected-pressed-icon-color:  var(--ax-primary-dark);
-  --mdc-radio-unselected-icon-color:        var(--ax-border-emphasis);
-  --mdc-radio-unselected-focus-icon-color:  var(--ax-border-emphasis);
-  --mdc-radio-unselected-hover-icon-color:  var(--ax-text-default);
-  --mdc-radio-unselected-pressed-icon-color: var(--ax-text-default);
+  --mdc-radio-selected-icon-color:         var(--ax-primary);
+  --mdc-radio-selected-focus-icon-color:   var(--ax-primary-dark);
+  --mdc-radio-selected-hover-icon-color:   var(--ax-primary-dark);
+  --mdc-radio-selected-pressed-icon-color: var(--ax-primary-dark);
+  --mdc-radio-unselected-icon-color:       var(--ax-border-emphasis);
   --mdc-radio-disabled-selected-icon-color:   var(--ax-text-disabled);
   --mdc-radio-disabled-unselected-icon-color: var(--ax-text-disabled);
   --mdc-radio-state-layer-size: calc(var(--ax-control-h-sm) + 4px);
-  --mat-radio-label-text-color: var(--ax-text-default);
-  --mat-radio-label-text-font: var(--ax-font-sans);
-  --mat-radio-label-text-size: var(--ax-text-sm-size);
-  --mat-radio-label-text-line-height: var(--ax-text-sm-line);
-  --mat-radio-disabled-label-color: var(--ax-text-disabled);
 }
 .mat-mdc-radio-group { display: inline-flex; flex-direction: column; gap: var(--ax-spacing-sm); }
 .mat-mdc-radio-group[aria-orientation='horizontal'] { flex-direction: row; gap: var(--ax-spacing-lg); }
 
 /* ────────────────────────────────────────────────────────────
- * SLIDE-TOGGLE — brand on, subtle off, focus ring
+ * SLIDE-TOGGLE — :root vars; Material v20 uses --mat-slide-toggle-*
  * ──────────────────────────────────────────────────────────── */
-.mat-mdc-slide-toggle {
-  /* On track */
-  --mdc-switch-selected-track-color:           var(--ax-primary);
-  --mdc-switch-selected-focus-track-color:     var(--ax-primary-dark);
-  --mdc-switch-selected-hover-track-color:     var(--ax-primary-dark);
-  --mdc-switch-selected-pressed-track-color:   var(--ax-primary-dark);
-  /* On handle */
-  --mdc-switch-selected-handle-color:          var(--ax-brand-inverted);
-  --mdc-switch-selected-focus-handle-color:    var(--ax-brand-inverted);
-  --mdc-switch-selected-hover-handle-color:    var(--ax-brand-inverted);
-  --mdc-switch-selected-pressed-handle-color:  var(--ax-brand-inverted);
-  /* Off track */
-  --mdc-switch-unselected-track-color:         var(--ax-border-default);
-  --mdc-switch-unselected-focus-track-color:   var(--ax-border-emphasis);
-  --mdc-switch-unselected-hover-track-color:   var(--ax-border-emphasis);
-  --mdc-switch-unselected-pressed-track-color: var(--ax-border-emphasis);
-  /* Off handle */
-  --mdc-switch-unselected-handle-color:        var(--ax-background-default);
-  --mdc-switch-unselected-focus-handle-color:  var(--ax-background-default);
-  --mdc-switch-unselected-hover-handle-color:  var(--ax-background-default);
-  --mdc-switch-unselected-pressed-handle-color: var(--ax-background-default);
+:root {
+  /* On */
+  --mat-slide-toggle-selected-track-color:            var(--ax-primary);
+  --mat-slide-toggle-selected-focus-track-color:      var(--ax-primary-dark);
+  --mat-slide-toggle-selected-hover-track-color:      var(--ax-primary-dark);
+  --mat-slide-toggle-selected-pressed-track-color:    var(--ax-primary-dark);
+  --mat-slide-toggle-selected-handle-color:           var(--ax-brand-inverted);
+  --mat-slide-toggle-selected-focus-handle-color:     var(--ax-brand-inverted);
+  --mat-slide-toggle-selected-hover-handle-color:     var(--ax-brand-inverted);
+  --mat-slide-toggle-selected-pressed-handle-color:   var(--ax-brand-inverted);
+  --mat-slide-toggle-selected-icon-color:             var(--ax-brand-inverted);
+  --mat-slide-toggle-selected-focus-state-layer-color:   var(--ax-primary);
+  --mat-slide-toggle-selected-hover-state-layer-color:   var(--ax-primary);
+  --mat-slide-toggle-selected-pressed-state-layer-color: var(--ax-primary);
+  /* Off */
+  --mat-slide-toggle-unselected-track-color:          var(--ax-border-default);
+  --mat-slide-toggle-unselected-focus-track-color:    var(--ax-border-emphasis);
+  --mat-slide-toggle-unselected-hover-track-color:    var(--ax-border-emphasis);
+  --mat-slide-toggle-unselected-pressed-track-color:  var(--ax-border-emphasis);
+  --mat-slide-toggle-unselected-handle-color:         var(--ax-background-default);
+  --mat-slide-toggle-unselected-focus-handle-color:   var(--ax-background-default);
+  --mat-slide-toggle-unselected-hover-handle-color:   var(--ax-background-default);
+  --mat-slide-toggle-unselected-pressed-handle-color: var(--ax-background-default);
+  --mat-slide-toggle-unselected-icon-color:           var(--ax-text-secondary);
+  --mat-slide-toggle-unselected-focus-state-layer-color:   var(--ax-text-default);
+  --mat-slide-toggle-unselected-hover-state-layer-color:   var(--ax-text-default);
+  --mat-slide-toggle-unselected-pressed-state-layer-color: var(--ax-text-default);
   /* Disabled */
-  --mdc-switch-disabled-selected-track-color:  var(--ax-brand-muted);
-  --mdc-switch-disabled-unselected-track-color: var(--ax-border-subtle);
-  --mdc-switch-disabled-selected-handle-color: var(--ax-brand-inverted);
-  --mdc-switch-disabled-unselected-handle-color: var(--ax-background-muted);
-  /* State layer */
-  --mdc-switch-state-layer-size: calc(var(--ax-control-h-sm) + 4px);
-  /* Label */
-  --mat-switch-label-text-color: var(--ax-text-default);
-  --mat-switch-label-text-font: var(--ax-font-sans);
-  --mat-switch-label-text-size: var(--ax-text-sm-size);
-  --mat-switch-label-text-line-height: var(--ax-text-sm-line);
+  --mat-slide-toggle-disabled-selected-track-color:   var(--ax-brand-muted);
+  --mat-slide-toggle-disabled-unselected-track-color: var(--ax-border-subtle);
+  --mat-slide-toggle-disabled-selected-handle-color:  var(--ax-brand-inverted);
+  --mat-slide-toggle-disabled-unselected-handle-color: var(--ax-background-muted);
+  --mat-slide-toggle-disabled-selected-icon-color:    var(--ax-background-default);
+  --mat-slide-toggle-disabled-unselected-icon-color:  var(--ax-text-disabled);
+  --mat-slide-toggle-disabled-label-text-color:       var(--ax-text-disabled);
+  /* Labels */
+  --mat-slide-toggle-label-text-color:       var(--ax-text-default);
+  --mat-slide-toggle-label-text-font:        var(--ax-font-sans);
+  --mat-slide-toggle-label-text-size:        var(--ax-text-sm-size);
+  --mat-slide-toggle-label-text-line-height: var(--ax-text-sm-line);
+  --mat-slide-toggle-state-layer-size:       calc(var(--ax-control-h-sm) + 4px);
+}
+.mat-mdc-slide-toggle {
+  /* Legacy MDC fallbacks */
+  --mdc-switch-selected-track-color:         var(--ax-primary);
+  --mdc-switch-selected-hover-track-color:   var(--ax-primary-dark);
+  --mdc-switch-selected-focus-track-color:   var(--ax-primary-dark);
+  --mdc-switch-selected-pressed-track-color: var(--ax-primary-dark);
+  --mdc-switch-selected-handle-color:        var(--ax-brand-inverted);
+  --mdc-switch-unselected-track-color:       var(--ax-border-default);
+  --mdc-switch-unselected-handle-color:      var(--ax-background-default);
 }
 /* Focus ring on toggle track */
 .mat-mdc-slide-toggle.cdk-focused .mdc-switch__track {
