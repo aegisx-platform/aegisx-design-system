@@ -223,6 +223,45 @@
 }
 
 /* ────────────────────────────────────────────────────────────
+ * AUTOCOMPLETE PANEL — same style system as select, plus highlight
+ * ──────────────────────────────────────────────────────────── */
+.mat-mdc-autocomplete-panel {
+  --mat-autocomplete-container-shape: var(--ax-radius-md);
+  --mat-autocomplete-background-color: var(--ax-background-default);
+  padding: var(--ax-spacing-xs) 0;
+  max-height: 320px;
+  font-family: var(--ax-font-sans);
+}
+.mat-mdc-autocomplete-panel .mat-mdc-option {
+  --mat-option-label-text-color: var(--ax-text-default);
+  --mat-option-selected-state-label-text-color: var(--ax-brand-emphasis);
+  --mat-option-selected-state-layer-color: var(--ax-brand-faint);
+  --mat-option-focus-state-layer-color: var(--ax-background-subtle);
+  --mat-option-hover-state-layer-color: var(--ax-background-subtle);
+  font-size: var(--ax-text-sm-size);
+  line-height: var(--ax-text-sm-line);
+  min-height: var(--ax-control-h-sm);
+  padding: 0 var(--ax-control-pad-x);
+}
+.mat-mdc-autocomplete-panel .mat-mdc-optgroup-label {
+  font-size: var(--ax-text-xs-size);
+  color: var(--ax-text-subtle);
+  font-weight: var(--ax-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-wide);
+  padding: var(--ax-spacing-sm) var(--ax-control-pad-x) var(--ax-spacing-xs);
+}
+/* Match highlight — consumer wraps matched substring in <mark> or .ax-match */
+.mat-mdc-autocomplete-panel mark,
+.mat-mdc-autocomplete-panel .ax-match {
+  background: var(--ax-warning-faint);
+  color: var(--ax-warning-emphasis);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: var(--ax-font-weight-semibold);
+}
+
+/* ────────────────────────────────────────────────────────────
  * TABLE — header bg + row hover per skill
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-table {
@@ -303,22 +342,106 @@
 }
 
 /* ────────────────────────────────────────────────────────────
- * CHECKBOX / RADIO / SLIDE-TOGGLE — brand-colored on
+ * CHECKBOX — brand tint on, unselected border, indeterminate, disabled
  * ──────────────────────────────────────────────────────────── */
 .mat-mdc-checkbox {
-  --mdc-checkbox-selected-icon-color: var(--ax-primary);
-  --mdc-checkbox-selected-focus-icon-color: var(--ax-primary-dark);
-  --mdc-checkbox-selected-hover-icon-color: var(--ax-primary-dark);
+  /* On state */
+  --mdc-checkbox-selected-icon-color:        var(--ax-primary);
+  --mdc-checkbox-selected-focus-icon-color:  var(--ax-primary-dark);
+  --mdc-checkbox-selected-hover-icon-color:  var(--ax-primary-dark);
+  --mdc-checkbox-selected-pressed-icon-color: var(--ax-primary-dark);
+  --mdc-checkbox-selected-checkmark-color:   var(--ax-brand-inverted);
+  --mdc-checkbox-selected-hover-state-layer-color: var(--ax-primary);
+  --mdc-checkbox-selected-focus-state-layer-color: var(--ax-primary);
+  --mdc-checkbox-selected-pressed-state-layer-color: var(--ax-primary);
+  /* Off state */
+  --mdc-checkbox-unselected-icon-color:       var(--ax-border-emphasis);
+  --mdc-checkbox-unselected-focus-icon-color: var(--ax-border-emphasis);
+  --mdc-checkbox-unselected-hover-icon-color: var(--ax-text-default);
+  --mdc-checkbox-unselected-pressed-icon-color: var(--ax-text-default);
+  --mdc-checkbox-unselected-hover-state-layer-color: var(--ax-text-default);
+  --mdc-checkbox-unselected-focus-state-layer-color: var(--ax-text-default);
+  --mdc-checkbox-unselected-pressed-state-layer-color: var(--ax-text-default);
+  /* Disabled */
+  --mdc-checkbox-disabled-selected-icon-color:   var(--ax-text-disabled);
+  --mdc-checkbox-disabled-unselected-icon-color: var(--ax-text-disabled);
+  /* State layer sizing — quieter */
+  --mdc-checkbox-state-layer-size: calc(var(--ax-control-h-sm) + 4px);
+  /* Label */
+  --mat-checkbox-label-text-color: var(--ax-text-default);
+  --mat-checkbox-label-text-font: var(--ax-font-sans);
+  --mat-checkbox-label-text-size: var(--ax-text-sm-size);
+  --mat-checkbox-label-text-line-height: var(--ax-text-sm-line);
+  --mat-checkbox-disabled-label-color: var(--ax-text-disabled);
 }
+.mat-mdc-checkbox .mdc-form-field > label { padding-inline-start: var(--ax-control-gap); }
+
+/* ────────────────────────────────────────────────────────────
+ * RADIO — brand tint on, disabled label color, group spacing
+ * ──────────────────────────────────────────────────────────── */
 .mat-mdc-radio-button {
-  --mdc-radio-selected-icon-color: var(--ax-primary);
-  --mdc-radio-selected-focus-icon-color: var(--ax-primary-dark);
+  --mdc-radio-selected-icon-color:          var(--ax-primary);
+  --mdc-radio-selected-focus-icon-color:    var(--ax-primary-dark);
+  --mdc-radio-selected-hover-icon-color:    var(--ax-primary-dark);
+  --mdc-radio-selected-pressed-icon-color:  var(--ax-primary-dark);
+  --mdc-radio-unselected-icon-color:        var(--ax-border-emphasis);
+  --mdc-radio-unselected-focus-icon-color:  var(--ax-border-emphasis);
+  --mdc-radio-unselected-hover-icon-color:  var(--ax-text-default);
+  --mdc-radio-unselected-pressed-icon-color: var(--ax-text-default);
+  --mdc-radio-disabled-selected-icon-color:   var(--ax-text-disabled);
+  --mdc-radio-disabled-unselected-icon-color: var(--ax-text-disabled);
+  --mdc-radio-state-layer-size: calc(var(--ax-control-h-sm) + 4px);
+  --mat-radio-label-text-color: var(--ax-text-default);
+  --mat-radio-label-text-font: var(--ax-font-sans);
+  --mat-radio-label-text-size: var(--ax-text-sm-size);
+  --mat-radio-label-text-line-height: var(--ax-text-sm-line);
+  --mat-radio-disabled-label-color: var(--ax-text-disabled);
 }
+.mat-mdc-radio-group { display: inline-flex; flex-direction: column; gap: var(--ax-spacing-sm); }
+.mat-mdc-radio-group[aria-orientation='horizontal'] { flex-direction: row; gap: var(--ax-spacing-lg); }
+
+/* ────────────────────────────────────────────────────────────
+ * SLIDE-TOGGLE — brand on, subtle off, focus ring
+ * ──────────────────────────────────────────────────────────── */
 .mat-mdc-slide-toggle {
-  --mdc-switch-selected-track-color: var(--ax-primary);
-  --mdc-switch-selected-focus-track-color: var(--ax-primary-dark);
-  --mdc-switch-selected-hover-track-color: var(--ax-primary-dark);
-  --mdc-switch-selected-pressed-track-color: var(--ax-primary-dark);
+  /* On track */
+  --mdc-switch-selected-track-color:           var(--ax-primary);
+  --mdc-switch-selected-focus-track-color:     var(--ax-primary-dark);
+  --mdc-switch-selected-hover-track-color:     var(--ax-primary-dark);
+  --mdc-switch-selected-pressed-track-color:   var(--ax-primary-dark);
+  /* On handle */
+  --mdc-switch-selected-handle-color:          var(--ax-brand-inverted);
+  --mdc-switch-selected-focus-handle-color:    var(--ax-brand-inverted);
+  --mdc-switch-selected-hover-handle-color:    var(--ax-brand-inverted);
+  --mdc-switch-selected-pressed-handle-color:  var(--ax-brand-inverted);
+  /* Off track */
+  --mdc-switch-unselected-track-color:         var(--ax-border-default);
+  --mdc-switch-unselected-focus-track-color:   var(--ax-border-emphasis);
+  --mdc-switch-unselected-hover-track-color:   var(--ax-border-emphasis);
+  --mdc-switch-unselected-pressed-track-color: var(--ax-border-emphasis);
+  /* Off handle */
+  --mdc-switch-unselected-handle-color:        var(--ax-background-default);
+  --mdc-switch-unselected-focus-handle-color:  var(--ax-background-default);
+  --mdc-switch-unselected-hover-handle-color:  var(--ax-background-default);
+  --mdc-switch-unselected-pressed-handle-color: var(--ax-background-default);
+  /* Disabled */
+  --mdc-switch-disabled-selected-track-color:  var(--ax-brand-muted);
+  --mdc-switch-disabled-unselected-track-color: var(--ax-border-subtle);
+  --mdc-switch-disabled-selected-handle-color: var(--ax-brand-inverted);
+  --mdc-switch-disabled-unselected-handle-color: var(--ax-background-muted);
+  /* State layer */
+  --mdc-switch-state-layer-size: calc(var(--ax-control-h-sm) + 4px);
+  /* Label */
+  --mat-switch-label-text-color: var(--ax-text-default);
+  --mat-switch-label-text-font: var(--ax-font-sans);
+  --mat-switch-label-text-size: var(--ax-text-sm-size);
+  --mat-switch-label-text-line-height: var(--ax-text-sm-line);
+}
+/* Focus ring on toggle track */
+.mat-mdc-slide-toggle.cdk-focused .mdc-switch__track {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+  border-radius: 999px;
 }
 
 /* ────────────────────────────────────────────────────────────

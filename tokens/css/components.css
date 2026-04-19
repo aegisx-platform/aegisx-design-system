@@ -763,23 +763,37 @@
 }
 .ax-toggle__track {
   width: 100%; height: 100%;
-  background: var(--ax-color-zinc-300);
+  background: var(--ax-border-default);
   border-radius: var(--ax-radius-full);
   transition: background var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
+.ax-toggle:hover .ax-toggle__track { background: var(--ax-border-emphasis); }
 .ax-toggle__thumb {
   position: absolute;
   top: 2px; left: 2px;
   width: 16px; height: 16px;
-  background: #fff;
+  background: var(--ax-background-default);
   border-radius: var(--ax-radius-full);
   box-shadow: var(--ax-shadow-xs);
   transition: transform var(--ax-duration-fast) var(--ax-easing-easeOut);
 }
 .ax-toggle input:checked ~ .ax-toggle__track { background: var(--ax-primary); }
+.ax-toggle:hover input:checked ~ .ax-toggle__track { background: var(--ax-primary-dark); }
 .ax-toggle input:checked ~ .ax-toggle__thumb { transform: translateX(16px); }
-.ax-toggle input:focus-visible ~ .ax-toggle__track { box-shadow: var(--ax-focus-ring); }
-.ax-toggle input:disabled ~ .ax-toggle__track { opacity: 0.5; cursor: not-allowed; }
+.ax-toggle input:focus-visible ~ .ax-toggle__track {
+  outline: var(--ax-focus-ring-width) solid var(--ax-border-focus);
+  outline-offset: var(--ax-focus-ring-offset);
+}
+.ax-toggle input:disabled ~ .ax-toggle__track { opacity: var(--ax-opacity-disabled); cursor: not-allowed; }
+.ax-toggle input:disabled ~ .ax-toggle__thumb { cursor: not-allowed; }
+
+/* Size variants */
+.ax-toggle--sm { width: 28px; height: 16px; }
+.ax-toggle--sm .ax-toggle__thumb { width: 12px; height: 12px; }
+.ax-toggle--sm input:checked ~ .ax-toggle__thumb { transform: translateX(12px); }
+.ax-toggle--lg { width: 44px; height: 24px; }
+.ax-toggle--lg .ax-toggle__thumb { width: 20px; height: 20px; }
+.ax-toggle--lg input:checked ~ .ax-toggle__thumb { transform: translateX(20px); }
 
 /* ────────────────────────────────────────────────────────────
  * TOOLTIP  ·  mat-tooltip · CSS-only via data-tooltip attr
@@ -885,12 +899,35 @@
   border-color: var(--ax-primary);
 }
 .ax-checkbox input:checked ~ .ax-checkbox__box::after {
-  border-left-color: #fff;
-  border-bottom-color: #fff;
+  border-left-color: var(--ax-brand-inverted);
+  border-bottom-color: var(--ax-brand-inverted);
 }
+/* Indeterminate state — flat horizontal bar instead of check */
+.ax-checkbox input:indeterminate ~ .ax-checkbox__box,
+.ax-checkbox[data-indeterminate='true'] .ax-checkbox__box {
+  background: var(--ax-primary);
+  border-color: var(--ax-primary);
+}
+.ax-checkbox input:indeterminate ~ .ax-checkbox__box::after,
+.ax-checkbox[data-indeterminate='true'] .ax-checkbox__box::after {
+  width: 10px; height: 0;
+  border-left: 0;
+  border-bottom: 2px solid var(--ax-brand-inverted);
+  transform: none;
+}
+.ax-checkbox:hover .ax-checkbox__box { border-color: var(--ax-text-default); }
 .ax-checkbox input:focus-visible ~ .ax-checkbox__box { outline: var(--ax-focus-ring-width) solid var(--ax-focus-ring-color); outline-offset: var(--ax-focus-ring-offset); }
-.ax-checkbox input:disabled ~ .ax-checkbox__box { opacity: 0.4; cursor: not-allowed; }
+.ax-checkbox input:disabled ~ .ax-checkbox__box { opacity: var(--ax-opacity-disabled); cursor: not-allowed; background: var(--ax-background-muted); border-color: var(--ax-border-default); }
 .ax-checkbox input:disabled ~ span { color: var(--ax-text-disabled); }
+/* Error state */
+.ax-checkbox--error .ax-checkbox__box,
+.ax-checkbox[aria-invalid='true'] .ax-checkbox__box { border-color: var(--ax-error-default); }
+.ax-checkbox--error input:checked ~ .ax-checkbox__box,
+.ax-checkbox[aria-invalid='true'] input:checked ~ .ax-checkbox__box { background: var(--ax-error-default); border-color: var(--ax-error-default); }
+
+/* Group wrapper for vertical or horizontal layout */
+.ax-checkbox-group { display: inline-flex; flex-direction: column; gap: var(--ax-spacing-sm); }
+.ax-checkbox-group--horizontal { flex-direction: row; gap: var(--ax-spacing-lg); }
 
 /* ────────────────────────────────────────────────────────────
  * RADIO  ·  mat-radio-button · styled, hides native input
@@ -929,9 +966,20 @@
   background: transparent;
   transition: background 150ms ease;
 }
+.ax-radio:hover .ax-radio__dot { border-color: var(--ax-text-default); }
 .ax-radio input:checked ~ .ax-radio__dot { border-color: var(--ax-primary); }
 .ax-radio input:checked ~ .ax-radio__dot::after { background: var(--ax-primary); }
 .ax-radio input:focus-visible ~ .ax-radio__dot { outline: var(--ax-focus-ring-width) solid var(--ax-focus-ring-color); outline-offset: var(--ax-focus-ring-offset); }
+.ax-radio input:disabled ~ .ax-radio__dot { opacity: var(--ax-opacity-disabled); cursor: not-allowed; background: var(--ax-background-muted); border-color: var(--ax-border-default); }
+.ax-radio input:disabled ~ span { color: var(--ax-text-disabled); }
+.ax-radio--error .ax-radio__dot,
+.ax-radio[aria-invalid='true'] .ax-radio__dot { border-color: var(--ax-error-default); }
+.ax-radio--error input:checked ~ .ax-radio__dot::after,
+.ax-radio[aria-invalid='true'] input:checked ~ .ax-radio__dot::after { background: var(--ax-error-default); }
+
+/* Group — vertical (default) or horizontal */
+.ax-radio-group { display: inline-flex; flex-direction: column; gap: var(--ax-spacing-sm); }
+.ax-radio-group--horizontal { flex-direction: row; gap: var(--ax-spacing-lg); }
 .ax-radio input:disabled ~ .ax-radio__dot { opacity: 0.4; cursor: not-allowed; }
 
 /* ────────────────────────────────────────────────────────────
@@ -1022,6 +1070,62 @@
   color: var(--ax-text-subtle);
   text-transform: uppercase;
   letter-spacing: var(--ax-tracking-wide);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * AUTOCOMPLETE — input + floating results panel
+ * Markup:
+ *   <div class="ax-autocomplete" role="combobox">
+ *     <input class="ax-input" aria-autocomplete="list" aria-controls="opts">
+ *     <div class="ax-autocomplete__panel" id="opts" role="listbox">
+ *       <div class="ax-option" role="option">Patient HN-01234 — <mark>สม</mark>ชาย</div>
+ *     </div>
+ *   </div>
+ * Panel visibility is consumer-controlled (`hidden` attribute or display toggle).
+ * ──────────────────────────────────────────────────────────── */
+.ax-autocomplete {
+  position: relative;
+  display: block;
+}
+.ax-autocomplete__panel {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  top: calc(100% + 4px);
+  z-index: var(--ax-z-dropdown);
+  background: var(--ax-background-default);
+  border: 1px solid var(--ax-border-default);
+  border-radius: var(--ax-radius-md);
+  box-shadow: var(--ax-shadow-md);
+  padding: var(--ax-spacing-xs) 0;
+  max-height: 320px;
+  overflow-y: auto;
+  font-family: var(--ax-font-sans);
+}
+.ax-autocomplete__panel[hidden] { display: none; }
+.ax-autocomplete__empty {
+  padding: var(--ax-spacing-md);
+  color: var(--ax-text-subtle);
+  font-size: var(--ax-text-sm-size);
+  text-align: center;
+}
+.ax-autocomplete__footer {
+  padding: var(--ax-spacing-sm) var(--ax-control-pad-x);
+  border-top: 1px solid var(--ax-border-subtle);
+  color: var(--ax-text-subtle);
+  font-size: var(--ax-text-xs-size);
+  display: flex;
+  align-items: center;
+  gap: var(--ax-control-gap);
+}
+/* Highlighted match inside an option (wrap substring in <mark> or .ax-match) */
+.ax-option mark,
+.ax-option .ax-match {
+  background: var(--ax-warning-faint);
+  color: var(--ax-warning-emphasis);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: var(--ax-font-weight-semibold);
 }
 
 /* ────────────────────────────────────────────────────────────
