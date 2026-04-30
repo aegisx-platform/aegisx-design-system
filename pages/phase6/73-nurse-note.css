@@ -1,0 +1,82 @@
+/* #73 Nurse's note · Focus / DAR */
+.nn{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.nn__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px;}
+.nn__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.nn__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.nn__filter{ display:flex; gap:0; border:1px solid var(--ax-border-default); border-radius:5px; overflow:hidden; padding:1px; background:var(--ax-background-subtle);}
+.nn__filter-tab{ padding:3px 8px; font-size:10px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); border-radius:3px; cursor:default;}
+.nn__filter-tab--on{ background:var(--ax-background-default); color:var(--ax-text-heading); font-weight:600;}
+
+.nn__shift{ display:flex; justify-content:space-between; align-items:center; padding:6px 16px; background:var(--ax-background-muted); font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-default); font-weight:600; border-bottom:1px solid var(--ax-border-subtle);}
+.nn__shift strong{ color:var(--ax-text-heading);}
+.nn__shift-meta{ display:flex; gap:14px; align-items:center; font-weight:400;}
+
+/* Note entry */
+.nn__entry{ display:grid; grid-template-columns: 78px 130px 1fr 90px; gap:0; border-bottom:1px solid var(--ax-border-subtle); align-items:stretch;}
+.nn__entry:last-child{ border-bottom:none;}
+.nn__entry > *{ padding:10px 12px;}
+
+.nn__time{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-subtle); background:var(--ax-background-subtle); border-right:1px solid var(--ax-border-subtle); display:flex; flex-direction:column; align-items:flex-start; gap:1px; justify-content:flex-start;}
+.nn__time strong{ color:var(--ax-text-heading); font-size:13px;}
+.nn__date{ font-size:9px; opacity:0.8; text-transform:uppercase; letter-spacing:0.06em;}
+
+/* Focus column */
+.nn__focus{ border-right:1px solid var(--ax-border-subtle); display:flex; flex-direction:column; gap:5px; align-items:flex-start;}
+.nn__focus-cat{ font-size:9px; text-transform:uppercase; letter-spacing:0.08em; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); font-weight:600;}
+.nn__focus-name{ font-size:12px; font-weight:600; color:var(--ax-text-heading); line-height:1.4;}
+.nn__focus-tag{ font-family:var(--ax-font-mono); font-size:9px; padding:1px 5px; border-radius:3px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.nn__focus-tag--problem{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.nn__focus-tag--event{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.nn__focus-tag--routine{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.nn__focus-tag--goal{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.nn__focus-icd{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle);}
+
+/* DAR rows */
+.nn__dar{ display:flex; flex-direction:column; gap:8px;}
+.nn__dar-row{ display:grid; grid-template-columns: 24px 1fr; gap:8px; align-items:flex-start;}
+.nn__dar-letter{ width:22px; height:22px; border-radius:5px; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700; flex-shrink:0; line-height:1;}
+.nn__dar-letter--D{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.nn__dar-letter--A{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.nn__dar-letter--R{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.nn__dar-text{ font-size:12px; color:var(--ax-text-default); line-height:1.6; padding-top:2px;}
+.nn__dar-text strong{ color:var(--ax-text-heading); font-weight:600;}
+
+/* Quote */
+.nn__quote{ display:block; padding:6px 10px; border-left:3px solid var(--ax-border-default); margin:4px 0; color:var(--ax-text-default); font-style:italic; font-size:11px; line-height:1.5;}
+
+/* Inline data tokens (vital values, scores) */
+.nn__tok{ display:inline-flex; gap:3px; align-items:baseline; padding:1px 5px; background:var(--ax-info-subtle); color:var(--ax-info-emphasis); border-radius:3px; font-family:var(--ax-font-mono); font-size:11px; font-weight:500; vertical-align:baseline;}
+.nn__tok--alert{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.nn__tok--ok{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.nn__tok--warn{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+
+/* Author */
+.nn__sig{ display:flex; flex-direction:column; align-items:flex-start; gap:2px; border-left:1px solid var(--ax-border-subtle); justify-content:flex-start;}
+.nn__sig-name{ font-size:11px; color:var(--ax-text-heading); font-weight:600; line-height:1.3;}
+.nn__sig-role{ font-size:9px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); text-transform:uppercase; letter-spacing:0.04em;}
+.nn__sig-time{ font-size:9px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.nn__sig-cosign{ display:inline-flex; align-items:center; gap:3px; margin-top:4px; font-size:9px; padding:1px 5px; border-radius:3px; background:var(--ax-success-subtle); color:var(--ax-success-emphasis); font-family:var(--ax-font-mono); font-weight:600;}
+
+/* Variants */
+.nn__entry--problem{ background:var(--ax-error-subtle);}
+.nn__entry--event{ background:var(--ax-warning-subtle);}
+.nn__entry--amend{ opacity:0.7;}
+.nn__amend-note{ font-size:9px; color:var(--ax-warning-emphasis); font-family:var(--ax-font-mono); font-weight:600; margin-top:6px; padding:3px 6px; background:var(--ax-warning-subtle); border-radius:3px; display:inline-block;}
+
+/* Routine vital signs row */
+.nn__vitals{ display:flex; flex-wrap:wrap; gap:6px; padding:6px 0 2px 0; font-family:var(--ax-font-mono); font-size:11px;}
+.nn__vit-pill{ display:inline-flex; gap:4px; padding:2px 7px; background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:4px;}
+.nn__vit-pill strong{ color:var(--ax-text-heading); font-weight:600;}
+
+.nn__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-subtle); flex-wrap:wrap; gap:10px;}
+.nn__foot-stats{ display:flex; gap:14px; font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-subtle); flex-wrap:wrap;}
+.nn__foot-stats strong{ color:var(--ax-text-heading);}
+.nn__btn-row{ display:flex; gap:6px;}
+.nn__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.nn__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width: 720px){
+  .nn__entry{ grid-template-columns: 60px 1fr; }
+  .nn__focus, .nn__sig{ grid-column: 1 / -1; border-right:none; border-left:none; padding-top:4px;}
+  .nn__sig{ padding-top:6px; flex-direction:row; flex-wrap:wrap; gap:8px; align-items:center;}
+}

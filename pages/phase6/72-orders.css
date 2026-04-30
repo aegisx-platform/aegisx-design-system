@@ -1,0 +1,64 @@
+/* #72 Doctor's order sheet */
+.dos{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.dos__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px;}
+.dos__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.dos__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.dos__action-row{ display:flex; gap:6px; align-items:center;}
+.dos__filter{ display:flex; gap:0; border:1px solid var(--ax-border-default); border-radius:5px; overflow:hidden; padding:1px; background:var(--ax-background-subtle);}
+.dos__filter-tab{ padding:3px 8px; font-size:10px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); border-radius:3px; cursor:default;}
+.dos__filter-tab--on{ background:var(--ax-background-default); color:var(--ax-text-heading); font-weight:600;}
+
+.dos__day{ border-bottom:1px solid var(--ax-border-default);}
+.dos__day:last-child{ border-bottom:none;}
+.dos__day-h{ display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:var(--ax-background-muted); font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-default); font-weight:600;}
+.dos__day-h strong{ color:var(--ax-text-heading);}
+
+.dos__order{ display:grid; grid-template-columns: 70px 36px 1fr 100px 110px 90px; gap:0; padding:0; border-bottom:1px solid var(--ax-border-subtle); align-items:stretch;}
+.dos__order:last-child{ border-bottom:none;}
+.dos__order > *{ padding:8px 10px; display:flex; align-items:center;}
+.dos__time{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-subtle); background:var(--ax-background-subtle); border-right:1px solid var(--ax-border-subtle); flex-direction:column; align-items:flex-start; gap:1px; justify-content:center;}
+.dos__time strong{ color:var(--ax-text-heading); font-size:12px;}
+.dos__cat{ width:36px; height:36px; border-radius:6px; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; align-self:center; margin:auto;}
+.dos__cat-cell{ padding:6px; justify-content:center;}
+.dos__cat--med{ background:var(--ax-cat-med-emphasis); color:var(--ax-cat-med-fg);}
+.dos__cat--lab{ background:var(--ax-cat-lab-emphasis); color:var(--ax-cat-lab-fg);}
+.dos__cat--img{ background:var(--ax-cat-imaging-emphasis); color:var(--ax-cat-imaging-fg);}
+.dos__cat--diet{ background:var(--ax-cat-diet-emphasis); color:var(--ax-cat-diet-fg);}
+.dos__cat--act{ background:var(--ax-cat-activity-emphasis); color:var(--ax-cat-activity-fg);}
+.dos__cat--cons{ background:var(--ax-cat-consult-emphasis); color:var(--ax-cat-consult-fg);}
+.dos__cat--proc{ background:var(--ax-cat-procedure-emphasis); color:var(--ax-cat-procedure-fg);}
+.dos__cat--vit{ background:var(--ax-cat-vital-emphasis); color:var(--ax-cat-vital-fg);}
+
+.dos__detail{ flex-direction:column; align-items:flex-start; gap:2px; padding-right:8px;}
+.dos__name{ font-size:12px; font-weight:600; color:var(--ax-text-heading); display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+.dos__name-sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); line-height:1.5;}
+.dos__pill{ font-family:var(--ax-font-mono); font-size:9px; padding:1px 5px; border-radius:3px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.dos__pill--stat{ background:var(--ax-error-emphasis); color:var(--ax-error-inverted);}
+.dos__pill--now{ background:var(--ax-warning-emphasis); color:var(--ax-warning-inverted);}
+.dos__pill--routine{ background:var(--ax-background-muted); color:var(--ax-text-default); border:1px solid var(--ax-border-default);}
+.dos__pill--prn{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.dos__pill--new{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.dos__pill--dc{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis); text-decoration:line-through;}
+
+.dos__priority{ font-family:var(--ax-font-mono); font-size:10px; justify-content:center;}
+.dos__status{ font-family:var(--ax-font-mono); font-size:10px; flex-direction:column; align-items:flex-start; gap:1px; justify-content:center; line-height:1.3;}
+.dos__status-tag{ font-weight:600; padding:1px 5px; border-radius:3px; font-size:9px; text-transform:uppercase; letter-spacing:0.04em;}
+.dos__status-tag--ack{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.dos__status-tag--exec{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.dos__status-tag--done{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.dos__status-tag--pend{ background:var(--ax-background-muted); color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+
+.dos__sig{ flex-direction:column; align-items:flex-start; justify-content:center; gap:1px;}
+.dos__sig-name{ font-size:11px; color:var(--ax-text-heading); font-weight:600;}
+.dos__sig-meta{ font-size:9px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+
+.dos__order--dc{ opacity:0.55;}
+.dos__order--stat{ background:var(--ax-error-subtle);}
+.dos__order--new{ background:var(--ax-success-subtle);}
+
+.dos__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-subtle); flex-wrap:wrap; gap:10px;}
+.dos__legend{ display:flex; gap:10px; flex-wrap:wrap;}
+.dos__legend-item{ display:inline-flex; gap:4px; align-items:center; font-size:10px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.dos__legend-dot{ width:10px; height:10px; border-radius:3px;}
+.dos__btn{ padding:6px 12px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.dos__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}

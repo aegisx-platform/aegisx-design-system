@@ -1,0 +1,24 @@
+/* AegisX DS · Phase 5 — base/shared */
+
+/* small clinical helpers shared across components */
+.cx-row{ display:flex; align-items:center; gap:8px; }
+.cx-mono{ font-family:var(--ax-font-mono); }
+.cx-tag{
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:10px; font-family:var(--ax-font-mono);
+  padding:2px 7px; border-radius:999px;
+  background:var(--ax-background-subtle);
+  color:var(--ax-text-default);
+  border:1px solid var(--ax-border-default);
+  white-space:nowrap;
+}
+.cx-tag--red   { background:var(--ax-error-subtle);   color:var(--ax-error-emphasis);   border-color:transparent; }
+.cx-tag--amber { background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); border-color:transparent; }
+.cx-tag--green { background:var(--ax-success-subtle); color:var(--ax-success-emphasis); border-color:transparent; }
+.cx-tag--blue  { background:var(--ax-info-subtle);    color:var(--ax-info-emphasis);    border-color:transparent; }
+.cx-tag--solid-red{ background:var(--ax-error-emphasis); color:var(--ax-text-inverted); border-color:transparent; }
+.cx-tag--solid-amber{ background:var(--ax-warning-emphasis); color:var(--ax-text-inverted); border-color:transparent; }
+
+.cx-arrow-up   { color:var(--ax-error-emphasis); }
+.cx-arrow-down { color:var(--ax-info-emphasis); }
+.cx-arrow-flat { color:var(--ax-text-subtle); }

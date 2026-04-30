@@ -1,0 +1,64 @@
+/* #71 Admission record */
+.adm{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden; max-width:920px;}
+.adm__head{ display:grid; grid-template-columns: 1fr auto; gap:14px; padding:12px 18px; border-bottom:2px solid var(--ax-text-heading); background:var(--ax-background-subtle); align-items:center;}
+.adm__brand{ display:flex; gap:10px; align-items:center;}
+.adm__logo{ width:38px; height:38px; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; border-radius:6px; font-family:var(--ax-font-mono); font-weight:700; font-size:13px;}
+.adm__title{ font-size:14px; font-weight:600; color:var(--ax-text-heading);}
+.adm__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.adm__meta{ text-align:right; font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); line-height:1.6;}
+.adm__meta strong{ color:var(--ax-text-heading);}
+
+.adm__body{ padding:14px 18px; display:flex; flex-direction:column; gap:14px;}
+
+.adm__sec{ border:1px solid var(--ax-border-default); border-radius:8px; overflow:hidden;}
+.adm__sec-h{ display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-default);}
+.adm__sec-title{ font-size:11px; font-weight:600; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.06em; font-family:var(--ax-font-mono); display:flex; align-items:center; gap:8px;}
+.adm__sec-num{ width:20px; height:20px; border-radius:4px; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; font-size:11px; font-weight:700;}
+.adm__sec-status{ font-size:10px; font-family:var(--ax-font-mono); padding:2px 7px; border-radius:3px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+.adm__sec-status--ok{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.adm__sec-status--pending{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.adm__sec-body{ padding:12px;}
+
+.adm__grid{ display:grid; gap:10px 14px;}
+.adm__grid--2{ grid-template-columns:1fr 1fr;}
+.adm__grid--3{ grid-template-columns:1fr 1fr 1fr;}
+.adm__grid--4{ grid-template-columns:repeat(4, 1fr);}
+
+.adm__field{ display:flex; flex-direction:column; gap:3px;}
+.adm__field--full{ grid-column:1/-1;}
+.adm__label{ font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.adm__label .req{ color:var(--ax-error-emphasis); margin-left:2px;}
+.adm__val{ font-size:13px; color:var(--ax-text-heading); padding:5px 9px; background:var(--ax-background-subtle); border:1px solid var(--ax-border-subtle); border-radius:5px; min-height:28px; display:flex; align-items:center; gap:6px;}
+.adm__val--empty{ color:var(--ax-text-subtle); font-style:italic;}
+.adm__val--big{ font-size:15px; font-weight:600;}
+.adm__val small{ font-family:var(--ax-font-mono); color:var(--ax-text-subtle); font-size:10px; margin-left:auto;}
+
+.adm__pill{ display:inline-flex; gap:4px; padding:1px 6px; border-radius:3px; font-family:var(--ax-font-mono); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+.adm__pill--cov{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.adm__pill--alert{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.adm__pill--ok{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+
+.adm__radio-row{ display:flex; gap:6px; flex-wrap:wrap;}
+.adm__radio{ padding:4px 10px; border:1px solid var(--ax-border-default); border-radius:5px; font-size:11px; color:var(--ax-text-default); background:var(--ax-background-default); cursor:default; font-family:var(--ax-font-mono);}
+.adm__radio--on{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading); font-weight:600;}
+
+.adm__check-list{ display:flex; flex-direction:column; gap:6px;}
+.adm__check-row{ display:flex; gap:8px; align-items:flex-start; font-size:12px; color:var(--ax-text-default); padding:5px 8px; background:var(--ax-background-subtle); border-radius:4px;}
+.adm__check-box{ width:16px; height:16px; border:1.4px solid var(--ax-border-default); border-radius:3px; flex-shrink:0; margin-top:1px; display:grid; place-items:center; background:var(--ax-background-default); font-weight:700; font-size:9px;}
+.adm__check-row--on .adm__check-box{ background:var(--ax-success-emphasis); color:var(--ax-success-inverted); border-color:var(--ax-success-emphasis);}
+.adm__check-row strong{ color:var(--ax-text-heading); font-weight:600;}
+
+.adm__signs{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px;}
+.adm__sign-block{ border:1px dashed var(--ax-border-default); border-radius:6px; padding:8px 10px;}
+.adm__sign-canvas{ height:50px; border-bottom:1.5px solid var(--ax-text-default); display:flex; align-items:flex-end; padding-bottom:2px; font-family:'Brush Script MT', cursive; font-size:18px; color:var(--ax-text-heading); font-style:italic; justify-content:center;}
+.adm__sign-canvas--empty{ color:var(--ax-text-subtle); font-family:var(--ax-font-mono); font-style:normal; font-size:11px; justify-content:center;}
+.adm__sign-name{ font-size:11px; font-weight:600; color:var(--ax-text-heading); margin-top:4px;}
+.adm__sign-meta{ font-size:9px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); margin-top:1px;}
+
+.adm__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 18px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-subtle); flex-wrap:wrap; gap:10px;}
+.adm__progress{ display:flex; align-items:center; gap:8px; font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.adm__progress-bar{ width:140px; height:5px; background:var(--ax-background-default); border-radius:3px; overflow:hidden;}
+.adm__progress-fill{ height:100%; background:var(--ax-success-emphasis);}
+.adm__btn-row{ display:flex; gap:6px;}
+.adm__btn{ padding:6px 12px; font-size:11px; font-family:var(--ax-font-mono); font-weight:500; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.adm__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
