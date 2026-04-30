@@ -368,6 +368,34 @@ for (const [k, entry] of Object.entries(breakpoint.container)) {
   push(`  --ax-container-${k}: ${entry.$value};`);
 }
 
+// Clinical category badge/chip colors — standardized visual language across all AegisX products
+push('');
+push('  /* ── Clinical category colors (light) ── */');
+push('  --ax-cat-med-subtle:       var(--ax-color-indigo-50);');
+push('  --ax-cat-med-emphasis:     var(--ax-color-indigo-700);');
+push('  --ax-cat-med-fg:           var(--ax-text-inverted);');
+push('  --ax-cat-lab-subtle:       var(--ax-color-cyan-100);');
+push('  --ax-cat-lab-emphasis:     var(--ax-color-cyan-700);');
+push('  --ax-cat-lab-fg:           var(--ax-text-inverted);');
+push('  --ax-cat-imaging-subtle:   var(--ax-color-purple-100);');
+push('  --ax-cat-imaging-emphasis: var(--ax-color-purple-700);');
+push('  --ax-cat-imaging-fg:       var(--ax-text-inverted);');
+push('  --ax-cat-diet-subtle:      #ecfccb;');
+push('  --ax-cat-diet-emphasis:    #4d7c0f;');
+push('  --ax-cat-diet-fg:          var(--ax-text-inverted);');
+push('  --ax-cat-activity-subtle:  var(--ax-color-amber-100);');
+push('  --ax-cat-activity-emphasis:var(--ax-color-amber-700);');
+push('  --ax-cat-activity-fg:      var(--ax-text-inverted);');
+push('  --ax-cat-consult-subtle:   var(--ax-color-pink-100);');
+push('  --ax-cat-consult-emphasis: var(--ax-color-pink-700);');
+push('  --ax-cat-consult-fg:       var(--ax-text-inverted);');
+push('  --ax-cat-procedure-subtle: var(--ax-color-red-100);');
+push('  --ax-cat-procedure-emphasis:var(--ax-color-red-700);');
+push('  --ax-cat-procedure-fg:     var(--ax-text-inverted);');
+push('  --ax-cat-vital-subtle:     var(--ax-color-cyan-50);');
+push('  --ax-cat-vital-emphasis:   var(--ax-color-cyan-800);');
+push('  --ax-cat-vital-fg:         var(--ax-text-inverted);');
+
 push('}');
 push('');
 
@@ -424,6 +452,31 @@ push(`  --ax-button-secondary-bg: var(--ax-color-gray-800);`);
 push(`  --ax-button-secondary-bg-hover: var(--ax-color-gray-700);`);
 push(`  --ax-input-bg: var(--ax-color-gray-900);`);
 push(`  --ax-input-bg-disabled: var(--ax-color-gray-800);`);
+push('  /* Clinical category colors (dark) */');
+push('  --ax-cat-med-subtle:        color-mix(in srgb, var(--ax-color-indigo-400) 20%, transparent);');
+push('  --ax-cat-med-emphasis:      var(--ax-color-indigo-300);');
+push('  --ax-cat-med-fg:            var(--ax-color-zinc-950);');
+push('  --ax-cat-lab-subtle:        color-mix(in srgb, var(--ax-color-cyan-400) 18%, transparent);');
+push('  --ax-cat-lab-emphasis:      var(--ax-color-cyan-400);');
+push('  --ax-cat-lab-fg:            var(--ax-color-zinc-950);');
+push('  --ax-cat-imaging-subtle:    color-mix(in srgb, var(--ax-color-purple-400) 20%, transparent);');
+push('  --ax-cat-imaging-emphasis:  var(--ax-color-purple-400);');
+push('  --ax-cat-imaging-fg:        var(--ax-color-zinc-950);');
+push('  --ax-cat-diet-subtle:       color-mix(in srgb, #a3e635 18%, transparent);');
+push('  --ax-cat-diet-emphasis:     #a3e635;');
+push('  --ax-cat-diet-fg:           var(--ax-color-zinc-950);');
+push('  --ax-cat-activity-subtle:   color-mix(in srgb, var(--ax-color-amber-400) 20%, transparent);');
+push('  --ax-cat-activity-emphasis: var(--ax-color-amber-400);');
+push('  --ax-cat-activity-fg:       var(--ax-color-zinc-950);');
+push('  --ax-cat-consult-subtle:    color-mix(in srgb, var(--ax-color-pink-400) 20%, transparent);');
+push('  --ax-cat-consult-emphasis:  var(--ax-color-pink-400);');
+push('  --ax-cat-consult-fg:        var(--ax-color-zinc-950);');
+push('  --ax-cat-procedure-subtle:  color-mix(in srgb, var(--ax-color-red-400) 22%, transparent);');
+push('  --ax-cat-procedure-emphasis:var(--ax-color-red-400);');
+push('  --ax-cat-procedure-fg:      var(--ax-color-zinc-950);');
+push('  --ax-cat-vital-subtle:      color-mix(in srgb, var(--ax-color-cyan-400) 20%, transparent);');
+push('  --ax-cat-vital-emphasis:    var(--ax-color-cyan-400);');
+push('  --ax-cat-vital-fg:          var(--ax-color-zinc-950);');
 push('}');
 push('');
 

@@ -1,6 +1,6 @@
 # TODO — `aegisx-design-system`
 
-> Resume here. Last shipped: **v0.4.0** (2026-04-19) — unified docs shell across all pages, live Tweaks panel, scroll-spy sidebar. CI build fix (`ROLES.success: green → emerald`; skip non-`$value` metadata in palette loops).
+> Resume here. Last shipped: **v0.5.3** (2026-04-30) — Phase 5 Clinical Specialty (#61–70) + Phase 6 partial (#71 Admission, #72 Doctor's orders), Stepper/paginator/toolbar polish, `--ax-cat-*` clinical category tokens added to DTCG.
 
 This file is the **single source of truth for what to do next**. Update it as items move between sections. Do not let it rot.
 
@@ -8,19 +8,11 @@ This file is the **single source of truth for what to do next**. Update it as it
 
 ## 🔵 In progress (pick up next session)
 
-### components.css rewrite — batch 2: data display + feedback
-- **What:** Read SCSS source for each component, extract exact values, update `tokens/css/components.css`
-- **Components:** alert, badge, toast, avatar, stat, kv, empty, progress, spinner, skeleton, timeline, stepper, banner, drawer, upload, counter
-- **Source files:** `_component-tokens.scss` (badge tokens), `_material-overrides.scss` (expansion panel, progress bar, snackbar, tooltip, badge), inline styles in component `.ts` files
-- **Batch 1 done:** button, input, card, table, dialog, menu, chip, checkbox, radio (commit `d6ff6dc`)
-
-### components.css rewrite — batch 3: navigation + layout
-- **What:** sidenav (already has dark navy from ax-nav-rail), navbar, tabs, breadcrumb, pagination, shell, page-header, accordion, command palette, tab-pills
-- **Source files:** `ax-nav-rail.component.ts`, `ax-nav-topbar.component.ts`, `ax-nav-expanded-panel.component.ts`, `navbar.component.scss`, `_material-overrides.scss` (tabs, expansion panel, toolbar)
-
-### Bump to v0.5.0 (queued)
-- **What:** Ship when components.css batch 2+3 rewrites land. Update `package.json`, `CHANGELOG.md`, `PRODUCTION-VALUES-SPEC.md` (mark resolved), this file.
-- **Trigger:** batch 2 (data display + feedback) + batch 3 (navigation + layout) both merged.
+### Phase 6 · IPD Paperless — remaining components (#74–80)
+- **74** I/O record · **75** Care plan · **76** Discharge summary · **77** Medication reconciliation
+- **78** Patient ID/wristband · **79** Property record · **80** SBAR hand-off
+- **Pattern:** `pages/phase6/{NN}-{name}.{css,js}` — follow #71/#72 as reference
+- **Wire:** link CSS + sidebar + script in `pages/index.html`
 
 ---
 

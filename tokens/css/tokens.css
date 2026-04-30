@@ -404,6 +404,32 @@
   --ax-container-lg: 1280px;
   --ax-container-xl: 1440px;
   --ax-container-2xl: 1728px;
+
+  /* ── Clinical category colors (light) ── */
+  --ax-cat-med-subtle:       var(--ax-color-indigo-50);
+  --ax-cat-med-emphasis:     var(--ax-color-indigo-700);
+  --ax-cat-med-fg:           var(--ax-text-inverted);
+  --ax-cat-lab-subtle:       var(--ax-color-cyan-100);
+  --ax-cat-lab-emphasis:     var(--ax-color-cyan-700);
+  --ax-cat-lab-fg:           var(--ax-text-inverted);
+  --ax-cat-imaging-subtle:   var(--ax-color-purple-100);
+  --ax-cat-imaging-emphasis: var(--ax-color-purple-700);
+  --ax-cat-imaging-fg:       var(--ax-text-inverted);
+  --ax-cat-diet-subtle:      #ecfccb;
+  --ax-cat-diet-emphasis:    #4d7c0f;
+  --ax-cat-diet-fg:          var(--ax-text-inverted);
+  --ax-cat-activity-subtle:  var(--ax-color-amber-100);
+  --ax-cat-activity-emphasis:var(--ax-color-amber-700);
+  --ax-cat-activity-fg:      var(--ax-text-inverted);
+  --ax-cat-consult-subtle:   var(--ax-color-pink-100);
+  --ax-cat-consult-emphasis: var(--ax-color-pink-700);
+  --ax-cat-consult-fg:       var(--ax-text-inverted);
+  --ax-cat-procedure-subtle: var(--ax-color-red-100);
+  --ax-cat-procedure-emphasis:var(--ax-color-red-700);
+  --ax-cat-procedure-fg:     var(--ax-text-inverted);
+  --ax-cat-vital-subtle:     var(--ax-color-cyan-50);
+  --ax-cat-vital-emphasis:   var(--ax-color-cyan-800);
+  --ax-cat-vital-fg:         var(--ax-text-inverted);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -479,6 +505,31 @@
   --ax-button-secondary-bg-hover: var(--ax-color-gray-700);
   --ax-input-bg: var(--ax-color-gray-900);
   --ax-input-bg-disabled: var(--ax-color-gray-800);
+  /* Clinical category colors (dark) */
+  --ax-cat-med-subtle:        color-mix(in srgb, var(--ax-color-indigo-400) 20%, transparent);
+  --ax-cat-med-emphasis:      var(--ax-color-indigo-300);
+  --ax-cat-med-fg:            var(--ax-color-zinc-950);
+  --ax-cat-lab-subtle:        color-mix(in srgb, var(--ax-color-cyan-400) 18%, transparent);
+  --ax-cat-lab-emphasis:      var(--ax-color-cyan-400);
+  --ax-cat-lab-fg:            var(--ax-color-zinc-950);
+  --ax-cat-imaging-subtle:    color-mix(in srgb, var(--ax-color-purple-400) 20%, transparent);
+  --ax-cat-imaging-emphasis:  var(--ax-color-purple-400);
+  --ax-cat-imaging-fg:        var(--ax-color-zinc-950);
+  --ax-cat-diet-subtle:       color-mix(in srgb, #a3e635 18%, transparent);
+  --ax-cat-diet-emphasis:     #a3e635;
+  --ax-cat-diet-fg:           var(--ax-color-zinc-950);
+  --ax-cat-activity-subtle:   color-mix(in srgb, var(--ax-color-amber-400) 20%, transparent);
+  --ax-cat-activity-emphasis: var(--ax-color-amber-400);
+  --ax-cat-activity-fg:       var(--ax-color-zinc-950);
+  --ax-cat-consult-subtle:    color-mix(in srgb, var(--ax-color-pink-400) 20%, transparent);
+  --ax-cat-consult-emphasis:  var(--ax-color-pink-400);
+  --ax-cat-consult-fg:        var(--ax-color-zinc-950);
+  --ax-cat-procedure-subtle:  color-mix(in srgb, var(--ax-color-red-400) 22%, transparent);
+  --ax-cat-procedure-emphasis:var(--ax-color-red-400);
+  --ax-cat-procedure-fg:      var(--ax-color-zinc-950);
+  --ax-cat-vital-subtle:      color-mix(in srgb, var(--ax-color-cyan-400) 20%, transparent);
+  --ax-cat-vital-emphasis:    var(--ax-color-cyan-400);
+  --ax-cat-vital-fg:          var(--ax-color-zinc-950);
 }
 
 @media (prefers-color-scheme: dark) {

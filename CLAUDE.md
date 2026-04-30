@@ -4,10 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Current state — read first when resuming
 
-- **Last shipped:** `@aegisx-platform/design-system@v0.3.1` published 2026-04-16, SHA `306d022`. All 3 GitHub workflows green (CI / Pages / Publish to GitHub Packages).
-- **What changed since v0.1.0:** v0.2 added `tokens/` directory; v0.3 BREAKING-realigned tokens to the `aegisx-ui-design` skill (Tailwind Zinc + Indigo, IBM Plex Sans Thai, 14px clinical body base, Untitled UI type scale, 3-layer architecture, Angular Material v3 bridge, runtime WCAG audit page, AEGISX-DESIGN-PRINCIPLES.md as rule 0); v0.3.1 added pre-commit hook + CI gate + npm packaging for tokens.
-- **`pnpm tokens:verify` reports zero drift** across 255 `--ax-*` tokens vs the DTCG source.
+- **Last shipped:** `@aegisx-platform/design-system@v0.5.3` (2026-04-30). All 3 GitHub workflows green.
+- **What changed since v0.3.1:** v0.4 unified docs shell, live Tweaks panel, scroll-spy sidebar. v0.5 added Phase 5 (Clinical Specialty, #61–70) + Phase 6 partial (#71 Admission, #72 Doctor's orders). v0.5.3 polished Stepper/paginator/toolbar, parity demo redesign.
+- **`pnpm tokens:verify` reports zero drift** — 580 `--ax-*` tokens (increased from 255 in v0.3.1; added `--ax-cat-*` clinical category colors 2026-04-30).
+- **Token addition (2026-04-30):** Added 24 `--ax-cat-*` tokens (8 clinical categories × subtle/emphasis/fg, light + dark) to `build-tokens.mjs` + rebuilt `tokens/css/tokens.css`. `--ax-tri-*`, `--ax-pain-*`, `--ax-clinical-*` stay in demo's standalone `tokens-compat.css` per DESIGN-PRINCIPLES.md Rule 0.
 - **What to do next:** read `TODO.md` at repo root — it's the prioritised work list. Update it as items move; do not let it rot.
+- **Next active work:** implement unified `pages/index.html` from claude.ai/design export (`~/Downloads/aegisx-design-system/`). Plan at `docs/superpowers/plans/2026-04-30-index-html-implementation.md`.
 - **Critical hands-off:** user explicitly said do **NOT** touch `aegisx-starter-1` or `aegisx-ui` library until design-system is fully finalised here. Migration to consumer-side is parked.
 
 ## MANDATORY RULES — violating any of these is unacceptable
