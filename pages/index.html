@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light" data-density="compact">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AegisX · Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/css/tokens.css">
+<link rel="stylesheet" href="tokens-compat.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="phase2.css">
+<link rel="stylesheet" href="phase3.css">
+<link rel="stylesheet" href="phase4.css">
+<link rel="stylesheet" href="phase5/_base.css">
+<link rel="stylesheet" href="phase5/61-vitals.css">
+<link rel="stylesheet" href="phase5/62-labs.css">
+<link rel="stylesheet" href="phase5/63-rx.css">
+<link rel="stylesheet" href="phase5/64-allergies.css">
+<link rel="stylesheet" href="phase5/65-patient-header.css">
+<link rel="stylesheet" href="phase5/66-body-map.css">
+<link rel="stylesheet" href="phase5/67-consent.css">
+<link rel="stylesheet" href="phase5/68-triage.css">
+<link rel="stylesheet" href="phase5/69-soap.css">
+<link rel="stylesheet" href="phase5/70-orderset.css">
+<link rel="stylesheet" href="phase6/_base.css">
+<link rel="stylesheet" href="phase6/71-admission.css">
+<link rel="stylesheet" href="phase6/72-orders.css">
+<link rel="stylesheet" href="phase6/73-nurse-note.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__mark"><span>AX</span></div>
+      <div>
+        <div class="sidebar__title">AegisX</div>
+        <div class="sidebar__sub">Design System · v1.0</div>
+      </div>
+    </div>
+
+    <div class="sidebar__group-title">Foundations</div>
+    <a href="#colors" class="sidebar__link"><span class="sidebar__dot"></span>Colors & Tokens</a>
+    <a href="#typography" class="sidebar__link"><span class="sidebar__dot"></span>Typography</a>
+    <a href="#spacing" class="sidebar__link"><span class="sidebar__dot"></span>Spacing & Layout</a>
+    <a href="#radius" class="sidebar__link"><span class="sidebar__dot"></span>Radius & Elevation</a>
+    <a href="#icons" class="sidebar__link"><span class="sidebar__dot"></span>Iconography</a>
+
+    <div class="sidebar__group-title">Components</div>
+    <a href="#buttons" class="sidebar__link"><span class="sidebar__dot"></span>Buttons</a>
+    <a href="#forms" class="sidebar__link"><span class="sidebar__dot"></span>Form inputs</a>
+    <a href="#cards" class="sidebar__link"><span class="sidebar__dot"></span>Cards</a>
+    <a href="#tables" class="sidebar__link"><span class="sidebar__dot"></span>Tables</a>
+    <a href="#modals" class="sidebar__link"><span class="sidebar__dot"></span>Modals</a>
+    <a href="#nav" class="sidebar__link"><span class="sidebar__dot"></span>Navigation</a>
+    <a href="#badges" class="sidebar__link"><span class="sidebar__dot"></span>Badges & Chips</a>
+    <a href="#alerts" class="sidebar__link"><span class="sidebar__dot"></span>Alerts & Toasts</a>
+    <a href="#avatars" class="sidebar__link"><span class="sidebar__dot"></span>Avatars</a>
+    <a href="#charts" class="sidebar__link"><span class="sidebar__dot"></span>Data viz</a>
+    <a href="#states" class="sidebar__link"><span class="sidebar__dot"></span>Loading & Empty</a>
+
+    <div class="sidebar__group-title">Advanced · Material++</div>
+    <a href="#form-adv" class="sidebar__link"><span class="sidebar__dot"></span>Form · Advanced</a>
+    <a href="#stepper" class="sidebar__link"><span class="sidebar__dot"></span>Stepper</a>
+    <a href="#accordion" class="sidebar__link"><span class="sidebar__dot"></span>Accordion</a>
+    <a href="#list" class="sidebar__link"><span class="sidebar__dot"></span>List · Tree · Timeline</a>
+    <a href="#menu" class="sidebar__link"><span class="sidebar__dot"></span>Menu / Dropdown</a>
+    <a href="#tooltip" class="sidebar__link"><span class="sidebar__dot"></span>Tooltip · Popover · Kbd</a>
+    <a href="#button-fam" class="sidebar__link"><span class="sidebar__dot"></span>Button family</a>
+    <a href="#dialog" class="sidebar__link"><span class="sidebar__dot"></span>Dialog · Sheet · Drawer</a>
+    <a href="#snackbar" class="sidebar__link"><span class="sidebar__dot"></span>Snackbar · Notifications</a>
+    <a href="#progress" class="sidebar__link"><span class="sidebar__dot"></span>Progress & Loaders</a>
+    <a href="#upload" class="sidebar__link"><span class="sidebar__dot"></span>File upload</a>
+    <a href="#command" class="sidebar__link"><span class="sidebar__dot"></span>Command palette (⌘K)</a>
+    <a href="#code" class="sidebar__link"><span class="sidebar__dot"></span>Code block</a>
+    <a href="#divider" class="sidebar__link"><span class="sidebar__dot"></span>Dividers</a>
+
+    <div class="sidebar__group-title">Phase 1 · Forms & Inputs</div>
+    <a href="#multiselect" class="sidebar__link"><span class="sidebar__dot"></span>Multi-select</a>
+    <a href="#datetime" class="sidebar__link"><span class="sidebar__dot"></span>Date / Time picker</a>
+    <a href="#daterange" class="sidebar__link"><span class="sidebar__dot"></span>Date range</a>
+    <a href="#numericstep" class="sidebar__link"><span class="sidebar__dot"></span>Numeric stepper</a>
+    <a href="#slider" class="sidebar__link"><span class="sidebar__dot"></span>Slider / Range</a>
+    <a href="#colorpicker" class="sidebar__link"><span class="sidebar__dot"></span>Color picker</a>
+    <a href="#richtext" class="sidebar__link"><span class="sidebar__dot"></span>Rich text editor</a>
+    <a href="#fieldset" class="sidebar__link"><span class="sidebar__dot"></span>Fieldset / Form layout</a>
+    <a href="#searchadv" class="sidebar__link"><span class="sidebar__dot"></span>Advanced search</a>
+    <a href="#otp" class="sidebar__link"><span class="sidebar__dot"></span>OTP / PIN input</a>
+
+    <div class="sidebar__group-title">Phase 2 · Display & Layout</div>
+    <a href="#cardvariants" class="sidebar__link"><span class="sidebar__dot"></span>Card variants</a>
+    <a href="#emptystate" class="sidebar__link"><span class="sidebar__dot"></span>Empty state</a>
+    <a href="#errorpages" class="sidebar__link"><span class="sidebar__dot"></span>Error pages</a>
+    <a href="#popover2" class="sidebar__link"><span class="sidebar__dot"></span>Popover</a>
+    <a href="#drawer2" class="sidebar__link"><span class="sidebar__dot"></span>Drawer</a>
+    <a href="#cmdk" class="sidebar__link"><span class="sidebar__dot"></span>Command palette</a>
+    <a href="#filterbar" class="sidebar__link"><span class="sidebar__dot"></span>Filter bar</a>
+    <a href="#tag" class="sidebar__link"><span class="sidebar__dot"></span>Tag / Label</a>
+    <a href="#calendar" class="sidebar__link"><span class="sidebar__dot"></span>Calendar</a>
+    <a href="#timeline2" class="sidebar__link"><span class="sidebar__dot"></span>Timeline / Activity</a>
+
+    <div class="sidebar__group-title">Phase 3 · Charts & Data Viz</div>
+    <a href="#linechart" class="sidebar__link"><span class="sidebar__dot"></span>Line chart</a>
+    <a href="#barchart" class="sidebar__link"><span class="sidebar__dot"></span>Bar chart</a>
+    <a href="#donut" class="sidebar__link"><span class="sidebar__dot"></span>Donut / Pie</a>
+    <a href="#sparkline" class="sidebar__link"><span class="sidebar__dot"></span>Sparkline</a>
+    <a href="#heatmap" class="sidebar__link"><span class="sidebar__dot"></span>Heatmap</a>
+    <a href="#statblock" class="sidebar__link"><span class="sidebar__dot"></span>Stat block</a>
+    <a href="#comparison" class="sidebar__link"><span class="sidebar__dot"></span>Comparison bars</a>
+    <a href="#funnel" class="sidebar__link"><span class="sidebar__dot"></span>Funnel</a>
+    <a href="#distribution" class="sidebar__link"><span class="sidebar__dot"></span>Distribution</a>
+    <a href="#bedgrid" class="sidebar__link"><span class="sidebar__dot"></span>Bed map / Status grid</a>
+
+    <div class="sidebar__group-title">Phase 4 · Workflow Patterns</div>
+    <a href="#wizard" class="sidebar__link"><span class="sidebar__dot"></span>Stepper wizard</a>
+    <a href="#approval" class="sidebar__link"><span class="sidebar__dot"></span>Approval flow</a>
+    <a href="#invoice" class="sidebar__link"><span class="sidebar__dot"></span>Invoice / Line items</a>
+    <a href="#schedsection" class="sidebar__link"><span class="sidebar__dot"></span>Scheduling grid</a>
+    <a href="#ctl" class="sidebar__link"><span class="sidebar__dot"></span>Patient timeline</a>
+    <a href="#mar" class="sidebar__link"><span class="sidebar__dot"></span>Medication chart (MAR)</a>
+    <a href="#audit" class="sidebar__link"><span class="sidebar__dot"></span>Audit trail</a>
+    <a href="#inbox" class="sidebar__link"><span class="sidebar__dot"></span>Inbox / Task queue</a>
+    <a href="#diff" class="sidebar__link"><span class="sidebar__dot"></span>Diff viewer</a>
+    <a href="#signoff" class="sidebar__link"><span class="sidebar__dot"></span>Sign-off panel</a>
+
+    <div class="sidebar__group-title">Phase 5 · Clinical Specialty</div>
+    <a href="#vsc" class="sidebar__link"><span class="sidebar__dot"></span>Vital signs chart</a>
+    <a href="#lab" class="sidebar__link"><span class="sidebar__dot"></span>Lab results table</a>
+    <a href="#rx" class="sidebar__link"><span class="sidebar__dot"></span>Prescription pad (Rx)</a>
+    <a href="#alb" class="sidebar__link"><span class="sidebar__dot"></span>Allergies / Alerts banner</a>
+    <a href="#pth" class="sidebar__link"><span class="sidebar__dot"></span>Patient header / banner</a>
+    <a href="#bd" class="sidebar__link"><span class="sidebar__dot"></span>Body diagram / pain map</a>
+    <a href="#cons" class="sidebar__link"><span class="sidebar__dot"></span>e-Consent form</a>
+    <a href="#tri" class="sidebar__link"><span class="sidebar__dot"></span>Triage / acuity scoring</a>
+    <a href="#soap" class="sidebar__link"><span class="sidebar__dot"></span>Clinical note (SOAP)</a>
+    <a href="#os" class="sidebar__link"><span class="sidebar__dot"></span>Order set / Bundle</a>
+
+    <div class="sidebar__group-title">Phase 6 · IPD Paperless</div>
+    <a href="#adm" class="sidebar__link"><span class="sidebar__dot"></span>Admission record</a>
+    <a href="#dos" class="sidebar__link"><span class="sidebar__dot"></span>Doctor's order sheet</a>
+    <a href="#nno" class="sidebar__link"><span class="sidebar__dot"></span>Nurse's note (Focus/DAR)</a>
+
+    <div class="sidebar__group-title">Angular Handoff</div>
+    <a href="#ng-quickstart" class="sidebar__link"><span class="sidebar__dot"></span>Quick start</a>
+    <a href="#ng-theme" class="sidebar__link"><span class="sidebar__dot"></span>Theme export (SCSS)</a>
+    <a href="#ng-override" class="sidebar__link"><span class="sidebar__dot"></span>Override recipes</a>
+  </aside>
+
+  <!-- ═══════════ MAIN ═══════════ -->
+  <div class="content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__crumbs">
+        <span>AegisX Platform</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" class="icon-stroke"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <strong>Design System</strong>
+      </div>
+      <div class="topbar__actions">
+        <div class="segmented" id="themeSeg">
+          <button data-theme="light" class="is-active">
+            <svg width="12" height="12" viewBox="0 0 24 24" class="icon-stroke"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            Light
+          </button>
+          <button data-theme="dark">
+            <svg width="12" height="12" viewBox="0 0 24 24" class="icon-stroke"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            Dark
+          </button>
+        </div>
+        <button class="btn btn--secondary btn--sm" onclick="alert('Tokens spec: see tokens.css\\n\\n3-layer architecture:\\n• Primitive --ax-color-*\\n• Semantic --ax-{role}-*\\n• Component --ax-{comp}-*')">
+          <svg width="12" height="12" viewBox="0 0 24 24" class="icon-stroke"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Specs
+        </button>
+        <button class="btn btn--primary btn--sm">
+          <svg width="12" height="12" viewBox="0 0 24 24" class="icon-stroke"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download tokens
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero__eyebrow">AegisX Hospital Platform</div>
+        <h1 class="hero__title">Calm, high-contrast,<br>Thai-first, clinical-dense.</h1>
+        <p class="hero__lede">
+          ระบบดีไซน์สำหรับ AegisX Platform — ครอบคลุมงาน Backoffice โรงพยาบาล: บัญชี, การเงิน, พัสดุ, HR และระบบคลินิก.
+          สร้างบน Angular Material 3 ด้วยสถาปัตยกรรม token 3 ชั้น (primitive · semantic · component)
+          และทุกคู่สีผ่าน WCAG 2.1 AA ขั้นต่ำ.
+        </p>
+        <dl class="hero__meta">
+          <div class="hero__meta-item"><dt>Foundation</dt><dd>Material 3 · Zinc/Gray</dd></div>
+          <div class="hero__meta-item"><dt>Primary</dt><dd>Indigo #3f51b5</dd></div>
+          <div class="hero__meta-item"><dt>Body type</dt><dd>IBM Plex Sans Thai · 14px</dd></div>
+          <div class="hero__meta-item"><dt>Density</dt><dd>Material −1 (row 40px)</dd></div>
+          <div class="hero__meta-item"><dt>A11y target</dt><dd>WCAG 2.1 AA+</dd></div>
+        </dl>
+      </section>
+
+      <div id="sections"></div>
+      <div id="sections-advanced"></div>
+      <div id="sections-phase1"></div>
+      <div id="sections-phase2"></div>
+      <div id="sections-phase3"></div>
+      <div id="sections-phase4"></div>
+      <div id="sections-phase5"></div>
+      <div id="sections-phase6"></div>
+      <div id="sections-handoff"></div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════ TWEAKS PANEL ═══════════ -->
+<aside class="tweaks" id="tweaks" hidden>
+  <div class="tweaks__header">
+    <div class="tweaks__title">Tweaks</div>
+    <button class="btn btn--ghost btn--sm btn--icon" onclick="document.getElementById('tweaks').hidden = true">
+      <svg width="14" height="14" viewBox="0 0 24 24" class="icon-stroke"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="tweaks__body">
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Theme <span class="tweaks__label-val" id="tw_themeVal">light</span></div>
+      <div class="tweaks__seg" id="tw_theme">
+        <button data-val="light" class="is-active">Light</button>
+        <button data-val="dark">Dark</button>
+      </div>
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Brand color <span class="tweaks__label-val" id="tw_brandVal">Indigo</span></div>
+      <div class="tweaks__color-row" id="tw_brand">
+        <div class="tweaks__swatch is-active" data-val="indigo" data-hex="#3f51b5" style="background:#3f51b5" title="Indigo (Material)"></div>
+        <div class="tweaks__swatch" data-val="blue" data-hex="#2563eb" style="background:#2563eb" title="Blue"></div>
+        <div class="tweaks__swatch" data-val="emerald" data-hex="#059669" style="background:#059669" title="Emerald"></div>
+        <div class="tweaks__swatch" data-val="cyan" data-hex="#0891b2" style="background:#0891b2" title="Cyan"></div>
+        <div class="tweaks__swatch" data-val="purple" data-hex="#7e22ce" style="background:#7e22ce" title="Purple"></div>
+        <div class="tweaks__swatch" data-val="rose" data-hex="#e11d48" style="background:#e11d48" title="Rose"></div>
+        <div class="tweaks__swatch" data-val="amber" data-hex="#d97706" style="background:#d97706" title="Amber"></div>
+        <div class="tweaks__swatch" data-val="slate" data-hex="#334155" style="background:#334155" title="Slate"></div>
+      </div>
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Density <span class="tweaks__label-val" id="tw_densityVal">compact</span></div>
+      <div class="tweaks__seg" id="tw_density">
+        <button data-val="compact" class="is-active">Compact</button>
+        <button data-val="comfortable">Default</button>
+        <button data-val="spacious">Spacious</button>
+      </div>
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Radius <span class="tweaks__label-val" id="tw_radiusVal">0.375rem</span></div>
+      <input type="range" class="tweaks__slider" id="tw_radius" min="0" max="16" step="1" value="6">
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Base font size <span class="tweaks__label-val" id="tw_fontVal">14px</span></div>
+      <input type="range" class="tweaks__slider" id="tw_font" min="12" max="17" step="1" value="14">
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Font family <span class="tweaks__label-val" id="tw_fontfamVal">IBM Plex</span></div>
+      <div class="tweaks__seg" id="tw_fontfam">
+        <button data-val="plex" class="is-active">Plex</button>
+        <button data-val="noto">Noto</button>
+        <button data-val="inter">Inter</button>
+        <button data-val="sarabun">Sarabun</button>
+      </div>
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Elevation</div>
+      <div class="tweaks__seg" id="tw_elev">
+        <button data-val="flat">Flat</button>
+        <button data-val="soft" class="is-active">Soft</button>
+        <button data-val="strong">Strong</button>
+      </div>
+    </div>
+
+    <div class="tweaks__group">
+      <div class="tweaks__label">Focus ring <span class="tweaks__label-val" id="tw_focusVal">Blue</span></div>
+      <div class="tweaks__color-row" id="tw_focus">
+        <div class="tweaks__swatch is-active" data-val="blue" data-hex="#3b82f6" style="background:#3b82f6"></div>
+        <div class="tweaks__swatch" data-val="brand" data-hex="#3f51b5" style="background:#3f51b5"></div>
+        <div class="tweaks__swatch" data-val="amber" data-hex="#f59e0b" style="background:#f59e0b"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="tweaks__footer">เปลี่ยนแบบ live · บันทึกลง localStorage</div>
+</aside>
+
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "brand": "indigo",
+  "density": "compact",
+  "radius": 14,
+  "fontSize": 13,
+  "fontFamily": "plex",
+  "elevation": "flat",
+  "focusRing": "blue"
+}/*EDITMODE-END*/;
+</script>
+<script src="sections.js"></script>
+<script src="components-advanced.js"></script>
+<script src="phase1-sections.js"></script>
+<script src="phase2-sections.js"></script>
+<script src="phase3-sections.js"></script>
+<script src="phase4-sections.js"></script>
+<script src="phase5/_helpers.js"></script>
+<script src="phase5/61-vitals.js"></script>
+<script src="phase5/62-labs.js"></script>
+<script src="phase5/63-rx.js"></script>
+<script src="phase5/64-allergies.js"></script>
+<script src="phase5/65-patient-header.js"></script>
+<script src="phase5/66-body-map.js"></script>
+<script src="phase5/67-consent.js"></script>
+<script src="phase5/68-triage.js"></script>
+<script src="phase5/69-soap.js"></script>
+<script src="phase5/70-orderset.js"></script>
+<script src="phase5/_index.js"></script>
+<script src="phase6/_helpers.js"></script>
+<script src="phase6/71-admission.js"></script>
+<script src="phase6/72-orders.js"></script>
+<script src="phase6/73-nurse-note.js"></script>
+<script src="phase6/_index.js"></script>
+<script src="angular-handoff.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
