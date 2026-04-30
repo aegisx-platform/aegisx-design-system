@@ -1,0 +1,65 @@
+/* tokens-compat.css
+ * Alias shims: bridges prototype token names → repo's authoritative --ax-* names.
+ * Clinical demo tokens (--ax-tri-*, --ax-pain-*, --ax-clinical-*): per
+ * AEGISX-DESIGN-PRINCIPLES.md these are domain-specific and live here (demo
+ * layer), NOT in the authoritative tokens/css/tokens.css.
+ */
+
+/* ── Alias shims (light + dark inherit automatically) ── */
+:root {
+  --ax-font-base:        var(--ax-font-sans);
+  --ax-font-display:     var(--ax-font-sans);
+  --ax-text-base:        var(--ax-text-sm-size);
+  --ax-text-sm:          var(--ax-text-sm-size);
+  --ax-lh-sm:            var(--ax-text-sm-line);
+  --ax-ease:             var(--ax-easing-m3-standard);
+  --ax-duration-default: var(--ax-duration-normal);
+  --ax-btn-h:            var(--ax-control-h);
+  --ax-input-h:          var(--ax-control-h);
+  --ax-border-focus:     var(--ax-input-border-focus);
+  --ax-text-link:        var(--ax-primary);
+  --ax-purple-emphasis:  var(--ax-color-purple-600);
+
+  /* density-row defaults to compact (40px) */
+  --ax-density-row: 40px;
+
+  /* ── Triage acuity (5-level ESI/CTAS) — light ── */
+  --ax-tri-l1: #7f1d1d;  --ax-tri-l1-fg: var(--ax-text-inverted); /* immediate */
+  --ax-tri-l2: #dc2626;  --ax-tri-l2-fg: var(--ax-text-inverted); /* emergent  */
+  --ax-tri-l3: #d97706;  --ax-tri-l3-fg: var(--ax-text-inverted); /* urgent    */
+  --ax-tri-l4: #65a30d;  --ax-tri-l4-fg: var(--ax-text-inverted); /* less urgent */
+  --ax-tri-l5: #0891b2;  --ax-tri-l5-fg: var(--ax-text-inverted); /* non-urgent  */
+
+  /* ── Pain scale — light ── */
+  --ax-pain-mild-bg:   #fde68a; --ax-pain-mild-line:   #d97706;
+  --ax-pain-mod-bg:    #fb923c; --ax-pain-mod-line:    #c2410c;
+  --ax-pain-severe-bg: #dc2626; --ax-pain-severe-line: #7f1d1d;
+
+  /* ── Clinical status — light ── */
+  --ax-clinical-critical:         #dc2626; --ax-clinical-critical-faint:   #fef2f2;
+  --ax-clinical-stable:           #059669; --ax-clinical-stable-faint:     #ecfdf5;
+  --ax-clinical-improving:        #2563eb; --ax-clinical-improving-faint:  #eff6ff;
+  --ax-clinical-worsening:        #d97706; --ax-clinical-worsening-faint:  #fffbeb;
+}
+
+/* Density row overrides */
+[data-density="comfortable"] { --ax-density-row: 48px; --ax-btn-h: 36px; --ax-input-h: 36px; }
+[data-density="spacious"]    { --ax-density-row: 56px; --ax-btn-h: 40px; --ax-input-h: 40px; }
+
+/* ── Dark mode clinical overrides ── */
+[data-theme="dark"] {
+  --ax-tri-l1: #ef4444;  --ax-tri-l1-fg: #0a0a0c;
+  --ax-tri-l2: #f87171;  --ax-tri-l2-fg: #0a0a0c;
+  --ax-tri-l3: #fbbf24;  --ax-tri-l3-fg: #0a0a0c;
+  --ax-tri-l4: #a3e635;  --ax-tri-l4-fg: #0a0a0c;
+  --ax-tri-l5: #22d3ee;  --ax-tri-l5-fg: #0a0a0c;
+
+  --ax-pain-mild-bg:   rgba(253,230,138,0.22); --ax-pain-mild-line:   #fbbf24;
+  --ax-pain-mod-bg:    rgba(251,146,60,0.30);  --ax-pain-mod-line:    #fb923c;
+  --ax-pain-severe-bg: rgba(248,113,113,0.50); --ax-pain-severe-line: #f87171;
+
+  --ax-clinical-critical:         #f87171; --ax-clinical-critical-faint:   rgba(220,38,38,0.14);
+  --ax-clinical-stable:           #34d399; --ax-clinical-stable-faint:     rgba(5,150,105,0.14);
+  --ax-clinical-improving:        #60a5fa; --ax-clinical-improving-faint:  rgba(37,99,235,0.14);
+  --ax-clinical-worsening:        #fbbf24; --ax-clinical-worsening-faint:  rgba(217,119,6,0.14);
+}
