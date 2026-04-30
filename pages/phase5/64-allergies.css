@@ -1,0 +1,32 @@
+/* #64 Allergies / Alerts banner */
+.alb{ display:flex; flex-direction:column; gap:10px; }
+.alb__banner{ background:var(--ax-error-emphasis); color:var(--ax-error-inverted); border-radius:var(--ax-radius-lg); overflow:hidden; box-shadow:0 0 0 2px var(--ax-error-emphasis), 0 0 0 4px var(--ax-error-subtle); }
+.alb__stripe{ background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.18) 0 8px, transparent 8px 16px); padding:4px 14px; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; letter-spacing:0.16em; color:#fff; display:flex; justify-content:space-between; align-items:center;}
+.alb__body{ padding:12px 14px; display:grid; grid-template-columns: 36px 1fr auto; gap:14px; align-items:flex-start;}
+.alb__icon{ width:36px; height:36px; border-radius:50%; background:var(--ax-error-inverted); color:var(--ax-error-emphasis); display:grid; place-items:center; font-size:20px; font-weight:700; font-family:var(--ax-font-mono);}
+.alb__title{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;}
+.alb__items{ display:flex; flex-wrap:wrap; gap:8px;}
+.alb__chip{ background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.4); padding:5px 10px; border-radius:6px; font-size:12px; font-weight:600; display:inline-flex; gap:6px; align-items:center; line-height:1.2;}
+.alb__chip strong{ font-family:var(--ax-font-mono); font-size:10px; padding:1px 5px; background:var(--ax-error-inverted); color:var(--ax-error-emphasis); border-radius:3px; font-weight:700; letter-spacing:0.04em;}
+.alb__chip small{ opacity:0.85; font-weight:400; font-size:10px; font-family:var(--ax-font-mono);}
+.alb__verified{ font-family:var(--ax-font-mono); font-size:10px; opacity:0.85; text-align:right; line-height:1.5;}
+.alb__verified strong{ display:block; font-size:11px; opacity:1;}
+
+.alb__row{ display:grid; grid-template-columns: 1fr 1fr; gap:10px;}
+.alb__sub{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-left:4px solid var(--ax-warning-emphasis); border-radius:var(--ax-radius-lg); padding:10px 12px; display:grid; grid-template-columns: 28px 1fr; gap:10px;}
+.alb__sub--info{ border-left-color:var(--ax-info-emphasis);}
+.alb__sub--warn{ border-left-color:var(--ax-warning-emphasis);}
+.alb__sub-icon{ width:26px; height:26px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:12px; font-family:var(--ax-font-mono);}
+.alb__sub--warn .alb__sub-icon{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.alb__sub--info .alb__sub-icon{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.alb__sub-title{ font-size:11px; font-weight:600; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.06em; font-family:var(--ax-font-mono); margin-bottom:3px;}
+.alb__sub-body{ font-size:12px; color:var(--ax-text-default); line-height:1.5;}
+.alb__sub-body strong{ color:var(--ax-text-heading); font-weight:600;}
+
+.alb__compact{ display:flex; flex-wrap:wrap; gap:6px; padding:6px 10px; background:var(--ax-error-subtle); border:1px solid var(--ax-error-emphasis); border-radius:6px; align-items:center;}
+.alb__compact-tag{ background:var(--ax-error-emphasis); color:var(--ax-error-inverted); padding:2px 7px; border-radius:3px; font-size:10px; font-family:var(--ax-font-mono); font-weight:700; text-transform:uppercase; letter-spacing:0.06em;}
+.alb__compact-text{ font-size:12px; color:var(--ax-text-heading); font-weight:600;}
+.alb__compact-text small{ font-weight:400; color:var(--ax-text-default); margin-left:6px; font-family:var(--ax-font-mono); font-size:11px;}
+
+.alb__none{ display:flex; gap:8px; align-items:center; padding:8px 12px; background:var(--ax-success-subtle); border:1px solid var(--ax-success-emphasis); border-radius:6px; font-size:12px; color:var(--ax-success-emphasis); font-weight:500;}
+.alb__none-icon{ width:18px; height:18px; border-radius:50%; background:var(--ax-success-emphasis); color:var(--ax-success-inverted); display:grid; place-items:center; font-size:10px; font-weight:700;}

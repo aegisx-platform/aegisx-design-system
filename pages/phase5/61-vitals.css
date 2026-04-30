@@ -1,0 +1,26 @@
+/* AegisX DS · Phase 5 · #61 Vital signs chart */
+.vsc{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden; }
+.vsc__head{ display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px; }
+.vsc__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading); }
+.vsc__legend{ display:flex; gap:14px; flex-wrap:wrap; }
+.vsc__legend-item{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--ax-text-default); font-family:var(--ax-font-mono); }
+.vsc__legend-dot{ width:10px; height:10px; border-radius:50%; }
+.vsc__chart{ padding:10px 14px; }
+.vsc__svg{ width:100%; height:240px; display:block; }
+.vsc__zone-warn{ fill:var(--ax-warning-subtle); opacity:0.35; }
+.vsc__zone-crit{ fill:var(--ax-error-subtle); opacity:0.45; }
+.vsc__grid line{ stroke:var(--ax-border-subtle); stroke-width:1; stroke-dasharray:2 3; }
+.vsc__axis text{ font-family:var(--ax-font-mono); font-size:9px; fill:var(--ax-text-subtle); }
+.vsc__line{ fill:none; stroke-width:1.6; }
+.vsc__dot{ stroke:var(--ax-background-default); stroke-width:1.4; }
+.vsc__dot--alert{ stroke:var(--ax-error-emphasis); stroke-width:2; }
+.vsc__bp-bar{ stroke-width:6; stroke-linecap:round; }
+.vsc__current{ display:grid; grid-template-columns:repeat(5, 1fr); border-top:1px solid var(--ax-border-default); }
+.vsc__metric{ padding:10px 12px; border-right:1px solid var(--ax-border-subtle); display:flex; flex-direction:column; gap:2px; }
+.vsc__metric:last-child{ border-right:none; }
+.vsc__metric-label{ font-size:10px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); text-transform:uppercase; letter-spacing:0.06em; }
+.vsc__metric-val{ font-size:20px; font-weight:600; color:var(--ax-text-heading); font-family:var(--ax-font-mono); line-height:1.1; }
+.vsc__metric-val small{ font-size:10px; color:var(--ax-text-subtle); font-weight:400; margin-left:3px; font-family:var(--ax-font-mono); }
+.vsc__metric--alert .vsc__metric-val{ color:var(--ax-error-emphasis); }
+.vsc__metric--warn .vsc__metric-val{ color:var(--ax-warning-emphasis); }
+.vsc__metric-trend{ font-size:10px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); }

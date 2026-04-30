@@ -1,0 +1,70 @@
+/* #68 Triage / acuity scoring */
+.tri{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.tri__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:14px 16px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:14px;}
+.tri__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.tri__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:3px;}
+.tri__verdict{ display:flex; align-items:center; gap:12px;}
+.tri__big{ width:64px; height:64px; border-radius:10px; display:grid; place-items:center; color:var(--ax-text-inverted); font-family:var(--ax-font-mono); font-weight:700; line-height:1;}
+.tri__big-num{ font-size:28px; letter-spacing:-0.02em;}
+.tri__big-lbl{ font-size:8px; letter-spacing:0.1em; text-transform:uppercase; margin-top:1px; opacity:0.85;}
+.tri__verdict-text{ display:flex; flex-direction:column; gap:2px;}
+.tri__verdict-h{ font-size:14px; font-weight:600; color:var(--ax-text-heading);}
+.tri__verdict-d{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+
+/* ESI scale color spectrum */
+.tri__scale{ display:grid; grid-template-columns:repeat(5, 1fr); gap:6px; padding:12px 16px; border-bottom:1px solid var(--ax-border-default); background:var(--ax-background-subtle);}
+.tri__scale-cell{ padding:8px 10px; border-radius:6px; color:var(--ax-text-inverted); display:flex; flex-direction:column; gap:2px; opacity:0.55; transition:opacity 0.2s;}
+.tri__scale-cell--active{ opacity:1; outline:2px solid var(--ax-text-heading); outline-offset:2px;}
+.tri__scale-num{ font-family:var(--ax-font-mono); font-weight:700; font-size:16px; letter-spacing:-0.02em;}
+.tri__scale-lbl{ font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+.tri__scale-time{ font-family:var(--ax-font-mono); font-size:10px; opacity:0.85; margin-top:2px;}
+
+/* color tokens for ESI levels */
+.tri-l1{ background:var(--ax-tri-l1); color:var(--ax-tri-l1-fg);}
+.tri-l2{ background:var(--ax-tri-l2); color:var(--ax-tri-l2-fg);}
+.tri-l3{ background:var(--ax-tri-l3); color:var(--ax-tri-l3-fg);}
+.tri-l4{ background:var(--ax-tri-l4); color:var(--ax-tri-l4-fg);}
+.tri-l5{ background:var(--ax-tri-l5); color:var(--ax-tri-l5-fg);}
+
+.tri__body{ display:grid; grid-template-columns: 1.4fr 1fr;}
+.tri__col{ padding:14px 16px;}
+.tri__col + .tri__col{ border-left:1px solid var(--ax-border-default);}
+
+.tri__h{ font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600; font-family:var(--ax-font-mono); margin-bottom:8px;}
+
+.tri__criteria{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;}
+.tri__criterion{ display:grid; grid-template-columns: 22px 1fr auto; gap:10px; padding:8px 10px; border:1px solid var(--ax-border-subtle); border-radius:6px; align-items:center;}
+.tri__criterion--met{ background:var(--ax-error-subtle); border-color:var(--ax-error-emphasis);}
+.tri__cri-mark{ width:20px; height:20px; border-radius:50%; display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px; background:var(--ax-background-subtle); color:var(--ax-text-subtle);}
+.tri__criterion--met .tri__cri-mark{ background:var(--ax-error-emphasis); color:var(--ax-error-inverted);}
+.tri__cri-text{ font-size:12px; color:var(--ax-text-default); line-height:1.4;}
+.tri__cri-text strong{ color:var(--ax-text-heading); font-weight:600;}
+.tri__cri-points{ font-family:var(--ax-font-mono); font-size:11px; font-weight:600; color:var(--ax-text-subtle);}
+.tri__criterion--met .tri__cri-points{ color:var(--ax-error-emphasis);}
+
+.tri__vit-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;}
+.tri__vit{ padding:8px 10px; border:1px solid var(--ax-border-subtle); border-radius:6px;}
+.tri__vit-l{ font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.tri__vit-v{ font-size:14px; font-weight:600; color:var(--ax-text-heading); font-family:var(--ax-font-mono);}
+.tri__vit-v small{ font-size:9px; color:var(--ax-text-subtle); font-weight:400; margin-left:3px;}
+.tri__vit--alert{ background:var(--ax-error-subtle); border-color:var(--ax-error-emphasis);}
+.tri__vit--alert .tri__vit-v{ color:var(--ax-error-emphasis);}
+.tri__vit--warn{ background:var(--ax-warning-subtle); border-color:var(--ax-warning-emphasis);}
+.tri__vit--warn .tri__vit-v{ color:var(--ax-warning-emphasis);}
+
+.tri__news{ margin-top:14px; padding:10px 12px; background:var(--ax-background-subtle); border:1px solid var(--ax-border-default); border-radius:6px;}
+.tri__news-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+.tri__news-title{ font-size:12px; font-weight:600; color:var(--ax-text-heading);}
+.tri__news-score{ font-family:var(--ax-font-mono); font-size:18px; font-weight:700; color:var(--ax-error-emphasis);}
+.tri__news-bars{ display:grid; grid-template-columns:repeat(7, 1fr); gap:4px;}
+.tri__news-bar{ display:flex; flex-direction:column; gap:2px;}
+.tri__news-bar-l{ font-size:9px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); text-align:center;}
+.tri__news-bar-fill{ height:24px; border-radius:3px; display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:10px; color:var(--ax-text-inverted);}
+.tri__news-bar-fill[data-pts="0"]{ background:var(--ax-tri-l5); opacity:0.4;}
+.tri__news-bar-fill[data-pts="1"]{ background:var(--ax-tri-l4);}
+.tri__news-bar-fill[data-pts="2"]{ background:var(--ax-tri-l3);}
+.tri__news-bar-fill[data-pts="3"]{ background:var(--ax-tri-l2);}
+
+.tri__rec{ display:flex; flex-direction:column; gap:6px; margin-top:10px;}
+.tri__rec-item{ display:flex; gap:8px; align-items:flex-start; font-size:11px; color:var(--ax-text-default); padding:6px 8px; background:var(--ax-background-default); border-left:3px solid var(--ax-error-emphasis); border-radius:3px;}
+.tri__rec-item strong{ color:var(--ax-text-heading); font-weight:600;}

@@ -1,0 +1,44 @@
+/* #69 Clinical note (SOAP) */
+.soap{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.soap__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px;}
+.soap__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.soap__meta{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:3px;}
+.soap__status{ display:inline-flex; gap:6px; align-items:center; font-family:var(--ax-font-mono); font-size:10px; padding:3px 8px; border-radius:4px; background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); text-transform:uppercase; letter-spacing:0.06em; font-weight:600;}
+.soap__status--final{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.soap__body{ display:grid; grid-template-columns: 80px 1fr;}
+.soap__lane{ padding:12px 14px; background:var(--ax-background-subtle); border-right:1px solid var(--ax-border-default); border-bottom:1px solid var(--ax-border-subtle); display:flex; flex-direction:column; align-items:center; gap:4px;}
+.soap__lane:last-of-type{ border-bottom:none;}
+.soap__letter{ font-family:var(--ax-font-mono); font-size:32px; font-weight:700; color:var(--ax-text-heading); line-height:1; letter-spacing:-0.02em;}
+.soap__lane-label{ font-size:9px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); text-align:center; line-height:1.3;}
+.soap__content{ padding:14px 16px; border-bottom:1px solid var(--ax-border-subtle); font-size:12px; line-height:1.7; color:var(--ax-text-default);}
+.soap__content:last-of-type{ border-bottom:none;}
+.soap__content strong{ color:var(--ax-text-heading); font-weight:600;}
+.soap__content em{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); padding:1px 4px; border-radius:3px; font-style:normal; font-family:var(--ax-font-mono); font-size:11px;}
+
+/* Quoted speech */
+.soap__quote{ display:block; padding:8px 12px; border-left:3px solid var(--ax-border-default); margin:6px 0; color:var(--ax-text-default); font-style:italic; font-size:12px;}
+
+/* Inline data tokens */
+.soap__token{ display:inline-flex; gap:4px; align-items:center; padding:1px 5px; background:var(--ax-info-subtle); color:var(--ax-info-emphasis); border-radius:3px; font-family:var(--ax-font-mono); font-size:11px; font-weight:500; cursor:default; vertical-align:baseline;}
+.soap__token--alert{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+
+/* Assessment / plan list */
+.soap__plist{ list-style:none; padding:0; margin:6px 0 0 0; counter-reset:plist; display:flex; flex-direction:column; gap:8px;}
+.soap__pitem{ display:grid; grid-template-columns: 24px 1fr; gap:10px; padding:8px 10px; background:var(--ax-background-subtle); border-radius:6px; border-left:3px solid var(--ax-text-heading); align-items:start;}
+.soap__pnum{ width:22px; height:22px; border-radius:50%; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px;}
+.soap__pdx{ font-weight:600; color:var(--ax-text-heading); font-size:12px; margin-bottom:2px;}
+.soap__pdx-code{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); margin-left:6px; font-weight:400;}
+.soap__pplan{ list-style:none; padding:0; margin:4px 0 0 0; display:flex; flex-direction:column; gap:2px;}
+.soap__pplan li{ display:flex; gap:6px; font-size:11px; color:var(--ax-text-default); line-height:1.5;}
+.soap__pplan li::before{ content:'→'; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+
+.soap__vit-row{ display:flex; flex-wrap:wrap; gap:8px; padding:6px 0; font-family:var(--ax-font-mono); font-size:11px;}
+.soap__vit-pill{ display:inline-flex; gap:4px; padding:3px 8px; background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:4px;}
+.soap__vit-pill strong{ color:var(--ax-text-heading); font-weight:600;}
+.soap__vit-pill--alert{ background:var(--ax-error-subtle); border-color:var(--ax-error-emphasis); color:var(--ax-error-emphasis);}
+
+.soap__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-subtle); font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); flex-wrap:wrap; gap:10px;}
+.soap__author{ color:var(--ax-text-heading); font-weight:600;}
+.soap__btn-row{ display:flex; gap:6px;}
+.soap__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:500; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.soap__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}

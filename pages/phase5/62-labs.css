@@ -1,0 +1,27 @@
+/* #62 Lab results table */
+.lab{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden; }
+.lab__head{ display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px;}
+.lab__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.lab__meta{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.lab__table{ width:100%; border-collapse:collapse; font-size:12px;}
+.lab__table th{ text-align:left; padding:8px 12px; background:var(--ax-background-subtle); font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600; border-bottom:1px solid var(--ax-border-default); font-family:var(--ax-font-mono);}
+.lab__table th.num, .lab__table td.num{ text-align:right; font-family:var(--ax-font-mono);}
+.lab__table tbody tr{ border-bottom:1px solid var(--ax-border-subtle);}
+.lab__table tbody tr:last-child{ border-bottom:none;}
+.lab__table td{ padding:8px 12px; vertical-align:middle;}
+.lab__group td{ background:var(--ax-background-muted); font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600; padding:6px 12px; font-family:var(--ax-font-mono);}
+.lab__name{ font-weight:500; color:var(--ax-text-heading);}
+.lab__name small{ display:block; font-weight:400; color:var(--ax-text-subtle); font-size:10px; margin-top:1px;}
+.lab__val{ font-weight:600; color:var(--ax-text-heading);}
+.lab__val--high{ color:var(--ax-error-emphasis);}
+.lab__val--low{ color:var(--ax-warning-emphasis);}
+.lab__val--crit{ color:var(--ax-error-emphasis); background:var(--ax-error-subtle); padding:2px 6px; border-radius:4px;}
+.lab__flag{ display:inline-block; width:18px; text-align:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px;}
+.lab__flag--H{ color:var(--ax-error-emphasis);}
+.lab__flag--L{ color:var(--ax-warning-emphasis);}
+.lab__flag--HH, .lab__flag--LL{ color:var(--ax-error-inverted); background:var(--ax-error-emphasis); border-radius:3px;}
+.lab__range{ color:var(--ax-text-subtle); font-family:var(--ax-font-mono); font-size:11px;}
+.lab__spark{ width:60px; height:18px;}
+.lab__delta{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-subtle);}
+.lab__delta--up{ color:var(--ax-error-emphasis);}
+.lab__delta--down{ color:var(--ax-success-emphasis);}

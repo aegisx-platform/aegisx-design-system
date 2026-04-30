@@ -1,0 +1,41 @@
+/* #65 Patient header / banner */
+.pth{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.pth__top{ display:grid; grid-template-columns: 64px 1fr auto; gap:14px; padding:14px 16px; align-items:flex-start; border-bottom:1px solid var(--ax-border-default);}
+.pth__avatar{ width:64px; height:64px; border-radius:50%; background:var(--ax-background-subtle); border:1px solid var(--ax-border-default); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:20px; font-weight:600; color:var(--ax-text-heading); position:relative;}
+.pth__avatar-status{ position:absolute; bottom:-2px; right:-2px; width:18px; height:18px; border-radius:50%; border:2px solid var(--ax-background-default); background:var(--ax-success-emphasis);}
+.pth__name-row{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.pth__name{ font-size:18px; font-weight:600; color:var(--ax-text-heading); letter-spacing:-0.01em;}
+.pth__name-en{ font-size:12px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.pth__pronouns{ font-size:10px; padding:1px 6px; border-radius:3px; background:var(--ax-background-muted); color:var(--ax-text-subtle); font-family:var(--ax-font-mono); text-transform:uppercase; letter-spacing:0.04em;}
+.pth__chips{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+.pth__chip{ font-size:10px; padding:3px 8px; border-radius:4px; font-family:var(--ax-font-mono); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; display:inline-flex; gap:4px; align-items:center;}
+.pth__chip--alert{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis); border:1px solid var(--ax-error-emphasis);}
+.pth__chip--warn{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.pth__chip--info{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.pth__chip--neutral{ background:var(--ax-background-subtle); color:var(--ax-text-default); border:1px solid var(--ax-border-default);}
+.pth__chip--success{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.pth__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:8px; line-height:1.6;}
+.pth__sub strong{ color:var(--ax-text-heading); font-weight:600;}
+.pth__actions{ display:flex; gap:6px;}
+.pth__btn{ font-size:11px; padding:6px 10px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); border-radius:6px; cursor:default; display:inline-flex; gap:5px; align-items:center; font-family:var(--ax-font-mono); font-weight:500;}
+.pth__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+.pth__bottom{ display:grid; grid-template-columns:repeat(6, 1fr); border-top:0;}
+.pth__cell{ padding:10px 14px; border-right:1px solid var(--ax-border-subtle); display:flex; flex-direction:column; gap:2px;}
+.pth__cell:last-child{ border-right:none;}
+.pth__cell-label{ font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.06em; font-family:var(--ax-font-mono);}
+.pth__cell-val{ font-size:13px; font-weight:600; color:var(--ax-text-heading); font-family:var(--ax-font-mono); line-height:1.2;}
+.pth__cell-val small{ font-weight:400; color:var(--ax-text-subtle); font-size:10px; margin-left:3px;}
+.pth__cell--alert .pth__cell-val{ color:var(--ax-error-emphasis);}
+
+/* Compact variant */
+.pth--compact{ }
+.pth--compact .pth__top{ grid-template-columns: 40px 1fr auto; padding:8px 12px;}
+.pth--compact .pth__avatar{ width:40px; height:40px; font-size:14px;}
+.pth--compact .pth__name{ font-size:14px;}
+.pth--compact .pth__name-en{ display:none;}
+.pth--compact .pth__sub{ display:none;}
+
+/* Inpatient variant */
+.pth__loc{ display:flex; gap:10px; align-items:center; padding:6px 14px; background:var(--ax-background-subtle); border-top:1px solid var(--ax-border-subtle); font-size:11px; font-family:var(--ax-font-mono); color:var(--ax-text-default);}
+.pth__loc strong{ color:var(--ax-text-heading); font-weight:600;}
+.pth__loc-divider{ color:var(--ax-border-default);}
