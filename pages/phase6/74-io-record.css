@@ -1,0 +1,48 @@
+/* #74 I/O record — 24h fluid balance sheet */
+.io{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden; max-width:840px;}
+
+.io__head{ display:grid; grid-template-columns:1fr auto; gap:14px; padding:12px 18px; border-bottom:2px solid var(--ax-text-heading); background:var(--ax-background-subtle); align-items:center;}
+.io__date-badge{ font-family:var(--ax-font-mono); font-size:10px; background:var(--ax-background-muted); padding:2px 8px; border-radius:var(--ax-radius-xs);}
+
+.io__shift{ border-bottom:1px solid var(--ax-border-default);}
+.io__shift:last-of-type{ border-bottom:none;}
+
+.io__shift-h{ display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-default); font-size:11px; font-weight:600; font-family:var(--ax-font-mono); border-left:3px solid transparent;}
+.io__shift-h--day{   border-left-color:var(--ax-success-emphasis);}
+.io__shift-h--eve{   border-left-color:var(--ax-info-emphasis);}
+.io__shift-h--night{ border-left-color:var(--ax-text-subtle);}
+.io__shift-h--active{ background:var(--ax-info-subtle);}
+
+.io__table{ width:100%; border-collapse:collapse;}
+.io__th{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ax-text-subtle); padding:5px 10px; background:var(--ax-background-muted); text-align:right; font-weight:600;}
+.io__th:first-child,
+.io__th:nth-child(2),
+.io__th:nth-child(4){ text-align:left;}
+
+.io__td{ font-size:12px; color:var(--ax-text-default); padding:5px 10px; border-bottom:1px solid var(--ax-border-subtle); vertical-align:middle;}
+.io__td--time{ font-family:var(--ax-font-mono); color:var(--ax-text-subtle); white-space:nowrap; width:60px;}
+.io__td--vol{ font-family:var(--ax-font-mono); text-align:right; font-weight:var(--ax-font-weight-semibold); color:var(--ax-text-heading); width:80px;}
+
+.io__type-badge{ display:inline-flex; align-items:center; font-family:var(--ax-font-mono); font-size:10px; padding:2px 7px; border-radius:var(--ax-radius-full); font-weight:600; margin-right:4px;}
+.io__type-badge--iv{    background:var(--ax-info-subtle);    color:var(--ax-info-emphasis);}
+.io__type-badge--oral{  background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.io__type-badge--urine{ background:var(--ax-background-muted); color:var(--ax-text-secondary);}
+.io__type-badge--drain{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+
+.io__subtotal-row .io__td{ background:var(--ax-background-muted); font-weight:600; font-size:11px; border-bottom:1px solid var(--ax-border-default);}
+
+.io__bal--pos{  color:var(--ax-success-emphasis);}
+.io__bal--warn{ color:var(--ax-warning-emphasis);}
+
+.io__alert{ display:flex; gap:8px; align-items:flex-start; padding:10px 18px; background:var(--ax-warning-subtle); border-top:1.5px solid var(--ax-warning-emphasis); font-size:12px; color:var(--ax-warning-emphasis);}
+
+.io__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 18px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-subtle); flex-wrap:wrap; gap:10px;}
+.io__totals{ display:flex; gap:20px; font-family:var(--ax-font-mono); font-size:11px;}
+.io__total-item{ display:flex; flex-direction:column; gap:2px;}
+.io__total-label{ font-size:9px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ax-text-subtle);}
+.io__total-val{ font-size:15px; font-weight:var(--ax-font-weight-semibold); color:var(--ax-text-heading);}
+.io__total-val--bal{ color:var(--ax-warning-emphasis);}
+
+.io__btn-row{ display:flex; gap:6px;}
+.io__btn{ padding:6px 12px; font-size:11px; font-family:var(--ax-font-mono); font-weight:500; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.io__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
