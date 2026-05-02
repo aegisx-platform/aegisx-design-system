@@ -1,6 +1,6 @@
 # TODO — `aegisx-design-system`
 
-> Resume here. Last shipped: **v0.5.3+** (2026-05-02) — Phase 7-10 imported from canonical source (#81–118), Phase 6 synced with canonical naming, `pages/index.html` covers all 509 lines / 38 phases.
+> Resume here. Last shipped: **v0.5.4** (2026-05-02) — Token violations fixed (CRITICAL+HIGH across phase7-10), `113-high-contrast` fully tokenized, Tweaks button added to `index.html` topbar.
 
 This file is the **single source of truth for what to do next**. Update it as items move between sections. Do not let it rot.
 
@@ -8,7 +8,7 @@ This file is the **single source of truth for what to do next**. Update it as it
 
 ## 🔵 In progress (pick up next session)
 
-_Nothing in progress — Phase 6 complete._
+_Nothing in progress — token audit complete, all CRITICAL+HIGH violations fixed._
 
 ---
 
