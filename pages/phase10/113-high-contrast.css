@@ -87,32 +87,32 @@
 }
 
 /* Light theme */
-.hcm__card.light{ background:#ffffff; color:#0a0a0c; border:1px solid #d4d4d8;}
-.hcm__card.light .hcm__card-h{ border-color:#e4e4e7;}
-.hcm__card.light .hcm__card-av{ background:#3949ab; color:#fff;}
-.hcm__card.light .hcm__card-pill{ background:#d1fae5; color:#047857;}
-.hcm__card.light .hcm__card-act{ border-color:#e4e4e7;}
-.hcm__card.light .hcm__btn{ background:#fff; color:#0a0a0c; border:1px solid #d4d4d8;}
-.hcm__card.light .hcm__btn.p{ background:#3949ab; color:#fff; border-color:#3949ab;}
+.hcm__card.light{ background:var(--ax-background-default); color:var(--ax-text-heading); border:1px solid var(--ax-border-default);}
+.hcm__card.light .hcm__card-h{ border-color:var(--ax-border-subtle);}
+.hcm__card.light .hcm__card-av{ background:var(--ax-brand-emphasis); color:var(--ax-text-inverted);}
+.hcm__card.light .hcm__card-pill{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.hcm__card.light .hcm__card-act{ border-color:var(--ax-border-subtle);}
+.hcm__card.light .hcm__btn{ background:var(--ax-background-default); color:var(--ax-text-heading); border:1px solid var(--ax-border-default);}
+.hcm__card.light .hcm__btn.p{ background:var(--ax-brand-emphasis); color:var(--ax-text-inverted); border-color:var(--ax-brand-emphasis);}
 
 /* Dark theme */
-.hcm__card.dark{ background:#141417; color:#e4e4e7; border:1px solid #3f3f46;}
-.hcm__card.dark .hcm__card-h{ border-color:#27272a;}
-.hcm__card.dark .hcm__card-av{ background:#7986cb; color:#0a0a0c;}
-.hcm__card.dark .hcm__card-pill{ background:rgba(16,185,129,0.22); color:#34d399;}
-.hcm__card.dark .hcm__card-act{ border-color:#27272a;}
-.hcm__card.dark .hcm__btn{ background:#1c1c20; color:#e4e4e7; border:1px solid #3f3f46;}
-.hcm__card.dark .hcm__btn.p{ background:#7986cb; color:#0a0a0c; border-color:#7986cb;}
+.hcm__card.dark{ background:var(--ax-background-subtle); color:var(--ax-text-default); border:1px solid var(--ax-border-default);}
+.hcm__card.dark .hcm__card-h{ border-color:var(--ax-border-default);}
+.hcm__card.dark .hcm__card-av{ background:var(--ax-info-emphasis); color:var(--ax-text-heading);}
+.hcm__card.dark .hcm__card-pill{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.hcm__card.dark .hcm__card-act{ border-color:var(--ax-border-default);}
+.hcm__card.dark .hcm__btn{ background:var(--ax-background-muted); color:var(--ax-text-default); border:1px solid var(--ax-border-default);}
+.hcm__card.dark .hcm__btn.p{ background:var(--ax-info-emphasis); color:var(--ax-text-heading); border-color:var(--ax-info-emphasis);}
 
 /* High-contrast theme */
-.hcm__card.hc{ background:#000; color:#fff; border:2px solid #fff;}
-.hcm__card.hc .hcm__card-h{ border-color:#fff; border-bottom-width:2px;}
-.hcm__card.hc .hcm__card-av{ background:#ffea00; color:#000; border:2px solid #fff;}
-.hcm__card.hc .hcm__card-pill{ background:#00ff7f; color:#000; border:1px solid #fff;}
-.hcm__card.hc .hcm__card-act{ border-color:#fff; border-top-width:2px;}
-.hcm__card.hc .hcm__btn{ background:#000; color:#fff; border:2px solid #fff;}
-.hcm__card.hc .hcm__btn.p{ background:#ffea00; color:#000; border-color:#fff;}
-.hcm__card.hc :focus, .hcm__card.hc:focus{ outline:3px solid #ffea00; outline-offset:2px;}
+.hcm__card.hc{ background:var(--ax-text-heading); color:var(--ax-text-inverted); border:2px solid var(--ax-text-inverted);}
+.hcm__card.hc .hcm__card-h{ border-color:var(--ax-text-inverted); border-bottom-width:2px;}
+.hcm__card.hc .hcm__card-av{ background:var(--ax-warning-emphasis); color:var(--ax-text-heading); border:2px solid var(--ax-text-inverted);}
+.hcm__card.hc .hcm__card-pill{ background:var(--ax-success-emphasis); color:var(--ax-text-heading); border:1px solid var(--ax-text-inverted);}
+.hcm__card.hc .hcm__card-act{ border-color:var(--ax-text-inverted); border-top-width:2px;}
+.hcm__card.hc .hcm__btn{ background:var(--ax-text-heading); color:var(--ax-text-inverted); border:2px solid var(--ax-text-inverted);}
+.hcm__card.hc .hcm__btn.p{ background:var(--ax-warning-emphasis); color:var(--ax-text-heading); border-color:var(--ax-text-inverted);}
+.hcm__card.hc :focus, .hcm__card.hc:focus{ outline:3px solid var(--ax-warning-emphasis); outline-offset:2px;}
 
 /* token swatch matrix */
 .hcm__matrix{
