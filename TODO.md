@@ -1,6 +1,6 @@
 # TODO — `aegisx-design-system`
 
-> Resume here. Last shipped: **v0.5.3+** (2026-05-02) — Phase 6 IPD Paperless complete (#71–80), unified `pages/index.html` shipped, `--ax-cat-*` clinical category tokens added.
+> Resume here. Last shipped: **v0.5.3+** (2026-05-02) — Phase 7-10 imported from canonical source (#81–118), Phase 6 synced with canonical naming, `pages/index.html` covers all 509 lines / 38 phases.
 
 This file is the **single source of truth for what to do next**. Update it as items move between sections. Do not let it rot.
 
