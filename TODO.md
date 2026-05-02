@@ -1,6 +1,6 @@
 # TODO — `aegisx-design-system`
 
-> Resume here. Last shipped: **v0.5.3** (2026-04-30) — Phase 5 Clinical Specialty (#61–70) + Phase 6 partial (#71 Admission, #72 Doctor's orders), Stepper/paginator/toolbar polish, `--ax-cat-*` clinical category tokens added to DTCG.
+> Resume here. Last shipped: **v0.5.3+** (2026-05-02) — Phase 6 IPD Paperless complete (#71–80), unified `pages/index.html` shipped, `--ax-cat-*` clinical category tokens added.
 
 This file is the **single source of truth for what to do next**. Update it as items move between sections. Do not let it rot.
 
@@ -8,11 +8,7 @@ This file is the **single source of truth for what to do next**. Update it as it
 
 ## 🔵 In progress (pick up next session)
 
-### Phase 6 · IPD Paperless — remaining components (#74–80)
-- **74** I/O record · **75** Care plan · **76** Discharge summary · **77** Medication reconciliation
-- **78** Patient ID/wristband · **79** Property record · **80** SBAR hand-off
-- **Pattern:** `pages/phase6/{NN}-{name}.{css,js}` — follow #71/#72 as reference
-- **Wire:** link CSS + sidebar + script in `pages/index.html`
+_Nothing in progress — Phase 6 complete._
 
 ---
 
