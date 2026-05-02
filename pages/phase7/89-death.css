@@ -1,12 +1,12 @@
 /* #89 Death record / Body release */
 .dr{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
-.dr__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default); background:#1f2937; color:#fff;}
+.dr__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default); background:var(--ax-text-heading); color:var(--ax-text-inverted);}
 .dr__brand{ display:flex; gap:10px; align-items:center;}
-.dr__logo{ width:36px; height:36px; border-radius:7px; background:#fff; color:#1f2937; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
-.dr__title{ font-size:13px; font-weight:700; color:#fff;}
-.dr__sub{ font-size:11px; color:rgba(255,255,255,0.85); font-family:var(--ax-font-mono); margin-top:2px;}
-.dr__meta{ font-family:var(--ax-font-mono); font-size:10px; color:rgba(255,255,255,0.85); text-align:right; line-height:1.55;}
-.dr__meta strong{ color:#fff;}
+.dr__logo{ width:36px; height:36px; border-radius:7px; background:var(--ax-background-default); color:var(--ax-text-heading); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.dr__title{ font-size:13px; font-weight:700; color:var(--ax-text-inverted);}
+.dr__sub{ font-size:11px; color:var(--ax-text-inverted); font-family:var(--ax-font-mono); margin-top:2px;}
+.dr__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-inverted); text-align:right; line-height:1.55;}
+.dr__meta strong{ color:var(--ax-text-inverted);}
 
 .dr__strip{ display:grid; grid-template-columns: repeat(4,1fr); padding:12px 16px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-default); gap:0;}
 .dr__sc{ display:flex; flex-direction:column; gap:1px; padding-right:14px; border-right:1px solid var(--ax-border-subtle);}
@@ -23,10 +23,10 @@
 /* Cause-of-death pyramid (ICD certificate format Ia/Ib/Ic/II) */
 .dr__cod{ display:flex; flex-direction:column; gap:6px;}
 .dr__cod-row{ display:grid; grid-template-columns: 60px 1fr 110px; gap:8px; align-items:center; padding:8px 10px; background:var(--ax-background-subtle); border-radius:6px;}
-.dr__cod-tag{ font-family:var(--ax-font-mono); font-size:11px; font-weight:700; color:#fff; padding:3px 7px; border-radius:4px; text-align:center; background:var(--ax-text-heading);}
-.dr__cod-tag--ia{ background:#dc2626;}
-.dr__cod-tag--ib{ background:#ea580c;}
-.dr__cod-tag--ic{ background:#ca8a04;}
+.dr__cod-tag{ font-family:var(--ax-font-mono); font-size:11px; font-weight:700; color:var(--ax-text-inverted); padding:3px 7px; border-radius:4px; text-align:center; background:var(--ax-text-heading);}
+.dr__cod-tag--ia{ background:var(--ax-error-emphasis);}
+.dr__cod-tag--ib{ background:var(--ax-warning-emphasis);}
+.dr__cod-tag--ic{ background:var(--ax-warning-emphasis); opacity:.75;}
 .dr__cod-tag--ii{ background:var(--ax-text-subtle);}
 .dr__cod-text{ font-size:12px; color:var(--ax-text-heading);}
 .dr__cod-text strong{ color:var(--ax-text-heading);}
@@ -45,7 +45,7 @@
 /* Body release checklist */
 .dr__list{ display:grid; grid-template-columns: repeat(2,1fr); gap:6px;}
 .dr__li{ display:grid; grid-template-columns: 18px 1fr auto; gap:8px; align-items:center; padding:7px 10px; background:var(--ax-background-subtle); border-radius:5px; font-size:11.5px;}
-.dr__li-tk{ width:18px; height:18px; border-radius:4px; background:var(--ax-success-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px;}
+.dr__li-tk{ width:18px; height:18px; border-radius:4px; background:var(--ax-success-emphasis); color:var(--ax-text-inverted); display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px;}
 .dr__li-tk--pending{ background:var(--ax-warning-emphasis);}
 .dr__li-text strong{ color:var(--ax-text-heading);}
 .dr__li-by{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); white-space:nowrap;}

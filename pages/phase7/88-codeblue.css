@@ -1,12 +1,12 @@
 /* #88 Code blue / Resuscitation sheet */
 .cb{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
-.cb__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default); background:var(--ax-error-emphasis); color:#fff;}
+.cb__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default); background:var(--ax-error-emphasis); color:var(--ax-text-inverted);}
 .cb__brand{ display:flex; gap:10px; align-items:center;}
-.cb__logo{ width:36px; height:36px; border-radius:7px; background:#fff; color:var(--ax-error-emphasis); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
-.cb__title{ font-size:13px; font-weight:700; color:#fff;}
-.cb__sub{ font-size:11px; color:rgba(255,255,255,0.85); font-family:var(--ax-font-mono); margin-top:2px;}
-.cb__meta{ font-family:var(--ax-font-mono); font-size:10px; color:rgba(255,255,255,0.85); text-align:right; line-height:1.55;}
-.cb__meta strong{ color:#fff;}
+.cb__logo{ width:36px; height:36px; border-radius:7px; background:var(--ax-background-default); color:var(--ax-error-emphasis); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.cb__title{ font-size:13px; font-weight:700; color:var(--ax-text-inverted);}
+.cb__sub{ font-size:11px; color:var(--ax-text-inverted); font-family:var(--ax-font-mono); margin-top:2px;}
+.cb__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-inverted); text-align:right; line-height:1.55;}
+.cb__meta strong{ color:var(--ax-text-inverted);}
 
 /* timeline strip */
 .cb__strip{ display:grid; grid-template-columns: repeat(5,1fr); padding:10px 16px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-default);}
@@ -34,7 +34,7 @@
 .cb__tbl td.shock{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); font-weight:700;}
 .cb__tbl td.epi{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis); font-weight:700;}
 .cb__tbl td.rosc{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis); font-weight:700;}
-.cb__tbl td.cpr{ background:#fee; color:var(--ax-error-emphasis);}
+.cb__tbl td.cpr{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
 .cb__tbl td.r{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis); font-weight:600;}
 
 /* Rhythm chip row */
