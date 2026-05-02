@@ -1,0 +1,73 @@
+/* #76 Discharge summary */
+.dsum{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden; max-width:900px;}
+.dsum__head{ display:grid; grid-template-columns:1fr auto; gap:14px; padding:12px 18px; border-bottom:2px solid var(--ax-text-heading); background:var(--ax-background-subtle); align-items:center;}
+.dsum__brand{ display:flex; gap:10px; align-items:center;}
+.dsum__logo{ width:38px; height:38px; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; border-radius:6px; font-family:var(--ax-font-mono); font-weight:700; font-size:12px;}
+.dsum__title{ font-size:14px; font-weight:600; color:var(--ax-text-heading);}
+.dsum__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.dsum__meta{ text-align:right; font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); line-height:1.6;}
+.dsum__meta strong{ color:var(--ax-text-heading);}
+
+.dsum__body{ display:flex; flex-direction:column; gap:0;}
+
+.dsum__sec{ border-bottom:1px solid var(--ax-border-default);}
+.dsum__sec:last-child{ border-bottom:none;}
+.dsum__sec-h{ display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-default);}
+.dsum__sec-title{ font-size:11px; font-weight:600; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.06em; font-family:var(--ax-font-mono); display:flex; align-items:center; gap:8px;}
+.dsum__sec-num{ width:20px; height:20px; border-radius:4px; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; font-size:11px; font-weight:700;}
+.dsum__sec-body{ padding:12px;}
+
+/* Diagnoses */
+.dsum__diag-row{ display:flex; gap:8px; align-items:center; padding:5px 8px; border-radius:var(--ax-radius-sm); margin-bottom:4px;}
+.dsum__diag-row--primary{ background:var(--ax-info-subtle); border:1px solid var(--ax-info-emphasis);}
+.dsum__diag-row--secondary{ background:var(--ax-background-subtle); border:1px solid var(--ax-border-subtle);}
+.dsum__icd{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); padding:1px 6px; background:var(--ax-background-muted); border-radius:3px; white-space:nowrap;}
+.dsum__diag-text{ font-size:12px; color:var(--ax-text-default);}
+.dsum__diag-text--primary{ font-size:12px; color:var(--ax-text-heading); font-weight:var(--ax-font-weight-semibold);}
+.dsum__diag-label{ font-size:9px; font-family:var(--ax-font-mono); text-transform:uppercase; letter-spacing:0.06em; padding:1px 6px; border-radius:3px; white-space:nowrap;}
+.dsum__diag-label--primary{ background:var(--ax-info-emphasis); color:var(--ax-info-inverted); font-weight:600;}
+.dsum__diag-label--secondary{ background:var(--ax-background-muted); color:var(--ax-text-subtle);}
+
+.dsum__proc-list{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; padding-top:8px; border-top:1px dashed var(--ax-border-subtle);}
+.dsum__proc-tag{ font-size:10px; font-family:var(--ax-font-mono); padding:2px 8px; border-radius:3px; background:var(--ax-background-subtle); border:1px solid var(--ax-border-default); color:var(--ax-text-default);}
+
+/* Hospital course */
+.dsum__prose{ font-size:12px; line-height:1.7; color:var(--ax-text-default); padding:4px 0;}
+
+/* Medications table */
+.dsum__med-table{ width:100%; border-collapse:collapse;}
+.dsum__med-th{ font-size:9px; font-family:var(--ax-font-mono); text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); padding:5px 10px; background:var(--ax-background-muted); text-align:left;}
+.dsum__med-td{ font-size:12px; padding:6px 10px; border-bottom:1px solid var(--ax-border-subtle); color:var(--ax-text-default); vertical-align:middle;}
+.dsum__med-td--drug{ font-weight:600; color:var(--ax-text-heading);}
+.dsum__med-td--note{ font-size:11px; color:var(--ax-text-subtle);}
+
+/* Follow-up appointments */
+.dsum__appt-list{ display:flex; flex-direction:column; gap:6px;}
+.dsum__appt{ display:flex; gap:10px; align-items:flex-start; padding:8px 10px; background:var(--ax-background-subtle); border-radius:6px; border:1px solid var(--ax-border-default);}
+.dsum__appt-date{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-heading); font-weight:600; white-space:nowrap; padding-top:1px;}
+.dsum__appt-detail{ font-size:12px; color:var(--ax-text-default);}
+.dsum__appt-detail strong{ color:var(--ax-text-heading); font-weight:600;}
+.dsum__appt-detail small{ display:block; font-size:10px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); margin-top:2px;}
+.dsum__appt-alert{ padding:8px 10px; background:var(--ax-error-subtle); border:1px solid var(--ax-error-emphasis); border-radius:6px; font-size:12px; color:var(--ax-error-emphasis); margin-top:8px;}
+.dsum__appt-alert strong{ font-weight:600;}
+
+/* Patient education checklist */
+.dsum__edu-list{ display:flex; flex-direction:column; gap:4px;}
+.dsum__edu-item{ display:flex; gap:8px; align-items:flex-start; font-size:12px; color:var(--ax-text-default); padding:4px 0;}
+.dsum__edu-check{ width:16px; height:16px; border-radius:var(--ax-radius-full); flex-shrink:0; background:var(--ax-success-emphasis); color:var(--ax-success-inverted); display:grid; place-items:center; font-size:9px; font-weight:700; margin-top:1px;}
+
+/* Signatures */
+.dsum__signs{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;}
+.dsum__sign-block{ border:1px dashed var(--ax-border-default); border-radius:6px; padding:8px 10px;}
+.dsum__sign-canvas{ height:50px; border-bottom:1.5px solid var(--ax-text-default); display:flex; align-items:flex-end; padding-bottom:2px; font-family:'Brush Script MT', cursive; font-size:18px; color:var(--ax-text-heading); font-style:italic; justify-content:center;}
+.dsum__sign-name{ font-size:11px; font-weight:600; color:var(--ax-text-heading); margin-top:4px;}
+.dsum__sign-meta{ font-size:9px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle); margin-top:1px;}
+
+/* Footer */
+.dsum__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 18px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-subtle); flex-wrap:wrap; gap:10px;}
+.dsum__progress{ display:flex; align-items:center; gap:8px; font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.dsum__progress-bar{ width:140px; height:5px; background:var(--ax-background-default); border-radius:3px; overflow:hidden;}
+.dsum__progress-fill{ height:100%; background:var(--ax-success-emphasis);}
+.dsum__btn-row{ display:flex; gap:6px;}
+.dsum__btn{ padding:6px 12px; font-size:11px; font-family:var(--ax-font-mono); font-weight:500; border-radius:var(--ax-radius-sm); border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.dsum__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
