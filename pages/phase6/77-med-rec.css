@@ -1,0 +1,67 @@
+/* #77 Discharge medication reconciliation */
+.dmr{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.dmr__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px;}
+.dmr__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.dmr__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+
+.dmr__legend{ display:flex; gap:10px; padding:8px 16px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-subtle); font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); flex-wrap:wrap;}
+.dmr__legend-item{ display:inline-flex; gap:5px; align-items:center;}
+.dmr__legend-tag{ display:inline-flex; align-items:center; padding:1px 6px; border-radius:3px; font-size:9px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;}
+.dmr__legend-tag--cont{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.dmr__legend-tag--new{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.dmr__legend-tag--mod{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.dmr__legend-tag--stop{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.dmr__legend-tag--hold{ background:var(--ax-background-default); color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+
+/* 3-column compare grid */
+.dmr__grid{ display:grid; grid-template-columns: 110px 1fr 1fr 110px 28px; background:var(--ax-border-subtle); gap:1px;}
+.dmr__hd{ padding:7px 10px; background:var(--ax-background-muted); font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--ax-text-subtle);}
+.dmr__cell{ padding:8px 10px; background:var(--ax-background-default); font-size:11px; color:var(--ax-text-default);}
+.dmr__cell strong{ color:var(--ax-text-heading); font-weight:600;}
+.dmr__cell-empty{ color:var(--ax-text-subtle); font-family:var(--ax-font-mono); font-size:10px; opacity:0.55;}
+
+.dmr__name{ font-weight:600; color:var(--ax-text-heading); font-size:12px; line-height:1.4;}
+.dmr__name-sub{ font-size:10px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:1px;}
+.dmr__dose{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-default); display:block;}
+.dmr__dose-mod{ display:inline-block; font-size:9px; padding:1px 4px; border-radius:2px; background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); margin-left:5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.dmr__dose-strike{ text-decoration:line-through; color:var(--ax-text-subtle); opacity:0.65;}
+
+.dmr__action{ display:flex; align-items:center; justify-content:flex-start; padding:8px 10px; background:var(--ax-background-default);}
+.dmr__action-tag{ font-family:var(--ax-font-mono); font-size:9px; padding:3px 6px; border-radius:3px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; width:100%; text-align:center;}
+.dmr__action-tag--cont{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.dmr__action-tag--new{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.dmr__action-tag--mod{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.dmr__action-tag--stop{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.dmr__action-tag--hold{ background:var(--ax-background-subtle); color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+
+.dmr__check{ display:flex; align-items:center; justify-content:center; padding:8px 0; background:var(--ax-background-default);}
+.dmr__check-box{ width:14px; height:14px; border-radius:3px; border:1.5px solid var(--ax-border-default); position:relative;}
+.dmr__check-box.is-on{ background:var(--ax-success-emphasis); border-color:var(--ax-success-emphasis);}
+.dmr__check-box.is-on::after{ content:'✓'; position:absolute; top:-3px; left:1.5px; color:var(--ax-background-default); font-size:11px; font-weight:700;}
+
+.dmr__row{ display:contents;}
+.dmr__row > *{ background:var(--ax-background-default);}
+.dmr__row--stop > *{ background:var(--ax-error-subtle);}
+.dmr__row--new > *{ background:var(--ax-info-subtle);}
+.dmr__row--mod > *{ background:var(--ax-warning-subtle);}
+
+/* Risk alert pills */
+.dmr__alert{ display:inline-flex; align-items:center; gap:3px; font-size:9px; padding:1px 5px; border-radius:3px; font-family:var(--ax-font-mono); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-top:3px;}
+.dmr__alert--inter{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.dmr__alert--allergy{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.dmr__alert--renal{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+
+.dmr__rec-summary{ display:grid; grid-template-columns: repeat(5,1fr); gap:1px; background:var(--ax-border-subtle); border-top:1px solid var(--ax-border-default);}
+.dmr__rec-cell{ padding:9px 12px; background:var(--ax-background-subtle); display:flex; flex-direction:column; gap:1px; align-items:flex-start;}
+.dmr__rec-num{ font-size:18px; font-weight:700; color:var(--ax-text-heading); font-family:var(--ax-font-mono); line-height:1;}
+.dmr__rec-label{ font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); font-weight:600;}
+
+.dmr__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-default); flex-wrap:wrap; gap:10px;}
+.dmr__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); display:flex; gap:12px; flex-wrap:wrap;}
+.dmr__foot-meta strong{ color:var(--ax-text-heading);}
+.dmr__btn-row{ display:flex; gap:6px;}
+.dmr__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.dmr__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+.dmr__btn--warn{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); border-color:transparent;}
+
+@media (max-width:780px){ .dmr__grid{ grid-template-columns:1fr; } .dmr__hd{ display:none; } .dmr__cell{ padding:6px 12px;} }

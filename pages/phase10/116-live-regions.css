@@ -1,0 +1,155 @@
+/* #116 Screen-reader live regions */
+.srl{
+  background:var(--ax-background-default);
+  border:1px solid var(--ax-border-subtle);
+  border-radius:var(--ax-radius-xl);
+  overflow:hidden;
+  box-shadow:var(--ax-shadow-sm);
+}
+.srl__head{
+  display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;
+  padding:18px 20px;
+  border-bottom:1px solid var(--ax-border-subtle);
+  background:linear-gradient(180deg,var(--ax-background-default),var(--ax-background-page));
+}
+.srl__brand{ display:flex; gap:12px; align-items:center;}
+.srl__logo{
+  width:40px; height:40px; border-radius:10px;
+  background:var(--ax-brand-emphasis); color:var(--ax-brand-inverted);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--ax-font-mono); font-weight:700; font-size:11px;
+}
+.srl__title{ font-size:14px; font-weight:600; color:var(--ax-text-heading);}
+.srl__sub{ font-size:11px; color:var(--ax-text-subtle); margin-top:2px;}
+.srl__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:right; line-height:1.55;}
+
+.srl__body{ display:grid; grid-template-columns:1fr 1.1fr; gap:0;}
+.srl__l{ padding:14px 16px;}
+.srl__r{ padding:14px 16px; background:var(--ax-background-page); border-left:1px solid var(--ax-border-subtle);}
+
+.srl__sec-h{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin:0 0 8px;
+}
+.srl__sec-h:not(:first-child){ margin-top:18px;}
+.srl__sec-t{ font-size:12px; font-weight:700; color:var(--ax-text-heading);}
+.srl__sec-cap{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+/* region cards */
+.srl__regions{
+  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+}
+.srl__region{
+  background:var(--ax-background-default);
+  border:1px solid var(--ax-border-subtle);
+  border-radius:var(--ax-radius-md);
+  padding:10px 12px;
+}
+.srl__region-h{ display:flex; gap:8px; align-items:center; margin-bottom:6px; padding-bottom:5px; border-bottom:1px dashed var(--ax-border-subtle);}
+.srl__region-tag{
+  font-family:var(--ax-font-mono); font-size:9px; font-weight:700; padding:1px 6px; border-radius:4px;
+}
+.srl__region-tag.pol{ background:var(--ax-brand-faint); color:var(--ax-brand-emphasis);}
+.srl__region-tag.ass{ background:var(--ax-error-muted); color:var(--ax-error-emphasis);}
+.srl__region-tag.off{ background:var(--ax-background-muted); color:var(--ax-text-secondary);}
+.srl__region-n{ font-size:11px; font-weight:700; color:var(--ax-text-heading);}
+.srl__region-d{ font-size:10px; color:var(--ax-text-secondary); line-height:1.5;}
+.srl__region-c{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-brand-emphasis); margin-top:4px;}
+
+/* announcement log · "what NVDA said" */
+.srl__log{
+  background:#0a0a0c;
+  border-radius:var(--ax-radius-md);
+  padding:10px 12px;
+  font-family:var(--ax-font-mono); font-size:10.5px; line-height:1.55;
+  color:#e4e4e7;
+  height:300px; overflow:hidden;
+  position:relative;
+}
+.srl__log-h{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-bottom:6px; margin-bottom:6px;
+  border-bottom:1px solid #27272a;
+  font-size:9px; text-transform:uppercase; letter-spacing:0.06em;
+  color:#71717a;
+}
+.srl__log-h .live{
+  display:inline-flex; align-items:center; gap:4px;
+  color:#22c55e;
+}
+.srl__log-h .live::before{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:#22c55e; box-shadow:0 0 6px #22c55e;
+}
+.srl__entry{ display:grid; grid-template-columns:auto auto 1fr; gap:8px; padding:3px 0;}
+.srl__entry-t{ color:#71717a;}
+.srl__entry-pol{
+  font-size:8.5px; padding:0 4px; border-radius:3px;
+  align-self:start; margin-top:2px;
+}
+.srl__entry-pol.p{ background:rgba(127,151,255,0.18); color:#7f97ff;}
+.srl__entry-pol.a{ background:rgba(255,87,87,0.18); color:#ff7777;}
+.srl__entry-msg{ color:#e4e4e7;}
+.srl__entry-msg em{ color:#a1a1aa; font-style:normal;}
+
+/* mini timeline · debounce visualization */
+.srl__deb{
+  background:var(--ax-background-default);
+  border:1px solid var(--ax-border-subtle);
+  border-radius:var(--ax-radius-md);
+  padding:12px 14px;
+}
+.srl__deb-track{
+  position:relative; height:36px;
+  background:linear-gradient(90deg,var(--ax-background-page) 0,var(--ax-background-page) 100%);
+  border-radius:6px;
+  overflow:hidden;
+}
+.srl__deb-tick{
+  position:absolute; top:0; bottom:0;
+  width:1px; background:var(--ax-border-subtle);
+}
+.srl__deb-event{
+  position:absolute; top:6px; width:2px; height:14px;
+  background:var(--ax-text-secondary);
+}
+.srl__deb-event.fire{ background:var(--ax-success-default); height:24px; top:6px;}
+.srl__deb-label{
+  position:absolute; bottom:1px; font-family:var(--ax-font-mono); font-size:8px; color:var(--ax-text-subtle); transform:translateX(-50%);
+}
+.srl__deb-foot{ display:flex; justify-content:space-between; font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); margin-top:6px;}
+
+/* announce types matrix */
+.srl__types{
+  width:100%; border-collapse:collapse; font-size:11px;
+  border:1px solid var(--ax-border-subtle); border-radius:var(--ax-radius-md); overflow:hidden;
+}
+.srl__types th{
+  text-align:left; padding:6px 10px;
+  font-size:9px; text-transform:uppercase; letter-spacing:0.04em; color:var(--ax-text-subtle);
+  background:var(--ax-background-page);
+  border-bottom:1px solid var(--ax-border-default);
+}
+.srl__types td{
+  padding:8px 10px;
+  border-bottom:1px solid var(--ax-border-subtle);
+  vertical-align:top;
+}
+.srl__types td:last-child{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.srl__types strong{ color:var(--ax-text-heading);}
+.srl__types small{ display:block; color:var(--ax-text-subtle); font-size:10px; margin-top:2px;}
+
+.srl__foot{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 18px; border-top:1px solid var(--ax-border-subtle);
+  background:var(--ax-background-page);
+}
+.srl__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.srl__btn{
+  padding:6px 12px; border-radius:var(--ax-radius-md);
+  border:1px solid var(--ax-border-default);
+  background:var(--ax-background-default);
+  color:var(--ax-text-default);
+  font-size:12px; font-weight:600; cursor:pointer;
+}
+.srl__btn.p{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}

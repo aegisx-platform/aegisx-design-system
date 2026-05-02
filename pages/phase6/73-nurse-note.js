@@ -1,151 +1,157 @@
 /* #73 Nurse's note · Focus / DAR */
 (function(){
   if (!window.AX6) return;
+  const { h, section, sub, demo } = AX6;
 
   AX6.register(function nurseNoteSection(){
-    const { h, section, sub, demo } = AX6;
-
-    const dar = (letter, text) => h('div', {class:'nn__dar-row'},
-      h('div', {class:`nn__dar-letter nn__dar-letter--${letter}`}, letter),
-      h('div', {class:'nn__dar-text', html: text})
-    );
-
-    const entry = (opts) => {
-      const { time, date, focusCat, focusName, focusTag, focusIcd,
-              darD, darA, darR, nurse, role, signTime, cosign,
-              vitals, amendNote, rowMod } = opts;
-
-      const el = h('div', {class: `nn__entry${rowMod ? ' nn__entry--'+rowMod : ''}`});
-
-      el.appendChild(h('div', {class:'nn__time'},
-        h('strong', {}, time),
-        h('div', {class:'nn__date'}, date)
-      ));
-
-      const focusCol = h('div', {class:'nn__focus'});
-      if (focusCat) focusCol.appendChild(h('div', {class:'nn__focus-cat'}, focusCat));
-      focusCol.appendChild(h('div', {class:'nn__focus-name'}, focusName));
-      if (focusTag) focusCol.appendChild(h('div', {class:`nn__focus-tag nn__focus-tag--${focusTag}`}, focusTag));
-      if (focusIcd) focusCol.appendChild(h('div', {class:'nn__focus-icd'}, focusIcd));
-      el.appendChild(focusCol);
-
-      const darCol = h('div', {class:'nn__dar'});
-      if (darD) darCol.appendChild(dar('D', darD));
-      if (darA) darCol.appendChild(dar('A', darA));
-      if (darR) darCol.appendChild(dar('R', darR));
-      if (vitals) {
-        const vRow = h('div', {class:'nn__vitals'});
-        for (const [label, val, mod] of vitals) {
-          vRow.appendChild(h('div', {class:'nn__vit-pill'},
-            label + ' ',
-            h('strong', {}, val),
-            mod ? h('span', {class:`nn__tok nn__tok--${mod}`}, mod) : null
-          ));
-        }
-        darCol.appendChild(vRow);
-      }
-      if (amendNote) darCol.appendChild(h('div', {class:'nn__amend-note'}, '⚠ ' + amendNote));
-      el.appendChild(darCol);
-
-      const sigCol = h('div', {class:'nn__sig'});
-      sigCol.appendChild(h('div', {class:'nn__sig-name'}, nurse));
-      sigCol.appendChild(h('div', {class:'nn__sig-role'}, role));
-      sigCol.appendChild(h('div', {class:'nn__sig-time'}, signTime));
-      if (cosign) sigCol.appendChild(h('div', {class:'nn__sig-cosign'}, '✓ cosigned'));
-      el.appendChild(sigCol);
-
-      return el;
-    };
-
     const card = h('div', {class:'nn'});
+    card.innerHTML = `
+      <div class="nn__head">
+        <div>
+          <div class="nn__title">Nurse's note · บันทึกทางการพยาบาล (Focus/DAR)</div>
+          <div class="nn__sub">AN 67-12345 · Suda P. · Bed 4-12 · Day 3</div>
+        </div>
+        <div class="nn__filter">
+          <span class="nn__filter-tab nn__filter-tab--on">all</span>
+          <span class="nn__filter-tab">problem</span>
+          <span class="nn__filter-tab">routine</span>
+          <span class="nn__filter-tab">amend</span>
+        </div>
+      </div>
 
-    card.appendChild(h('div', {class:'nn__head'},
-      h('div', {},
-        h('div', {class:'nn__title'}, "Nurse's Note — Focus / DAR"),
-        h('div', {class:'nn__sub'}, 'AN · 67-12345 · สุดา ปัญญาดี · Ward 4 Med-Surg · IPD-2024-08-12')
-      ),
-      h('div', {class:'nn__filter'},
-        h('div', {class:'nn__filter-tab nn__filter-tab--on'}, 'All'),
-        h('div', {class:'nn__filter-tab'}, 'Problem'),
-        h('div', {class:'nn__filter-tab'}, 'Routine'),
-        h('div', {class:'nn__filter-tab'}, 'Event')
-      )
-    ));
+      <div class="nn__shift">
+        <span><strong>Day shift</strong> · 07:00 — 15:00 · 2024-08-14</span>
+        <span class="nn__shift-meta"><span>RN Niran S. (in-charge)</span><span>4 entries · 1 cosigned</span></span>
+      </div>
 
-    card.appendChild(h('div', {class:'nn__shift'},
-      h('span', {}, h('strong', {}, 'Day shift'), ' · 07:00–15:00'),
-      h('div', {class:'nn__shift-meta'},
-        h('span', {}, 'RN · พยาบาล A'),
-        h('span', {}, '2024-08-12')
-      )
-    ));
+      <div class="nn__entry nn__entry--problem">
+        <div class="nn__time"><strong>14:35</strong><span class="nn__date">14 Aug</span></div>
+        <div class="nn__focus">
+          <span class="nn__focus-cat">focus</span>
+          <span class="nn__focus-name">Acute pulmonary edema</span>
+          <span class="nn__focus-tag nn__focus-tag--problem">problem</span>
+          <span class="nn__focus-icd">ICD I50.1</span>
+        </div>
+        <div class="nn__dar">
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--D">D</div>
+            <div class="nn__dar-text">Dyspnea, RR <span class="nn__tok nn__tok--alert">28/min</span> SpO₂ <span class="nn__tok nn__tok--alert">88%</span> on RA · bilateral crackles to mid-zone · pink frothy sputum noted. Pt anxious.<span class="nn__quote">"หายใจไม่ออก รู้สึกแน่นหน้าอกมาก"</span></div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--A">A</div>
+            <div class="nn__dar-text">Notified Dr. Kittisak 14:32. Position fowler's. <strong>O₂ via mask 8 LPM</strong> started. Furosemide 40 mg IV push given per STAT order 14:35. Foley catheter inserted for accurate I/O. Cardiac monitor on.</div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--R">R</div>
+            <div class="nn__dar-text">15 min later: RR <span class="nn__tok nn__tok--warn">22/min</span> SpO₂ <span class="nn__tok nn__tok--ok">95%</span> on O₂ mask. Urine output <span class="nn__tok">+850 mL</span> in 1h. Pt reports "หายใจดีขึ้นเยอะ". Continue Q1h monitoring × 4.</div>
+          </div>
+        </div>
+        <div class="nn__sig">
+          <div class="nn__sig-name">RN Niran S.</div>
+          <div class="nn__sig-role">Reg. Nurse</div>
+          <div class="nn__sig-time">e-sign 14:48</div>
+          <span class="nn__sig-cosign">✓ co-sign</span>
+        </div>
+      </div>
 
-    card.appendChild(entry({
-      time: '08:45', date: '12 ส.ค.',
-      focusCat: 'Nursing diagnosis',
-      focusName: 'Acute Pain',
-      focusTag: 'problem',
-      focusIcd: 'NANDA 00132',
-      darD: 'ผู้ป่วยร้องเรียนปวดบริเวณแผลหน้าท้อง <strong>NRS <span class="nn__tok nn__tok--alert">8/10</span></strong>',
-      darA: 'ประเมิน vital signs: <span class="nn__tok">BP 148/92</span> <span class="nn__tok nn__tok--alert">PR 108</span> — tachycardia',
-      darR: 'ให้ Tramadol 50 mg IV · จัดท่า semi-Fowler · ประเมินซ้ำ 30 นาที',
-      nurse: 'รัตนา สุขใจ', role: 'RN · Ward 4', signTime: '08:52', cosign: false
-    }));
+      <div class="nn__entry">
+        <div class="nn__time"><strong>10:00</strong><span class="nn__date">14 Aug</span></div>
+        <div class="nn__focus">
+          <span class="nn__focus-cat">routine</span>
+          <span class="nn__focus-name">Routine round · vital signs</span>
+          <span class="nn__focus-tag nn__focus-tag--routine">routine</span>
+        </div>
+        <div class="nn__dar">
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--D">D</div>
+            <div class="nn__dar-text">Pt resting in bed, alert oriented ×3, conversing comfortably. Skin warm dry. No edema noted lower extremities. Tolerating soft diet · breakfast 80% consumed.
+              <div class="nn__vitals">
+                <span class="nn__vit-pill">BP <strong>132/78</strong></span>
+                <span class="nn__vit-pill">HR <strong>84</strong></span>
+                <span class="nn__vit-pill">RR <strong>18</strong></span>
+                <span class="nn__vit-pill">T <strong>37.2°C</strong></span>
+                <span class="nn__vit-pill">SpO₂ <strong>97%</strong> RA</span>
+                <span class="nn__vit-pill">Pain <strong>2/10</strong></span>
+              </div>
+            </div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--A">A</div>
+            <div class="nn__dar-text">Routine vital signs taken Q4h per order. AM medications administered. Encouraged ambulation × 30 min per care plan.</div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--R">R</div>
+            <div class="nn__dar-text">Stable. Continue current plan. Family at bedside, education on fluid restriction reinforced.</div>
+          </div>
+        </div>
+        <div class="nn__sig">
+          <div class="nn__sig-name">RN Niran S.</div>
+          <div class="nn__sig-role">Reg. Nurse</div>
+          <div class="nn__sig-time">e-sign 10:12</div>
+        </div>
+      </div>
 
-    card.appendChild(entry({
-      time: '12:00', date: '12 ส.ค.',
-      focusCat: 'Routine assessment',
-      focusName: 'Vital signs & comfort',
-      focusTag: 'routine',
-      darD: 'ผู้ป่วยรายงานปวดลดลง <strong>NRS <span class="nn__tok nn__tok--ok">4/10</span></strong>',
-      darA: 'Vital signs อยู่ในเกณฑ์ปกติ — hemodynamic stable',
-      darR: 'Continue pain management plan · deep breathing',
-      vitals: [
-        ['BP', '132/84', null], ['PR', '88', null], ['RR', '18', null],
-        ['Temp', '37.2°C', null], ['SpO₂', '98%', 'ok'], ['Pain', '4/10', 'warn']
-      ],
-      nurse: 'รัตนา สุขใจ', role: 'RN · Ward 4', signTime: '12:08', cosign: true
-    }));
+      <div class="nn__entry nn__entry--event">
+        <div class="nn__time"><strong>08:30</strong><span class="nn__date">14 Aug</span></div>
+        <div class="nn__focus">
+          <span class="nn__focus-cat">goal</span>
+          <span class="nn__focus-name">Mobility · OOB to chair</span>
+          <span class="nn__focus-tag nn__focus-tag--goal">goal met</span>
+        </div>
+        <div class="nn__dar">
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--D">D</div>
+            <div class="nn__dar-text">Per Dr. order: out of bed to chair × 30 min TID. Pt cooperative, expresses willingness to mobilize.</div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--A">A</div>
+            <div class="nn__dar-text">Assisted Pt OOB to chair with 1 staff support. Slipper-socks, walker available. Monitored SpO₂ continuous, BP at start &amp; end.</div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--R">R</div>
+            <div class="nn__dar-text">Tolerated 30 min in chair · SpO₂ remained <span class="nn__tok nn__tok--ok">96–98%</span> · no SOB. Returned to bed safely. <strong>Goal achieved.</strong> Schedule next: 12:30, 17:00.</div>
+          </div>
+        </div>
+        <div class="nn__sig">
+          <div class="nn__sig-name">RN Pim K.</div>
+          <div class="nn__sig-role">Reg. Nurse</div>
+          <div class="nn__sig-time">e-sign 09:05</div>
+        </div>
+      </div>
 
-    card.appendChild(h('div', {class:'nn__shift'},
-      h('span', {}, h('strong', {}, 'Evening shift'), ' · 15:00–23:00'),
-      h('div', {class:'nn__shift-meta'},
-        h('span', {}, 'RN · พยาบาล B'),
-        h('span', {}, '2024-08-12')
-      )
-    ));
+      <div class="nn__entry nn__entry--amend">
+        <div class="nn__time"><strong>07:30</strong><span class="nn__date">14 Aug</span></div>
+        <div class="nn__focus">
+          <span class="nn__focus-cat">handoff</span>
+          <span class="nn__focus-name">Shift handoff received</span>
+          <span class="nn__focus-tag nn__focus-tag--routine">routine</span>
+        </div>
+        <div class="nn__dar">
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--D">D</div>
+            <div class="nn__dar-text">Received report from night shift (RN Aoy). Pt slept 5h interrupted. No acute events overnight. NPO since midnight for AM labs (drawn 06:00).</div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--A">A</div>
+            <div class="nn__dar-text">Bedside check: IV site L forearm patent, no swelling. Foley not in. Bed alarm on. Call bell within reach.</div>
+          </div>
+          <div class="nn__dar-row"><div class="nn__dar-letter nn__dar-letter--R">R</div>
+            <div class="nn__dar-text">Plan for the shift acknowledged.</div>
+          </div>
+          <div class="nn__amend-note">⊘ amended 14:50 — corrected typo "Foley not in" was originally mistyped as "Foley in"</div>
+        </div>
+        <div class="nn__sig">
+          <div class="nn__sig-name">RN Niran S.</div>
+          <div class="nn__sig-role">Reg. Nurse</div>
+          <div class="nn__sig-time">e-sign 07:42</div>
+        </div>
+      </div>
 
-    card.appendChild(entry({
-      time: '17:30', date: '12 ส.ค.',
-      focusCat: 'Safety event',
-      focusName: 'Fall risk reassessment',
-      focusTag: 'event',
-      rowMod: 'event',
-      darD: 'Morse Fall Scale ประเมินได้ <strong>55 คะแนน</strong> (high risk)',
-      darA: 'ติดป้าย fall precaution · ลง side rail ทั้ง 2 ข้าง',
-      darR: 'ให้ bed alarm · ประเมินซ้ำทุก 4 ชั่วโมง',
-      nurse: 'มาลี จันทร์เพ็ญ', role: 'RN · Ward 4', signTime: '17:42', cosign: false,
-      amendNote: 'Amended 18:05 — เพิ่ม bed sensor'
-    }));
+      <div class="nn__foot">
+        <div class="nn__foot-stats">
+          <span><strong>4</strong> entries this shift</span>
+          <span><strong>1</strong> problem · <strong>1</strong> goal-met</span>
+          <span><strong>1</strong> amendment</span>
+          <span>last sync <strong>14:50</strong></span>
+        </div>
+        <div class="nn__btn-row">
+          <button class="nn__btn">Print shift summary</button>
+          <button class="nn__btn">Add quick note</button>
+          <button class="nn__btn nn__btn--primary">+ New focus</button>
+        </div>
+      </div>`;
 
-    card.appendChild(h('div', {class:'nn__foot'},
-      h('div', {class:'nn__foot-stats'},
-        h('span', {}, 'Entries today: ', h('strong', {}, '3')),
-        h('span', {}, 'Problems: ', h('strong', {}, '1')),
-        h('span', {}, 'Routine: ', h('strong', {}, '1')),
-        h('span', {}, 'Events: ', h('strong', {}, '1'))
-      ),
-      h('div', {class:'nn__btn-row'},
-        h('button', {class:'nn__btn'}, 'Export PDF'),
-        h('button', {class:'nn__btn nn__btn--primary'}, '+ Add note')
-      )
-    ));
-
-    return section(
-      'nno', '73',
-      "Nurse's note (Focus / DAR)",
-      'Structured nursing documentation: Focus (problem/event/routine), Data, Action, Response — with shift headers, vitals inline, and co-sign support.',
-      sub(null, demo(card))
-    );
+    return section('nn','73',"Nurse's note (Focus/DAR)",
+      'บันทึกทางการพยาบาลแบบ Focus Charting · DAR (Data/Action/Response) · 4 focus types: problem, event, routine, goal-met · inline data tokens (vitals + scores) · Pt quotes · amendment trail with original-vs-corrected · cosignature workflow.',
+      sub('Day shift entries · timeline view', demo(card)));
   });
 })();

@@ -1,0 +1,54 @@
+/* #79 Property / Belongings record */
+.bel{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.bel__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; border-bottom:1px solid var(--ax-border-default); flex-wrap:wrap; gap:10px;}
+.bel__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.bel__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.bel__stamp{ font-family:var(--ax-font-mono); font-size:10px; padding:3px 8px; background:var(--ax-success-subtle); color:var(--ax-success-emphasis); border-radius:4px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;}
+
+.bel__band{ display:grid; grid-template-columns: repeat(4,1fr); gap:1px; background:var(--ax-border-subtle);}
+.bel__band-cell{ background:var(--ax-background-subtle); padding:9px 13px; display:flex; flex-direction:column; gap:1px;}
+.bel__band-label{ font-size:9px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); font-weight:600;}
+.bel__band-value{ font-size:14px; font-weight:700; color:var(--ax-text-heading); font-family:var(--ax-font-mono);}
+.bel__band-meta{ font-size:9px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+
+/* Item rows */
+.bel__list{ display:flex; flex-direction:column;}
+.bel__item{ display:grid; grid-template-columns: 38px 32px 1fr 90px 100px 110px 70px; gap:10px; padding:9px 16px; border-bottom:1px solid var(--ax-border-subtle); align-items:center; font-size:11px;}
+.bel__item:last-child{ border-bottom:none;}
+.bel__item--vault{ background:var(--ax-warning-subtle);}
+.bel__item--given{ opacity:0.6;}
+.bel__item--lost{ background:var(--ax-error-subtle);}
+
+.bel__num{ font-family:var(--ax-font-mono); font-size:11px; font-weight:600; color:var(--ax-text-subtle); text-align:right;}
+.bel__icon{ width:30px; height:30px; border-radius:6px; background:var(--ax-background-subtle); display:grid; place-items:center; font-size:14px;}
+.bel__name{ display:flex; flex-direction:column; gap:1px;}
+.bel__name-main{ font-size:12px; font-weight:600; color:var(--ax-text-heading);}
+.bel__name-desc{ font-size:10px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+.bel__qty{ font-family:var(--ax-font-mono); font-size:11px; font-weight:600; color:var(--ax-text-default); text-align:center; padding:2px 6px; background:var(--ax-background-subtle); border-radius:4px; display:inline-block; justify-self:start;}
+.bel__loc{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.bel__loc strong{ color:var(--ax-text-heading); display:block; font-size:11px; font-weight:600;}
+.bel__status{ font-family:var(--ax-font-mono); font-size:9px; padding:2px 6px; border-radius:3px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; text-align:center;}
+.bel__status--bedside{ background:var(--ax-info-subtle); color:var(--ax-info-emphasis);}
+.bel__status--vault{ background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis);}
+.bel__status--given{ background:var(--ax-background-subtle); color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+.bel__status--lost{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis);}
+.bel__status--worn{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis);}
+.bel__photo{ width:50px; height:50px; border-radius:5px; background:linear-gradient(135deg, var(--ax-background-subtle) 0%, var(--ax-background-muted) 100%); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); border:1px dashed var(--ax-border-default); justify-self:end;}
+.bel__photo--has{ background:var(--ax-text-heading); color:var(--ax-background-default); border:none; font-size:18px;}
+
+.bel__sect-h{ padding:7px 16px; background:var(--ax-background-muted); font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ax-text-subtle); font-weight:700; border-bottom:1px solid var(--ax-border-subtle); display:flex; justify-content:space-between;}
+.bel__sect-h strong{ color:var(--ax-text-heading);}
+
+.bel__sigrow{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; padding:12px 16px; background:var(--ax-background-subtle); border-top:1px solid var(--ax-border-default);}
+.bel__sig{ border:1px dashed var(--ax-border-default); border-radius:6px; padding:8px 10px;}
+.bel__sig-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600; margin-bottom:4px;}
+.bel__sig-mark{ height:24px; font-family:'Segoe Script','Brush Script MT',cursive; font-size:14px; color:var(--ax-text-heading); border-bottom:1px solid var(--ax-border-default); display:flex; align-items:flex-end; padding-bottom:2px;}
+.bel__sig-name{ font-size:10px; font-weight:600; color:var(--ax-text-heading); margin-top:4px;}
+.bel__sig-meta{ font-size:9px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}
+
+.bel__foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-top:1px solid var(--ax-border-default); background:var(--ax-background-default); flex-wrap:wrap; gap:10px;}
+.bel__btn-row{ display:flex; gap:6px;}
+.bel__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.bel__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width:780px){ .bel__band{ grid-template-columns:1fr 1fr;} .bel__item{ grid-template-columns: 30px 28px 1fr 80px; } .bel__loc, .bel__status, .bel__photo{ grid-column: 3/5;} }

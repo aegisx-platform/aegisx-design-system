@@ -1,0 +1,78 @@
+/* #85 Fall risk (Morse) + intervention */
+.fall{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.fall__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default);}
+.fall__brand{ display:flex; gap:10px; align-items:center;}
+.fall__logo{ width:36px; height:36px; border-radius:7px; background:var(--ax-error-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.fall__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.fall__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.fall__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:right; line-height:1.55;}
+.fall__meta strong{ color:var(--ax-text-heading);}
+
+/* Big score panel */
+.fall__hero{ display:grid; grid-template-columns: 220px 1fr; gap:0; border-bottom:1px solid var(--ax-border-default);}
+.fall__score{ padding:16px; background:var(--ax-error-subtle); display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; border-right:1px solid var(--ax-border-default);}
+.fall__score-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-error-emphasis); font-weight:700;}
+.fall__score-val{ font-family:var(--ax-font-mono); font-size:48px; font-weight:700; color:var(--ax-error-emphasis); line-height:1;}
+.fall__score-band{ display:inline-flex; align-items:center; gap:6px; padding:4px 10px; background:var(--ax-error-emphasis); color:#fff; border-radius:999px; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.fall__score-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-error-emphasis); text-align:center; line-height:1.5;}
+
+/* Bands legend */
+.fall__bands{ padding:12px 16px;}
+.fall__bands-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:6px;}
+.fall__bands-bar{ position:relative; height:24px; background:var(--ax-background-subtle); border-radius:4px; overflow:hidden; display:flex;}
+.fall__bands-seg{ display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.04em;}
+.fall__bands-seg--low{ background:var(--ax-success-emphasis); width:25%;}
+.fall__bands-seg--mod{ background:var(--ax-warning-emphasis); width:25%;}
+.fall__bands-seg--high{ background:var(--ax-error-emphasis); width:50%;}
+.fall__bands-mark{ position:absolute; top:-2px; bottom:-2px; width:3px; background:var(--ax-text-heading); transform:translateX(-50%);}
+.fall__bands-mark::after{ content:''; position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--ax-text-heading);}
+.fall__bands-scale{ display:flex; justify-content:space-between; margin-top:4px; font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle);}
+.fall__bands-trend{ display:flex; gap:8px; margin-top:8px; font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.fall__bands-trend strong{ color:var(--ax-text-heading);}
+
+/* 6 morse criteria */
+.fall__sec{ padding:12px 16px; border-bottom:1px solid var(--ax-border-default);}
+.fall__sec:last-child{ border-bottom:none;}
+.fall__sec-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;}
+.fall__sec-cap{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); padding:1px 6px; background:var(--ax-background-subtle); border-radius:3px; font-weight:600;}
+
+.fall__items{ display:flex; flex-direction:column; gap:6px;}
+.fall__item{ display:grid; grid-template-columns: 24px 1fr auto; gap:10px; align-items:center; padding:8px 10px; background:var(--ax-background-subtle); border-radius:6px;}
+.fall__item-num{ width:22px; height:22px; border-radius:4px; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:10px; font-weight:700;}
+.fall__item-q{ display:flex; flex-direction:column; gap:2px;}
+.fall__item-qt{ font-size:11.5px; font-weight:600; color:var(--ax-text-heading);}
+.fall__item-opts{ display:flex; gap:4px; flex-wrap:wrap;}
+.fall__item-opt{ font-family:var(--ax-font-mono); font-size:10px; padding:2px 7px; border-radius:3px; background:var(--ax-background-default); border:1px solid var(--ax-border-subtle); color:var(--ax-text-subtle); font-weight:600;}
+.fall__item-opt--on{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:transparent;}
+.fall__item-pts{ font-family:var(--ax-font-mono); font-size:14px; font-weight:700; color:var(--ax-text-heading); min-width:36px; text-align:right;}
+.fall__item-pts--zero{ color:var(--ax-text-subtle);}
+
+/* Interventions */
+.fall__int{ display:grid; grid-template-columns: repeat(2,1fr); gap:8px;}
+.fall__i{ display:grid; grid-template-columns: 18px 1fr auto; gap:8px; align-items:center; padding:8px 10px; background:var(--ax-background-subtle); border-radius:6px; font-size:11.5px;}
+.fall__i-tk{ width:18px; height:18px; border-radius:4px; background:var(--ax-success-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px;}
+.fall__i-tk--pending{ background:var(--ax-warning-emphasis);}
+.fall__i-tk--off{ background:var(--ax-background-default); color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+.fall__i-text strong{ color:var(--ax-text-heading);}
+.fall__i-text{ color:var(--ax-text-default);}
+.fall__i-by{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); white-space:nowrap;}
+
+/* History */
+.fall__hist{ display:grid; grid-template-columns: 100px 1fr; gap:0; border:1px solid var(--ax-border-subtle); border-radius:6px; overflow:hidden;}
+.fall__hist-h{ background:var(--ax-background-subtle); padding:6px 10px; font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); font-weight:600; border-right:1px solid var(--ax-border-subtle); border-bottom:1px solid var(--ax-border-subtle); text-transform:uppercase; letter-spacing:0.04em; display:flex; align-items:center;}
+.fall__hist-h:nth-child(2n){ font-size:11px; color:var(--ax-text-heading); background:var(--ax-background-default); justify-content:flex-start;}
+.fall__hist-r{ display:contents;}
+
+/* Foot */
+.fall__sign{ display:grid; grid-template-columns: repeat(2,1fr); gap:10px; padding:12px 16px; background:var(--ax-background-subtle); border-top:1px solid var(--ax-border-default);}
+.fall__sig{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:6px; padding:9px 11px; display:flex; flex-direction:column; gap:2px;}
+.fall__sig-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600;}
+.fall__sig-name{ font-size:11px; font-weight:600; color:var(--ax-text-heading);}
+.fall__sig-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+.fall__foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid var(--ax-border-default);}
+.fall__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.fall__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.fall__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width:780px){ .fall__hero{ grid-template-columns:1fr;} .fall__int{ grid-template-columns:1fr;} .fall__sign{ grid-template-columns:1fr;} }

@@ -1,144 +1,166 @@
-/* #75 Care plan */
+/* #75 Care plan · NANDA / NOC / NIC */
 (function(){
   if (!window.AX6) return;
   const { h, section, sub, demo } = AX6;
 
   AX6.register(function carePlanSection(){
-    const card = h('div', {class:'cpl'});
-    card.innerHTML = [
-      '<div class="cpl__head">',
-      '  <div>',
-      '    <div class="cpl__title">Care plan · แผนการพยาบาล</div>',
-      '    <div class="cpl__sub">Form NCP-001 · 2024-08-12 (Day 1) → ongoing · RN Niran W.</div>',
-      '  </div>',
-      '  <div class="cpl__meta">',
-      '    AN · 67-12345<br/>Suda P. · Bed 4-12<br/>',
-      '    <strong>Dr. Kittisak W.</strong>',
-      '  </div>',
-      '</div>',
+    const pip = (n,total=5)=>{
+      let html='<div class="cp__score">';
+      for(let i=1;i<=total;i++) html+=`<span class="cp__score-pip ${i<=n?'is-on':''}"></span>`;
+      html+=`<span class="cp__score-num">${n}/${total}</span></div>`;
+      return html;
+    };
 
-      '<div class="cpl__body">',
+    const card = h('div', {class:'cp'});
+    card.innerHTML = `
+      <div class="cp__head">
+        <div>
+          <div class="cp__title">Nursing care plan · แผนการพยาบาล</div>
+          <div class="cp__sub">AN 67-12345 · Suda P. · Bed 4-12 · Day 3 · authored RN Niran S.</div>
+        </div>
+        <div class="cp__meta-stats">
+          <span><strong>3</strong> active dx</span>
+          <span><strong>1</strong> resolved</span>
+          <span>last review <strong>14:50</strong></span>
+        </div>
+      </div>
 
-      // Problem 1
-      '<div class="cpl__problem cpl__problem--active">',
-      '  <div class="cpl__prob-head">',
-      '    <div class="cpl__prob-title">',
-      '      <span class="cpl__prob-num">1</span>',
-      '      Impaired Gas Exchange',
-      '      <span class="cpl__prob-code">NANDA 00030</span>',
-      '    </div>',
-      '    <span class="cpl__prob-status cpl__prob-status--active">active</span>',
-      '  </div>',
-      '  <div class="cpl__prob-body">',
-      '    <div class="cpl__clause"><span class="cpl__clause-lbl">R/T</span><span class="cpl__clause-text">Alveolar-capillary membrane changes secondary to pneumonia (J18.9)</span></div>',
-      '    <div class="cpl__clause"><span class="cpl__clause-lbl">AEB</span><span class="cpl__clause-text">SpO₂ 91% on RA · RR 22/min · accessory muscle use · CXR infiltration RLL</span></div>',
-      '    <div class="cpl__goals">',
-      '      <div class="cpl__goal cpl__goal--short"><div class="cpl__goal-lbl">Goal · 24h</div><div class="cpl__goal-text">SpO₂ ≥ 95% on 2L NC · RR 16–20/min</div></div>',
-      '      <div class="cpl__goal cpl__goal--long"><div class="cpl__goal-lbl">Goal · 3–5 days</div><div class="cpl__goal-text">SpO₂ ≥ 94% on RA · CXR clearing</div></div>',
-      '    </div>',
-      '    <div class="cpl__interv">',
-      '      <div class="cpl__interv-title">Nursing interventions</div>',
-      '      <div class="cpl__interv-list">',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>O₂ therapy 2L NC — titrate to SpO₂ 94–98% · monitor Q4h</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>High-Fowler’s position (HOB 45°) continuously</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Incentive spirometer 10 reps Q2h while awake</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Deep breathing + cough exercises Q4h</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Auscultate lung sounds Q4h · document any deterioration</span></div>',
-      '      </div>',
-      '    </div>',
-      '    <div class="cpl__eval">',
-      '      <span class="cpl__eval-time">Day 3 · 14:00</span>',
-      '      <span class="cpl__eval-text">SpO₂ 95% on 2L NC · RR 19/min — continue plan</span>',
-      '      <span class="cpl__eval-outcome cpl__eval-outcome--partial">PARTIAL</span>',
-      '    </div>',
-      '  </div>',
-      '</div>',
+      <!-- Diagnosis 1 -->
+      <div class="cp__dx">
+        <div class="cp__dx-head">
+          <div class="cp__dx-num">1</div>
+          <div class="cp__dx-titlerow">
+            <div class="cp__dx-name">Impaired gas exchange r/t alveolar-capillary membrane changes AEB SpO₂ 88%, dyspnea, crackles</div>
+            <div class="cp__dx-name-th">การแลกเปลี่ยนก๊าซบกพร่องสัมพันธ์กับการเปลี่ยนแปลงเยื่อบุถุงลม-เส้นเลือดฝอย</div>
+            <div class="cp__dx-tags">
+              <span class="cp__dx-tag cp__dx-tag--nanda">NANDA 00030</span>
+              <span class="cp__dx-tag cp__dx-tag--prio-high">priority 1 · high</span>
+              <span class="cp__dx-tag cp__dx-tag--active">active</span>
+              <span class="cp__dx-tag">acute</span>
+            </div>
+          </div>
+          <div class="cp__dx-status"><strong>Day 3</strong><span>started 12 Aug · target resolve 17 Aug</span></div>
+        </div>
+        <div class="cp__body">
+          <div class="cp__col">
+            <div class="cp__col-h"><span>Goals · NOC</span><span class="cp__col-h-tag">3</span></div>
+            <div class="cp__goal">
+              <div class="cp__goal-text"><strong>Respiratory status: gas exchange</strong> — SpO₂ ≥ 95% on RA within 48h${pip(4)}</div>
+              <div class="cp__goal-meta">target<br>5/5</div>
+            </div>
+            <div class="cp__goal">
+              <div class="cp__goal-text"><strong>RR within normal</strong> 14–20/min sustained × 24h${pip(3)}</div>
+              <div class="cp__goal-meta">target<br>4/5</div>
+            </div>
+            <div class="cp__goal">
+              <div class="cp__goal-text"><strong>Pt verbalizes</strong> understanding of breathing exercises by D/C${pip(2)}</div>
+              <div class="cp__goal-meta">target<br>4/5</div>
+            </div>
+          </div>
+          <div class="cp__col">
+            <div class="cp__col-h"><span>Interventions · NIC</span><span class="cp__col-h-tag">5</span></div>
+            <div class="cp__int"><div class="cp__int-check is-done"></div><div class="cp__int-text"><strong>Oxygen therapy</strong> · titrate to maintain SpO₂ ≥ 95%<span class="cp__int-meta">NIC 3320 · continuous · RN</span></div></div>
+            <div class="cp__int"><div class="cp__int-check is-done"></div><div class="cp__int-text"><strong>Position fowler's</strong> 45–60° during dyspnea<span class="cp__int-meta">NIC 0840 · PRN · RN</span></div></div>
+            <div class="cp__int"><div class="cp__int-check is-done"></div><div class="cp__int-text"><strong>Monitor respiratory status</strong> Q1h × 4, then Q4h<span class="cp__int-meta">NIC 3350 · scheduled · RN</span></div></div>
+            <div class="cp__int"><div class="cp__int-check"></div><div class="cp__int-text"><strong>Teach pursed-lip breathing</strong> · demonstrate, return-demo<span class="cp__int-meta">NIC 3300 · daily · RN/RT</span></div></div>
+            <div class="cp__int"><div class="cp__int-check"></div><div class="cp__int-text"><strong>Auscultate breath sounds</strong> Q4h, document changes<span class="cp__int-meta">NIC 6680 · Q4h · RN</span></div></div>
+          </div>
+          <div class="cp__col">
+            <div class="cp__col-h"><span>Evaluation</span><span class="cp__col-h-tag">3 entries</span></div>
+            <div class="cp__eval">
+              <div class="cp__eval-date">Day 3 · 14 Aug 14:50</div>
+              <div class="cp__eval-text">Post-furosemide: SpO₂ 95% on O₂ mask, RR 22, crackles decreased to bases only. Pt verbalizes relief.</div>
+              <span class="cp__eval-result cp__eval-result--partial">partially met</span>
+            </div>
+            <div class="cp__eval">
+              <div class="cp__eval-date">Day 2 · 13 Aug 16:00</div>
+              <div class="cp__eval-text">SpO₂ 92–94% on O₂ 3 LPM NC. RR 22–24. Continue plan, escalate if SpO₂ drops.</div>
+              <span class="cp__eval-result cp__eval-result--ongoing">ongoing</span>
+            </div>
+            <div class="cp__eval">
+              <div class="cp__eval-date">Day 1 · 12 Aug 22:00</div>
+              <div class="cp__eval-text">Initial: SpO₂ 88% RA, RR 28, severe dyspnea. Plan initiated.</div>
+              <span class="cp__eval-result cp__eval-result--ongoing">baseline</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      // Problem 2
-      '<div class="cpl__problem cpl__problem--active">',
-      '  <div class="cpl__prob-head">',
-      '    <div class="cpl__prob-title">',
-      '      <span class="cpl__prob-num">2</span>',
-      '      Acute Pain',
-      '      <span class="cpl__prob-code">NANDA 00132</span>',
-      '    </div>',
-      '    <span class="cpl__prob-status cpl__prob-status--active">active</span>',
-      '  </div>',
-      '  <div class="cpl__prob-body">',
-      '    <div class="cpl__clause"><span class="cpl__clause-lbl">R/T</span><span class="cpl__clause-text">Inflammation from pulmonary infection · pleuritic chest involvement</span></div>',
-      '    <div class="cpl__clause"><span class="cpl__clause-lbl">AEB</span><span class="cpl__clause-text">NRS 6/10 chest pain on deep breath · guarding posture · facial grimace</span></div>',
-      '    <div class="cpl__goals">',
-      '      <div class="cpl__goal cpl__goal--short"><div class="cpl__goal-lbl">Goal · 24h</div><div class="cpl__goal-text">NRS ≤ 3/10 with medication · able to deep breathe</div></div>',
-      '      <div class="cpl__goal cpl__goal--long"><div class="cpl__goal-lbl">Goal · 3–5 days</div><div class="cpl__goal-text">NRS ≤ 2/10 · independent deep breathing</div></div>',
-      '    </div>',
-      '    <div class="cpl__interv">',
-      '      <div class="cpl__interv-title">Nursing interventions</div>',
-      '      <div class="cpl__interv-list">',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Pain assessment NRS Q4h and PRN · document onset, quality, radiation</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Paracetamol 500 mg oral Q6h (scheduled) — evaluate 30 min post</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Positioning — support chest with pillow during cough</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet">4</span><span>Non-pharmacologic: guided breathing · distraction techniques</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet">5</span><span>Notify physician if NRS &gt; 5 or inadequate relief after 2 doses</span></div>',
-      '      </div>',
-      '    </div>',
-      '    <div class="cpl__eval">',
-      '      <span class="cpl__eval-time">Day 3 · 15:00</span>',
-      '      <span class="cpl__eval-text">NRS 4/10 after paracetamol · escalate if NRS &gt; 5</span>',
-      '      <span class="cpl__eval-outcome cpl__eval-outcome--partial">PARTIAL</span>',
-      '    </div>',
-      '  </div>',
-      '</div>',
+      <!-- Diagnosis 2 -->
+      <div class="cp__dx">
+        <div class="cp__dx-head">
+          <div class="cp__dx-num">2</div>
+          <div class="cp__dx-titlerow">
+            <div class="cp__dx-name">Excess fluid volume r/t compromised regulatory mechanism AEB edema, weight gain 3 kg, crackles</div>
+            <div class="cp__dx-name-th">ภาวะน้ำเกินสัมพันธ์กับกลไกควบคุมที่บกพร่อง</div>
+            <div class="cp__dx-tags">
+              <span class="cp__dx-tag cp__dx-tag--nanda">NANDA 00026</span>
+              <span class="cp__dx-tag cp__dx-tag--prio-high">priority 1 · high</span>
+              <span class="cp__dx-tag cp__dx-tag--active">active</span>
+            </div>
+          </div>
+          <div class="cp__dx-status"><strong>Day 3</strong><span>started 12 Aug</span></div>
+        </div>
+        <div class="cp__body">
+          <div class="cp__col">
+            <div class="cp__col-h"><span>Goals · NOC</span><span class="cp__col-h-tag">2</span></div>
+            <div class="cp__goal"><div class="cp__goal-text"><strong>Fluid balance</strong> — net negative 500–1000 mL/day${pip(4)}</div><div class="cp__goal-meta">target<br>5/5</div></div>
+            <div class="cp__goal"><div class="cp__goal-text"><strong>No peripheral edema</strong> by D/C${pip(3)}</div><div class="cp__goal-meta">target<br>5/5</div></div>
+          </div>
+          <div class="cp__col">
+            <div class="cp__col-h"><span>Interventions · NIC</span><span class="cp__col-h-tag">4</span></div>
+            <div class="cp__int"><div class="cp__int-check is-done"></div><div class="cp__int-text"><strong>Strict I/O</strong> Q shift<span class="cp__int-meta">NIC 4120 · Q8h · RN</span></div></div>
+            <div class="cp__int"><div class="cp__int-check is-done"></div><div class="cp__int-text"><strong>Fluid restriction</strong> 1500 mL/day<span class="cp__int-meta">NIC 4120 · 24h · RN/Pt</span></div></div>
+            <div class="cp__int"><div class="cp__int-check is-done"></div><div class="cp__int-text"><strong>Daily weight</strong> AM same scale<span class="cp__int-meta">NIC 1260 · 06:00 · RN</span></div></div>
+            <div class="cp__int"><div class="cp__int-check"></div><div class="cp__int-text"><strong>Assess edema</strong> bilateral LE Q shift<span class="cp__int-meta">NIC 4120 · Q8h · RN</span></div></div>
+          </div>
+          <div class="cp__col">
+            <div class="cp__col-h"><span>Evaluation</span><span class="cp__col-h-tag">2 entries</span></div>
+            <div class="cp__eval">
+              <div class="cp__eval-date">Day 3 · 14 Aug 06:00</div>
+              <div class="cp__eval-text">Wt 62.4 kg (↓0.8 from yesterday). 24h bal −940 mL. Edema 1+ pretibial.</div>
+              <span class="cp__eval-result cp__eval-result--met">goal met</span>
+            </div>
+            <div class="cp__eval">
+              <div class="cp__eval-date">Day 2 · 13 Aug 06:00</div>
+              <div class="cp__eval-text">Wt 63.2 kg (↓1.2). Bal −1100 mL. Edema 2+.</div>
+              <span class="cp__eval-result cp__eval-result--met">goal met</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      // Problem 3
-      '<div class="cpl__problem cpl__problem--monitoring">',
-      '  <div class="cpl__prob-head">',
-      '    <div class="cpl__prob-title">',
-      '      <span class="cpl__prob-num">3</span>',
-      '      Risk for Infection',
-      '      <span class="cpl__prob-code">NANDA 00004</span>',
-      '    </div>',
-      '    <span class="cpl__prob-status cpl__prob-status--monitoring">monitoring</span>',
-      '  </div>',
-      '  <div class="cpl__prob-body">',
-      '    <div class="cpl__clause"><span class="cpl__clause-lbl">R/T</span><span class="cpl__clause-text">Immunocompromised state (T2DM · CKD-3) · invasive lines (IV left forearm · urinary catheter)</span></div>',
-      '    <div class="cpl__clause"><span class="cpl__clause-lbl">AEB</span><span class="cpl__clause-text">T 38.2°C · WBC 14.8 × 10³/μL · CRP 180 mg/L · IV day 3</span></div>',
-      '    <div class="cpl__goals">',
-      '      <div class="cpl__goal cpl__goal--short"><div class="cpl__goal-lbl">Goal · 24h</div><div class="cpl__goal-text">Temperature ≤ 37.5°C · no new infection signs</div></div>',
-      '      <div class="cpl__goal cpl__goal--long"><div class="cpl__goal-lbl">Goal · 3–5 days</div><div class="cpl__goal-text">WBC trending down · cultures negative · no catheter events</div></div>',
-      '    </div>',
-      '    <div class="cpl__interv">',
-      '      <div class="cpl__interv-title">Nursing interventions</div>',
-      '      <div class="cpl__interv-list">',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Standard + droplet precautions · hand hygiene enforcement</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>IV site assessment Q8h — redness, swelling, discharge · document</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Urinary catheter care Q8h · strict aseptic technique</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet cpl__interv-bullet--done">✓</span><span>Blood glucose monitoring AC+HS per DM protocol</span></div>',
-      '        <div class="cpl__interv-item"><span class="cpl__interv-bullet">5</span><span>Monitor WBC/CRP trend with daily labs · report any new fever spike</span></div>',
-      '      </div>',
-      '    </div>',
-      '    <div class="cpl__eval">',
-      '      <span class="cpl__eval-time">Day 3 · 12:00</span>',
-      '      <span class="cpl__eval-text">T 38.2°C persistent · ID consult pending today</span>',
-      '      <span class="cpl__eval-outcome cpl__eval-outcome--not-met">NOT MET</span>',
-      '    </div>',
-      '  </div>',
-      '</div>',
+      <!-- Diagnosis 3 (resolved) -->
+      <div class="cp__dx">
+        <div class="cp__dx-head">
+          <div class="cp__dx-num" style="background:var(--ax-success-emphasis);">✓</div>
+          <div class="cp__dx-titlerow">
+            <div class="cp__dx-name">Acute pain (chest) r/t myocardial ischemia AEB pain rating 7/10, diaphoresis</div>
+            <div class="cp__dx-name-th">ความปวดเฉียบพลัน บริเวณหน้าอก</div>
+            <div class="cp__dx-tags">
+              <span class="cp__dx-tag cp__dx-tag--nanda">NANDA 00132</span>
+              <span class="cp__dx-tag cp__dx-tag--prio-low cp__dx-tag--resolved">resolved</span>
+            </div>
+          </div>
+          <div class="cp__dx-status"><strong>Resolved</strong><span>Day 2 · 13 Aug 18:00 · pain 0/10 × 24h</span></div>
+        </div>
+      </div>
 
-      '</div>',
+      <div class="cp__foot">
+        <div class="cp__foot-stats">
+          <span><strong>3</strong> active · <strong>1</strong> resolved</span>
+          <span><strong>9</strong> interventions · <strong>6</strong> done</span>
+          <span><strong>5</strong> NOC goals tracked</span>
+        </div>
+        <div class="cp__btn-row">
+          <button class="cp__btn">Print care plan</button>
+          <button class="cp__btn">+ Evaluation</button>
+          <button class="cp__btn cp__btn--primary">+ Add diagnosis</button>
+        </div>
+      </div>`;
 
-      '<div class="cpl__foot">',
-      '  <div style="font-family:var(--ax-font-mono);font-size:11px;color:var(--ax-text-subtle)">',
-      '    RN Niran W. · updated 2024-08-14 15:10 · 3 active problems',
-      '  </div>',
-      '  <div class="cpl__btn-row">',
-      '    <button class="cpl__btn">Print</button>',
-      '    <button class="cpl__btn">Add problem</button>',
-      '    <button class="cpl__btn cpl__btn--primary">Sign &amp; lock</button>',
-      '  </div>',
-      '</div>'
-    ].join('\n');
-    return section('cpl','75','Care plan',
-      'แผนการพยาบาล NANDA · ปัญหา · เป้าหมาย · กิจกรรมการพยาบาล · การประเมินผล.',
-      sub('Nursing care plan · Active problems', demo(card)));
+    return section('cp','75','Care plan / Nursing diagnosis',
+      'แผนการพยาบาลตามมาตรฐาน NANDA-I (diagnosis) · NOC (goals) · NIC (interventions) · 3-column body แสดงคู่ขนาน · score pips สำหรับ NOC outcome rating · checkable interventions · evaluation timeline พร้อม goal-status (met/partial/ongoing) · resolved diagnosis collapsed.',
+      sub('Active diagnoses · day 3', demo(card)));
   });
 })();

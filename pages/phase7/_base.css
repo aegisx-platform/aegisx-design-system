@@ -1,0 +1,21 @@
+/* AegisX DS · Phase 7 — base/shared (peri-op, safety, end-of-life, transfer) */
+
+.cx-stepdot{
+  width:18px; height:18px; border-radius:50%;
+  display:inline-grid; place-items:center;
+  font-family:var(--ax-font-mono); font-size:10px; font-weight:700;
+  background:var(--ax-background-subtle);
+  color:var(--ax-text-subtle);
+  border:1px solid var(--ax-border-default);
+}
+.cx-stepdot--ok{ background:var(--ax-success-emphasis); color:#fff; border-color:transparent;}
+.cx-stepdot--warn{ background:var(--ax-warning-emphasis); color:#fff; border-color:transparent;}
+.cx-stepdot--danger{ background:var(--ax-error-emphasis); color:#fff; border-color:transparent;}
+
+.cx-pill{
+  display:inline-flex; align-items:center; gap:4px;
+  font-family:var(--ax-font-mono); font-size:10px; font-weight:700;
+  padding:2px 8px; border-radius:999px;
+  background:var(--ax-text-heading); color:var(--ax-background-default);
+  text-transform:uppercase; letter-spacing:0.04em;
+}

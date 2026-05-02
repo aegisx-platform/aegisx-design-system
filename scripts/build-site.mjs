@@ -36,8 +36,8 @@ for (const f of pageFiles) {
     cpSync(src, dst);
   }
 }
-// Recursively copy phase5/ and phase6/ subdirectories (flat readdirSync above misses them)
-for (const subdir of ['phase5', 'phase6']) {
+// Recursively copy phase subdirectories (flat readdirSync above misses them)
+for (const subdir of ['phase5', 'phase6', 'phase7', 'phase8', 'phase9', 'phase10']) {
   const srcDir = resolve(root, 'pages', subdir);
   const dstDir = resolve(out, 'pages', subdir);
   if (existsSync(srcDir)) cpSync(srcDir, dstDir, { recursive: true });

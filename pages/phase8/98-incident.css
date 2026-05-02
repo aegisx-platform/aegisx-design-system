@@ -1,0 +1,98 @@
+/* #98 Incident report (HRMS safety event) */
+.incident{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.incident__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default); background:var(--ax-warning-emphasis); color:#fff;}
+.incident__brand{ display:flex; gap:10px; align-items:center;}
+.incident__logo{ width:36px; height:36px; border-radius:7px; background:rgba(255,255,255,0.18); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.incident__title{ font-size:13px; font-weight:600;}
+.incident__sub{ font-size:11px; font-family:var(--ax-font-mono); margin-top:2px; opacity:0.9;}
+.incident__meta{ font-family:var(--ax-font-mono); font-size:10px; opacity:0.9; text-align:right; line-height:1.55;}
+.incident__meta strong{ color:#fff;}
+
+/* Severity strip */
+.incident__strip{ display:grid; grid-template-columns: repeat(5,1fr); border-bottom:1px solid var(--ax-border-default);}
+.incident__strip-cell{ padding:10px 14px; border-right:1px solid var(--ax-border-default); display:flex; flex-direction:column; gap:3px;}
+.incident__strip-cell:last-child{ border-right:none;}
+.incident__strip-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
+.incident__strip-val{ font-family:var(--ax-font-mono); font-size:13px; font-weight:700; color:var(--ax-text-heading);}
+.incident__strip-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.incident__sev{ display:inline-flex; align-items:center; gap:4px; padding:2px 7px; border-radius:3px; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.04em;}
+.incident__sev--e{ background:var(--ax-warning-emphasis);}
+
+/* Severity scale ladder */
+.incident__lad{ padding:14px 16px; border-bottom:1px solid var(--ax-border-default);}
+.incident__lad-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; display:flex; justify-content:space-between;}
+.incident__lad-track{ display:grid; grid-template-columns: repeat(9,1fr); gap:3px;}
+.incident__lad-step{ display:flex; flex-direction:column; gap:2px; padding:6px 4px; background:var(--ax-background-subtle); border-radius:5px; border:1px solid var(--ax-border-subtle); align-items:center;}
+.incident__lad-step.is-on{ background:var(--ax-warning-emphasis); color:#fff; border-color:transparent;}
+.incident__lad-step.is-on .incident__lad-cap, .incident__lad-step.is-on .incident__lad-name{ color:#fff;}
+.incident__lad-cap{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-heading); font-weight:700;}
+.incident__lad-name{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-align:center; line-height:1.25;}
+
+/* Body */
+.incident__body{ padding:14px 16px; display:flex; flex-direction:column; gap:14px;}
+.incident__sec-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;}
+.incident__sec-cap{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); padding:1px 6px; background:var(--ax-background-subtle); border-radius:3px; font-weight:600;}
+
+.incident__grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:8px;}
+.incident__cell{ border:1px solid var(--ax-border-subtle); border-radius:6px; padding:8px 10px; display:flex; flex-direction:column; gap:3px;}
+.incident__cell-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
+.incident__cell-val{ font-size:12px; color:var(--ax-text-heading); font-weight:600;}
+.incident__cell-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+/* Narrative */
+.incident__narr{ border:1px solid var(--ax-border-subtle); border-radius:6px; padding:10px 12px; display:flex; flex-direction:column; gap:8px; background:var(--ax-background-subtle);}
+.incident__narr-row{ display:grid; grid-template-columns: 90px 1fr; gap:10px;}
+.incident__narr-l{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.incident__narr-v{ font-size:11px; color:var(--ax-text-default); line-height:1.55;}
+.incident__narr-v strong{ color:var(--ax-text-heading);}
+
+/* Five whys / RCA */
+.incident__rca{ display:flex; flex-direction:column; gap:0; border:1px solid var(--ax-border-subtle); border-radius:6px; overflow:hidden;}
+.incident__rca-row{ display:grid; grid-template-columns: 60px 1fr; gap:10px; padding:8px 10px; border-bottom:1px solid var(--ax-border-subtle); align-items:flex-start;}
+.incident__rca-row:last-child{ border-bottom:none;}
+.incident__rca-row:nth-child(odd){ background:var(--ax-background-subtle);}
+.incident__rca-tag{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding-top:2px;}
+.incident__rca-tag.is-root{ color:var(--ax-error-emphasis);}
+.incident__rca-q{ font-size:11px; color:var(--ax-text-default); line-height:1.55;}
+.incident__rca-q strong{ color:var(--ax-text-heading);}
+.incident__rca-a{ font-size:11px; color:var(--ax-text-heading); font-weight:600; margin-top:2px;}
+
+/* Contributing factors */
+.incident__factors{ display:grid; grid-template-columns: repeat(4,1fr); gap:6px;}
+.incident__fac{ border:1px solid var(--ax-border-subtle); border-radius:5px; padding:8px 10px; display:flex; flex-direction:column; gap:3px;}
+.incident__fac.is-on{ border-color:var(--ax-warning-emphasis); background:color-mix(in srgb, var(--ax-warning-emphasis) 8%, transparent);}
+.incident__fac-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
+.incident__fac-name{ font-size:11px; color:var(--ax-text-heading); font-weight:600;}
+.incident__fac-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+/* CAPA actions */
+.incident__capa{ border:1px solid var(--ax-border-subtle); border-radius:6px; overflow:hidden;}
+.incident__capa-h{ display:grid; grid-template-columns: 30px 1fr 100px 90px 80px; gap:0; background:var(--ax-background-subtle); padding:6px 10px; font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; border-bottom:1px solid var(--ax-border-subtle);}
+.incident__capa-r{ display:grid; grid-template-columns: 30px 1fr 100px 90px 80px; gap:0; padding:8px 10px; font-size:11px; color:var(--ax-text-default); border-bottom:1px solid var(--ax-border-subtle); align-items:center;}
+.incident__capa-r:last-child{ border-bottom:none;}
+.incident__capa-num{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); font-weight:700;}
+.incident__capa-name strong{ display:block; color:var(--ax-text-heading); font-weight:600;}
+.incident__capa-name small{ display:block; font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); margin-top:1px;}
+.incident__capa-owner{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-heading); font-weight:600;}
+.incident__capa-due{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-default); font-weight:600;}
+.incident__capa-st{ font-family:var(--ax-font-mono); font-size:9px; padding:2px 6px; border-radius:3px; font-weight:700; text-align:center; justify-self:center;}
+.incident__capa-st--done{ background:var(--ax-success-emphasis); color:#fff;}
+.incident__capa-st--prog{ background:var(--ax-warning-emphasis); color:#fff;}
+.incident__capa-st--open{ background:var(--ax-text-heading); color:#fff;}
+
+/* Sign-offs */
+.incident__sigs{ display:grid; grid-template-columns: repeat(3,1fr); gap:8px;}
+.incident__sig{ border:1px dashed var(--ax-border-default); border-radius:6px; padding:10px; display:flex; flex-direction:column; gap:3px;}
+.incident__sig-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
+.incident__sig-name{ font-size:12px; color:var(--ax-text-heading); font-weight:600;}
+.incident__sig-role{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.incident__sig-when{ font-family:var(--ax-font-mono); font-size:9.5px; color:var(--ax-text-subtle); margin-top:2px;}
+.incident__sig-mark{ display:inline-block; padding:2px 8px; background:var(--ax-success-emphasis); color:#fff; font-family:var(--ax-font-mono); font-size:9px; border-radius:3px; font-weight:700; margin-top:4px; align-self:flex-start;}
+
+/* Foot */
+.incident__foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid var(--ax-border-default);}
+.incident__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.incident__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.incident__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width:980px){ .incident__strip{ grid-template-columns:repeat(2,1fr);} .incident__strip-cell{ border-right:none; border-bottom:1px solid var(--ax-border-default);} .incident__lad-track{ grid-template-columns:repeat(3,1fr);} .incident__grid,.incident__factors,.incident__sigs{ grid-template-columns:1fr;} .incident__capa-h,.incident__capa-r{ grid-template-columns: 1fr 80px 70px;} .incident__capa-h > :nth-child(1),.incident__capa-h > :nth-child(3),.incident__capa-r > :nth-child(1),.incident__capa-r > :nth-child(3){ display:none;} }

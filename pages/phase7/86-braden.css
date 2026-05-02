@@ -1,0 +1,89 @@
+/* #86 Pressure injury (Braden) + skin/reposition log */
+.brad{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.brad__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default);}
+.brad__brand{ display:flex; gap:10px; align-items:center;}
+.brad__logo{ width:36px; height:36px; border-radius:7px; background:var(--ax-warning-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.brad__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.brad__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.brad__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:right; line-height:1.55;}
+.brad__meta strong{ color:var(--ax-text-heading);}
+
+.brad__hero{ display:grid; grid-template-columns: 220px 1fr; gap:0; border-bottom:1px solid var(--ax-border-default);}
+.brad__score{ padding:16px; background:var(--ax-warning-subtle); display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; border-right:1px solid var(--ax-border-default);}
+.brad__score-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-warning-emphasis); font-weight:700;}
+.brad__score-val{ font-family:var(--ax-font-mono); font-size:48px; font-weight:700; color:var(--ax-warning-emphasis); line-height:1;}
+.brad__score-of{ font-family:var(--ax-font-mono); font-size:11px; color:var(--ax-text-subtle); margin-top:-4px;}
+.brad__score-band{ display:inline-flex; align-items:center; gap:6px; padding:4px 10px; background:var(--ax-warning-emphasis); color:#fff; border-radius:999px; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.brad__score-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-warning-emphasis); text-align:center; line-height:1.5;}
+
+/* Bands */
+.brad__bands{ padding:12px 16px;}
+.brad__bands-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:6px;}
+.brad__bands-bar{ position:relative; height:24px; border-radius:4px; overflow:hidden; display:flex;}
+.brad__bands-seg{ display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:10px; font-weight:700; color:#fff;}
+.brad__bands-seg--vh{ background:var(--ax-error-emphasis); width:30%;}
+.brad__bands-seg--h { background:var(--ax-warning-emphasis); width:21%;}
+.brad__bands-seg--m { background:#d97706; opacity:.85; width:15%;}
+.brad__bands-seg--mi{ background:var(--ax-info-emphasis); width:15%;}
+.brad__bands-seg--no{ background:var(--ax-success-emphasis); width:19%;}
+.brad__bands-mark{ position:absolute; top:-2px; bottom:-2px; width:3px; background:var(--ax-text-heading); transform:translateX(-50%);}
+.brad__bands-mark::after{ content:''; position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--ax-text-heading);}
+.brad__bands-scale{ display:flex; justify-content:space-between; margin-top:4px; font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle);}
+
+.brad__sec{ padding:12px 16px; border-bottom:1px solid var(--ax-border-default);}
+.brad__sec:last-child{ border-bottom:none;}
+.brad__sec-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;}
+.brad__sec-cap{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); padding:1px 6px; background:var(--ax-background-subtle); border-radius:3px; font-weight:600;}
+
+/* Braden 6 sub-scores */
+.brad__subs{ display:grid; grid-template-columns: repeat(3,1fr); gap:8px;}
+.brad__sub{ background:var(--ax-background-subtle); border-radius:6px; padding:8px 10px; display:flex; flex-direction:column; gap:6px;}
+.brad__sub-top{ display:flex; justify-content:space-between; align-items:baseline;}
+.brad__sub-name{ font-size:11.5px; font-weight:700; color:var(--ax-text-heading);}
+.brad__sub-pts{ font-family:var(--ax-font-mono); font-size:13px; font-weight:700; color:var(--ax-text-heading);}
+.brad__sub-opts{ display:flex; gap:3px;}
+.brad__sub-opt{ flex:1; height:18px; background:var(--ax-background-default); border:1px solid var(--ax-border-subtle); border-radius:3px; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:9px; font-weight:700; color:var(--ax-text-subtle);}
+.brad__sub-opt--on{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:transparent;}
+.brad__sub-desc{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); line-height:1.5;}
+
+/* Body diagram + injuries */
+.brad__skin{ display:grid; grid-template-columns: 200px 1fr; gap:14px;}
+.brad__body{ background:var(--ax-background-subtle); border-radius:8px; padding:10px; display:flex; flex-direction:column; align-items:center; gap:6px;}
+.brad__body-svg{ position:relative; width:160px; height:200px;}
+.brad__body-svg svg{ width:100%; height:100%; color:var(--ax-text-subtle);}
+.brad__body-mark{ position:absolute; width:14px; height:14px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--ax-background-default); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:8px; font-weight:700; color:#fff;}
+.brad__body-mark--st1{ background:var(--ax-warning-emphasis);}
+.brad__body-mark--st2{ background:var(--ax-error-emphasis);}
+.brad__body-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.06em; font-weight:600;}
+
+.brad__inj{ display:flex; flex-direction:column; gap:6px;}
+.brad__i{ background:var(--ax-background-subtle); border-radius:6px; padding:8px 10px; display:grid; grid-template-columns: 22px 1fr auto; gap:8px; align-items:center; font-size:11px;}
+.brad__i-tk{ width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:10px; color:#fff;}
+.brad__i-tk--st1{ background:var(--ax-warning-emphasis);}
+.brad__i-tk--st2{ background:var(--ax-error-emphasis);}
+.brad__i-text strong{ color:var(--ax-text-heading);}
+.brad__i-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:right;}
+
+/* Reposition q2h log clock */
+.brad__clock{ display:grid; grid-template-columns: repeat(12, 1fr); gap:4px;}
+.brad__c{ background:var(--ax-background-subtle); border:1px solid var(--ax-border-subtle); border-radius:5px; padding:6px 4px; display:flex; flex-direction:column; align-items:center; gap:2px;}
+.brad__c-t{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); font-weight:600;}
+.brad__c-ico{ width:24px; height:24px; border-radius:50%; background:var(--ax-background-default); border:1px solid var(--ax-border-default); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700; color:var(--ax-text-heading);}
+.brad__c-pos{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle);}
+.brad__c--ok .brad__c-ico{ background:var(--ax-success-subtle); color:var(--ax-success-emphasis); border-color:transparent;}
+.brad__c--miss .brad__c-ico{ background:var(--ax-error-subtle); color:var(--ax-error-emphasis); border-color:transparent;}
+.brad__c--now .brad__c-ico{ background:var(--ax-info-emphasis); color:#fff; border-color:transparent;}
+.brad__c--future .brad__c-ico{ background:var(--ax-background-subtle); color:var(--ax-text-subtle); opacity:0.5;}
+
+.brad__sign{ display:grid; grid-template-columns: repeat(2,1fr); gap:10px; padding:12px 16px; background:var(--ax-background-subtle); border-top:1px solid var(--ax-border-default);}
+.brad__sig{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:6px; padding:9px 11px; display:flex; flex-direction:column; gap:2px;}
+.brad__sig-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600;}
+.brad__sig-name{ font-size:11px; font-weight:600; color:var(--ax-text-heading);}
+.brad__sig-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+.brad__foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid var(--ax-border-default);}
+.brad__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.brad__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.brad__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width:780px){ .brad__hero{ grid-template-columns:1fr;} .brad__subs{ grid-template-columns:1fr;} .brad__skin{ grid-template-columns:1fr;} .brad__clock{ grid-template-columns:repeat(6,1fr);} .brad__sign{ grid-template-columns:1fr;} }

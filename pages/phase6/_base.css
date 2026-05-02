@@ -16,8 +16,8 @@
 .cx-tag--amber { background:var(--ax-warning-subtle); color:var(--ax-warning-emphasis); border-color:transparent; }
 .cx-tag--green { background:var(--ax-success-subtle); color:var(--ax-success-emphasis); border-color:transparent; }
 .cx-tag--blue  { background:var(--ax-info-subtle);    color:var(--ax-info-emphasis);    border-color:transparent; }
-.cx-tag--solid-red{ background:var(--ax-error-emphasis); color:var(--ax-text-inverted); border-color:transparent; }
-.cx-tag--solid-amber{ background:var(--ax-warning-emphasis); color:var(--ax-text-inverted); border-color:transparent; }
+.cx-tag--solid-red{ background:var(--ax-error-emphasis); color:#fff; border-color:transparent; }
+.cx-tag--solid-amber{ background:var(--ax-warning-emphasis); color:#fff; border-color:transparent; }
 
 .cx-arrow-up   { color:var(--ax-error-emphasis); }
 .cx-arrow-down { color:var(--ax-info-emphasis); }

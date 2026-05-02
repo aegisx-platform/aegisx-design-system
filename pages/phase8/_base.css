@@ -1,0 +1,15 @@
+/* AegisX DS · Phase 8 — base/shared (patient-facing & admin) */
+
+.cx8-pill{
+  display:inline-flex; align-items:center; gap:4px;
+  font-family:var(--ax-font-mono); font-size:10px; font-weight:700;
+  padding:2px 8px; border-radius:999px;
+  background:var(--ax-text-heading); color:var(--ax-background-default);
+  text-transform:uppercase; letter-spacing:0.04em;
+}
+.cx8-pill--ok{ background:var(--ax-success-emphasis); color:#fff;}
+.cx8-pill--warn{ background:var(--ax-warning-emphasis); color:#fff;}
+.cx8-pill--danger{ background:var(--ax-error-emphasis); color:#fff;}
+.cx8-pill--info{ background:var(--ax-info-emphasis, var(--ax-text-heading)); color:#fff;}
+
+.cx8-mono{ font-family:var(--ax-font-mono);}

@@ -1,71 +1,97 @@
-/* #78 Patient wristband */
-/* NOTE: innerHTML used with static hardcoded demo strings only — no user input, no XSS risk */
+/* #78 Patient ID / Wristband */
 (function(){
   if (!window.AX6) return;
   const { h, section, sub, demo } = AX6;
 
   AX6.register(function wristbandSection(){
-    const card = h('div', {class:'wb'});
-    card.innerHTML = `
-      <div class="wb__head">
-        <div class="wb__brand">
-          <div class="wb__logo">ID<br>BAND</div>
-          <div>
-            <div class="wb__title">Patient ID / Wristband · แถบข้อมือผู้ป่วย</div>
-            <div class="wb__sub">ID band + Allergy band · 25mm &times; 280mm thermal · print-ready</div>
+    const wrap = h('div', {class:'wb'});
+    wrap.innerHTML = `
+      <!-- Standard wristband -->
+      <div class="wb__card">
+        <div class="wb__card-h">
+          <span class="wb__card-title">Standard wristband</span>
+          <span class="wb__card-meta">white · 25×254 mm · thermal print</span>
+        </div>
+
+        <div class="wb__band">
+          <div class="wb__band-inner">
+            <div class="wb__band-info">
+              <div class="wb__band-name">PHONGSRI, Suda</div>
+              <div class="wb__band-name-th">นางสุดา พงศ์ศรี · F · 62 ปี</div>
+              <div class="wb__band-row">
+                <div class="wb__band-field"><span class="wb__band-field-label">HN</span><span class="wb__band-field-value">234567</span></div>
+                <div class="wb__band-field"><span class="wb__band-field-label">AN</span><span class="wb__band-field-value">67-12345</span></div>
+                <div class="wb__band-field"><span class="wb__band-field-label">DOB</span><span class="wb__band-field-value">14/03/2505</span></div>
+                <div class="wb__band-field"><span class="wb__band-field-label">Ward · Bed</span><span class="wb__band-field-value">IPD4 · 4-12</span></div>
+              </div>
+            </div>
+            <div class="wb__band-barcode">
+              <div class="wb__band-barcode-bars"></div>
+              <span class="wb__band-barcode-id">2345670007</span>
+            </div>
           </div>
         </div>
-        <div class="wb__meta">
-          <strong>HN · 6712-3344</strong><br/>
-          AN · 67-12345<br/>
-          Ward Med-Surg 4 · Bed 4-12
+
+        <div class="wb__scan">
+          <div class="wb__scan-icon">⌬</div>
+          <div class="wb__scan-info">
+            <span class="wb__scan-result">✓ matched · medication 5R verified</span>
+            <span class="wb__scan-name">Suda P. · HN 234567</span>
+            <span class="wb__scan-meta">scanned 14:35 · scanner ID SC-04 · RN Niran</span>
+          </div>
+        </div>
+
+        <div class="wb__ck">
+          <div class="wb__ck-row"><div class="wb__ck-box"></div><span class="wb__ck-label">ID 1 · name</span><span class="wb__ck-val">Phongsri, Suda</span></div>
+          <div class="wb__ck-row"><div class="wb__ck-box"></div><span class="wb__ck-label">ID 2 · DOB</span><span class="wb__ck-val">14/03/2505</span></div>
+          <div class="wb__ck-row"><div class="wb__ck-box"></div><span class="wb__ck-label">match · MAR</span><span class="wb__ck-val">furosemide 40 mg IV</span></div>
         </div>
       </div>
 
-      <div class="wb__bands">
-
-        <div class="wb__band wb__band--id">
-          <div class="wb__patient-name">สุดา ปัญญาดี &nbsp;/&nbsp; Suda Panyadee</div>
-          <div class="wb__detail">DOB: 1962-04-18 &middot; 62Y F</div>
-          <div class="wb__detail">HN: 6712-3344 &nbsp;&middot;&nbsp; AN: 67-12345</div>
-          <div class="wb__detail">Ward: Med-Surg 4 &nbsp;&middot;&nbsp; Bed: 4-12</div>
-          <div class="wb__barcode">|||&thinsp;|&thinsp;||&thinsp;|||&thinsp;|&thinsp;|&thinsp;||&thinsp;||||&thinsp;|&thinsp;|||&thinsp;||&thinsp;|&thinsp;||||&thinsp;||&thinsp;|&thinsp;|||&thinsp;|&thinsp;||&thinsp;||||&thinsp;|&thinsp;|&thinsp;||&thinsp;|||&thinsp;|</div>
-          <div class="wb__barcode-num">67123344-ADM-20240812</div>
+      <!-- Alert wristband -->
+      <div class="wb__card">
+        <div class="wb__card-h">
+          <span class="wb__card-title">Alert wristband · allergy + fall risk</span>
+          <span class="wb__card-meta">red stripe · diagonal hatch</span>
         </div>
 
-        <div class="wb__band wb__band--allergy">
-          <div class="wb__allergy-icon">&#9888;</div>
-          <div class="wb__patient-name wb__patient-name--alert">ALLERGY &nbsp;/&nbsp; แพ้ยา</div>
-          <div class="wb__allergy-drugs">PCN &middot; Sulfa</div>
-          <div class="wb__detail" style="color:var(--ax-error-emphasis); margin-top:6px;">HN: 6712-3344</div>
+        <div class="wb__band wb__band--alert">
+          <span class="wb__band-alert-tag">⚠ alert</span>
+          <div class="wb__band-inner">
+            <div class="wb__band-info">
+              <div class="wb__band-name">PHONGSRI, Suda</div>
+              <div class="wb__band-name-th">นางสุดา พงศ์ศรี · F · 62 ปี</div>
+              <div class="wb__band-row">
+                <div class="wb__band-field"><span class="wb__band-field-label">HN</span><span class="wb__band-field-value">234567</span></div>
+                <div class="wb__band-field"><span class="wb__band-field-label">AN</span><span class="wb__band-field-value">67-12345</span></div>
+              </div>
+              <div class="wb__band-alerts">
+                <span class="wb__band-alert-pill">PCN allergy</span>
+                <span class="wb__band-alert-pill">Sulfa allergy</span>
+                <span class="wb__band-alert-pill">Fall risk</span>
+              </div>
+            </div>
+            <div class="wb__band-barcode">
+              <div class="wb__band-barcode-bars"></div>
+              <span class="wb__band-barcode-id">2345670007</span>
+            </div>
+          </div>
         </div>
 
-      </div>
-
-      <div class="wb__info-boxes">
-        <div class="wb__info-box">
-          <strong>Print instructions</strong>
-          Use label printer LP-4 &middot; 25mm &times; 280mm thermal &middot; 2 copies
-        </div>
-        <div class="wb__info-box">
-          <strong>Verification required</strong>
-          Verify with patient verbally before applying band
-        </div>
-      </div>
-
-      <div class="wb__foot">
-        <div style="font-size:10px; font-family:var(--ax-font-mono); color:var(--ax-text-subtle);">
-          Printed: 2024-08-12 09:22 &middot; RN Niran W.
-        </div>
-        <div class="wb__btn-row">
-          <button class="wb__btn">Print ID band</button>
-          <button class="wb__btn">Print allergy band</button>
-          <button class="wb__btn wb__btn--primary">Reprint both</button>
+        <div>
+          <div class="wb__card-meta" style="margin-bottom:5px;">Color-coded auxiliary bands</div>
+          <div class="wb__color-row">
+            <div class="wb__color-band wb__color-band--red"><span>RED</span><span class="wb__color-band-label">allergy</span></div>
+            <div class="wb__color-band wb__color-band--yellow"><span>YELLOW</span><span class="wb__color-band-label">fall risk</span></div>
+            <div class="wb__color-band wb__color-band--purple"><span>PURPLE</span><span class="wb__color-band-label">DNR</span></div>
+            <div class="wb__color-band wb__color-band--pink"><span>PINK</span><span class="wb__color-band-label">limb alert</span></div>
+            <div class="wb__color-band wb__color-band--green"><span>GREEN</span><span class="wb__color-band-label">latex allergy</span></div>
+          </div>
         </div>
       </div>`;
 
-    return section('wba','78','Patient ID / wristband',
-      'แถบข้อมือผู้ป่วย · ID band + Allergy band · พร้อม barcode · print-ready layout.',
-      sub('ID band + allergy band preview', demo(card)));
+    return section('wb','78','Patient ID / Wristband',
+      'รูปแบบสายข้อมือ 2 แบบ: standard (white) + alert (diagonal red stripe + alert tag) · ข้อมูล HN/AN/DOB/Ward + barcode scan · color-coded auxiliary bands (allergy/fall/DNR/limb/latex) ตามมาตรฐานสากล · 2-identifier match checklist สำหรับ 5R medication scan workflow.',
+      sub('Standard + alert wristband · scan workflow', demo(wrap)));
   });
 })();

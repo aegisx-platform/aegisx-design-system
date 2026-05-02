@@ -1,0 +1,99 @@
+/* #93 Meal order / Diet sheet */
+.diet{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.diet__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default);}
+.diet__brand{ display:flex; gap:10px; align-items:center;}
+.diet__logo{ width:36px; height:36px; border-radius:7px; background:var(--ax-warning-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.diet__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.diet__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.diet__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:right; line-height:1.55;}
+.diet__meta strong{ color:var(--ax-text-heading);}
+
+/* NPO/Diet hero */
+.diet__hero{ display:grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; border-bottom:1px solid var(--ax-border-default);}
+.diet__h-cell{ padding:14px 16px; border-right:1px solid var(--ax-border-default); display:flex; flex-direction:column; gap:3px;}
+.diet__h-cell:last-child{ border-right:none;}
+.diet__h-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:700;}
+.diet__h-val{ font-family:var(--ax-font-mono); font-size:18px; font-weight:700; color:var(--ax-text-heading); line-height:1;}
+.diet__h-val small{ font-size:11px; color:var(--ax-text-subtle); font-weight:600;}
+.diet__h-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.diet__h-cell--diet{ background:var(--ax-warning-subtle, var(--ax-background-subtle));}
+.diet__h-cell--diet .diet__h-val{ color:var(--ax-warning-emphasis); font-size:20px;}
+
+/* Restriction tags row */
+.diet__tags{ padding:10px 16px; background:var(--ax-background-subtle); border-bottom:1px solid var(--ax-border-default); display:flex; gap:6px; flex-wrap:wrap; align-items:center;}
+.diet__tags-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.06em; font-weight:700; margin-right:4px;}
+.diet__tag{ font-family:var(--ax-font-mono); font-size:10px; padding:3px 8px; border-radius:4px; background:var(--ax-background-default); border:1px solid var(--ax-border-default); color:var(--ax-text-default); font-weight:600;}
+.diet__tag--avoid{ background:var(--ax-error-emphasis); color:#fff; border-color:transparent;}
+.diet__tag--limit{ background:var(--ax-warning-emphasis); color:#fff; border-color:transparent;}
+.diet__tag--encourage{ background:var(--ax-success-emphasis); color:#fff; border-color:transparent;}
+
+/* Body — meal grid + nutrition + DFI panel */
+.diet__body{ display:grid; grid-template-columns: 1.4fr 1fr; gap:0;}
+.diet__col{ padding:14px 16px;}
+.diet__col + .diet__col{ border-left:1px solid var(--ax-border-default);}
+
+.diet__sec-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;}
+.diet__sec-cap{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); padding:1px 6px; background:var(--ax-background-subtle); border-radius:3px; font-weight:600;}
+.diet__sec + .diet__sec{ margin-top:14px;}
+
+/* 3-meal grid */
+.diet__meals{ display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;}
+.diet__meal{ background:var(--ax-background-subtle); border:1px solid var(--ax-border-subtle); border-radius:6px; padding:10px 11px; display:flex; flex-direction:column; gap:5px;}
+.diet__meal-h{ display:flex; justify-content:space-between; align-items:baseline;}
+.diet__meal-t{ font-family:var(--ax-font-mono); font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em;}
+.diet__meal-time{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.diet__meal-list{ display:flex; flex-direction:column; gap:3px;}
+.diet__meal-item{ display:flex; justify-content:space-between; gap:6px; font-size:11px; color:var(--ax-text-default); padding:3px 0; border-bottom:1px dashed var(--ax-border-subtle);}
+.diet__meal-item:last-child{ border-bottom:none;}
+.diet__meal-item strong{ color:var(--ax-text-heading); font-weight:600;}
+.diet__meal-qty{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); white-space:nowrap;}
+.diet__meal-foot{ display:flex; justify-content:space-between; padding-top:6px; border-top:1px solid var(--ax-border-subtle); font-family:var(--ax-font-mono); font-size:10px;}
+.diet__meal-foot strong{ color:var(--ax-text-heading);}
+.diet__meal-foot span{ color:var(--ax-text-subtle);}
+.diet__meal-eaten{ display:inline-block; padding:1px 6px; border-radius:3px; background:var(--ax-success-emphasis); color:#fff; font-weight:700; font-size:9px; text-transform:uppercase;}
+.diet__meal-eaten--low{ background:var(--ax-warning-emphasis);}
+.diet__meal-eaten--pending{ background:var(--ax-text-subtle);}
+
+/* Snack row */
+.diet__snacks{ display:grid; grid-template-columns: repeat(2, 1fr); gap:8px; margin-top:8px;}
+.diet__snack{ background:var(--ax-background-default); border:1px dashed var(--ax-border-default); border-radius:6px; padding:8px 10px; display:flex; justify-content:space-between; align-items:center; gap:8px;}
+.diet__snack-l{ display:flex; flex-direction:column; gap:1px;}
+.diet__snack-t{ font-size:11px; font-weight:600; color:var(--ax-text-heading);}
+.diet__snack-sub{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.diet__snack-time{ font-family:var(--ax-font-mono); font-size:11px; font-weight:700; color:var(--ax-text-heading);}
+
+/* Nutrition target tiles */
+.diet__nut{ display:grid; grid-template-columns: repeat(4, 1fr); gap:8px;}
+.diet__n{ background:var(--ax-background-subtle); border:1px solid var(--ax-border-subtle); border-radius:6px; padding:8px 10px;}
+.diet__n-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
+.diet__n-val{ font-family:var(--ax-font-mono); font-size:15px; font-weight:700; color:var(--ax-text-heading);}
+.diet__n-val small{ font-size:10px; color:var(--ax-text-subtle); font-weight:600;}
+.diet__n-bar{ height:4px; border-radius:2px; background:var(--ax-background-default); overflow:hidden; margin-top:5px;}
+.diet__n-fill{ height:100%; background:var(--ax-text-heading);}
+.diet__n-fill--ok{ background:var(--ax-success-emphasis);}
+.diet__n-fill--warn{ background:var(--ax-warning-emphasis);}
+.diet__n-meta{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); margin-top:3px;}
+
+/* DFI list */
+.diet__dfi{ display:flex; flex-direction:column; gap:6px;}
+.diet__d{ display:grid; grid-template-columns: 22px 1fr; gap:8px; padding:9px 10px; background:var(--ax-background-subtle); border:1px solid var(--ax-border-subtle); border-radius:6px;}
+.diet__d--high{ border-color:var(--ax-error-emphasis); background:var(--ax-error-subtle, var(--ax-background-subtle));}
+.diet__d-tk{ width:22px; height:22px; border-radius:4px; background:var(--ax-warning-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.diet__d--high .diet__d-tk{ background:var(--ax-error-emphasis);}
+.diet__d-t{ font-size:11.5px; font-weight:600; color:var(--ax-text-heading);}
+.diet__d-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); margin-top:2px; line-height:1.55;}
+.diet__d-meta strong{ color:var(--ax-text-heading);}
+
+/* Foot */
+.diet__sign{ display:grid; grid-template-columns: repeat(3,1fr); gap:10px; padding:12px 16px; background:var(--ax-background-subtle); border-top:1px solid var(--ax-border-default);}
+.diet__sig{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:6px; padding:9px 11px; display:flex; flex-direction:column; gap:2px;}
+.diet__sig-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600;}
+.diet__sig-name{ font-size:11px; font-weight:600; color:var(--ax-text-heading);}
+.diet__sig-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+.diet__foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid var(--ax-border-default);}
+.diet__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.diet__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.diet__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width:980px){ .diet__hero{ grid-template-columns:repeat(2,1fr);} .diet__h-cell{ border-right:none; border-bottom:1px solid var(--ax-border-default);} .diet__body{ grid-template-columns:1fr;} .diet__col + .diet__col{ border-left:none; border-top:1px solid var(--ax-border-default);} .diet__meals{ grid-template-columns:1fr;} .diet__nut{ grid-template-columns:repeat(2,1fr);} .diet__sign{ grid-template-columns:1fr;} }

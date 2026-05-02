@@ -30,11 +30,65 @@
 <link rel="stylesheet" href="phase6/73-nurse-note.css">
 <link rel="stylesheet" href="phase6/74-io-record.css">
 <link rel="stylesheet" href="phase6/75-care-plan.css">
-<link rel="stylesheet" href="phase6/76-discharge.css">
-<link rel="stylesheet" href="phase6/77-med-reconcile.css">
+<link rel="stylesheet" href="phase6/76-discharge-summary.css">
+<link rel="stylesheet" href="phase6/77-med-rec.css">
 <link rel="stylesheet" href="phase6/78-wristband.css">
-<link rel="stylesheet" href="phase6/79-property.css">
+<link rel="stylesheet" href="phase6/79-belongings.css">
 <link rel="stylesheet" href="phase6/80-sbar.css">
+<link rel="stylesheet" href="phase7/_base.css">
+<link rel="stylesheet" href="phase7/81-preop.css">
+<link rel="stylesheet" href="phase7/82-or-record.css">
+<link rel="stylesheet" href="phase7/83-anesthesia.css">
+<link rel="stylesheet" href="phase7/84-restraint.css">
+<link rel="stylesheet" href="phase7/85-fall-risk.css">
+<link rel="stylesheet" href="phase7/86-braden.css">
+<link rel="stylesheet" href="phase7/87-transfusion.css">
+<link rel="stylesheet" href="phase7/88-codeblue.css">
+<link rel="stylesheet" href="phase7/89-death.css">
+<link rel="stylesheet" href="phase7/90-refer.css">
+
+<link rel="stylesheet" href="phase8/_base.css">
+<link rel="stylesheet" href="phase8/91-bedside.css">
+<link rel="stylesheet" href="phase8/92-visitor.css">
+<link rel="stylesheet" href="phase8/93-diet.css">
+<link rel="stylesheet" href="phase8/94-education.css">
+<link rel="stylesheet" href="phase8/95-proms.css">
+<link rel="stylesheet" href="phase8/96-bill.css">
+<link rel="stylesheet" href="phase8/97-preauth.css">
+<link rel="stylesheet" href="phase8/98-incident.css">
+
+<link rel="stylesheet" href="phase9/_base.css">
+<link rel="stylesheet" href="phase9/99-permission-matrix.css">
+<link rel="stylesheet" href="phase9/100-api-keys.css">
+<link rel="stylesheet" href="phase9/101-webhook.css">
+<link rel="stylesheet" href="phase9/102-feature-flags.css">
+<link rel="stylesheet" href="phase9/103-audit-search.css">
+<link rel="stylesheet" href="phase9/104-org-switcher.css">
+<link rel="stylesheet" href="phase9/105-settings-layout.css">
+<link rel="stylesheet" href="phase9/106-import-export.css">
+<link rel="stylesheet" href="phase9/107-system-health.css">
+<link rel="stylesheet" href="phase9/108-notification-prefs.css">
+
+<link rel="stylesheet" href="phase10/_base.css">
+<link rel="stylesheet" href="phase10/109-a11y-audit.css">
+<link rel="stylesheet" href="phase10/110-rtl.css">
+<link rel="stylesheet" href="phase10/111-locale.css">
+<link rel="stylesheet" href="phase10/112-print.css">
+<link rel="stylesheet" href="phase10/113-high-contrast.css">
+<link rel="stylesheet" href="phase10/114-shortcuts.css">
+<link rel="stylesheet" href="phase10/115-focus.css">
+<link rel="stylesheet" href="phase10/116-live-regions.css">
+<link rel="stylesheet" href="phase10/117-reduced-motion.css">
+<link rel="stylesheet" href="phase10/118-color-blind.css">
+
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0c">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="400" fill="#0a0a0c"/>
+    <rect x="120" y="120" width="160" height="160" rx="32" fill="#3f51b5"/>
+    <text x="200" y="232" text-anchor="middle" font-family="system-ui,sans-serif" font-size="78" font-weight="700" fill="#fff" letter-spacing="-2">AX</text>
+    <text x="200" y="320" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="500" fill="#9ca3af" letter-spacing="2">DESIGN SYSTEM</text>
+  </svg>
+</template>
 </head>
 <body>
 <div class="app">
@@ -148,14 +202,60 @@
     <div class="sidebar__group-title">Phase 6 · IPD Paperless</div>
     <a href="#adm" class="sidebar__link"><span class="sidebar__dot"></span>Admission record</a>
     <a href="#dos" class="sidebar__link"><span class="sidebar__dot"></span>Doctor's order sheet</a>
-    <a href="#nno" class="sidebar__link"><span class="sidebar__dot"></span>Nurse's note (Focus/DAR)</a>
-    <a href="#ior" class="sidebar__link"><span class="sidebar__dot"></span>I/O record</a>
-    <a href="#cpl" class="sidebar__link"><span class="sidebar__dot"></span>Care plan</a>
-    <a href="#dsc" class="sidebar__link"><span class="sidebar__dot"></span>Discharge summary</a>
-    <a href="#mrec" class="sidebar__link"><span class="sidebar__dot"></span>Medication reconciliation</a>
-    <a href="#wba" class="sidebar__link"><span class="sidebar__dot"></span>Patient wristband</a>
-    <a href="#prop" class="sidebar__link"><span class="sidebar__dot"></span>Property record</a>
+    <a href="#nn" class="sidebar__link"><span class="sidebar__dot"></span>Nurse's note (DAR)</a>
+    <a href="#io" class="sidebar__link"><span class="sidebar__dot"></span>I/O record</a>
+    <a href="#cp" class="sidebar__link"><span class="sidebar__dot"></span>Care plan (NANDA)</a>
+    <a href="#ds" class="sidebar__link"><span class="sidebar__dot"></span>Discharge summary</a>
+    <a href="#dmr" class="sidebar__link"><span class="sidebar__dot"></span>Med reconciliation</a>
+    <a href="#wb" class="sidebar__link"><span class="sidebar__dot"></span>Wristband / ID</a>
+    <a href="#bel" class="sidebar__link"><span class="sidebar__dot"></span>Belongings record</a>
     <a href="#sbar" class="sidebar__link"><span class="sidebar__dot"></span>SBAR hand-off</a>
+
+    <div class="sidebar__group-title">Phase 7 · Peri-op &amp; Safety</div>
+    <a href="#preop" class="sidebar__link"><span class="sidebar__dot"></span>Pre-op checklist</a>
+    <a href="#opnote" class="sidebar__link"><span class="sidebar__dot"></span>OR record / Op note</a>
+    <a href="#anrec" class="sidebar__link"><span class="sidebar__dot"></span>Anesthesia record</a>
+    <a href="#rest" class="sidebar__link"><span class="sidebar__dot"></span>Restraint order &amp; q2h</a>
+    <a href="#fall" class="sidebar__link"><span class="sidebar__dot"></span>Fall risk (Morse)</a>
+    <a href="#brad" class="sidebar__link"><span class="sidebar__dot"></span>Pressure injury (Braden)</a>
+    <a href="#btx" class="sidebar__link"><span class="sidebar__dot"></span>Blood transfusion · 2-witness</a>
+    <a href="#cb" class="sidebar__link"><span class="sidebar__dot"></span>Code blue · resuscitation</a>
+    <a href="#dr" class="sidebar__link"><span class="sidebar__dot"></span>Death record / Body release</a>
+    <a href="#rf" class="sidebar__link"><span class="sidebar__dot"></span>Refer / Inter-facility transfer</a>
+
+    <div class="sidebar__group-title">Phase 8 · Patient-facing &amp; Admin</div>
+    <a href="#bedside" class="sidebar__link"><span class="sidebar__dot"></span>Bedside dashboard (tablet)</a>
+    <a href="#visitor" class="sidebar__link"><span class="sidebar__dot"></span>Visiting hour &amp; visitor log</a>
+    <a href="#diet" class="sidebar__link"><span class="sidebar__dot"></span>Meal order / Diet sheet</a>
+    <a href="#edu" class="sidebar__link"><span class="sidebar__dot"></span>Education delivery checklist</a>
+    <a href="#proms" class="sidebar__link"><span class="sidebar__dot"></span>Satisfaction survey (PROMs)</a>
+    <a href="#bill" class="sidebar__link"><span class="sidebar__dot"></span>IPD bill · itemized</a>
+    <a href="#preauth" class="sidebar__link"><span class="sidebar__dot"></span>Insurance pre-authorization</a>
+    <a href="#incident" class="sidebar__link"><span class="sidebar__dot"></span>Incident report (HRMS)</a>
+
+    <div class="sidebar__group-title">Phase 9 · Platform &amp; Admin</div>
+    <a href="#perm" class="sidebar__link"><span class="sidebar__dot"></span>Permission matrix (RBAC)</a>
+    <a href="#apikey" class="sidebar__link"><span class="sidebar__dot"></span>API key manager</a>
+    <a href="#whk" class="sidebar__link"><span class="sidebar__dot"></span>Webhook config &amp; logs</a>
+    <a href="#flag" class="sidebar__link"><span class="sidebar__dot"></span>Feature flag board</a>
+    <a href="#aud" class="sidebar__link"><span class="sidebar__dot"></span>Audit log search</a>
+    <a href="#osw" class="sidebar__link"><span class="sidebar__dot"></span>Org switcher (⌘K)</a>
+    <a href="#stl" class="sidebar__link"><span class="sidebar__dot"></span>Settings layout</a>
+    <a href="#iew" class="sidebar__link"><span class="sidebar__dot"></span>Import / Export wizard</a>
+    <a href="#shd" class="sidebar__link"><span class="sidebar__dot"></span>System health dashboard</a>
+    <a href="#npr" class="sidebar__link"><span class="sidebar__dot"></span>Notification preferences</a>
+
+    <div class="sidebar__group-title">Phase 10 · A11y · i18n · Polish</div>
+    <a href="#a11y" class="sidebar__link"><span class="sidebar__dot"></span>A11y audit checklist (WCAG 2.2)</a>
+    <a href="#rtl" class="sidebar__link"><span class="sidebar__dot"></span>RTL support · logical mirror</a>
+    <a href="#loc" class="sidebar__link"><span class="sidebar__dot"></span>Locale switcher · 14 markets</a>
+    <a href="#prn" class="sidebar__link"><span class="sidebar__dot"></span>Print stylesheet (@media print)</a>
+    <a href="#hcm" class="sidebar__link"><span class="sidebar__dot"></span>High-contrast theme (AAA)</a>
+    <a href="#kbh" class="sidebar__link"><span class="sidebar__dot"></span>Keyboard shortcut help</a>
+    <a href="#fcm" class="sidebar__link"><span class="sidebar__dot"></span>Focus management · skip-links</a>
+    <a href="#srl" class="sidebar__link"><span class="sidebar__dot"></span>Screen-reader live regions</a>
+    <a href="#rmo" class="sidebar__link"><span class="sidebar__dot"></span>Reduced-motion alternatives</a>
+    <a href="#cbs" class="sidebar__link"><span class="sidebar__dot"></span>Color-blind safe palette</a>
 
     <div class="sidebar__group-title">Angular Handoff</div>
     <a href="#ng-quickstart" class="sidebar__link"><span class="sidebar__dot"></span>Quick start</a>
@@ -202,8 +302,8 @@
         <div class="hero__eyebrow">AegisX Hospital Platform</div>
         <h1 class="hero__title">Calm, high-contrast,<br>Thai-first, clinical-dense.</h1>
         <p class="hero__lede">
-          ระบบดีไซน์สำหรับ AegisX Platform — ครอบคลุมงาน Backoffice โรงพยาบาล: บัญชี, การเงิน, พัสดุ, HR และระบบคลินิก.
-          สร้างบน Angular Material 3 ด้วยสถาปัตยกรรม token 3 ชั้น (primitive · semantic · component)
+          ระบบดีไซน์สำหรับ AegisX Platform — ครอบคลุมงาน Backoffice โรงพยาบาล: บัญชี, การเงิน, พัสดุ, HR และระบบคลินิก. 
+          สร้างบน Angular Material 3 ด้วยสถาปัตยกรรม token 3 ชั้น (primitive · semantic · component) 
           และทุกคู่สีผ่าน WCAG 2.1 AA ขั้นต่ำ.
         </p>
         <dl class="hero__meta">
@@ -223,6 +323,10 @@
       <div id="sections-phase4"></div>
       <div id="sections-phase5"></div>
       <div id="sections-phase6"></div>
+      <div id="sections-phase7"></div>
+      <div id="sections-phase8"></div>
+      <div id="sections-phase9"></div>
+      <div id="sections-phase10"></div>
       <div id="sections-handoff"></div>
 
     </main>
@@ -314,12 +418,12 @@
 
 <script>
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "theme": "light",
+  "theme": "dark",
   "brand": "indigo",
-  "density": "compact",
+  "density": "comfortable",
   "radius": 14,
   "fontSize": 13,
-  "fontFamily": "plex",
+  "fontFamily": "sarabun",
   "elevation": "flat",
   "focusRing": "blue"
 }/*EDITMODE-END*/;
@@ -348,12 +452,58 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="phase6/73-nurse-note.js"></script>
 <script src="phase6/74-io-record.js"></script>
 <script src="phase6/75-care-plan.js"></script>
-<script src="phase6/76-discharge.js"></script>
-<script src="phase6/77-med-reconcile.js"></script>
+<script src="phase6/76-discharge-summary.js"></script>
+<script src="phase6/77-med-rec.js"></script>
 <script src="phase6/78-wristband.js"></script>
-<script src="phase6/79-property.js"></script>
+<script src="phase6/79-belongings.js"></script>
 <script src="phase6/80-sbar.js"></script>
 <script src="phase6/_index.js"></script>
+<script src="phase7/_helpers.js"></script>
+<script src="phase7/81-preop.js"></script>
+<script src="phase7/82-or-record.js"></script>
+<script src="phase7/83-anesthesia.js"></script>
+<script src="phase7/84-restraint.js"></script>
+<script src="phase7/85-fall-risk.js"></script>
+<script src="phase7/86-braden.js"></script>
+<script src="phase7/87-transfusion.js"></script>
+<script src="phase7/88-codeblue.js"></script>
+<script src="phase7/89-death.js"></script>
+<script src="phase7/90-refer.js"></script>
+<script src="phase7/_index.js"></script>
+<script src="phase8/_helpers.js"></script>
+<script src="phase8/91-bedside.js"></script>
+<script src="phase8/92-visitor.js"></script>
+<script src="phase8/93-diet.js"></script>
+<script src="phase8/94-education.js"></script>
+<script src="phase8/95-proms.js"></script>
+<script src="phase8/96-bill.js"></script>
+<script src="phase8/97-preauth.js"></script>
+<script src="phase8/98-incident.js"></script>
+<script src="phase8/_index.js"></script>
+<script src="phase9/_helpers.js"></script>
+<script src="phase9/99-permission-matrix.js"></script>
+<script src="phase9/100-api-keys.js"></script>
+<script src="phase9/101-webhook.js"></script>
+<script src="phase9/102-feature-flags.js"></script>
+<script src="phase9/103-audit-search.js"></script>
+<script src="phase9/104-org-switcher.js"></script>
+<script src="phase9/105-settings-layout.js"></script>
+<script src="phase9/106-import-export.js"></script>
+<script src="phase9/107-system-health.js"></script>
+<script src="phase9/108-notification-prefs.js"></script>
+<script src="phase9/_index.js"></script>
+<script src="phase10/_helpers.js"></script>
+<script src="phase10/109-a11y-audit.js"></script>
+<script src="phase10/110-rtl.js"></script>
+<script src="phase10/111-locale.js"></script>
+<script src="phase10/112-print.js"></script>
+<script src="phase10/113-high-contrast.js"></script>
+<script src="phase10/114-shortcuts.js"></script>
+<script src="phase10/115-focus.js"></script>
+<script src="phase10/116-live-regions.js"></script>
+<script src="phase10/117-reduced-motion.js"></script>
+<script src="phase10/118-color-blind.js"></script>
+<script src="phase10/_index.js"></script>
 <script src="angular-handoff.js"></script>
 <script src="app.js"></script>
 </body>

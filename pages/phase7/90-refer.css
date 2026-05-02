@@ -1,0 +1,83 @@
+/* #90 Refer / Inter-facility transfer */
+.rf{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:var(--ax-radius-lg); overflow:hidden;}
+.rf__head{ display:flex; justify-content:space-between; align-items:flex-start; padding:12px 16px; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--ax-border-default);}
+.rf__brand{ display:flex; gap:10px; align-items:center;}
+.rf__logo{ width:36px; height:36px; border-radius:7px; background:var(--ax-info-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700;}
+.rf__title{ font-size:13px; font-weight:600; color:var(--ax-text-heading);}
+.rf__sub{ font-size:11px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono); margin-top:2px;}
+.rf__meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:right; line-height:1.55;}
+.rf__meta strong{ color:var(--ax-text-heading);}
+
+/* From → To facilities */
+.rf__hop{ display:grid; grid-template-columns: 1fr 60px 1fr; gap:0; border-bottom:1px solid var(--ax-border-default);}
+.rf__f{ padding:14px 16px; background:var(--ax-background-subtle);}
+.rf__f-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:700;}
+.rf__f-name{ font-size:14px; font-weight:700; color:var(--ax-text-heading); margin-top:2px;}
+.rf__f-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); margin-top:4px; line-height:1.6;}
+.rf__f-meta strong{ color:var(--ax-text-heading);}
+.rf__arr{ display:grid; place-items:center; background:var(--ax-info-subtle); color:var(--ax-info-emphasis); font-family:var(--ax-font-mono); font-size:24px; font-weight:700;}
+
+/* Reason / acceptance strip */
+.rf__strip{ display:grid; grid-template-columns: repeat(4,1fr); padding:12px 16px; border-bottom:1px solid var(--ax-border-default); gap:0;}
+.rf__sc{ display:flex; flex-direction:column; gap:1px; padding-right:14px; border-right:1px solid var(--ax-border-subtle);}
+.rf__sc:last-child{ border-right:none;}
+.rf__sc-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:700;}
+.rf__sc-val{ font-family:var(--ax-font-mono); font-size:14px; font-weight:700; color:var(--ax-text-heading);}
+.rf__sc-mono{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.rf__sc--accept .rf__sc-val{ color:var(--ax-success-emphasis);}
+
+.rf__sec{ padding:12px 16px; border-bottom:1px solid var(--ax-border-default);}
+.rf__sec:last-child{ border-bottom:none;}
+.rf__sec-h{ font-size:11px; font-weight:700; color:var(--ax-text-heading); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;}
+.rf__sec-cap{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); padding:1px 6px; background:var(--ax-background-subtle); border-radius:3px; font-weight:600;}
+
+/* Clinical summary 2-col */
+.rf__sum{ display:grid; grid-template-columns: 1fr 1fr; gap:8px;}
+.rf__cell{ background:var(--ax-background-subtle); border-radius:6px; padding:8px 10px; display:flex; flex-direction:column; gap:2px;}
+.rf__cell-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:700;}
+.rf__cell-val{ font-size:11.5px; color:var(--ax-text-heading); line-height:1.5;}
+.rf__cell-val strong{ color:var(--ax-text-heading);}
+
+/* Vitals on transport */
+.rf__vit{ width:100%; border-collapse:collapse; font-size:11px;}
+.rf__vit th, .rf__vit td{ padding:5px 8px; border:1px solid var(--ax-border-subtle); text-align:center; font-family:var(--ax-font-mono);}
+.rf__vit th{ background:var(--ax-background-subtle); color:var(--ax-text-subtle); font-size:9px; text-transform:uppercase; letter-spacing:0.04em; font-weight:600;}
+.rf__vit td.lbl{ text-align:left; background:var(--ax-background-subtle); color:var(--ax-text-heading); font-weight:600;}
+.rf__vit td.now{ background:var(--ax-info-subtle); font-weight:700; color:var(--ax-info-emphasis);}
+
+/* Stability triage chip */
+.rf__triage{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:999px; font-family:var(--ax-font-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+.rf__triage--y{ background:var(--ax-warning-emphasis); color:#fff;}
+.rf__triage--g{ background:var(--ax-success-emphasis); color:#fff;}
+.rf__triage--r{ background:var(--ax-error-emphasis); color:#fff;}
+
+/* Transport plan / equipment */
+.rf__list{ display:grid; grid-template-columns: repeat(2,1fr); gap:6px;}
+.rf__li{ display:grid; grid-template-columns: 18px 1fr auto; gap:8px; align-items:center; padding:7px 10px; background:var(--ax-background-subtle); border-radius:5px; font-size:11.5px;}
+.rf__li-tk{ width:18px; height:18px; border-radius:4px; background:var(--ax-success-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-weight:700; font-size:11px;}
+.rf__li-tk--off{ background:var(--ax-background-default); color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+.rf__li-text strong{ color:var(--ax-text-heading);}
+.rf__li-by{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); white-space:nowrap;}
+
+/* Drugs en-route timeline */
+.rf__route{ display:flex; gap:0; background:var(--ax-background-subtle); border-radius:6px; padding:10px 12px; align-items:center; overflow-x:auto;}
+.rf__rs{ display:flex; flex-direction:column; align-items:center; gap:3px; min-width:90px;}
+.rf__rs-dot{ width:18px; height:18px; border-radius:50%; background:var(--ax-text-heading); color:var(--ax-background-default); display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:10px; font-weight:700;}
+.rf__rs--start .rf__rs-dot{ background:var(--ax-success-emphasis);}
+.rf__rs--end .rf__rs-dot{ background:var(--ax-info-emphasis);}
+.rf__rs-time{ font-family:var(--ax-font-mono); font-size:10px; font-weight:700; color:var(--ax-text-heading);}
+.rf__rs-evt{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle); text-align:center; line-height:1.4;}
+.rf__rs-line{ flex:1; height:2px; background:var(--ax-border-default); align-self:flex-start; margin-top:8px; min-width:20px;}
+
+.rf__sign{ display:grid; grid-template-columns: repeat(3,1fr); gap:10px; padding:12px 16px; background:var(--ax-background-subtle); border-top:1px solid var(--ax-border-default);}
+.rf__sig{ background:var(--ax-background-default); border:1px solid var(--ax-border-default); border-radius:6px; padding:9px 11px; display:flex; flex-direction:column; gap:2px;}
+.rf__sig-cap{ font-family:var(--ax-font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ax-text-subtle); font-weight:600;}
+.rf__sig-name{ font-size:11px; font-weight:600; color:var(--ax-text-heading);}
+.rf__sig-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+
+.rf__foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid var(--ax-border-default);}
+.rf__foot-meta{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-text-subtle);}
+.rf__btn{ padding:5px 10px; font-size:11px; font-family:var(--ax-font-mono); font-weight:600; border-radius:5px; border:1px solid var(--ax-border-default); background:var(--ax-background-default); color:var(--ax-text-default); cursor:default;}
+.rf__btn--primary{ background:var(--ax-text-heading); color:var(--ax-background-default); border-color:var(--ax-text-heading);}
+
+@media (max-width:780px){ .rf__hop{ grid-template-columns:1fr;} .rf__strip{ grid-template-columns:1fr 1fr;} .rf__sum{ grid-template-columns:1fr;} .rf__list{ grid-template-columns:1fr;} .rf__sign{ grid-template-columns:1fr;} }

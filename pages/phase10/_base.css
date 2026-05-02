@@ -1,0 +1,27 @@
+/* AegisX DS · Phase 10 — base/shared (a11y · i18n · polish) */
+
+.cx10-pill{
+  display:inline-flex; align-items:center; gap:4px;
+  font-family:var(--ax-font-mono); font-size:10px; font-weight:700;
+  padding:2px 8px; border-radius:999px;
+  background:var(--ax-text-heading); color:var(--ax-background-default);
+  text-transform:uppercase; letter-spacing:0.04em;
+}
+.cx10-pill--ok{ background:var(--ax-success-emphasis); color:#fff;}
+.cx10-pill--warn{ background:var(--ax-warning-emphasis); color:#fff;}
+.cx10-pill--danger{ background:var(--ax-error-emphasis); color:#fff;}
+.cx10-pill--info{ background:var(--ax-info-emphasis); color:#fff;}
+.cx10-pill--ghost{ background:transparent; color:var(--ax-text-subtle); border:1px solid var(--ax-border-default);}
+
+.cx10-mono{ font-family:var(--ax-font-mono);}
+
+.cx10-kbd{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:22px; height:22px; padding:0 6px;
+  background:var(--ax-background-default);
+  border:1px solid var(--ax-border-default);
+  border-bottom-width:2px;
+  border-radius:5px;
+  font-family:var(--ax-font-mono); font-size:11px; font-weight:600;
+  color:var(--ax-text-default);
+}

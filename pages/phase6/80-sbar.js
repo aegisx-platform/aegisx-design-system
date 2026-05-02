@@ -1,5 +1,4 @@
-/* #80 SBAR hand-off */
-/* NOTE: innerHTML used with static hardcoded demo strings only — no user input, no XSS risk */
+/* #80 Bedside hand-off · SBAR */
 (function(){
   if (!window.AX6) return;
   const { h, section, sub, demo } = AX6;
@@ -8,107 +7,127 @@
     const card = h('div', {class:'sbar'});
     card.innerHTML = `
       <div class="sbar__head">
-        <div class="sbar__brand">
-          <div class="sbar__logo">SBAR</div>
-          <div>
-            <div class="sbar__title">SBAR Hand-off · แบบ SBAR Shift Hand-off</div>
-            <div class="sbar__sub">Shift hand-off Day &rarr; Evening &middot; 2024-08-14 15:00</div>
+        <div>
+          <div class="sbar__title">Bedside hand-off · SBAR communication</div>
+          <div class="sbar__sub">AN 67-12345 · Suda P. · Bed 4-12 · shift change 14 Aug 15:00</div>
+        </div>
+      </div>
+
+      <div class="sbar__handoff-meta">
+        <div class="sbar__hm-side">
+          <span class="sbar__hm-cap">handing off · day shift</span>
+          <span class="sbar__hm-name">RN Niran Saetang</span>
+          <span class="sbar__hm-meta">07:00–15:00 · 4 patients</span>
+        </div>
+        <div class="sbar__hm-arrow">→</div>
+        <div class="sbar__hm-side">
+          <span class="sbar__hm-cap">receiving · evening shift</span>
+          <span class="sbar__hm-name">RN Pim Kanchana</span>
+          <span class="sbar__hm-meta">15:00–23:00 · 4 patients</span>
+        </div>
+      </div>
+
+      <div class="sbar__tabs">
+        <span class="sbar__tab sbar__tab--on">Bed 4-12 · Suda P.</span>
+        <span class="sbar__tab">Bed 4-13 · Wichai R.</span>
+        <span class="sbar__tab">Bed 4-15 · Malee K.</span>
+        <span class="sbar__tab">Bed 4-18 · Somchai T.</span>
+      </div>
+
+      <!-- S -->
+      <div class="sbar__block sbar__block--S">
+        <div class="sbar__letter">
+          <span class="sbar__letter-big">S</span>
+          <span class="sbar__letter-cap">situation</span>
+        </div>
+        <div class="sbar__body">
+          <div class="sbar__b-h">Situation<span class="sbar__b-h-tag">why · who · where</span></div>
+          <div class="sbar__b-text">62-yo F, day 3 of admission for <strong>acute pulmonary edema with CHF</strong> (EF 35%, new). Currently stable post-acute episode at 14:32 today — responded well to STAT furosemide. On O₂ 4 LPM via NC, alert and conversing.</div>
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="sbar__block sbar__block--B">
+        <div class="sbar__letter">
+          <span class="sbar__letter-big">B</span>
+          <span class="sbar__letter-cap">background</span>
+        </div>
+        <div class="sbar__body">
+          <div class="sbar__b-h">Background<span class="sbar__b-h-tag">history · context</span></div>
+          <div class="sbar__b-text">PMHx: HTN ×10y, T2DM ×8y. <strong>NKDA penicillin · sulfa</strong>. Code status: <strong>full code</strong>. Family at bedside (daughter, son). Lives alone w/ daily helper. Echo 13 Aug → EF 35%.</div>
+        </div>
+      </div>
+
+      <!-- A -->
+      <div class="sbar__block sbar__block--A">
+        <div class="sbar__letter">
+          <span class="sbar__letter-big">A</span>
+          <span class="sbar__letter-cap">assessment</span>
+        </div>
+        <div class="sbar__body">
+          <div class="sbar__b-h">Assessment<span class="sbar__b-h-tag">current · trends</span></div>
+          <div class="sbar__b-text">Last vitals 14:50 (post-event +15min):</div>
+          <div class="sbar__vit-row">
+            <span class="sbar__vit"><span>BP</span><strong>132/78</strong></span>
+            <span class="sbar__vit"><span>HR</span><strong>92</strong></span>
+            <span class="sbar__vit sbar__vit--warn"><span>RR</span><strong>22</strong></span>
+            <span class="sbar__vit sbar__vit--ok"><span>SpO₂</span><strong>95%</strong> O₂</span>
+            <span class="sbar__vit"><span>T</span><strong>37.4°C</strong></span>
+            <span class="sbar__vit"><span>Pain</span><strong>2/10</strong></span>
+          </div>
+          <div class="sbar__b-text">Bilateral basal crackles improved (was mid-zone). 2+ pretibial edema (was 3+). I/O 14h: in 2,150 / out 2,640 → <strong>−490 mL</strong>. Foley patent. IV L forearm patent, no signs of infiltration.</div>
+        </div>
+      </div>
+
+      <!-- R -->
+      <div class="sbar__block sbar__block--R">
+        <div class="sbar__letter">
+          <span class="sbar__letter-big">R</span>
+          <span class="sbar__letter-cap">recommendation</span>
+        </div>
+        <div class="sbar__body">
+          <div class="sbar__b-h">Recommendation<span class="sbar__b-h-tag">to-do · watch</span></div>
+          <div class="sbar__items">
+            <div class="sbar__item"><div class="sbar__item-bullet sbar__item-bullet--high">!</div><div class="sbar__item-text"><strong>Q1h vitals × 2 more</strong> per Dr. Kittisak post-acute order — next 16:00, 17:00</div><div class="sbar__item-meta">priority · 16:00</div></div>
+            <div class="sbar__item"><div class="sbar__item-bullet sbar__item-bullet--high">!</div><div class="sbar__item-text"><strong>Monitor SpO₂</strong> — if drops &lt; 92% notify MD, titrate O₂ up to 6 LPM</div><div class="sbar__item-meta">continuous</div></div>
+            <div class="sbar__item"><div class="sbar__item-bullet sbar__item-bullet--med">2</div><div class="sbar__item-text"><strong>Ceftriaxone 2 g IV</strong> due 18:00 (day 1 of 7)</div><div class="sbar__item-meta">18:00</div></div>
+            <div class="sbar__item"><div class="sbar__item-bullet sbar__item-bullet--med">2</div><div class="sbar__item-text"><strong>OOB to chair × 30 min</strong> at 17:00 if tolerating</div><div class="sbar__item-meta">17:00</div></div>
+            <div class="sbar__item"><div class="sbar__item-bullet sbar__item-bullet--low">3</div><div class="sbar__item-text">Daughter requested D/C planning meeting tomorrow AM</div><div class="sbar__item-meta">tomorrow</div></div>
+            <div class="sbar__item"><div class="sbar__item-bullet sbar__item-bullet--low">3</div><div class="sbar__item-text">CXR scheduled 15:30 — porter will come</div><div class="sbar__item-meta">15:30</div></div>
           </div>
         </div>
-        <div class="sbar__meta">
-          <strong>Suda P. &middot; Bed 4-12</strong><br/>
-          AN 67-12345 &middot; Day 3<br/>
-          Ward Med-Surg 4
-        </div>
       </div>
 
-      <div class="sbar__hand">
-        <span><strong>RN Niran W.</strong> (Day shift)</span>
-        <span class="sbar__hand-arrow">&rarr;</span>
-        <span><strong>RN Somjai K.</strong> (Evening shift)</span>
-        <span style="margin-left:auto; color:var(--ax-text-subtle);">2024-08-14 &middot; 15:00</span>
-      </div>
-
-      <div class="sbar__body">
-
-        <div class="sbar__block sbar__block--s">
-          <span class="sbar__block-label sbar__block-label--s">S</span>
-          <span class="sbar__block-title">Situation</span>
-          <div class="sbar__content">
-            Patient Suda P., 62F, Day 3 CAP, bed 4-12.<br/>
-            Current status: SpO&#8322; 95% on 2L NC, stable but not fully weaned from oxygen.<br/>
-            Reason for hand-off: routine shift change.
+      <div class="sbar__confirm">
+        <div class="sbar__cf-card">
+          <div class="sbar__cf-status sbar__cf-status--done">✓</div>
+          <div class="sbar__cf-info">
+            <span class="sbar__cf-cap">handed off</span>
+            <span class="sbar__cf-name">RN Niran Saetang</span>
+            <span class="sbar__cf-meta">e-sign · 15:02 · 4 of 4 patients</span>
           </div>
-          <div class="sbar__alert-line">&#9888;&nbsp; NRS 4/10 chest pain &middot; paracetamol given 15:00 &middot; monitor response</div>
         </div>
-
-        <div class="sbar__block sbar__block--b">
-          <span class="sbar__block-label sbar__block-label--b">B</span>
-          <span class="sbar__block-title">Background</span>
-          <ul class="sbar__list">
-            <li>Admitted 2024-08-12 with CAP + suspected sepsis</li>
-            <li>PMH: HTN, T2DM, CKD-3 &middot; allergy PCN + Sulfa</li>
-            <li>Day 3 of ceftriaxone (IV) &mdash; culture pending (ID consult replied today)</li>
-            <li>Previous NRS 6/10 &rarr; now 4/10 after paracetamol</li>
-          </ul>
-        </div>
-
-        <div class="sbar__block sbar__block--a">
-          <span class="sbar__block-label sbar__block-label--a">A</span>
-          <span class="sbar__block-title">Assessment</span>
-          <ul class="sbar__list">
-            <li><strong>Respiratory:</strong> improving &middot; SpO&#8322; 95% on 2L &middot; RR 19</li>
-            <li><strong>Pain:</strong> partially controlled &middot; NRS 4/10</li>
-            <li><strong>Fever:</strong> 38.2&deg;C &middot; antipyretic given 12:00 (not yet reassessed evening)</li>
-            <li><strong>Infection:</strong> WBC trending &middot; ID consult done &middot; continue ceftriaxone Day 4 tomorrow</li>
-            <li><strong>Fall risk:</strong> Morse 55 HIGH &mdash; yellow band on</li>
-          </ul>
-        </div>
-
-        <div class="sbar__block sbar__block--r" style="border-bottom:none;">
-          <span class="sbar__block-label sbar__block-label--r">R</span>
-          <span class="sbar__block-title">Recommendation</span>
-          <ul class="sbar__list">
-            <li>Maintain O&#8322; 2L NC &middot; wean if SpO&#8322; &gt;97% &times; 2h</li>
-            <li>Reassess NRS at 18:00 &middot; escalate if &gt;5</li>
-            <li>Temperature check at 17:00</li>
-            <li><strong>Call MD if:</strong> SpO&#8322; &lt; 92% &middot; RR &gt; 24 &middot; NRS &gt; 7 &middot; T &gt; 39&deg;C &middot; BP &lt; 90/60</li>
-            <li>Continue fall precautions &middot; bed in low position &middot; call bell within reach</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="sbar__pending">
-        <div class="sbar__pending-title">Pending tasks</div>
-        <div class="sbar__task">
-          <div class="sbar__task-box"></div>
-          <span>CXR result review (scheduled 15:30 Radiology)</span>
-        </div>
-        <div class="sbar__task">
-          <div class="sbar__task-box"></div>
-          <span>Blood glucose AC dinner ~17:30</span>
-        </div>
-        <div class="sbar__task">
-          <div class="sbar__task-box sbar__task-box--done">&#10003;</div>
-          <span style="color:var(--ax-text-subtle);">ID consult note received &mdash; reviewed</span>
-        </div>
-        <div class="sbar__task">
-          <div class="sbar__task-box sbar__task-box--done">&#10003;</div>
-          <span style="color:var(--ax-text-subtle);">Ceftriaxone Day 3 dose given 11:08</span>
+        <div class="sbar__cf-card">
+          <div class="sbar__cf-status sbar__cf-status--pending">…</div>
+          <div class="sbar__cf-info">
+            <span class="sbar__cf-cap">awaiting acknowledge</span>
+            <span class="sbar__cf-name">RN Pim Kanchana</span>
+            <span class="sbar__cf-meta">2 of 4 confirmed · current pt pending</span>
+          </div>
         </div>
       </div>
 
       <div class="sbar__foot">
-        <div>
-          Handed off by <strong>RN Niran W.</strong> &nbsp;&middot;&nbsp;
-          Received by <strong>RN Somjai K.</strong> &nbsp;&middot;&nbsp; 15:02
+        <div class="sbar__foot-meta">SBAR template · WHO patient-safety standard · estimated 4 min/pt at bedside</div>
+        <div class="sbar__btn-row">
+          <button class="sbar__btn">Print SBAR slip</button>
+          <button class="sbar__btn">Next patient ›</button>
+          <button class="sbar__btn sbar__btn--primary">✓ Acknowledge &amp; receive</button>
         </div>
-        <div>SHA-256 &middot; c9a1 4d82 7f03 &hellip;</div>
       </div>`;
 
-    return section('sbar','80','SBAR hand-off',
-      'แบบ SBAR สำหรับ shift hand-off · Situation · Background · Assessment · Recommendation · pending tasks · critical flags.',
-      sub('Shift hand-off Day → Evening \xb7 15:00', demo(card)));
+    return section('sbar','80','Bedside hand-off · SBAR',
+      'รูปแบบส่งเวร SBAR (Situation/Background/Assessment/Recommendation) · WHO patient-safety standard · 4 ตัวอักษรใหญ่ในแถบสีต่าง · vital chips + I/O inline · prioritized to-do list (high/med/low bullets) · multi-patient tabs · 2-side handoff acknowledgment workflow.',
+      sub('Day → evening shift · 4 patients', demo(card)));
   });
 })();
