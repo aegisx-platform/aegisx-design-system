@@ -170,6 +170,36 @@ push(`  --ax-success-border: ${component.roleBorder.success.$value};`);
 push(`  --ax-error-surface: ${component.surface.error.$value};`);
 push(`  --ax-error-border: ${component.roleBorder.error.$value};`);
 
+// Specialized surfaces (theme-locked) — printed paper, dev terminal, push notification.
+// "Theme-locked" means the surface keeps its appearance regardless of UI theme;
+// only paper-stage / terminal / terminal-rule receive a dark override below.
+push('  /* Specialized surfaces (theme-locked) */');
+push(`  --ax-surface-paper:              var(--ax-color-zinc-50);`);
+push(`  --ax-surface-paper-stage:        var(--ax-color-zinc-200);`);
+push(`  --ax-surface-paper-ink:          #0a0a0a;`);
+push(`  --ax-surface-paper-ink-soft:     var(--ax-color-zinc-700);`);
+push(`  --ax-surface-paper-ink-meta:     var(--ax-color-zinc-500);`);
+push(`  --ax-surface-paper-rule:         #0a0a0a;`);
+push(`  --ax-surface-paper-border:       var(--ax-color-zinc-300);`);
+push(`  --ax-surface-paper-row-alt:      var(--ax-color-zinc-50);`);
+push(`  --ax-surface-terminal:           var(--ax-color-zinc-950);`);
+push(`  --ax-surface-terminal-text:      var(--ax-color-zinc-200);`);
+push(`  --ax-surface-terminal-meta:      var(--ax-color-zinc-500);`);
+push(`  --ax-surface-terminal-rule:      var(--ax-color-zinc-800);`);
+push(`  --ax-surface-notification-from:  var(--ax-color-zinc-800);`);
+push(`  --ax-surface-notification-to:    var(--ax-color-zinc-900);`);
+push(`  --ax-surface-notification-text:  #ffffff;`);
+push(`  --ax-surface-notification-shadow:var(--ax-color-zinc-950);`);
+
+// ID bands — hospital wristband identity (ISO 26825 family). 5 colors with
+// WCAG-validated pair contrast — owned by design system, not consumer apps.
+push('  /* ID bands (hospital wristband identity) */');
+push(`  --ax-id-band-allergy:    var(--ax-color-red-700);`);
+push(`  --ax-id-band-fall-risk:  var(--ax-color-amber-700);`);
+push(`  --ax-id-band-dnr:        var(--ax-color-purple-600);`);
+push(`  --ax-id-band-restricted: var(--ax-color-pink-600);`);
+push(`  --ax-id-band-limb-alert: var(--ax-color-emerald-700);`);
+
 // Layer 3 — component tokens (light)
 push('');
 push('  /* ── Layer 3 · Component tokens ── */');
@@ -210,6 +240,9 @@ push(`  --ax-focus-ring-width: ${component.focusRing.width.$value};`);
 push(`  --ax-focus-ring-offset: ${component.focusRing.offset.$value};`);
 push(`  --ax-focus-ring-opacity: ${component.focusRing.opacity.$value};`);
 push(`  --ax-focus-ring-color: ${shadow.focusRing.color.$value};`);
+push('  /* Component — locked accent values */');
+push(`  --ax-component-toggle-thumb:     #ffffff;`);
+push(`  --ax-component-orgavatar-purple: var(--ax-color-purple-600);`);
 
 // Form control sizing (density-aware — default = md, [data-density] swaps)
 push('  /* Control sizing (density-default) */');
@@ -452,6 +485,10 @@ push(`  --ax-button-secondary-bg: var(--ax-color-gray-800);`);
 push(`  --ax-button-secondary-bg-hover: var(--ax-color-gray-700);`);
 push(`  --ax-input-bg: var(--ax-color-gray-900);`);
 push(`  --ax-input-bg-disabled: var(--ax-color-gray-800);`);
+push('  /* Specialized surfaces (dark — only non-locked flip) */');
+push(`  --ax-surface-paper-stage:   var(--ax-color-zinc-900);`);
+push(`  --ax-surface-terminal:      var(--ax-color-zinc-900);`);
+push(`  --ax-surface-terminal-rule: var(--ax-color-zinc-700);`);
 push('  /* Clinical category colors (dark) */');
 push('  --ax-cat-med-subtle:        color-mix(in srgb, var(--ax-color-indigo-400) 20%, transparent);');
 push('  --ax-cat-med-emphasis:      var(--ax-color-indigo-300);');

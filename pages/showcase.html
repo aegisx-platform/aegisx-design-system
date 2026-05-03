@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark" data-density="compact">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>AegisX HIS · Showcase — ระบบสารสนเทศโรงพยาบาล</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/css/tokens.css">
+<link rel="stylesheet" href="tokens-compat.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="showcase.css">
+
+<!-- Phase 5-10 component CSS (loaded so renderPhaseComponent output is styled) -->
+<link rel="stylesheet" href="phase5/_base.css">
+<link rel="stylesheet" href="phase5/61-vitals.css">
+<link rel="stylesheet" href="phase5/62-labs.css">
+<link rel="stylesheet" href="phase5/63-rx.css">
+<link rel="stylesheet" href="phase5/64-allergies.css">
+<link rel="stylesheet" href="phase5/65-patient-header.css">
+<link rel="stylesheet" href="phase5/66-body-map.css">
+<link rel="stylesheet" href="phase5/67-consent.css">
+<link rel="stylesheet" href="phase5/68-triage.css">
+<link rel="stylesheet" href="phase5/69-soap.css">
+<link rel="stylesheet" href="phase5/70-orderset.css">
+
+<link rel="stylesheet" href="phase6/_base.css">
+<link rel="stylesheet" href="phase6/71-admission.css">
+<link rel="stylesheet" href="phase6/72-orders.css">
+<link rel="stylesheet" href="phase6/73-nurse-note.css">
+<link rel="stylesheet" href="phase6/74-io-record.css">
+<link rel="stylesheet" href="phase6/75-care-plan.css">
+<link rel="stylesheet" href="phase6/76-discharge-summary.css">
+<link rel="stylesheet" href="phase6/77-med-rec.css">
+<link rel="stylesheet" href="phase6/78-wristband.css">
+<link rel="stylesheet" href="phase6/79-belongings.css">
+<link rel="stylesheet" href="phase6/80-sbar.css">
+
+<link rel="stylesheet" href="phase7/_base.css">
+<link rel="stylesheet" href="phase7/81-preop.css">
+<link rel="stylesheet" href="phase7/82-or-record.css">
+<link rel="stylesheet" href="phase7/83-anesthesia.css">
+<link rel="stylesheet" href="phase7/84-restraint.css">
+<link rel="stylesheet" href="phase7/85-fall-risk.css">
+<link rel="stylesheet" href="phase7/86-braden.css">
+<link rel="stylesheet" href="phase7/87-transfusion.css">
+<link rel="stylesheet" href="phase7/88-codeblue.css">
+<link rel="stylesheet" href="phase7/89-death.css">
+<link rel="stylesheet" href="phase7/90-refer.css">
+
+<link rel="stylesheet" href="phase8/_base.css">
+<link rel="stylesheet" href="phase8/91-bedside.css">
+<link rel="stylesheet" href="phase8/92-visitor.css">
+<link rel="stylesheet" href="phase8/93-diet.css">
+<link rel="stylesheet" href="phase8/94-education.css">
+<link rel="stylesheet" href="phase8/95-proms.css">
+<link rel="stylesheet" href="phase8/96-bill.css">
+<link rel="stylesheet" href="phase8/97-preauth.css">
+<link rel="stylesheet" href="phase8/98-incident.css">
+
+<link rel="stylesheet" href="phase9/_base.css">
+<link rel="stylesheet" href="phase9/99-permission-matrix.css">
+<link rel="stylesheet" href="phase9/100-api-keys.css">
+<link rel="stylesheet" href="phase9/101-webhook.css">
+<link rel="stylesheet" href="phase9/102-feature-flags.css">
+<link rel="stylesheet" href="phase9/103-audit-search.css">
+<link rel="stylesheet" href="phase9/104-org-switcher.css">
+<link rel="stylesheet" href="phase9/105-settings-layout.css">
+<link rel="stylesheet" href="phase9/106-import-export.css">
+<link rel="stylesheet" href="phase9/107-system-health.css">
+<link rel="stylesheet" href="phase9/108-notification-prefs.css">
+
+<link rel="stylesheet" href="phase10/_base.css">
+<link rel="stylesheet" href="phase10/109-a11y-audit.css">
+<link rel="stylesheet" href="phase10/110-rtl.css">
+<link rel="stylesheet" href="phase10/111-locale.css">
+<link rel="stylesheet" href="phase10/112-print.css">
+<link rel="stylesheet" href="phase10/113-high-contrast.css">
+<link rel="stylesheet" href="phase10/114-shortcuts.css">
+<link rel="stylesheet" href="phase10/115-focus.css">
+<link rel="stylesheet" href="phase10/116-live-regions.css">
+<link rel="stylesheet" href="phase10/117-reduced-motion.css">
+<link rel="stylesheet" href="phase10/118-color-blind.css">
+</head>
+<body data-route="dashboard">
+
+<!-- ═══════════════ LOGIN PAGE ═══════════════ -->
+<div class="login-page">
+  <div class="login-page__art">
+    <div class="login-page__art-mark">
+      <div class="his-sidebar__mark" style="background:color-mix(in srgb, var(--ax-brand-inverted) 12%, transparent);">AX</div>
+      <div>
+        <div style="font-size:14px;">AegisX HIS</div>
+        <div style="font-size:10px;opacity:0.7;font-family:var(--ax-font-mono);">v4.2.1 • PRODUCTION</div>
+      </div>
+    </div>
+    <div>
+      <div class="login-page__art-headline">ระบบสารสนเทศ<br>โรงพยาบาลครบวงจร</div>
+      <p style="opacity:0.85; margin-top:16px; font-size:14px; line-height:1.6; max-width:380px;">
+        OPD • IPD • ER • Pharmacy • Lab • Radiology<br>
+        เชื่อมต่อข้อมูลผู้ป่วยและบุคลากรในระบบเดียว
+      </p>
+    </div>
+    <div class="login-page__art-foot">© 2025 AegisX Health Technology • PDPA & HA Compliant</div>
+  </div>
+  <div class="login-page__form-wrap">
+    <form class="login-form" onsubmit="event.preventDefault(); goRoute('dashboard');">
+      <div>
+        <h2 style="margin:0; font-size:20px; font-weight:600; letter-spacing:-0.01em;">เข้าสู่ระบบ</h2>
+        <p style="margin:4px 0 0; font-size:13px; color: var(--ax-text-subtle);">กรอกข้อมูลผู้ใช้เพื่อเริ่มทำงาน</p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="login-user">ชื่อผู้ใช้ / รหัสพนักงาน</label>
+        <input class="input" id="login-user" type="text" value="dr.somsak" autocomplete="username">
+      </div>
+      <div class="field">
+        <label class="field__label" for="login-pass">รหัสผ่าน</label>
+        <input class="input" id="login-pass" type="password" value="••••••••" autocomplete="current-password">
+        <div class="field__hint">รหัสผ่านมีอายุการใช้งาน 90 วัน</div>
+      </div>
+      <div class="field">
+        <label class="field__label">หน่วยงาน / สาขา</label>
+        <select class="input select">
+          <option>โรงพยาบาลศูนย์ AegisX (สาขาใหญ่)</option>
+          <option>โรงพยาบาลสาขากรุงเทพ</option>
+          <option>คลินิก AegisX สีลม</option>
+        </select>
+      </div>
+      <label class="row-flex" style="font-size:12px; color: var(--ax-text-secondary); cursor:pointer;">
+        <input type="checkbox" checked> จดจำการเข้าสู่ระบบในเครื่องนี้ 8 ชั่วโมง
+      </label>
+      <button class="btn btn--primary btn--lg" type="submit" style="width:100%;">เข้าสู่ระบบ</button>
+      <div style="text-align:center; font-size:12px; color: var(--ax-text-subtle); font-family: var(--ax-font-mono);">
+        หรือใช้ <a href="#" class="btn btn--link" style="font-family:var(--ax-font-mono);font-size:12px;">SSO Hospital ID</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN APP ═══════════════ -->
+<div class="his-app">
+  <aside class="his-sidebar">
+    <div class="his-sidebar__brand">
+      <div class="his-sidebar__mark">AX</div>
+      <div class="his-sidebar__title-row">
+        <span class="his-sidebar__title">AegisX HIS</span>
+        <span class="his-sidebar__sub">v4.2.1</span>
+      </div>
+    </div>
+    <nav class="his-sidebar__nav" id="sidebar-nav">
+      <div class="his-sidebar__group">หน้าหลัก</div>
+      <a class="his-sidebar__link" data-nav="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>แดชบอร์ด</a>
+      <a class="his-sidebar__link" data-nav="schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>ตารางนัด</a>
+
+      <div class="his-sidebar__group">งานคลินิก</div>
+      <a class="his-sidebar__link" data-nav="patients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>ผู้ป่วย<span class="badge badge--neutral">2,148</span></a>
+      <a class="his-sidebar__link" data-nav="opd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-4M9 11V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg>OPD<span class="badge badge--brand badge--dot">42 คิว</span></a>
+      <a class="his-sidebar__link" data-nav="ipd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v6M3 18h18M3 18v3M21 18v3M8 8V4h8v4"/></svg>IPD / ผู้ป่วยใน</a>
+      <a class="his-sidebar__link" data-nav="er"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>ฉุกเฉิน (ER)<span class="badge badge--error badge--dot">3</span></a>
+
+      <div class="his-sidebar__group">บริการสนับสนุน</div>
+      <a class="his-sidebar__link" data-nav="pharmacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 12h18M12 3v18"/></svg>ห้องยา</a>
+      <a class="his-sidebar__link" data-nav="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4 18a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3L15 8V2M9 2h6M7 14h10"/></svg>ห้องปฏิบัติการ</a>
+      <a class="his-sidebar__link" data-nav="radiology"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>รังสีวินิจฉัย</a>
+      <a class="his-sidebar__link" data-nav="billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM1 10h22"/></svg>การเงิน / สิทธิ</a>
+
+      <div class="his-sidebar__group">ระบบ</div>
+      <a class="his-sidebar__link" data-nav="quality"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>คุณภาพ</a>
+      <a class="his-sidebar__link" data-nav="a11y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>A11y Lab</a>
+      <a class="his-sidebar__link" data-nav="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 16l4-8 4 4 5-9"/></svg>รายงาน</a>
+      <a class="his-sidebar__link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>ตั้งค่า</a>
+    </nav>
+
+    <div class="his-sidebar__user">
+      <div class="avatar avatar--sm" style="background: var(--ax-brand-faint); color: var(--ax-brand-emphasis); font-weight:600;">สม</div>
+      <div class="his-sidebar__user-info" style="flex:1;">
+        <div class="his-sidebar__user-name">นพ. สมศักดิ์ ใจดี</div>
+        <div class="his-sidebar__user-role">อายุรกรรม • ห้อง 304</div>
+      </div>
+      <button class="btn btn--ghost btn--sm btn--icon" title="ออกจากระบบ" onclick="goRoute('login')">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main class="his-main">
+    <div class="his-topbar">
+      <div class="crumbs" id="crumbs">
+        <a href="index.html" style="color:var(--ax-text-secondary); text-decoration:none;" title="กลับไปยัง Design System docs">← Docs</a>
+        <span class="sep">/</span>
+        <strong>AegisX HIS</strong>
+        <span class="sep">/</span>
+        <span id="crumb-current">แดชบอร์ด</span>
+      </div>
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input placeholder="ค้นหา HN / ชื่อผู้ป่วย / รหัสยา / รหัส ICD-10…">
+        <div class="kbd-hint"><span class="kbd">⌘</span><span class="kbd">K</span></div>
+      </div>
+      <div class="row-flex">
+        <button class="btn btn--ghost btn--sm btn--icon" id="theme-toggle" title="สลับธีม สว่าง / มืด" onclick="toggleTheme()">
+          <svg id="theme-icon-dark" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="theme-icon-light" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button class="btn btn--ghost btn--sm btn--icon" title="แจ้งเตือน">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        </button>
+        <button class="btn btn--secondary btn--sm">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          ลงทะเบียนผู้ป่วยใหม่
+        </button>
+      </div>
+    </div>
+
+    <div class="his-content" id="content"></div>
+  </main>
+</div>
+
+<script src="showcase/router.js"></script>
+
+<!-- Phase 5-10 helpers (define window.AX5..AX10) -->
+<script src="phase5/_helpers.js"></script>
+<script src="phase6/_helpers.js"></script>
+<script src="phase7/_helpers.js"></script>
+<script src="phase8/_helpers.js"></script>
+<script src="phase9/_helpers.js"></script>
+<script src="phase10/_helpers.js"></script>
+
+<!-- Loader: override register/mount + define renderPhaseComponent -->
+<script src="showcase/phase-loader.js"></script>
+
+<!-- Phase 5 sections -->
+<script src="phase5/61-vitals.js"></script>
+<script src="phase5/62-labs.js"></script>
+<script src="phase5/63-rx.js"></script>
+<script src="phase5/64-allergies.js"></script>
+<script src="phase5/65-patient-header.js"></script>
+<script src="phase5/66-body-map.js"></script>
+<script src="phase5/67-consent.js"></script>
+<script src="phase5/68-triage.js"></script>
+<script src="phase5/69-soap.js"></script>
+<script src="phase5/70-orderset.js"></script>
+
+<!-- Phase 6 sections -->
+<script src="phase6/71-admission.js"></script>
+<script src="phase6/72-orders.js"></script>
+<script src="phase6/73-nurse-note.js"></script>
+<script src="phase6/74-io-record.js"></script>
+<script src="phase6/75-care-plan.js"></script>
+<script src="phase6/76-discharge-summary.js"></script>
+<script src="phase6/77-med-rec.js"></script>
+<script src="phase6/78-wristband.js"></script>
+<script src="phase6/79-belongings.js"></script>
+<script src="phase6/80-sbar.js"></script>
+
+<!-- Phase 7 sections -->
+<script src="phase7/81-preop.js"></script>
+<script src="phase7/82-or-record.js"></script>
+<script src="phase7/83-anesthesia.js"></script>
+<script src="phase7/84-restraint.js"></script>
+<script src="phase7/85-fall-risk.js"></script>
+<script src="phase7/86-braden.js"></script>
+<script src="phase7/87-transfusion.js"></script>
+<script src="phase7/88-codeblue.js"></script>
+<script src="phase7/89-death.js"></script>
+<script src="phase7/90-refer.js"></script>
+
+<!-- Phase 8 sections -->
+<script src="phase8/91-bedside.js"></script>
+<script src="phase8/92-visitor.js"></script>
+<script src="phase8/93-diet.js"></script>
+<script src="phase8/94-education.js"></script>
+<script src="phase8/95-proms.js"></script>
+<script src="phase8/96-bill.js"></script>
+<script src="phase8/97-preauth.js"></script>
+<script src="phase8/98-incident.js"></script>
+
+<!-- Phase 9 sections -->
+<script src="phase9/99-permission-matrix.js"></script>
+<script src="phase9/100-api-keys.js"></script>
+<script src="phase9/101-webhook.js"></script>
+<script src="phase9/102-feature-flags.js"></script>
+<script src="phase9/103-audit-search.js"></script>
+<script src="phase9/104-org-switcher.js"></script>
+<script src="phase9/105-settings-layout.js"></script>
+<script src="phase9/106-import-export.js"></script>
+<script src="phase9/107-system-health.js"></script>
+<script src="phase9/108-notification-prefs.js"></script>
+
+<!-- Phase 10 sections -->
+<script src="phase10/109-a11y-audit.js"></script>
+<script src="phase10/110-rtl.js"></script>
+<script src="phase10/111-locale.js"></script>
+<script src="phase10/112-print.js"></script>
+<script src="phase10/113-high-contrast.js"></script>
+<script src="phase10/114-shortcuts.js"></script>
+<script src="phase10/115-focus.js"></script>
+<script src="phase10/116-live-regions.js"></script>
+<script src="phase10/117-reduced-motion.js"></script>
+<script src="phase10/118-color-blind.js"></script>
+
+<!-- Phase _index.js (mount() is no-op via phase-loader.js) -->
+<script src="phase5/_index.js"></script>
+<script src="phase6/_index.js"></script>
+<script src="phase7/_index.js"></script>
+<script src="phase8/_index.js"></script>
+<script src="phase9/_index.js"></script>
+<script src="phase10/_index.js"></script>
+
+<script src="showcase/views.js"></script>
+
+</body>
+</html>

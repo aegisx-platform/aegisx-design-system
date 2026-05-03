@@ -164,6 +164,33 @@
           "text-hover":  { "$value": "{color.palette.zinc.900}",    "$type": "color" },
           "text-active": { "$value": "{color.palette.indigo.600}",  "$type": "color" },
           "bg-active":   { "$value": "{color.palette.indigo.50}",   "$type": "color" }
+        },
+        "surface": {
+          "_note": "Specialized surfaces — theme-locked appearance for objects that look the same regardless of UI theme (printed paper, dev-tool terminal, OS notification bubble).",
+          "paper":              { "$value": "{color.palette.zinc.50}",  "$type": "color", "$description": "Printed paper sheet — locked light" },
+          "paper-stage":        { "$value": "{color.palette.zinc.200}", "$type": "color", "$description": "Background behind paper preview (flips in dark)" },
+          "paper-ink":          { "$value": "#0a0a0a",                    "$type": "color", "$description": "Paper text — locked dark" },
+          "paper-ink-soft":     { "$value": "{color.palette.zinc.700}", "$type": "color", "$description": "Paper soft text — locked" },
+          "paper-ink-meta":     { "$value": "{color.palette.zinc.500}", "$type": "color", "$description": "Paper meta line — locked" },
+          "paper-rule":         { "$value": "#0a0a0a",                    "$type": "color", "$description": "Paper rule/divider — locked dark" },
+          "paper-border":       { "$value": "{color.palette.zinc.300}", "$type": "color", "$description": "Paper outline — locked" },
+          "paper-row-alt":      { "$value": "{color.palette.zinc.50}",  "$type": "color", "$description": "Paper alt-row — locked" },
+          "terminal":           { "$value": "{color.palette.zinc.950}", "$type": "color", "$description": "Dev-tool terminal bg (flips in dark)" },
+          "terminal-text":      { "$value": "{color.palette.zinc.200}", "$type": "color", "$description": "Terminal fg — locked" },
+          "terminal-meta":      { "$value": "{color.palette.zinc.500}", "$type": "color", "$description": "Terminal meta — locked" },
+          "terminal-rule":      { "$value": "{color.palette.zinc.800}", "$type": "color", "$description": "Terminal divider (flips in dark)" },
+          "notification-from":  { "$value": "{color.palette.zinc.800}", "$type": "color", "$description": "iOS-style push gradient start — locked dark" },
+          "notification-to":    { "$value": "{color.palette.zinc.900}", "$type": "color", "$description": "iOS-style push gradient end — locked dark" },
+          "notification-text":  { "$value": "#ffffff",                    "$type": "color", "$description": "Push fg — locked" },
+          "notification-shadow":{ "$value": "{color.palette.zinc.950}", "$type": "color", "$description": "Push shadow — locked" }
+        },
+        "id-band": {
+          "_note": "Hospital wristband identity colors (ISO 26825 family). Promoted to design system because pair contrast is a WCAG concern, not a domain decision. Triage / drug-interaction stay as --app-* in consumer apps.",
+          "allergy":     { "$value": "{color.palette.red.700}",     "$type": "color", "$description": "Red — allergy alert" },
+          "fall-risk":   { "$value": "{color.palette.amber.700}",   "$type": "color", "$description": "Yellow — fall risk" },
+          "dnr":         { "$value": "{color.palette.purple.600}",  "$type": "color", "$description": "Purple — DNR" },
+          "restricted":  { "$value": "{color.palette.pink.600}",    "$type": "color", "$description": "Pink — restricted extremity" },
+          "limb-alert":  { "$value": "{color.palette.emerald.700}", "$type": "color", "$description": "Green — limb alert / latex" }
         }
       },
       "dark": {
@@ -192,6 +219,12 @@
           "light":   { "$value": "{color.palette.indigo.200}", "$type": "color" },
           "default": { "$value": "{color.palette.indigo.400}", "$type": "color", "$description": "Softer in dark mode — #5c6bc0" },
           "dark":    { "$value": "{color.palette.indigo.600}", "$type": "color" }
+        },
+        "surface": {
+          "_note": "Surface dark overrides — only the *non-locked* surfaces flip. Locked surfaces (paper, terminal-text, notification-*) keep their light-mode values.",
+          "paper-stage":   { "$value": "{color.palette.zinc.900}", "$type": "color", "$description": "Stage darkens to keep contrast against locked-light paper" },
+          "terminal":      { "$value": "{color.palette.zinc.900}", "$type": "color", "$description": "Terminal bg lifts slightly in dark theme" },
+          "terminal-rule": { "$value": "{color.palette.zinc.700}", "$type": "color", "$description": "Terminal divider lifts in dark" }
         }
       },
       "roles": {

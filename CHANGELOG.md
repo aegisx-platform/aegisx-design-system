@@ -6,6 +6,68 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ## [Unreleased]
 
+### Changed — Removed `--app-*` shadow layer; promoted to semantic `--ax-*`
+- **`tokens/dtcg/color.json`** — added `semantic.{light,dark}.surface` group (paper, terminal, notification specialized surfaces with theme-lock policy) and `semantic.id-band` group (5-color hospital wristband identity). Per `AEGISX-DESIGN-PRINCIPLES.md` these belong to the design system because pair contrast is a WCAG/a11y decision, not a domain decision (triage / NHSO / drug-interaction stay as `--app-*` in consumer apps).
+- **`scripts/build-tokens.mjs`** — emits 16 new `--ax-surface-*`, 5 `--ax-id-band-*`, and 2 `--ax-component-*` tokens, with proper light/dark forks for the non-locked surfaces (`paper-stage`, `terminal`, `terminal-rule`).
+- **6 phase CSS files** refactored from `--app-*` aliases to `--ax-*` semantic tokens: `phase6/78-wristband.css`, `phase9/{104-org-switcher,105-settings-layout,108-notification-prefs}.css`, `phase10/{112-print,116-live-regions}.css`. Visual identical (verified via playwright × 6 routes × {light,dark}).
+- **Removed** `pages/showcase/demo-tokens.css` and its `<link>` in `pages/showcase.html`. The design system now ships with zero `--app-*` references — consumer apps copying showcase CSS get production-ready `--ax-*` tokens directly.
+
+### Added — Hospital App showcase wired to phase 5-10 components
+- **`pages/showcase.html`** — loads all phase 5-10 CSS (64 files) + helpers + section builders + `_index.js` shims, in the order required by `phase-loader.js`.
+- **`pages/showcase/phase-loader.js`** (new) — overrides `AX5..AX10.register()` to capture each builder by its function name into `window.PHASE_BUILDERS`, neutralizes `mount()` (no `#sections-phaseN` container exists in the showcase), and exposes `window.renderPhaseComponent(name)` returning the builder's `outerHTML` for inline embedding inside route HTML strings.
+- **`pages/showcase/views.js`** — added generic `switchSubTab(event, prefix, key)` + per-route wrappers (`switchClinicalTab`, `switchOpdTab`, `switchIpdTab`, `switchErTab`, `switchBillingTab`, `switchSettingsTab`).
+- **PatientDetail (`renderPatientDetail`)** — replaced the static "การตรวจ" tab list with 5 working sub-tabs: history (default) · #61 Vital chart · #62 Lab results · #69 SOAP note · #63 Prescription.
+- **OPD (`renderOPD`)** — added top-level "คิวรอตรวจ | มุมมองผู้ป่วย" tabs. Patient view stacks #65 patient header → #64 allergies banner → #61 vital chart → #69 SOAP → #63 Rx.
+- **IPD (`renderIPD`)** — added 9 sub-tabs: bedmap (existing) · #71 Admission · #72 Doctor's orders · #73 Nurse note · #74 I/O · #93 Diet · #76 Discharge · Safety (#85 Fall risk + #86 Braden + #87 Transfusion stacked) · #80 SBAR hand-off. Removed unused `wards` constant.
+- **ER (`renderER`)** — added 4 sub-tabs: live list (existing) · #68 Triage · #88 Code blue / Resus · #90 Refer / Transfer.
+- **Billing (`renderBilling`)** — wired existing 4-tab strip to swap content: bills (existing) · #96 IPD itemized bill · #97 Insurance pre-auth · claims placeholder.
+- **Settings (`renderSettings`)** — added 4 sub-tabs: profile + security · display (theme/density/language) · #103 Audit log · #107 System health (+ existing "เกี่ยวกับระบบ" card).
+- **`pages/showcase.css`** — added `.his-stack` utility (column flex with `var(--ax-spacing-lg)` gap) for sub-tab pages that stack multiple phase components.
+
+### Verified
+- Playwright smoke (1440×900, headless): 58 builders registered; all 23 sub-tabs render visible content; bedmap → admission switch correctly hides bedmap; theme + density toggles still flip the whole app; **zero `pageerror`s, zero console warnings**.
+
+### Notes / known limitations
+- Pharmacy / Lab / Radiology / Reports routes intentionally untouched (out of plan scope).
+
+### Added — `renderPhaseDemo()` strips docs-page section header inside showcase
+- **`pages/showcase/phase-loader.js`** — added `window.renderPhaseDemo(builderName)` that returns concatenated `outerHTML` of every `.demo` block inside a builder's output (or, if the builder skipped `demo()`, returns the whole node with `.section__head` removed). Original `renderPhaseComponent()` kept for backward compat.
+- **`pages/showcase/views.js`** — all 26 phase embeds now use `renderPhaseDemo()`, so each route shows only the actual UI (form / chart / table) without the docs-mode "61 · Vital signs chart + description" wrapper.
+
+### Added — Theme + density preferences persist
+- **`pages/showcase/router.js`** — added `applyPrefs()`, `setTheme()`, `setDensity()`, `toggleTheme()` backed by `localStorage['aegisx.showcase.prefs']`. Prefs apply before `DOMContentLoaded` to avoid theme flash, and re-render Settings → Display when changed so the active button (`btn--secondary` vs `btn--ghost`) reflects current state.
+- **`pages/showcase.html`** — added topbar theme toggle button (sun/moon icon, swaps based on current theme).
+- **`pages/showcase/views.js`** — Settings → Display now renders buttons via a closure that reads `getPrefs()` and marks the matching variant `btn--secondary`. Removed the dead "อัตโนมัติ" theme button (no implementation existed).
+
+### Fixed — `scripts/build-site.mjs` overwriting subdir copies
+- `cpSync(srcDir, dstDir, { recursive: true })` was missing `force: true`, so subsequent rebuilds of `phase{5..10}/` and `showcase/` silently kept stale copies in `site/`. Added `force: true` so edits propagate on every rebuild.
+
+### Added — Phase completion (35 more components → 58/58 reachable)
+Implemented per `pages/SHOWCASE-PHASE-COMPLETION-SPEC.md`. Each phase wired then code-reviewed before next phase.
+
+- **Phase 5 (3):** PatientDetail/clinical-tab-bodymap (#66); IPD/admission stack +#67 consent; IPD/orders stack +#70 orderset.
+- **Phase 6 (4):** IPD/admission stack adds #78 wristband + #79 belongings; IPD/nurse stack +#75 carePlan; IPD/discharge stack +#77 medRec.
+- **Phase 7 (5):** IPD adds Pre-op (#81) + OR record sub-tabs (#82 + stacked #83 anesth); Safety stack +#84 restraint; Discharge stack +#89 death.
+- **Phase 8 (5):** IPD adds Bedside sub-tab (#91 + stacked #92 visitor); PatientDetail/clinical-tab-proms (#95); Discharge stack +#94 edu; new sidebar menu **Quality** with route `quality` for #98 incident.
+- **Phase 9 (8):** Settings refactored 4→8 sub-tabs — Notifications (#108), Access control (#99 + stacked #104 orgSwitcher), API & Integrations (#100 + stacked #101 webhook), Advanced (#102 + stacked #106 importExport); Display stack +#105 settingsLayout.
+- **Phase 10 (10):** new sidebar menu **A11y Lab** with 10 sub-tabs (#109-118) built from data-driven `tabs` array.
+
+### Added — UX polish during this phase
+- `pages/showcase.css` `.page-tabs` — `overflow-x: auto` + scrollbar + `flex-shrink: 0; white-space: nowrap` on tab buttons (IPD strip grew to 12 tabs; Settings to 8).
+- `pages/showcase/router.js` — added `mountPhaseInto(targetId, builderName)` helper that mounts a phase builder via DOM nodes (no `innerHTML`) for use in topbar/header slots; uses `replaceChildren` + `appendChild` of stripped demo children.
+
+### Verified
+- Source check: 58/58 unique builders registered; 0 unwired (every builder name appears in `pages/showcase/views.js` or `pages/showcase/router.js`).
+- Playwright sweep across all routes: 0 `pageerror`, 0 console errors.
+
+### Spec change mid-implementation
+- Phase 9 #104 `orgSwitcherSection` — initially planned as topbar slot but the component is a full-page demo with `.osw__stage` overlay that intercepts clicks. Reassigned to stack under #99 in Settings/Access control. `pages/SHOWCASE-PHASE-COMPLETION-SPEC.md:63` updated to reflect.
+
+### Fixed — Hardcoded colors in phase components used by showcase
+- **`pages/phase5/64-allergies.css`** — replaced `rgba(0,0,0,0.18)` and `rgba(255,255,255,{0.18,0.4})` with `color-mix(in srgb, var(--ax-color-black|--ax-error-inverted) <pct>%, transparent)`; replaced raw `#fff` text color with `var(--ax-error-inverted)`; replaced `border-radius:6px` with `var(--ax-radius-md)`.
+- **`pages/phase8/96-bill.css`** — replaced `color:#fff` on `.bill__sum-c--em` summary row with `var(--ax-background-default)` (correct semantic — text on inverse-emphasis background).
+- **Audit summary** (phases used in showcase routes only): phases 5/61,62,63,65,68,69 · 6/71-76,80 · 7/85-88,90 · 8/93,96,97 · 9/103,107 — **all token-clean** after these fixes. Hardcoded values still exist in 6/78 (wristband print mockup — physical color identity, intentional), 9/104 (org-switcher avatar fallback), 9/105 (toggle thumb), 9/108 (phone push mockup gradient), and most of phase 10 (a11y/contrast/colorblind demos — values are the teaching subject) — none of these embed in showcase routes.
+
 ## [0.5.3] — 2026-04-19
 
 ### Changed — Stepper "done" state follows theme

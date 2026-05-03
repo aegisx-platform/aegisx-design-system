@@ -83,6 +83,20 @@
           "$value": "{color.palette.indigo.600}",
           "$type": "color"
         }
+      },
+      "surface": {
+        "paper-stage": {
+          "$value": "{color.palette.zinc.900}",
+          "$type": "color"
+        },
+        "terminal": {
+          "$value": "{color.palette.zinc.900}",
+          "$type": "color"
+        },
+        "terminal-rule": {
+          "$value": "{color.palette.zinc.700}",
+          "$type": "color"
+        }
       }
     },
     "role": {

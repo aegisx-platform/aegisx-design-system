@@ -59,7 +59,7 @@
 }
 .cbs__sim-cell{
   height:42px;
-  border-right:1px solid rgba(255,255,255,0.18);
+  border-right:1px solid color-mix(in srgb, var(--ax-background-default) 18%, transparent);
 }
 .cbs__sim-cell:last-child{ border-right:none;}
 
@@ -102,7 +102,7 @@
   width:18px; height:18px; border-radius:5px;
   display:flex; align-items:center; justify-content:center;
   font-family:var(--ax-font-mono); font-size:11px; font-weight:700;
-  color:#fff;
+  color:var(--ax-text-inverted);
 }
 .cbs__sts-l{ color:var(--ax-text-default);}
 .cbs__sts-l small{ display:block; font-size:9.5px; color:var(--ax-text-subtle); font-family:var(--ax-font-mono);}

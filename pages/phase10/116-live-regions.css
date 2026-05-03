@@ -56,41 +56,41 @@
 .srl__region-d{ font-size:10px; color:var(--ax-text-secondary); line-height:1.5;}
 .srl__region-c{ font-family:var(--ax-font-mono); font-size:10px; color:var(--ax-brand-emphasis); margin-top:4px;}
 
-/* announcement log · "what NVDA said" */
+/* announcement log · "what NVDA said" — uses --app-srlog-* aliases (theme-locked terminal style) */
 .srl__log{
-  background:#0a0a0c;
+  background:var(--ax-surface-terminal);
   border-radius:var(--ax-radius-md);
   padding:10px 12px;
   font-family:var(--ax-font-mono); font-size:10.5px; line-height:1.55;
-  color:#e4e4e7;
+  color:var(--ax-surface-terminal-text);
   height:300px; overflow:hidden;
   position:relative;
 }
 .srl__log-h{
   display:flex; justify-content:space-between; align-items:center;
   padding-bottom:6px; margin-bottom:6px;
-  border-bottom:1px solid #27272a;
+  border-bottom:1px solid var(--ax-surface-terminal-rule);
   font-size:9px; text-transform:uppercase; letter-spacing:0.06em;
-  color:#71717a;
+  color:var(--ax-surface-terminal-meta);
 }
 .srl__log-h .live{
   display:inline-flex; align-items:center; gap:4px;
-  color:#22c55e;
+  color:var(--ax-success-default);
 }
 .srl__log-h .live::before{
   content:""; width:6px; height:6px; border-radius:50%;
-  background:#22c55e; box-shadow:0 0 6px #22c55e;
+  background:var(--ax-success-default); box-shadow:0 0 6px var(--ax-success-default);
 }
 .srl__entry{ display:grid; grid-template-columns:auto auto 1fr; gap:8px; padding:3px 0;}
-.srl__entry-t{ color:#71717a;}
+.srl__entry-t{ color:var(--ax-surface-terminal-meta);}
 .srl__entry-pol{
   font-size:8.5px; padding:0 4px; border-radius:3px;
   align-self:start; margin-top:2px;
 }
-.srl__entry-pol.p{ background:rgba(127,151,255,0.18); color:#7f97ff;}
-.srl__entry-pol.a{ background:rgba(255,87,87,0.18); color:#ff7777;}
-.srl__entry-msg{ color:#e4e4e7;}
-.srl__entry-msg em{ color:#a1a1aa; font-style:normal;}
+.srl__entry-pol.p{ background:color-mix(in srgb, var(--ax-info-default) 18%, transparent); color:var(--ax-info-default);}
+.srl__entry-pol.a{ background:color-mix(in srgb, var(--ax-error-default) 18%, transparent); color:var(--ax-error-default);}
+.srl__entry-msg{ color:var(--ax-surface-terminal-text);}
+.srl__entry-msg em{ color:var(--ax-text-subtle); font-style:normal;}
 
 /* mini timeline · debounce visualization */
 .srl__deb{

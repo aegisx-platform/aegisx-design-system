@@ -6,11 +6,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **Last shipped:** `@aegisx-platform/design-system@v0.5.3` (2026-04-30). All 3 GitHub workflows green.
 - **What changed since v0.3.1:** v0.4 unified docs shell, live Tweaks panel, scroll-spy sidebar. v0.5 added Phase 5 (Clinical Specialty, #61–70) + Phase 6 partial (#71 Admission, #72 Doctor's orders). v0.5.3 polished Stepper/paginator/toolbar, parity demo redesign.
-- **`pnpm tokens:verify` reports zero drift** — 580 `--ax-*` tokens (increased from 255 in v0.3.1; added `--ax-cat-*` clinical category colors 2026-04-30).
-- **Token addition (2026-04-30):** Added 24 `--ax-cat-*` tokens (8 clinical categories × subtle/emphasis/fg, light + dark) to `build-tokens.mjs` + rebuilt `tokens/css/tokens.css`. `--ax-tri-*`, `--ax-pain-*`, `--ax-clinical-*` stay in demo's standalone `tokens-compat.css` per DESIGN-PRINCIPLES.md Rule 0.
+- **`pnpm tokens:verify` reports zero drift** — 580 `--ax-*` tokens.
+- **`pages/index.html` done** — unified design system docs page (Foundations → Phase 10) is complete and live.
 - **What to do next:** read `TODO.md` at repo root — it's the prioritised work list. Update it as items move; do not let it rot.
-- **Next active work:** implement unified `pages/index.html` from claude.ai/design export (`~/Downloads/aegisx-design-system/`). Plan at `docs/superpowers/plans/2026-04-30-index-html-implementation.md`.
 - **Critical hands-off:** user explicitly said do **NOT** touch `aegisx-starter-1` or `aegisx-ui` library until design-system is fully finalised here. Migration to consumer-side is parked.
+
+## Build system & local preview — READ THIS BEFORE TOUCHING ANYTHING
+
+This repo HAS a build system. CLAUDE.md previously said "no build commands" — that was wrong.
+
+### Two distinct index.html files (never confuse them)
+| File | What it is | Edit? |
+|---|---|---|
+| `pages/index.html` | Unified design system docs (source) | Yes — edit directly |
+| `site/index.html` | Landing homepage (generated) | **NEVER** — edit `scripts/build-site.mjs` instead |
+
+### Build commands
+```
+node scripts/build-site.mjs        # rebuild site/ (homepage + copy pages/ + tokens/)
+node scripts/build-tokens.mjs      # rebuild tokens/css/tokens.css
+node scripts/verify-tokens.mjs     # verify token drift
+```
+
+### Local preview rule (MANDATORY)
+- **Always serve from `site/`** — not repo root, not `pages/`
+- Port: **5555**
+- Command: `python3 -m http.server 5555 --directory <repo-root>/site`
+- Homepage at: `http://localhost:5555/`
+- Docs at: `http://localhost:5555/pages/index.html`
+
+### After ANY change to pages/ or tokens/ → rebuild first
+```
+node scripts/build-site.mjs
+```
+`site/` is gitignored — it is always a local build artifact.
 
 ## MANDATORY RULES — violating any of these is unacceptable
 

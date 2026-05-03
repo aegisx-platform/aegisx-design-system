@@ -183,6 +183,29 @@
   --ax-success-border: #6ee7b7;
   --ax-error-surface: #fee2e2;
   --ax-error-border: #fca5a5;
+  /* Specialized surfaces (theme-locked) */
+  --ax-surface-paper:              var(--ax-color-zinc-50);
+  --ax-surface-paper-stage:        var(--ax-color-zinc-200);
+  --ax-surface-paper-ink:          #0a0a0a;
+  --ax-surface-paper-ink-soft:     var(--ax-color-zinc-700);
+  --ax-surface-paper-ink-meta:     var(--ax-color-zinc-500);
+  --ax-surface-paper-rule:         #0a0a0a;
+  --ax-surface-paper-border:       var(--ax-color-zinc-300);
+  --ax-surface-paper-row-alt:      var(--ax-color-zinc-50);
+  --ax-surface-terminal:           var(--ax-color-zinc-950);
+  --ax-surface-terminal-text:      var(--ax-color-zinc-200);
+  --ax-surface-terminal-meta:      var(--ax-color-zinc-500);
+  --ax-surface-terminal-rule:      var(--ax-color-zinc-800);
+  --ax-surface-notification-from:  var(--ax-color-zinc-800);
+  --ax-surface-notification-to:    var(--ax-color-zinc-900);
+  --ax-surface-notification-text:  #ffffff;
+  --ax-surface-notification-shadow:var(--ax-color-zinc-950);
+  /* ID bands (hospital wristband identity) */
+  --ax-id-band-allergy:    var(--ax-color-red-700);
+  --ax-id-band-fall-risk:  var(--ax-color-amber-700);
+  --ax-id-band-dnr:        var(--ax-color-purple-600);
+  --ax-id-band-restricted: var(--ax-color-pink-600);
+  --ax-id-band-limb-alert: var(--ax-color-emerald-700);
 
   /* ── Layer 3 · Component tokens ── */
   /* Navigation */
@@ -222,6 +245,9 @@
   --ax-focus-ring-offset: 2px;
   --ax-focus-ring-opacity: 0.5;
   --ax-focus-ring-color: #3b82f6;
+  /* Component — locked accent values */
+  --ax-component-toggle-thumb:     #ffffff;
+  --ax-component-orgavatar-purple: var(--ax-color-purple-600);
   /* Control sizing (density-default) */
   --ax-control-h: 3rem;
   --ax-control-h-sm: 2.5rem;
@@ -505,6 +531,10 @@
   --ax-button-secondary-bg-hover: var(--ax-color-gray-700);
   --ax-input-bg: var(--ax-color-gray-900);
   --ax-input-bg-disabled: var(--ax-color-gray-800);
+  /* Specialized surfaces (dark — only non-locked flip) */
+  --ax-surface-paper-stage:   var(--ax-color-zinc-900);
+  --ax-surface-terminal:      var(--ax-color-zinc-900);
+  --ax-surface-terminal-rule: var(--ax-color-zinc-700);
   /* Clinical category colors (dark) */
   --ax-cat-med-subtle:        color-mix(in srgb, var(--ax-color-indigo-400) 20%, transparent);
   --ax-cat-med-emphasis:      var(--ax-color-indigo-300);

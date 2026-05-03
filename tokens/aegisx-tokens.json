@@ -531,6 +531,94 @@
           "$value": "{color.palette.indigo.50}",
           "$type": "color"
         }
+      },
+      "surface": {
+        "paper": {
+          "$value": "{color.palette.zinc.50}",
+          "$type": "color"
+        },
+        "paper-stage": {
+          "$value": "{color.palette.zinc.200}",
+          "$type": "color"
+        },
+        "paper-ink": {
+          "$value": "#0a0a0a",
+          "$type": "color"
+        },
+        "paper-ink-soft": {
+          "$value": "{color.palette.zinc.700}",
+          "$type": "color"
+        },
+        "paper-ink-meta": {
+          "$value": "{color.palette.zinc.500}",
+          "$type": "color"
+        },
+        "paper-rule": {
+          "$value": "#0a0a0a",
+          "$type": "color"
+        },
+        "paper-border": {
+          "$value": "{color.palette.zinc.300}",
+          "$type": "color"
+        },
+        "paper-row-alt": {
+          "$value": "{color.palette.zinc.50}",
+          "$type": "color"
+        },
+        "terminal": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        },
+        "terminal-text": {
+          "$value": "{color.palette.zinc.200}",
+          "$type": "color"
+        },
+        "terminal-meta": {
+          "$value": "{color.palette.zinc.500}",
+          "$type": "color"
+        },
+        "terminal-rule": {
+          "$value": "{color.palette.zinc.800}",
+          "$type": "color"
+        },
+        "notification-from": {
+          "$value": "{color.palette.zinc.800}",
+          "$type": "color"
+        },
+        "notification-to": {
+          "$value": "{color.palette.zinc.900}",
+          "$type": "color"
+        },
+        "notification-text": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "notification-shadow": {
+          "$value": "{color.palette.zinc.950}",
+          "$type": "color"
+        }
+      },
+      "id-band": {
+        "allergy": {
+          "$value": "{color.palette.red.700}",
+          "$type": "color"
+        },
+        "fall-risk": {
+          "$value": "{color.palette.amber.700}",
+          "$type": "color"
+        },
+        "dnr": {
+          "$value": "{color.palette.purple.600}",
+          "$type": "color"
+        },
+        "restricted": {
+          "$value": "{color.palette.pink.600}",
+          "$type": "color"
+        },
+        "limb-alert": {
+          "$value": "{color.palette.emerald.700}",
+          "$type": "color"
+        }
       }
     },
     "role": {

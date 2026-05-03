@@ -70,7 +70,7 @@
   width:22px; height:16px; border-radius:3px;
   display:flex; align-items:center; justify-content:center;
   font-family:var(--ax-font-mono); font-size:9px; font-weight:700;
-  color:#fff;
+  color:var(--ax-text-inverted);
 }
 .loc__opt-name{ font-size:12px; font-weight:600; color:var(--ax-text-heading);}
 .loc__opt-native{ font-size:10px; color:var(--ax-text-subtle); margin-top:1px;}

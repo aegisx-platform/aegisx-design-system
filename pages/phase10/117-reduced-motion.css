@@ -54,7 +54,7 @@
 .rmo__cell:nth-child(3n){ border-right:none;}
 .rmo__cell.head{ background:var(--ax-background-page); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--ax-text-subtle);}
 .rmo__cell.head.full{ color:var(--ax-text-heading);}
-.rmo__cell.head.red{ background:#0a0a0c; color:#a1a1aa;}
+.rmo__cell.head.red{ background:var(--ax-background-emphasis); color:var(--ax-text-subtle);}
 
 .rmo__what strong{ display:block; font-size:12px; font-weight:700; color:var(--ax-text-heading);}
 .rmo__what small{ display:block; font-size:10.5px; color:var(--ax-text-secondary); margin-top:2px; line-height:1.5;}
@@ -103,7 +103,7 @@
 }
 .rmo__skel::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg,transparent 0,rgba(255,255,255,0.6) 50%,transparent 100%);
+  background:linear-gradient(90deg,transparent 0,color-mix(in srgb, var(--ax-background-default) 60%, transparent) 50%,transparent 100%);
   animation:rmoShimmer 1.4s linear infinite;
 }
 .rmo__skel.no-anim::after{ animation:none; background:none;}
@@ -124,15 +124,15 @@
 
 .rmo__bell{
   width:18px; height:18px; border-radius:50%;
-  background:var(--ax-error-default); color:#fff;
+  background:var(--ax-error-default); color:var(--ax-error-inverted);
   display:flex; align-items:center; justify-content:center;
   font-size:10px; font-weight:700;
   animation:rmoPulse 1.4s ease-in-out infinite;
 }
 .rmo__bell.no-anim{ animation:none; outline:3px solid var(--ax-error-muted); outline-offset:2px;}
 @keyframes rmoPulse{
-  0%,100%{ box-shadow:0 0 0 0 rgba(220,38,38,0.6);}
-  50%{ box-shadow:0 0 0 8px rgba(220,38,38,0);}
+  0%,100%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--ax-error-default) 60%, transparent);}
+  50%{ box-shadow:0 0 0 8px color-mix(in srgb, var(--ax-error-default) 0%, transparent);}
 }
 
 .rmo__static{

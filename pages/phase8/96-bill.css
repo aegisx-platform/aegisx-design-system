@@ -63,8 +63,8 @@
 .bill__sum-c{ padding:10px 14px; border-right:1px solid var(--ax-border-default); display:flex; flex-direction:column; gap:2px;}
 .bill__sum-c:last-child{ border-right:none;}
 .bill__sum-c--em{ background:var(--ax-text-heading); color:var(--ax-background-default);}
-.bill__sum-c--em .bill__sum-cap{ opacity:0.7; color:#fff;}
-.bill__sum-c--em .bill__sum-val{ color:#fff;}
+.bill__sum-c--em .bill__sum-cap{ opacity:0.7; color:var(--ax-background-default);}
+.bill__sum-c--em .bill__sum-val{ color:var(--ax-background-default);}
 .bill__sum-cap{ font-family:var(--ax-font-mono); font-size:9px; color:var(--ax-text-subtle); text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
 .bill__sum-val{ font-family:var(--ax-font-mono); font-size:14px; font-weight:700; color:var(--ax-text-heading);}
 

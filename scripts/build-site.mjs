@@ -36,11 +36,26 @@ for (const f of pageFiles) {
     cpSync(src, dst);
   }
 }
-// Recursively copy phase subdirectories (flat readdirSync above misses them)
-for (const subdir of ['phase5', 'phase6', 'phase7', 'phase8', 'phase9', 'phase10']) {
+// Recursively copy phase + showcase subdirectories (flat readdirSync above misses them)
+for (const subdir of ['phase5', 'phase6', 'phase7', 'phase8', 'phase9', 'phase10', 'showcase']) {
   const srcDir = resolve(root, 'pages', subdir);
   const dstDir = resolve(out, 'pages', subdir);
-  if (existsSync(srcDir)) cpSync(srcDir, dstDir, { recursive: true });
+  if (existsSync(srcDir)) cpSync(srcDir, dstDir, { recursive: true, force: true });
+}
+
+// Cache-bust showcase.html — append ?v=<build-timestamp> to every local stylesheet
+// + script reference so browsers always fetch the latest after a rebuild.
+{
+  const showcasePath = resolve(out, 'pages', 'showcase.html');
+  if (existsSync(showcasePath)) {
+    const v = Date.now();
+    let html = readFileSync(showcasePath, 'utf8');
+    html = html.replace(/(<link\s+rel="stylesheet"\s+href=")([^"]+)(")/g, (_, a, href, c) =>
+      href.startsWith('http') ? `${a}${href}${c}` : `${a}${href}?v=${v}${c}`);
+    html = html.replace(/(<script\s+src=")([^"]+)(")/g, (_, a, src, c) =>
+      src.startsWith('http') ? `${a}${src}${c}` : `${a}${src}?v=${v}${c}`);
+    writeFileSync(showcasePath, html);
+  }
 }
 
 // Token data (CSS, SCSS, DTCG) — used by pages via ../tokens/css/tokens.css
@@ -349,6 +364,7 @@ const html = `<!doctype html>
     <a href="pages/components.html">Components ↗</a>
     <a href="pages/navigation.html">Navigation ↗</a>
     <a href="pages/a11y.html">A11y ↗</a>
+    <a href="pages/showcase.html">Showcase ↗</a>
   </nav>
   <span class="ax-topbar__version">${pkg.name}@${pkg.version}</span>
 </header>

@@ -51,7 +51,7 @@
 
 .stl__sw{ display:inline-flex; align-items:center; gap:8px;}
 .stl__sw-track{ width:32px; height:18px; background:var(--ax-success-emphasis); border-radius:99px; position:relative; flex:none;}
-.stl__sw-track i{ position:absolute; top:2px; right:2px; width:14px; height:14px; background:#fff; border-radius:50%;}
+.stl__sw-track i{ position:absolute; top:2px; right:2px; width:14px; height:14px; background:var(--ax-component-toggle-thumb); border-radius:50%;}
 .stl__sw-track.is-off{ background:var(--ax-border-emphasis);}
 .stl__sw-track.is-off i{ left:2px; right:auto;}
 .stl__sw-l{ font-size:12px; color:var(--ax-text-default);}

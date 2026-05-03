@@ -74,9 +74,9 @@
 .npr__live-tabs button:last-child{ border-right:none;}
 .npr__live-tabs button.is-on{ background:var(--ax-text-heading); color:var(--ax-background-default);}
 
-.npr__push{ width:100%; max-width:320px; margin:0 auto; border-radius:14px; background:linear-gradient(180deg, #2a2f3a, #161922); padding:10px; box-shadow:0 6px 14px -4px rgba(15,23,42,0.35); position:relative; color:#fff;}
-.npr__push-bar{ display:flex; justify-content:space-between; align-items:center; font-family:var(--ax-font-mono); font-size:9px; color:rgba(255,255,255,0.7); padding:0 6px 6px;}
-.npr__push-card{ background:rgba(255,255,255,0.96); color:var(--ax-text-heading); border-radius:10px; padding:10px 12px; display:flex; gap:10px;}
+.npr__push{ width:100%; max-width:320px; margin:0 auto; border-radius:14px; background:linear-gradient(180deg, var(--ax-surface-notification-from), var(--ax-surface-notification-to)); padding:10px; box-shadow:0 6px 14px -4px color-mix(in srgb, var(--ax-surface-notification-shadow) 35%, transparent); position:relative; color:var(--ax-surface-notification-text);}
+.npr__push-bar{ display:flex; justify-content:space-between; align-items:center; font-family:var(--ax-font-mono); font-size:9px; color:color-mix(in srgb, var(--ax-surface-notification-text) 70%, transparent); padding:0 6px 6px;}
+.npr__push-card{ background:color-mix(in srgb, var(--ax-background-default) 96%, transparent); color:var(--ax-text-heading); border-radius:10px; padding:10px 12px; display:flex; gap:10px;}
 .npr__push-ico{ width:36px; height:36px; border-radius:8px; background:var(--ax-error-emphasis); color:#fff; display:grid; place-items:center; font-family:var(--ax-font-mono); font-size:11px; font-weight:700; flex:none;}
 .npr__push-h{ display:flex; justify-content:space-between; align-items:flex-start; gap:8px;}
 .npr__push-app{ font-family:var(--ax-font-mono); font-size:9.5px; color:var(--ax-text-subtle); font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
